@@ -2,6 +2,8 @@ import * as d3 from 'd3';
 import React, {useState, useEffect, useRef} from 'react';
 import Papa from 'papaparse';
 
+import coviddata from '../../data/covid_confirmed_usafacts.json'
+
 import NYTHeader from '../../images/NYT/NYTHeader.png'
 import NYTTitle from '../../images/NYT/NYTTitle.png'
 import NYTBody1 from '../../images/NYT/NYTBody1.png'
@@ -16,23 +18,24 @@ import NYTFooter from '../../images/NYT/NYTFooter.png'
 
 function CovidGraph() {
 
-    const [parsedData, setParsedData] = useState([]);
-
     const graphRef = useRef();
+    
+    console.log(coviddata[0])
 
-    const parseFile =  (file) => {
-        Papa.parse('../../data/covid_confirmed_usafacts.csv', {
-            header: true,
-            complete: results => {
-                console.log(results)
-                setParsedData(results.data)
-            }
-        })
-    }
+    // const [parsedData, setParsedData] = useState([]);
+    // const parseFile =  (file) => {
+    //     Papa.parse('../../data/covid_confirmed_usafacts.csv', {
+    //         header: true,
+    //         complete: results => {
+    //             console.log(results)
+    //             setParsedData(results.data)
+    //         }
+    //     })
+    // }
 
-    useEffect(()=> {
-        parseFile();
-    }, [])
+    // useEffect(()=> {
+    //     parseFile();
+    // }, [])
 
    
     const draw = () => {
@@ -40,7 +43,7 @@ function CovidGraph() {
     }
 
 
-    
+
     return(
         <React.Fragment>
             <div ref={graphRef} className='GraphContainer' style={{backgroundColor: "aliceblue", width: "100%", height: "350px"}}/>
