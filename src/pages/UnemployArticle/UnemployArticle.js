@@ -2,6 +2,7 @@ import * as d3 from 'd3';
 import React, {useState, useEffect, useRef} from 'react';
 
 import ContextBox from '../../components/ContextBox/ContextBox';
+import ContextBoxPlus from '../../components/ContextBoxPlus/ContextBoxPlus';
 import ArticleBox from '../../components/ArticleBox/ArticleBox';
 
 import coviddata from '../../data/covid_confirmed_usafacts.json'
@@ -37,7 +38,10 @@ function UnemployGraph() {
     //     parseFile();
     // }, [])
 
-   
+    const [viewMore, setViewMore] = useState(false);
+    const [viewCateg, setViewCateg] = useState();
+    const [viewArticle, setViewArticle] = useState(false);
+
     const draw = () => {
 
     }
@@ -46,7 +50,19 @@ function UnemployGraph() {
 
     return(
         <React.Fragment>
-            <div ref={graphRef} className='GraphContainer' style={{backgroundColor: "pink", width: "100%", height: "350px"}}/>
+            <div style={{display: "flex", height: "350px"}}>
+                <div ref={graphRef} className='GraphContainer' style={{backgroundColor: "pink", width: "100%"}}/>
+                <div style={{flexDirection: "flex-end", marginRight: "200px", zIndex: 100}}>
+                    { viewMore
+                    ? <ContextBoxPlus setViewMore={setViewMore} viewCateg={viewCateg} setViewArticle={setViewArticle} />
+                    : <ContextBox setViewMore={setViewMore} setViewCateg={setViewCateg} setViewArticle={setViewArticle} /> 
+                    }
+                    { viewArticle
+                    ? <ArticleBox setViewArticle={setViewArticle}/>
+                    : <></>   
+                    }
+                </div>
+            </div>
         </React.Fragment>
     )
 }
@@ -62,7 +78,7 @@ function UnemployArticle() {
             <img src={NYTBody2} width='100%' />
             <img src={NYTBody3} width='100%' />
             <UnemployGraph />
-            <ContextBox />
+            {/* <ContextBox /> */}
 
             <img src={NYTBody4} width='100%' />
             <img src={NYTBody5} width='100%' />

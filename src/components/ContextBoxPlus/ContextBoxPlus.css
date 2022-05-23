@@ -1,0 +1,53 @@
+.contextBoxPlus {
+    width: 455px;
+    border: 1px solid #8F8F8F;
+    background-color: #FFFFFF;
+    margin: 10px;
+
+}
+.contextBoxPlus-body {
+    width: inherit;
+    height: 480px;
+    background-color: #f9f9f9;
+    padding: 10px 20px 10px 20px;
+    box-sizing: border-box;
+}
+
+.contextBoxPlus-body .category {
+    height: 40px;
+    line-height: 40px;
+    display: flex;
+    color: #0C37CF;
+    font-size: 20px;
+    font-style: italic;
+}
+
+.contextBoxPlus-body .category .button {
+    margin-left: auto;
+}
+
+.contextBoxPlus-body .exp {
+    display: flex;
+    height: 30px;
+    line-height: 30px;
+    align-items: center;
+    font-size: 14px;
+}
+
+.contextBoxPlus-body .exp .blank {
+    width: 15px;
+    height: 15px;
+    background-color: #C4C4C4;
+    opacity: 20%;
+    margin: 0 5px 0 0;
+}
+
+.contextBoxPlus-body .graphs {
+    width: inherit;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.contextBoxPlus-body .graphs .contextGraphBox {
+    margin: 10px 5px 10px 5px;
+}

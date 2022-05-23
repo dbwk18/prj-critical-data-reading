@@ -1,9 +1,18 @@
 .contextGraphBox {
+    display: flex;
+    flex-direction: column;
     width: 120px;
     height: 155px;
     border: 1px solid #3C3C3C;
     background-color: #FFFFFF;
-    margin: 0 5px 0 0;
+    margin: 0 5px 0 5px;
     padding: 3px;
     font-size: 13px;
+}
+
+.contextGraphBox .graph {
+    background-color: #C4C4C4;
+    opacity: 20%;
+    margin: 7px 3px 7px 3px;
+    flex: 1
 }

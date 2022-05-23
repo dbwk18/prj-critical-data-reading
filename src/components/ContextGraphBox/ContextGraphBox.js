@@ -1,12 +1,12 @@
 import React, {useState, useEffect} from 'react';
 import './ContextGraphBox.css'
 
-function ContextGraphBox( {name} ) {
+function ContextGraphBox( {name, setViewArticle} ) {
     
     return (
-        <div className='contextGraphBox'>
+        <div className='contextGraphBox' onClick={()=>{console.log("hi"); setViewArticle(true)}}>
             <div>{name}</div>
-            <div>graph</div>
+            <div className="graph"></div>
         </div>
     )
 

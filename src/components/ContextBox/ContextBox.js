@@ -3,7 +3,7 @@ import './ContextBox.css'
 
 import ContextGraphBox from '../ContextGraphBox/ContextGraphBox';
 
-function ContextBox() {
+function ContextBox( {setViewMore, setViewCateg, setViewArticle} ) {
 
     return (
         <React.Fragment>
@@ -18,10 +18,10 @@ function ContextBox() {
                             <div className='exp'> : relevant data with topic </div>
                         </div>
                         <div className='graph'>
-                            <ContextGraphBox name="Covid hospitalization" />
-                            <ContextGraphBox name="Covid hospitalization" />
+                            <ContextGraphBox name="Covid hospitalization" setViewArticle={setViewArticle}/>
+                            <ContextGraphBox name="Covid hospitalization" setViewArticle={setViewArticle}/>
                             <div className='button'>
-                                <button className='viewBtn'> <b>View More</b> </button>
+                                <button className='viewBtn' onClick={()=>{setViewMore(true); setViewCateg('rel')}}> <b>View More</b> </button>
                             </div>
                         </div>
                         
@@ -32,10 +32,10 @@ function ContextBox() {
                             <div className='exp'> : comparable data along with graph </div>
                         </div>
                         <div className='graph'>
-                            <ContextGraphBox name="Covid hospitalization" />
-                            <ContextGraphBox name="Covid hospitalization" />
+                            <ContextGraphBox name="Canada" onClick={()=>{setViewArticle(true)}}/>
+                            <ContextGraphBox name="Britain" onClick={()=>{setViewArticle(true)}}/>
                             <div className='button'>
-                                <button className='viewBtn'> <b>View More</b> </button>
+                                <button className='viewBtn' onClick={()=>{setViewMore(true); setViewCateg('comp')}}> <b>View More</b> </button>
                             </div>
                         </div>
                         
@@ -46,10 +46,10 @@ function ContextBox() {
                             <div className='exp'> : breaking down the data with other terms</div>
                         </div>
                         <div className='graph'>
-                            <ContextGraphBox name="Covid hospitalization" />
-                            <ContextGraphBox name="Covid hospitalization" />
+                            <ContextGraphBox name="Covid hospitalization" onClick={()=>{setViewArticle(true)}}/>
+                            <ContextGraphBox name="Covid hospitalization" onClick={()=>{setViewArticle(true)}}/>
                             <div className='button'>
-                                <button className='viewBtn'> <b>View More</b> </button>
+                                <button className='viewBtn' onClick={()=>{setViewMore(true); setViewCateg('bre')}}> <b>View More</b> </button>
                             </div>
                         </div>
                         
