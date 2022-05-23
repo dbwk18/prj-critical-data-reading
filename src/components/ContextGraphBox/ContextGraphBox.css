@@ -1,0 +1,9 @@
+.contextGraphBox {
+    width: 120px;
+    height: 155px;
+    border: 1px solid #3C3C3C;
+    background-color: #FFFFFF;
+    margin: 0 5px 0 0;
+    padding: 3px;
+    font-size: 13px;
+}
