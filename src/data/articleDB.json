@@ -4,35 +4,45 @@
             "src": "The Stand",
             "title": "Four charts: Unions needed for middle class, American dream",
             "img": "https://www.thestand.org/wp-content/uploads/2013/09/unions-middle-class-chart.png",
-            "content": "Another chart from the Center for American Progress backs up that point, showing how the income of the richest 1% has risen, as middle class incomes drop:"
+            "content": "Another chart from the Center for American Progress backs up that point, showing how the income of the richest 1% has risen, as middle class incomes drop:",
+            "url": "https://www.thestand.org/2013/09/why-unions-matter-they-maintain-middle-class-american-dream/"
         },
         {
             "src": "denverauditor",
             "title": "The declining middle class and fall of unions",
             "img": "https://i.huffpost.com/gen/1359800/original.jpg",
-            "content": "A report on Wednesday from the Center For American Progress notes that as middle-class incomes have steadily fallen, so have union membership rates."
+            "content": "A report on Wednesday from the Center For American Progress notes that as middle-class incomes have steadily fallen, so have union membership rates.",
+            "url": "https://denverauditorsoffice.wordpress.com/2014/11/04/the-declining-middle-class-and-the-fall-of-unions/"
         },
         {
             "src": "AFSCME",
             "title": "Collective Bargaining and the Fight Against Income Inequality",
             "img": "https://equitablegrowth.org/wp-content/uploads/2020/04/Historically-there-has-been-an-inverse-relationship-between-union-density-and-income-inequality-in-the-United-States.png",
-            "content": "The erosion of collective bargaining is the single largest factor behind the stagnation of middle-class wages. As union membership rates declined, the share of income earned by middle-class households declined, too."
+            "content": "The erosion of collective bargaining is the single largest factor behind the stagnation of middle-class wages. As union membership rates declined, the share of income earned by middle-class households declined, too.",
+            "url": "https://afscme.medium.com/collective-bargaining-and-the-fight-against-income-inequality-2ae2eb94514"
         },
         {
             "src": "The Century Foundation",
             "title": "How Defunding Public Sector Unions Will Diminish Our Democracy",
-            "img": "https://production-tcf.imgix.net/app/uploads/2016/02/29232740/kahlenbergf-1452183081-38.png?w=695&h=695&fit=max&auto=format,compress&q=80"
+            "img": "https://production-tcf.imgix.net/app/uploads/2016/02/29232740/kahlenbergf-1452183081-38.png?w=695&h=695&fit=max&auto=format,compress&q=80",
+            "content": "By the same token, as the Center for American Progress’s David Madland has vividly illustrated, the decline in union density in the United States between 1969 and 2009 has been accompanied by a strikingly similar decline in the share of income going to the middle class (the middle three-fifths of the income distribution; see Figure 1). ",
+            "url": "https://tcf.org/content/report/how-defunding-public-sector-unions-will-diminish-our-democracy/?agreed=1"
         },
         {
             "src": "AFSCME",
             "title": "Collective Bargaining and the Fight Against Income Inequality",
             "img": "https://equitablegrowth.org/wp-content/uploads/2020/04/Historically-there-has-been-an-inverse-relationship-between-union-density-and-income-inequality-in-the-United-States.png",
-            "content": "The erosion of collective bargaining is the single largest factor behind the stagnation of middle-class wages. As union membership rates declined, the share of income earned by middle-class households declined, too."
+            "content": "The erosion of collective bargaining is the single largest factor behind the stagnation of middle-class wages. As union membership rates declined, the share of income earned by middle-class households declined, too.",
+            "url": "https://afscme.medium.com/collective-bargaining-and-the-fight-against-income-inequality-2ae2eb94514"
+
         },
         {
             "src": "The Century Foundation",
             "title": "How Defunding Public Sector Unions Will Diminish Our Democracy",
-            "img": "https://production-tcf.imgix.net/app/uploads/2016/02/29232740/kahlenbergf-1452183081-38.png?w=695&h=695&fit=max&auto=format,compress&q=80"
+            "img": "https://production-tcf.imgix.net/app/uploads/2016/02/29232740/kahlenbergf-1452183081-38.png?w=695&h=695&fit=max&auto=format,compress&q=80",
+            "content": "By the same token, as the Center for American Progress’s David Madland has vividly illustrated, the decline in union density in the United States between 1969 and 2009 has been accompanied by a strikingly similar decline in the share of income going to the middle class (the middle three-fifths of the income distribution; see Figure 1). ",
+            "url": "https://tcf.org/content/report/how-defunding-public-sector-unions-will-diminish-our-democracy/?agreed=1"
+
 
         }
     ],

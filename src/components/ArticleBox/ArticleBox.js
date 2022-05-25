@@ -36,8 +36,12 @@ function ArticleBox( {setViewArticle, graphCateg} ) {
                             <div className='title'><b>{articleDB[graphCateg][articleIdx]["title"]}</b></div>
                             <div className='img'><img src={articleDB[graphCateg][articleIdx]["img"]} width="100%"/></div>
                             <div className='content'>{articleDB[graphCateg][articleIdx]["content"]}</div>
-
+                            <div className='btn'>
+                                <button onClick={()=>{setArticleIdx(null);}}> Back </button>
+                                <button onClick={()=>{window.open(articleDB[graphCateg][articleIdx]["url"])}}> View </button>
+                            </div>
                         </div>
+                       
                     </>
                 )
             }

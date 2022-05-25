@@ -81,3 +81,23 @@
 .articleBox-view .content {
     padding: 3px;
 }  
+
+.articleBox-view .btn {
+    display: flex;
+    width: 100%;
+    padding: 10px 3px;
+    box-sizing: border-box;
+}
+
+.articleBox-view .btn button {
+    height: 25px;
+    width: 55px;
+    border: none;
+    border-radius: 15px;
+    color: #FFFFFF;
+    background-color: #3C3C3C;
+}
+
+.articleBox-view .btn :last-child {
+    margin-left: auto;
+}
