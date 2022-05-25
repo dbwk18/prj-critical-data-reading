@@ -1,0 +1,38 @@
+.articleSubBox{
+    display: flex;
+    flex-direction: row;
+    width: 290px;
+    height: 110px;
+    box-sizing: border-box;
+    padding: 10px;
+    margin: 5px;
+    background-color: #F9F9F9;
+    border-radius: 4px;
+}
+
+.articleSubBox .img {
+    width: 50%;
+    height: 100%;
+    padding: 2px;
+    overflow: hidden;
+}
+
+
+.articleSubBox .body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 50%;
+    height: 100%;
+    padding: 2px;
+    
+}
+
+.articleSubBox .body .src {
+    font-size: 10px;
+}
+
+.articleSubBox .body .title {
+    font-size: 15px; 
+    overflow: hidden;
+}

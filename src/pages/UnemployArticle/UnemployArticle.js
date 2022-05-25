@@ -41,11 +41,37 @@ function UnemployGraph() {
     const [viewMore, setViewMore] = useState(false);
     const [viewCateg, setViewCateg] = useState();
     const [viewArticle, setViewArticle] = useState(false);
+    const [graphCateg, setGraphCateg] = useState();
 
     const draw = () => {
 
     }
 
+    // [{variableName : {src, title, img, content}}]
+    // const articleData = [
+    //     {"Middle Class Income": [
+    //         {
+    //             src: "The Stand",
+    //             title: "Four charts: Unions needed for middle class, American dream"
+    //         },
+    //         {
+    //             src: "denverauditor",
+    //             title: "The declining middle class and fall of unions"
+    //         },
+    //         {
+    //             src: "AFSCME",
+    //             title: "Collective Bargaining and the Fight Against Income Inequality"
+    //         },
+    //         {
+    //             src: "The Century Foundation",
+    //             title: "How Defunding Public Sector Unions Will Diminish Our Democracy"
+    //         }
+    //     ]},
+    //     {"Union Membership": []},
+    //     {"Top 10% Income": []},
+    //     {"Bottom 60% Income": []},
+    //     {"% Change in Productivity": []}
+    // ]
 
 
     return(
@@ -54,11 +80,11 @@ function UnemployGraph() {
                 <div ref={graphRef} className='GraphContainer' style={{backgroundColor: "pink", width: "100%"}}/>
                 <div style={{flexDirection: "flex-end", marginRight: "200px", zIndex: 100}}>
                     { viewMore
-                    ? <ContextBoxPlus setViewMore={setViewMore} viewCateg={viewCateg} setViewArticle={setViewArticle} />
-                    : <ContextBox setViewMore={setViewMore} setViewCateg={setViewCateg} setViewArticle={setViewArticle} /> 
+                    ? <ContextBoxPlus setViewMore={setViewMore} viewCateg={viewCateg} setViewArticle={setViewArticle} setGraphCateg={setGraphCateg}/>
+                    : <ContextBox setViewMore={setViewMore} setViewCateg={setViewCateg} setViewArticle={setViewArticle} setGraphCateg={setGraphCateg} /> 
                     }
                     { viewArticle
-                    ? <ArticleBox setViewArticle={setViewArticle}/>
+                    ? <ArticleBox setViewArticle={setViewArticle} graphCateg={graphCateg}/>
                     : <></>   
                     }
                 </div>

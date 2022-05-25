@@ -3,7 +3,7 @@ import './ContextBoxPlus.css'
 
 import ContextGraphBox from '../ContextGraphBox/ContextGraphBox';
 
-function ContextBoxPlus( {setViewMore, viewCateg, setViewArticle} ) {
+function ContextBoxPlus( {setViewMore, viewCateg, setViewArticle, setGraphCateg} ) {
 
     return(
         <React.Fragment>
@@ -20,11 +20,11 @@ function ContextBoxPlus( {setViewMore, viewCateg, setViewArticle} ) {
                 </div>
                 <div className='exp'> <div className='blank'/> : same year range with given article </div>
                 <div className='graphs'>
-                    <ContextGraphBox name="Covid hospitalization" setViewArticle={setViewArticle}/>
-                    <ContextGraphBox name="Covid hospitalization" setViewArticle={setViewArticle}/>
-                    <ContextGraphBox name="Covid hospitalization" setViewArticle={setViewArticle}/>
-                    <ContextGraphBox name="Covid hospitalization" setViewArticle={setViewArticle}/>
-                    <ContextGraphBox name="Covid hospitalization" setViewArticle={setViewArticle}/>
+                    <ContextGraphBox name="Middle Class Income" setViewArticle={setViewArticle} setGraphCateg={setGraphCateg}/>
+                    <ContextGraphBox name="Union Membership" setViewArticle={setViewArticle} setGraphCateg={setGraphCateg}/>
+                    <ContextGraphBox name="Top 10% Income" setViewArticle={setViewArticle} setGraphCateg={setGraphCateg}/>
+                    <ContextGraphBox name="Bottom 60% Income" setViewArticle={setViewArticle} setGraphCateg={setGraphCateg}/>
+                    <ContextGraphBox name="% Change in Productivity" setViewArticle={setViewArticle} setGraphCateg={setGraphCateg}/>
                 </div>
                 
             </div>
