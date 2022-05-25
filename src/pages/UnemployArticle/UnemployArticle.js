@@ -6,6 +6,8 @@ import ContextBoxPlus from '../../components/ContextBoxPlus/ContextBoxPlus';
 import ArticleBox from '../../components/ArticleBox/ArticleBox';
 
 import coviddata from '../../data/covid_confirmed_usafacts.json'
+import labordata from '../../data/labor_force_participation.json'
+
 
 import NYTHeader from '../../images/NYT-unemploy/NYTHeader.png'
 import NYTTitle from '../../images/NYT-unemploy/NYTTitle.png'
