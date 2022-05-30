@@ -1,0 +1,24 @@
+{
+    "relevant": {
+        "Middle Class Income": "Middle Class Income", 
+        "Union Memebership": "Union Memebership", 
+        "Top 10% Income": "Top 10% Income",
+        "Bottom 60% Income": "Bottom 60% Income",
+        "% Change in Productivity": "% Change in Productivity"
+    },
+    "comparison": {
+        "Denmark": "DNK",
+        "Canada": "CAN",
+        "Germany": "DEU",
+        "Britain": "GBR",
+        "France": "FRA",
+        "Japan": "JPN"
+    },
+    "breakdown": {
+        "Middle Class Income": "Middle Class Income", 
+        "Union Memebership": "Union Memebership", 
+        "Top 10% Income": "Top 10% Income",
+        "Bottom 60% Income": "Bottom 60% Income",
+        "% Change in Productivity": "% Change in Productivity"
+    }
+}

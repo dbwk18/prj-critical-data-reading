@@ -2,6 +2,8 @@ import React, {useState, useEffect} from 'react';
 import './ContextBox.css'
 
 import ContextGraphBox from '../ContextGraphBox/ContextGraphBox';
+import contextdata from '../../data/contextvarDB.json';
+
 
 function ContextBox( {setViewMore, setViewCateg, setViewArticle, setGraphCateg} ) {
 
@@ -18,10 +20,10 @@ function ContextBox( {setViewMore, setViewCateg, setViewArticle, setGraphCateg} 
                             <div className='exp'> : relevant data with topic </div>
                         </div>
                         <div className='graph'>
-                            <ContextGraphBox name="Middle Class Income" setViewArticle={setViewArticle} setGraphCateg={setGraphCateg} />
-                            <ContextGraphBox name="Top 10% Income" setViewArticle={setViewArticle} setGraphCateg={setGraphCateg}/>
+                            <ContextGraphBox categ='relevant' name={Object.keys(contextdata['relevant'])[0]} setViewArticle={setViewArticle} setGraphCateg={setGraphCateg} setViewCateg={setViewCateg}/>
+                            <ContextGraphBox categ='relevant' name={Object.keys(contextdata['relevant'])[1]} setViewArticle={setViewArticle} setGraphCateg={setGraphCateg} setViewCateg={setViewCateg}/>
                             <div className='button'>
-                                <button className='viewBtn' onClick={()=>{setViewMore(true); setViewCateg('rel')}}> <b>View More</b> </button>
+                                <button className='viewBtn' onClick={()=>{setViewMore(true); setViewCateg('relevant')}}> <b>View More</b> </button>
                             </div>
                         </div>
                         
@@ -32,10 +34,10 @@ function ContextBox( {setViewMore, setViewCateg, setViewArticle, setGraphCateg} 
                             <div className='exp'> : comparable data along with graph </div>
                         </div>
                         <div className='graph'>
-                            <ContextGraphBox name="Canada" setViewArticle={setViewArticle} setGraphCateg={setGraphCateg} />
-                            <ContextGraphBox name="Britain" setViewArticle={setViewArticle} setGraphCateg={setGraphCateg} />
+                            <ContextGraphBox categ='comparison' name={Object.keys(contextdata['comparison'])[0]} setViewArticle={setViewArticle} setGraphCateg={setGraphCateg} setViewCateg={setViewCateg}/>
+                            <ContextGraphBox categ='comparison' name={Object.keys(contextdata['comparison'])[1]} setViewArticle={setViewArticle} setGraphCateg={setGraphCateg} setViewCateg={setViewCateg}/>
                             <div className='button'>
-                                <button className='viewBtn' onClick={()=>{setViewMore(true); setViewCateg('comp')}}> <b>View More</b> </button>
+                                <button className='viewBtn' onClick={()=>{setViewMore(true); setViewCateg('comparison')}}> <b>View More</b> </button>
                             </div>
                         </div>
                         
@@ -46,10 +48,10 @@ function ContextBox( {setViewMore, setViewCateg, setViewArticle, setGraphCateg} 
                             <div className='exp'> : breaking down the data with other terms</div>
                         </div>
                         <div className='graph'>
-                            <ContextGraphBox name="Covid hospitalization" setViewArticle={setViewArticle} setGraphCateg={setGraphCateg}/>
-                            <ContextGraphBox name="Covid hospitalization" setViewArticle={setViewArticle} setGraphCateg={setGraphCateg}/>
+                            <ContextGraphBox categ='breakdown' name={Object.keys(contextdata['breakdown'])[0]} setViewArticle={setViewArticle} setGraphCateg={setGraphCateg} setViewCateg={setViewCateg}/>
+                            <ContextGraphBox categ='breakdown' name={Object.keys(contextdata['breakdown'])[1]} setViewArticle={setViewArticle} setGraphCateg={setGraphCateg} setViewCateg={setViewCateg}/>
                             <div className='button'>
-                                <button className='viewBtn' onClick={()=>{setViewMore(true); setViewCateg('bre')}}> <b>View More</b> </button>
+                                <button className='viewBtn' onClick={()=>{setViewMore(true); setViewCateg('breakdown')}}> <b>View More</b> </button>
                             </div>
                         </div>
                         

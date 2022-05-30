@@ -7,7 +7,7 @@ import ArticleBox from '../../components/ArticleBox/ArticleBox';
 
 import coviddata from '../../data/covid_confirmed_usafacts.json'
 import labordata from '../../data/labor_force_participation.json'
-
+import contextdata from '../../data/contextvarDB.json'
 
 import NYTHeader from '../../images/NYT-unemploy/NYTHeader.png'
 import NYTTitle from '../../images/NYT-unemploy/NYTTitle.png'
@@ -19,7 +19,8 @@ import NYTBody5 from '../../images/NYT-unemploy/NYTBody5.png'
 import NYTBody6 from '../../images/NYT-unemploy/NYTBody6.png'
 import NYTFooter from '../../images/NYT-unemploy/NYTFooter.png'
 
-function UnemployGraph() {
+
+function UnemployGraph( {viewCateg, graphCateg} ) {
     const graphRef = useRef();
     // console.log(labordata[0])
     
@@ -42,13 +43,22 @@ function UnemployGraph() {
         }
     })
 
-    console.log(labordata_US)
+    // console.log(labordata_US)
     
 
     useEffect(()=> {
+        document.getElementById('graph-container').innerHTML=''
         draw();
     }, [])
 
+    useEffect(() => {
+        if (graphCateg !== null) {
+            const datavar = contextdata[viewCateg][graphCateg];
+            overlay(datavar);
+        }
+    }, [graphCateg])
+
+    
     const draw = () => {
         const timeConv = d3.timeParse("%Y");
         const margin = { top: 20, right: 20, bottom: 20, left: 20 },
@@ -77,7 +87,7 @@ function UnemployGraph() {
 
         
         xScale.domain(d3.extent(labordata_US, function (d) {
-            console.log("conv", d.date, timeConv(d.date))
+            // console.log("conv", d.date, timeConv(d.date))
             return timeConv(d.date);
         }))
 
@@ -127,12 +137,69 @@ function UnemployGraph() {
         .attr("class", "line")
         .attr("d", line)
         
-        
+    }
+
+    const overlay = ( datavar ) => {
+
+        if (document.getElementById('context-line')) {
+            var addedline = document.querySelector('#context-line');
+            addedline.parentNode.removeChild(addedline);
         }
+
+        const overlay_data = labordata.filter((d) => d.LOCATION === datavar).map((data) => {
+            return {
+                date: data.TIME,
+                measurement: data.Value
+            }
+        })
+
+        const timeConv = d3.timeParse("%Y");
+        const margin = { top: 20, right: 20, bottom: 20, left: 20 },
+            width = d3.select(graphRef.current).node().getBoundingClientRect().width - margin.left - margin.right,
+            height = 300;
+
+
+        const xScale = d3.scaleTime().range([0, width]);
+        const yScale = d3.scaleLinear().rangeRound([height, 0]);
+
+
+        
+        xScale.domain(d3.extent(overlay_data, function (d) {
+            // console.log("conv", d.date, timeConv(d.date))
+            return timeConv(d.date);
+        }))
+
+        yScale.domain([(60), d3.max(overlay_data, function (d) {
+            return d.measurement ;
+        })]).nice()
+
+
+
+        const line = d3.line()
+            .x(function(d) { return xScale(timeConv(d.date)); })
+            .y(function(d) { return yScale(d.measurement); });
+        
+       
+
+        d3.select(graphRef.current)
+        .select("svg").select("g")
+        .append("path")
+        .style("fill", "none")
+        // .style("stroke", "#53BAA8")
+        .style("stroke", "#53BAA8")
+        .style("stroke-width", 4)
+        .datum(overlay_data)
+        .attr("class", "line")
+        .attr("id", "context-line")
+        .attr("d", line)
+        
+    }
+
 
     return (
         <React.Fragment>
                 <div ref={graphRef} 
+                    id='graph-container'
                     className='GraphContainer' 
                     style={{backgroundColor: "#FFFFFF", 
                             width: "20%", 
@@ -146,16 +213,14 @@ function UnemployGraph() {
     )
 }
 
-function InteractiveChart() {
+function InteractiveChart( {viewCateg, setViewCateg, graphCateg, setGraphCateg} ) {
 
     const [viewMore, setViewMore] = useState(false);
-    const [viewCateg, setViewCateg] = useState();
     const [viewArticle, setViewArticle] = useState(false);
-    const [graphCateg, setGraphCateg] = useState();
-
+    
     return(
         <React.Fragment>
-            <div style={{position: "relative", left: "75%", transform:"translateX(-50%)", margin: "0px 30px",  zIndex: 100}}>
+            <div style={{position: "relative", left: "77%", transform:"translateX(-50%)", margin: "0px 30px",  zIndex: 100}}>
             { 
                 viewMore
                 ? <ContextBoxPlus setViewMore={setViewMore} viewCateg={viewCateg} setViewArticle={setViewArticle} setGraphCateg={setGraphCateg}/>
@@ -174,6 +239,10 @@ function InteractiveChart() {
 
 function UnemployArticle() {
 
+    const [viewCateg, setViewCateg] = useState();
+    const [graphCateg, setGraphCateg] = useState(null);
+
+
     return (
         <div>
             <img src={NYTHeader} width='100%' />
@@ -183,8 +252,8 @@ function UnemployArticle() {
             <img src={NYTBody2} width='100%' />
             <img src={NYTBody3} width='100%' />
             <div style={{display: "flex", height: "350px"}}>
-                <UnemployGraph />
-                <InteractiveChart />
+                <UnemployGraph viewCateg={viewCateg} graphCateg={graphCateg} />
+                <InteractiveChart viewCateg={viewCateg} setViewCateg={setViewCateg} graphCateg={graphCateg} setGraphCateg={setGraphCateg}/>
             </div>
 
             <img src={NYTBody4} width='100%' />

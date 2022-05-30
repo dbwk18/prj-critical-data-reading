@@ -7,6 +7,7 @@ function ArticleBox( {setViewArticle, graphCateg} ) {
 
     const [articleIdx, setArticleIdx] = useState(null);
 
+
     return (
         <div className='articleBox'>
             <div className='articleBox-header'>
