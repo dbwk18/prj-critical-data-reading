@@ -1,0 +1,26 @@
+{
+  "files": {
+    "main.css": "/prj-critical-data-reading/static/css/main.2cbc9e69.css",
+    "main.js": "/prj-critical-data-reading/static/js/main.e51de916.js",
+    "static/js/787.2f8ee908.chunk.js": "/prj-critical-data-reading/static/js/787.2f8ee908.chunk.js",
+    "static/media/NYTTitle.png": "/prj-critical-data-reading/static/media/NYTTitle.133766d60fa482ede9c0.png",
+    "static/media/NYTFooter.png": "/prj-critical-data-reading/static/media/NYTFooter.854e7533113333ae4d95.png",
+    "static/media/NYTBody2.png": "/prj-critical-data-reading/static/media/NYTBody2.b3507420653b2b42e85a.png",
+    "static/media/NYTBody4.png": "/prj-critical-data-reading/static/media/NYTBody4.a5cd2fd626c19bff9711.png",
+    "static/media/NYTBody3.png": "/prj-critical-data-reading/static/media/NYTBody3.44897e65762f93f2a247.png",
+    "static/media/NYTBody8.png": "/prj-critical-data-reading/static/media/NYTBody8.24b7ae436b98c2671808.png",
+    "static/media/NYTBody5.png": "/prj-critical-data-reading/static/media/NYTBody5.02345e9226bf4e588e0d.png",
+    "static/media/NYTBody6.png": "/prj-critical-data-reading/static/media/NYTBody6.450b0adc650585bf5d7b.png",
+    "static/media/NYTBody1.png": "/prj-critical-data-reading/static/media/NYTBody1.63a5e509987faac776cc.png",
+    "static/media/NYTBody7.png": "/prj-critical-data-reading/static/media/NYTBody7.79d899b082b51a7563a7.png",
+    "static/media/NYTHeader.png": "/prj-critical-data-reading/static/media/NYTHeader.179c2537611fa69b6bae.png",
+    "index.html": "/prj-critical-data-reading/index.html",
+    "main.2cbc9e69.css.map": "/prj-critical-data-reading/static/css/main.2cbc9e69.css.map",
+    "main.e51de916.js.map": "/prj-critical-data-reading/static/js/main.e51de916.js.map",
+    "787.2f8ee908.chunk.js.map": "/prj-critical-data-reading/static/js/787.2f8ee908.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.2cbc9e69.css",
+    "static/js/main.e51de916.js"
+  ]
+}
