@@ -1,0 +1,75 @@
+{
+    "mainData": {
+        "dataName": "Consumer Price Index for All Urban Consumers: All Items in U.S. City Average",
+        "dataReference": "inflation",
+        "xUnit": "Monthly",
+        "timeStart": "1965",
+        "timeEnd": "2020",
+        "yUnit": "percent",
+        "data": "https://api.stlouisfed.org/fred/series/observations?api_key=8e5264e8f54e150398c9a50fe0126cd4&file_type=json&series_id=CPIAUCSL"
+    },
+    "references": [
+    {
+        "sentence": "It slowed down in April partly because gas prices dropped lower, and partly because of a statistical quirk that will continue through the months ahead.",
+        "dataReferences": [{
+            "dataReference": "gas prices",
+            "dataName": "US Regular All Formulations Gas Price",
+            "xUnit": "Weekly",
+            "timeStart": "",
+            "timeEnd": "",
+            "yUnit": "Dollars per Gallon",
+            "data": "https://api.stlouisfed.org/fred/series/observations?api_key=8e5264e8f54e150398c9a50fe0126cd4&file_type=json&series_id=GASREGW"
+         }]
+    },
+    {
+        "sentence": "Annual inflation may have now peaked, having climbed by an even-quicker 8.5 percent in March.",
+        "dataReferences": [{
+            "dataReference": "Annual inflation",
+            "dataName": "Consumer Price Index for All Urban Consumers: All Items in U.S. City Average",
+            "xUnit": "Weekly",
+            "timeStart": "",
+            "timeEnd": "",
+            "yUnit": "percent",
+            "data": "https://api.stlouisfed.org/fred/series/observations?api_key=8e5264e8f54e150398c9a50fe0126cd4&file_type=json&series_id=CPIAUCSL"
+         }]
+    }, 
+    {
+        "sentence": "And services prices are now increasing quickly, as rents climb and as worker shortfalls lead to higher wages and steeper prices for restaurant meals and other labor-intensive purchases.",
+        "dataReferences": [{
+            "dataReference": "service prices",
+            "dataName": "Consumer Price Index for All Urban Consumers: Services Less Energy Services in U.S. City Average",
+            "xUnit": "Monthly",
+            "timeStart": "",
+            "timeEnd": "",
+            "yUnit": "percent",
+            "data": "https://api.stlouisfed.org/fred/series/observations?api_key=8e5264e8f54e150398c9a50fe0126cd4&file_type=json&series_id=CUSR0000SASLE"
+        }, 
+        {
+            "dataReference": "rents",
+            "dataName": "Consumer Price Index for All Urban Consumers: Rent of Primary Residence in U.S. City Average",
+            "xUnit": "Monthly",
+            "timeStart": "",
+            "timeEnd": "",
+            "yUnit": "percent",
+            "data": "https://api.stlouisfed.org/fred/series/observations?api_key=8e5264e8f54e150398c9a50fe0126cd4&file_type=json&series_id=CUSR0000SEHA"
+        },
+        {
+            "dataReference": "wages",
+            "dataName": "Average Hourly Earnings of All Employees, Total Private",
+            "xUnit": "Monthly",
+            "timeStart": "",
+            "timeEnd": "",
+            "yUnit": "Dollars per hour",
+            "data": "https://api.stlouisfed.org/fred/series/observations?api_key=8e5264e8f54e150398c9a50fe0126cd4&file_type=json&series_id=CES0500000003"
+        },
+        {
+            "dataReference": "price for restaurant meals",
+            "dataName": " Consumer Price Index for All Urban Consumers: Food Away from Home in U.S. City Average",
+            "xUnit": "Monthly",
+            "timeStart": "1953-01",
+            "timeEnd": "2022-09",
+            "yUnit": "percent",
+            "data": "https://api.stlouisfed.org/fred/series/observations?api_key=8e5264e8f54e150398c9a50fe0126cd4&file_type=json&series_id=CUSR0000SEFV"
+        }]
+    }]
+}

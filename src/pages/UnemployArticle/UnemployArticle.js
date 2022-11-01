@@ -5,7 +5,6 @@ import ContextBox from '../../components/ContextBox/ContextBox';
 import ContextBoxPlus from '../../components/ContextBoxPlus/ContextBoxPlus';
 import ArticleBox from '../../components/ArticleBox/ArticleBox';
 
-import coviddata from '../../data/covid_confirmed_usafacts.json'
 import labordata from '../../data/labor_force_participation.json'
 import contextdata from '../../data/contextvarDB.json'
 
@@ -22,19 +21,6 @@ import NYTFooter from '../../images/NYT-unemploy/NYTFooter.png'
 
 function UnemployGraph( {viewCateg, graphCateg} ) {
     const graphRef = useRef();
-    // console.log(labordata[0])
-    
-    // const [parsedData, setParsedData] = useState([]);
-    // const parseFile =  (file) => {
-    //     Papa.parse('../../data/covid_confirmed_usafacts.csv', {
-    //         header: true,
-    //         complete: results => {
-    //             console.log(results)
-    //             setParsedData(results.data)
-    //         }
-    //     })
-    // }
-
 
     const labordata_US = labordata.filter((d) => d.LOCATION === "USA").map((data) => {
         return {
@@ -45,7 +31,6 @@ function UnemployGraph( {viewCateg, graphCateg} ) {
 
     // console.log(labordata_US)
     
-
     useEffect(()=> {
         document.getElementById('graph-container').innerHTML=''
         draw();
@@ -96,7 +81,6 @@ function UnemployGraph( {viewCateg, graphCateg} ) {
         })]).nice()
 
 
-
         const line = d3.line()
             .x(function(d) { return xScale(timeConv(d.date)); })
             .y(function(d) { return yScale(d.measurement); });
@@ -138,6 +122,7 @@ function UnemployGraph( {viewCateg, graphCateg} ) {
         .attr("d", line)
         
     }
+
 
     const overlay = ( datavar ) => {
 
@@ -212,6 +197,7 @@ function UnemployGraph( {viewCateg, graphCateg} ) {
         </React.Fragment>
     )
 }
+
 
 function InteractiveChart( {viewCateg, setViewCateg, graphCateg, setGraphCateg} ) {
 
