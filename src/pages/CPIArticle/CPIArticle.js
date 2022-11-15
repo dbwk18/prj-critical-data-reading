@@ -2,60 +2,328 @@ import * as d3 from 'd3';
 import React, {useState, useEffect, useRef} from 'react';
 import axios from 'axios';
 
-import toydata from '../../data/toydata.json'
-import './CPIArticle.css'
+import toydata from '../../data/toydata.json';
 import Highlighter from 'react-highlight-words';
-import NYTHeader from '../../images/NYT-unemploy/NYTHeader.png'
-import NYTGraph1 from '../../images/NYT_cpi/NYTGraph1.png'
+import NYTHeader from '../../images/NYT-unemploy/NYTHeader.png';
+import NYTGraph1 from '../../images/NYT_cpi/NYTGraph1.png';
+import LabelDropdown from '../../components/LabelDropdown/LabelDropdown';
 
-function CPIArticle() {
+import './CPIArticle.css';
+
+function InteractiveChart ( {offsetY, mainData, dataRefs, listDrop, setListDrop} ) {
+
+    const graphRef = useRef();
+// 
+    const [listSelected, setListSelected] = useState([]);
+    useEffect(() => {
+        document.getElementById('graph-container').innerHTML=""
+        drawall();
+    }, [dataRefs])
+
+    useEffect(()=> {
+        console.log("change dropdown", listSelected)
+        document.getElementById('graph-container').innerHTML=""
+        updategraph();
+    }, [listSelected])
+
+    //function for drawing graph when sentece clicked
     
-    const highlight = []
-    const [dataRef, setDataRef] = useState([]);
+    const drawall = async () => {
 
+        console.log("all", dataRefs, offsetY)
+        console.log("listSelected", listSelected)
+        const margin = { top: 30, right: 40, bottom: 30, left:40 },
+            width = d3.select(graphRef.current).node().getBoundingClientRect().width - margin.left - margin.right,
+            height = 300;
 
-    toydata.references.forEach((item) => highlight.push(item.sentence))
-    console.log(highlight)
-    console.log(dataRef)
+        var svg = d3.select(graphRef.current)
+            .append("svg")
+            .attr("id", "svg")
+            .attr("width", width + margin.left + margin.right)
+            .attr("height", height + margin.top + margin.bottom)
+            .append("g")
+            .attr("transform", `translate(${margin.left}, ${margin.top})`);
 
-    const clickhighlight = (sentence) => {
-        toydata.references.forEach((item) => {
-            if (item.sentence == sentence.trim()) {
-                setDataRef(item.dataReferences);
+        
+        const time_range = await axios.get(mainData.data).then( (response) => {
+            const data =  response.data.observations.map((data) => {
+                    return {
+                        date: new Date(data.date),
+                        measurement: parseFloat(data.value) ? parseFloat(data.value) : 0
+                        } 
+                    }) 
+            console.log(data[0]['date'], data[data.length-1]['date'])
+            return [data[0]['date'], data[data.length-1]['date']];
+        })
+    
+        const xmin = time_range[0]
+        const xmax = time_range[1]
+        // console.log(time_range, xmin, xmax)
+        
+      
+        if (dataRefs.length == 1) {
+            console.log(dataRefs[0])
+            drawone(mainData, svg, "#6AAFE6", 0 , xmin, xmax);
+            drawone(dataRefs[0], svg, "#a5d296", width, xmin, xmax);
+        }
+        else if (dataRefs.length > 1) {
+            const listRef = []
+            dataRefs.forEach((item) => {
+                console.log(item)
+                listRef.push(item.dataReference)
+            })
+            setListDrop(listRef);
+            setListSelected([listRef[0], listRef[1]]);
+            
+            drawone(dataRefs[0], svg, "#6AAFE6", 0 , xmin, xmax);
+            drawone(dataRefs[1], svg, "#a5d296", width, xmin, xmax);
+    
+        }
+
+    }
+
+    const updategraph = async() => {
+        const margin = { top: 30, right: 40, bottom: 30, left:40 },
+        width = d3.select(graphRef.current).node().getBoundingClientRect().width - margin.left - margin.right,
+        height = 300;
+
+        var svg = d3.select(graphRef.current)
+            .append("svg")
+            .attr("id", "svg")
+            .attr("width", width + margin.left + margin.right)
+            .attr("height", height + margin.top + margin.bottom)
+            .append("g")
+            .attr("transform", `translate(${margin.left}, ${margin.top})`);
+        
+        const time_range = await axios.get(mainData.data).then( (response) => {
+            const data =  response.data.observations.map((data) => {
+                    return {
+                        date: new Date(data.date),
+                        measurement: parseFloat(data.value) ? parseFloat(data.value) : 0
+                        } 
+                    }) 
+            console.log(data[0]['date'], data[data.length-1]['date'])
+            return [data[0]['date'], data[data.length-1]['date']];
+        })
+        
+        const xmin = time_range[0]
+        const xmax = time_range[1]
+
+        dataRefs.forEach((item, idx) => {
+                if (item.dataReference == listSelected[0]) {
+                    drawone(dataRefs[idx], svg, "#6AAFE6", 0 , xmin, xmax);
+                    console.log("graph1", item.dataReference)
+                }
+            })
+        dataRefs.forEach((item, idx) => {
+            if (item.dataReference == listSelected[1]) {
+                drawone(dataRefs[idx], svg, "#a5d296", width, xmin, xmax);
+                console.log("graph2", item.dataReference)
             }
         })
     }
 
-    const dataFilter = () => {
-        const newRef = []
-        if (dataRef.length > 0) {
-            dataRef.forEach((item) => {
-                const newdata = {}
-                // const fetch_data = axios.get(item.data).then(response => response.data)
-                const filter_data = axios.get(item.data).then(response => response.data.observations.map((data) => {
-                    return {
-                        date: data.date,
-                        measurement: data.value
-                    }
-                }))
-                newdata.dataReference = item.dataReference
-                newdata.dataName = item.dataName
-                newdata.xUnit = item.xUnit
-                newdata.yUnit = item.yUnit
-                newdata.data = filter_data
-                newRef.push(newdata)
-            })
+    //function for overlaying line graph 
+    const drawone = async (dataRef, svg, color, p_yaxis, xmin, xmax) => {
+        console.log("one", dataRef, dataRef.xUnit.substring(0, 1), dataRef.data);
+        
+        var timeUnit = null;
+        if (dataRef.xUnit == "Yearly") {
+            timeUnit = "%Y";
         }
-        return newRef;
-    }
+        else if (dataRef.xUnit == "Monthly") {
+            timeUnit = "%Y %m";
+        }
+        else if (dataRef.xUnit == "Weekly") {
+            timeUnit = "%Y %m %d";
+        }
+        const timeConv = d3.timeFormat(timeUnit)
+
+        const newdata = await axios.get(dataRef.data).then( (response) => {
+            const data =  response.data.observations.map((data) => {
+                // if (new Date(data.date)>= xmin && new Date(data.date)<= xmax) {
+                    // console.log(new Date(data.date)>= xmin)
+                    return {
+                        date: new Date(data.date),
+                        measurement: parseFloat(data.value) 
+                        } 
+                    // }
+                    }) 
+                return data;
+        })
+        console.log(newdata)
+        
+
+        const margin = { top: 30, right: 40, bottom: 30, left:40 },
+            width = d3.select(graphRef.current).node().getBoundingClientRect().width - margin.left - margin.right,
+            height = 300;
+
+        const xScale = d3.scaleTime().range([0, width]);
+        const yScale = d3.scaleLinear().rangeRound([height, 0]);
+
+        const yaxis = p_yaxis == 0  
+                    ? d3.axisLeft().ticks(6).scale(yScale).tickSize(0) 
+                    : d3.axisRight().ticks(6).scale(yScale).tickSize(0)
+
+        const xaxis = d3.axisBottom()
+            .ticks(5)
+            .tickSize(0)
+            .tickFormat(d3.timeFormat(timeUnit))
+            .scale(xScale);
+
+
+        xScale.domain([xmin, xmax])
+        yScale.domain([d3.min(newdata, function(d){return d.measurement;}), d3.max(newdata, function(d){return d.measurement;})]).nice()
+
+
+        const line = d3.line()
+        .defined(function(d) { return !isNaN(d.measurement); })
+        .x(function(d) { return xScale(d.date); })
+        .y(function(d) { return yScale(d.measurement); })
+
+
+        //draw xaxis only once
+        if (p_yaxis == 0) {
+            svg.append("g")
+                .attr("class", "x-axis")
+                .attr("transform", "translate(0," + height + ")")
+                .call(xaxis)
+                .selectAll("text")
+                .style("text-anchor", "end")
+                .style("font-size", "12px")
+                .style("font-family", "Sans-serif")
+                .style("color", "#52616a")
+                .attr("dy", "1em")
+        }
+
+        svg.append("g")
+            .attr("class", "y-axis")
+            .attr("transform", "translate(" + p_yaxis + ", 0)")
+            .call(yaxis)
+            .selectAll("text")
+            .attr("dx", "-0.1em")
+            .style("font-size", "12px")
+            .style("font-family", "Sans-serif")
+            .style("color", "#52616a")
+
+        svg.select(".y-axis path")
+            .style("stroke", "#52616a")
     
-    console.log(dataFilter());
+        svg.select(".x-axis path")
+            .style("stroke", "#52616a")
 
-
-    const draw = () => {
-        const timeConv = d3.timeParse("%M");
-
+        svg.append("path")
+            .style("fill", "none")
+            .style("stroke", color)
+            .style("stroke-width", 3)
+            .datum(newdata)
+            .attr("class", "line")
+            .attr("d", line)
+            
     }
+
+    return (
+        <React.Fragment>
+            <div style={{backgroundColor: "#f4f4f4", 
+                        width: "28%", 
+                        position: "absolute", 
+                        left: "70%", 
+                        top: offsetY - 30
+                        // transform: "translateX(-50%)"
+                    }}>
+                {dataRefs.length > 1 ? <LabelDropdown listDrop={listDrop} listSelected={listSelected} setListSelected={setListSelected}/> : null}
+                <div ref={graphRef} 
+                    id='graph-container'
+                    className='GraphContainer' 
+                />
+                    
+            </div>
+        </React.Fragment>
+    )
+}
+
+function CPIArticle() {
+    
+    const highlight = []
+    const [offsetY, setOffsetY] = useState(null);
+    const [mainData, setMainData] = useState()
+    const [dataRefs, setDataRefs] = useState([]);
+    const [listDrop, setListDrop] = useState([]);
+    
+    //add list for reference sentences
+    toydata.references.forEach((item) => highlight.push(item.sentence))
+    console.log(highlight, mainData)
+    console.log(dataRefs)
+
+    // useEffect(() => {
+    //     // dataFilter();
+    //     // console.log(filterRef)
+    // }, [dataRef])
+
+    //function for clicking highlighted sentence
+    const clickhighlight = (e, sentence) => {
+        toydata.references.forEach( (item) => {
+            if (item.sentence == sentence.trim()) {
+                setDataRefs(item.dataReferences);
+                setMainData(toydata.mainData)
+                setOffsetY(e.nativeEvent.pageY);
+                // dataFilter(item.dataReferences);
+                // console.log(data)
+                // setFilterRef(data);
+            }
+        })
+    }
+
+    
+
+    //function for preprocessing data in clicked sentence
+    // const dataFilter = (dataRef) => {
+    //     const newRef = []
+
+    //     if (dataRef.length > 0) {
+    //         dataRef.forEach(async (item) => {
+    //             const newdata = {}
+    //             // const fetch_data = axios.get(item.data).then(response => response.data)
+    //             // const filter_data = axios.get(item.data).then(response => {
+    //             //     const data = response.data.observations.map((data) => {
+    //             //         return {
+    //             //             date: data.date,
+    //             //             measurement: data.value
+    //             //             }
+    //             //         }) 
+    //             //     return data;
+    //             // })
+    //             // console.log(filter_data)
+
+    //             // const fetch_data = async () => {
+    //             //     const data = await filter_data;
+    //             //     return data;
+    //             // }
+
+    //             newdata.dataReference = item.dataReference
+    //             newdata.dataName = item.dataName
+    //             newdata.xUnit = item.xUnit
+    //             newdata.yUnit = item.yUnit
+    //             newdata.data = await axios.get(item.data).then( (response) => {
+    //                 const data =  response.data.observations.map((data) => {
+    //                     return {
+    //                         date: data.date,
+    //                         measurement: data.value
+    //                         }
+    //                     }) 
+    //                 return data;
+    //             })
+    //             newRef.push(newdata)  
+    //         })
+            
+    //     }
+    //     console.log(newRef)
+    //     return newRef;
+        
+
+    // }
+
+    // console.log(dataFilter());
 
 
     return (
@@ -70,6 +338,10 @@ function CPIArticle() {
                 searchWords={highlight}
                 textToHighlight="The pressures that have kept inflation elevated for months remain strong, fresh data released Wednesday showed, a challenge for households that are trying to shoulder rising expenses and for the White House and Federal Reserve as they try to put the economy on a steadier path."
             />
+        </div>
+
+        <div>
+            <InteractiveChart offsetY={offsetY} mainData={mainData} dataRefs={dataRefs} listDrop={listDrop} setListDrop={setListDrop}/>
         </div>
         <div className="g-body">
             <Highlighter
@@ -125,12 +397,14 @@ function CPIArticle() {
             <Highlighter
                 searchWords={highlight}
                 textToHighlight="Annual inflation may have now peaked, having climbed by an even-quicker 8.5 percent in March. "
-                onClick={()=>clickhighlight("Annual inflation may have now peaked, having climbed by an even-quicker 8.5 percent in March. ")}
+                onClick={(e)=>clickhighlight(e, "Annual inflation may have now peaked, having climbed by an even-quicker 8.5 percent in March. ")}
             />
             <Highlighter
                 searchWords={highlight}
                 textToHighlight="It slowed down in April partly because gas prices dropped lower, and partly because of a statistical quirk that will continue through the months ahead. "
-                onClick={()=>clickhighlight("It slowed down in April partly because gas prices dropped lower, and partly because of a statistical quirk that will continue through the months ahead. ")}
+                onClick={(e)=>{
+                    clickhighlight(e, "It slowed down in April partly because gas prices dropped lower, and partly because of a statistical quirk that will continue through the months ahead. ")
+                }}
             />
             <Highlighter
                 searchWords={highlight}
@@ -199,7 +473,7 @@ function CPIArticle() {
             <Highlighter
                 searchWords={highlight}
                 textToHighlight="And services prices are now increasing quickly, as rents climb and as worker shortfalls lead to higher wages and steeper prices for restaurant meals and other labor-intensive purchases. "
-                onClick={()=>clickhighlight("And services prices are now increasing quickly, as rents climb and as worker shortfalls lead to higher wages and steeper prices for restaurant meals and other labor-intensive purchases. ")}
+                onClick={(e)=>clickhighlight(e, "And services prices are now increasing quickly, as rents climb and as worker shortfalls lead to higher wages and steeper prices for restaurant meals and other labor-intensive purchases. ")}
             />
             <Highlighter
                 searchWords={highlight}

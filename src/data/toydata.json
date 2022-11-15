@@ -26,7 +26,7 @@
         "dataReferences": [{
             "dataReference": "Annual inflation",
             "dataName": "Consumer Price Index for All Urban Consumers: All Items in U.S. City Average",
-            "xUnit": "Weekly",
+            "xUnit": "Monthly",
             "timeStart": "",
             "timeEnd": "",
             "yUnit": "percent",
