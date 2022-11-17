@@ -14,7 +14,7 @@ function InteractiveChart ( {offsetY, mainData, dataRefs, listDrop, setListDrop}
 
     const graphRef = useRef();
     const [listSelected, setListSelected] = useState([]);
-    const [mainRef, setMainRef] = useState([]);
+    
 
 
     useEffect(() => {
@@ -59,13 +59,13 @@ function InteractiveChart ( {offsetY, mainData, dataRefs, listDrop, setListDrop}
             .attr("transform", `translate(${margin.left}, ${margin.top})`);
             
 
-        const time_range = await axios.get(mainData.data).then( (response) => {
+        const time_range = await axios.get(`/stlouisfed/${mainData.data}`).then( (response) => {
             const data =  response.data.observations.map((data) => {
                     return {
                         date: new Date(data.date),
                         measurement: parseFloat(data.value) ? parseFloat(data.value) : 0
                         } 
-                    }) 
+                    }, {withCredentials: true}) 
             console.log(data[0]['date'], data[data.length-1]['date'])
             return [data[0]['date'], data[data.length-1]['date']];
         })
@@ -121,13 +121,13 @@ function InteractiveChart ( {offsetY, mainData, dataRefs, listDrop, setListDrop}
             .attr("transform", `translate(${margin.left}, ${margin.top})`);
 
         
-        const time_range = await axios.get(mainData.data).then( (response) => {
+        const time_range = await axios.get(`/stlouisfed/${mainData.data}`).then( (response) => {
             const data =  response.data.observations.map((data) => {
                     return {
                         date: new Date(data.date),
                         measurement: parseFloat(data.value) ? parseFloat(data.value) : 0
                         } 
-                    }) 
+                    }, {withCredentials: true}) 
             console.log(data[0]['date'], data[data.length-1]['date'])
             return [data[0]['date'], data[data.length-1]['date']];
         })
@@ -172,7 +172,7 @@ function InteractiveChart ( {offsetY, mainData, dataRefs, listDrop, setListDrop}
         }
         const timeConv = d3.timeFormat(timeUnit)
 
-        const newdata = await axios.get(dataRef.data).then( (response) => {
+        const newdata = await axios.get(`/stlouisfed/${dataRef.data}`).then( (response) => {
             const data =  response.data.observations.map((data) => {
                 // if (new Date(data.date)>= xmin && new Date(data.date)<= xmax) {
                     // console.log(new Date(data.date)>= xmin)
@@ -181,7 +181,7 @@ function InteractiveChart ( {offsetY, mainData, dataRefs, listDrop, setListDrop}
                         measurement: parseFloat(data.value) 
                         } 
                     // }
-                    }) 
+                    }, {withCredentials: true}) 
                 return data;
         })
 
@@ -339,7 +339,7 @@ function InteractiveChart ( {offsetY, mainData, dataRefs, listDrop, setListDrop}
             const brushyScale1 = d3.scaleLinear().rangeRound([height, 0]);
 
             lines.each((data, idx) => {
-                console.log(data, mainRef, idx)
+                console.log(data, idx)
                 if (p_yaxis == 0) {
                     if (data == newdata) {
                         brushyScale0.domain([d3.min(data, function(d){return d.measurement;}), d3.max(data, function(d){return d.measurement;})]).nice()
@@ -487,7 +487,10 @@ function CPIArticle() {
         </div>
 
         <div>
-            <InteractiveChart offsetY={offsetY} mainData={mainData} dataRefs={dataRefs} listDrop={listDrop} setListDrop={setListDrop}/>
+            {dataRefs.length !== 0
+             ? <InteractiveChart offsetY={offsetY} mainData={mainData} dataRefs={dataRefs} listDrop={listDrop} setListDrop={setListDrop}/>
+             : null 
+            }
         </div>
         <div className="g-body">
             <Highlighter

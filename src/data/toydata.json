@@ -6,7 +6,7 @@
         "timeStart": "1965",
         "timeEnd": "2020",
         "yUnit": "percent",
-        "data": "https://api.stlouisfed.org/fred/series/observations?api_key=8e5264e8f54e150398c9a50fe0126cd4&file_type=json&series_id=CPIAUCSL"
+        "data": "/fred/series/observations?api_key=8e5264e8f54e150398c9a50fe0126cd4&file_type=json&series_id=CPIAUCSL"
     },
     "references": [
     {
@@ -18,7 +18,7 @@
             "timeStart": "",
             "timeEnd": "",
             "yUnit": "Dollars per Gallon",
-            "data": "https://api.stlouisfed.org/fred/series/observations?api_key=8e5264e8f54e150398c9a50fe0126cd4&file_type=json&series_id=GASREGW"
+            "data": "/fred/series/observations?api_key=8e5264e8f54e150398c9a50fe0126cd4&file_type=json&series_id=GASREGW"
          }]
     },
     {
@@ -30,7 +30,7 @@
             "timeStart": "",
             "timeEnd": "",
             "yUnit": "percent",
-            "data": "https://api.stlouisfed.org/fred/series/observations?api_key=8e5264e8f54e150398c9a50fe0126cd4&file_type=json&series_id=CPIAUCSL"
+            "data": "/fred/series/observations?api_key=8e5264e8f54e150398c9a50fe0126cd4&file_type=json&series_id=CPIAUCSL"
          }]
     }, 
     {
@@ -42,7 +42,7 @@
             "timeStart": "",
             "timeEnd": "",
             "yUnit": "percent",
-            "data": "https://api.stlouisfed.org/fred/series/observations?api_key=8e5264e8f54e150398c9a50fe0126cd4&file_type=json&series_id=CUSR0000SASLE"
+            "data": "/fred/series/observations?api_key=8e5264e8f54e150398c9a50fe0126cd4&file_type=json&series_id=CUSR0000SASLE"
         }, 
         {
             "dataReference": "rents",
@@ -51,7 +51,7 @@
             "timeStart": "",
             "timeEnd": "",
             "yUnit": "percent",
-            "data": "https://api.stlouisfed.org/fred/series/observations?api_key=8e5264e8f54e150398c9a50fe0126cd4&file_type=json&series_id=CUSR0000SEHA"
+            "data": "/fred/series/observations?api_key=8e5264e8f54e150398c9a50fe0126cd4&file_type=json&series_id=CUSR0000SEHA"
         },
         {
             "dataReference": "wages",
@@ -60,7 +60,7 @@
             "timeStart": "",
             "timeEnd": "",
             "yUnit": "Dollars per hour",
-            "data": "https://api.stlouisfed.org/fred/series/observations?api_key=8e5264e8f54e150398c9a50fe0126cd4&file_type=json&series_id=CES0500000003"
+            "data": "/fred/series/observations?api_key=8e5264e8f54e150398c9a50fe0126cd4&file_type=json&series_id=CES0500000003"
         },
         {
             "dataReference": "price for restaurant meals",
@@ -69,7 +69,7 @@
             "timeStart": "1953-01",
             "timeEnd": "2022-09",
             "yUnit": "percent",
-            "data": "https://api.stlouisfed.org/fred/series/observations?api_key=8e5264e8f54e150398c9a50fe0126cd4&file_type=json&series_id=CUSR0000SEFV"
+            "data": "/fred/series/observations?api_key=8e5264e8f54e150398c9a50fe0126cd4&file_type=json&series_id=CUSR0000SEFV"
         }]
     }]
 }
