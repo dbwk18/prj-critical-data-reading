@@ -545,11 +545,13 @@ function CPIArticle() {
         <div className="g-body">
             <Highlighter
                 searchWords={highlight}
+                highlightClassName="highlight-class"
                 textToHighlight="Annual inflation may have now peaked, having climbed by an even-quicker 8.5 percent in March. "
                 onClick={(e)=>clickhighlight(e, "Annual inflation may have now peaked, having climbed by an even-quicker 8.5 percent in March. ")}
             />
             <Highlighter
                 searchWords={highlight}
+                highlightClassName="highlight-class"
                 textToHighlight="It slowed down in April partly because gas prices dropped lower, and partly because of a statistical quirk that will continue through the months ahead. "
                 onClick={(e)=>{
                     clickhighlight(e, "It slowed down in April partly because gas prices dropped lower, and partly because of a statistical quirk that will continue through the months ahead. ")
@@ -621,6 +623,7 @@ function CPIArticle() {
         <div className="g-body">
             <Highlighter
                 searchWords={highlight}
+                highlightClassName="highlight-class"
                 textToHighlight="And services prices are now increasing quickly, as rents climb and as worker shortfalls lead to higher wages and steeper prices for restaurant meals and other labor-intensive purchases. "
                 onClick={(e)=>clickhighlight(e, "And services prices are now increasing quickly, as rents climb and as worker shortfalls lead to higher wages and steeper prices for restaurant meals and other labor-intensive purchases. ")}
             />

@@ -29,3 +29,7 @@
     margin: 8px 550px 0 550px;
 }
 
+.highlight-class {
+    border-bottom: 3px solid #feee7d;
+    background-color: transparent;
+}
