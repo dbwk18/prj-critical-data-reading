@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/prj-critical-data-reading/static/css/main.cacd9aa5.css",
-    "main.js": "/prj-critical-data-reading/static/js/main.35f302f4.js",
+    "main.css": "/prj-critical-data-reading/static/css/main.6bae41a2.css",
+    "main.js": "/prj-critical-data-reading/static/js/main.7d995bf1.js",
     "static/js/787.2f8ee908.chunk.js": "/prj-critical-data-reading/static/js/787.2f8ee908.chunk.js",
     "static/media/NYTTitle.png": "/prj-critical-data-reading/static/media/NYTTitle.133766d60fa482ede9c0.png",
     "static/media/NYTFooter.png": "/prj-critical-data-reading/static/media/NYTFooter.854e7533113333ae4d95.png",
@@ -16,12 +16,12 @@
     "static/media/NYTGraph1.png": "/prj-critical-data-reading/static/media/NYTGraph1.40ef915cf6cc64da9a2f.png",
     "static/media/NYTHeader.png": "/prj-critical-data-reading/static/media/NYTHeader.179c2537611fa69b6bae.png",
     "index.html": "/prj-critical-data-reading/index.html",
-    "main.cacd9aa5.css.map": "/prj-critical-data-reading/static/css/main.cacd9aa5.css.map",
-    "main.35f302f4.js.map": "/prj-critical-data-reading/static/js/main.35f302f4.js.map",
+    "main.6bae41a2.css.map": "/prj-critical-data-reading/static/css/main.6bae41a2.css.map",
+    "main.7d995bf1.js.map": "/prj-critical-data-reading/static/js/main.7d995bf1.js.map",
     "787.2f8ee908.chunk.js.map": "/prj-critical-data-reading/static/js/787.2f8ee908.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.cacd9aa5.css",
-    "static/js/main.35f302f4.js"
+    "static/css/main.6bae41a2.css",
+    "static/js/main.7d995bf1.js"
   ]
 }
