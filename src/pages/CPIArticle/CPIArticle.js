@@ -6,7 +6,10 @@ import toydata from '../../data/toydata.json';
 import Highlighter from 'react-highlight-words';
 import NYTHeader from '../../images/NYT-unemploy/NYTHeader.png';
 import NYTGraph1 from '../../images/NYT_cpi/NYTGraph1.png';
-import LabelDropdown from '../../components/LabelDropdown/LabelDropdown';
+
+import LabelDropdown from '../../component2/LabelDropdown/LabelDropdown';
+import SearchTooltip from '../../component2/SearchTooltip/SearchTooltip';
+import SearchBox from '../../component2/SearchBox/SearchBox';
 
 import './CPIArticle.css';
 
@@ -407,6 +410,11 @@ function InteractiveChart ( {offsetY, mainData, dataRefs, listDrop, setListDrop}
 function CPIArticle() {
     
     const highlight = []
+    const [tooltipX, setTooltipX] = useState(null);
+    const [tooltipY, setTooltipY] = useState(null);
+    const [searchBox, setSearchBox] = useState(false);
+    const [searchY, setSearchY] = useState(null);
+
     const [offsetY, setOffsetY] = useState(null);
     const [mainData, setMainData] = useState()
     const [dataRefs, setDataRefs] = useState([]);
@@ -487,6 +495,7 @@ function CPIArticle() {
 
     // }
 
+    // select range of highlight
     function highlightSelect() {
         const xs = document.createRange();
         const s_offset = window.getSelection().getRangeAt(0).startOffset;
@@ -496,11 +505,20 @@ function CPIArticle() {
 
         xs.setStart(s_container, s_offset);
         xs.setEnd(e_container, e_offset);
-        console.log(xs)
 
-        return xs;
+        return s_offset != e_offset ? xs : null;
     }
   
+    // remove the previous highlight
+    function removeHighlight() {
+        if (document.getElementsByClassName('one').length > 0) {
+            const rmhighlight = document.getElementsByClassName('one')[0]
+            const addelement = rmhighlight.innerHTML
+            rmhighlight.replaceWith(addelement)
+        }
+    }
+
+    // add new highlight 
     function highlightText(range) {
         const newNode = document.createElement('div');
         newNode.setAttribute('style', 'background-color: yellow; display: inline;');
@@ -509,12 +527,22 @@ function CPIArticle() {
     }
 
 
+
     return (
-    <div onMouseUp={()=>{
-            console.log(window.getSelection().getRangeAt(0));
+    <div onMouseUp={(e)=>{
             const range = highlightSelect();
-            highlightText(range);
+            removeHighlight();
+            if (range) {
+                highlightText(range);
+                setTooltipX(e.nativeEvent.pageX);
+                setTooltipY(e.nativeEvent.pageY);
+            }
+            else {
+                setTooltipX(null);
+                setTooltipY(null);
+            }
         }} >
+
         <img src={NYTHeader} width='100%' />
         <div className='g-name'>Consumer Prices Are Still Climbing Rapidly</div>
         <div className='g-details'>Inflation data showed a slowdown in annual price increases in April, but a closely watched monthly price measure continues to rise at an uncomfortably brisk rate. </div>
@@ -533,6 +561,18 @@ function CPIArticle() {
              : null 
             }
         </div>
+
+        <div>
+            {tooltipX
+                ? <SearchTooltip setSearchBox={setSearchBox} setSearchY={setSearchY} offsetX={tooltipX} offsetY={tooltipY}/>
+                : null 
+            }
+            {searchBox 
+                ? <SearchBox offsetY={searchY}/> 
+                : null 
+            }
+        </div>
+
         <div className="g-body">
             <Highlighter
                 searchWords={highlight}
