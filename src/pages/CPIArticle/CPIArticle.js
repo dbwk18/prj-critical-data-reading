@@ -415,6 +415,9 @@ function CPIArticle() {
     const [searchBox, setSearchBox] = useState(false);
     const [searchY, setSearchY] = useState(null);
 
+    const [searchDefault, setSearchDefault] = useState(null);
+    const [applyDefault, setApplyDefault] = useState(null);
+
     const [offsetY, setOffsetY] = useState(null);
     const [mainData, setMainData] = useState()
     const [dataRefs, setDataRefs] = useState([]);
@@ -503,9 +506,12 @@ function CPIArticle() {
         const s_container = window.getSelection().getRangeAt(0).startContainer;
         const e_container = window.getSelection().getRangeAt(0).endContainer;
 
-        xs.setStart(s_container, s_offset);
-        xs.setEnd(e_container, e_offset);
-
+        if (s_offset != e_offset) {
+            setSearchDefault(window.getSelection().toString());
+            xs.setStart(s_container, s_offset);
+            xs.setEnd(e_container, e_offset);
+        }
+ 
         return s_offset != e_offset ? xs : null;
     }
   
@@ -532,6 +538,7 @@ function CPIArticle() {
     <div onMouseUp={(e)=>{
             const range = highlightSelect();
             removeHighlight();
+
             if (range) {
                 highlightText(range);
                 setTooltipX(e.nativeEvent.pageX);
@@ -564,11 +571,11 @@ function CPIArticle() {
 
         <div>
             {tooltipX
-                ? <SearchTooltip setSearchBox={setSearchBox} setSearchY={setSearchY} offsetX={tooltipX} offsetY={tooltipY}/>
+                ? <SearchTooltip setSearchBox={setSearchBox} offsetX={tooltipX} offsetY={tooltipY} setSearchY={setSearchY} searchDefault={searchDefault} setApplyDefault={setApplyDefault}/>
                 : null 
             }
             {searchBox 
-                ? <SearchBox offsetY={searchY}/> 
+                ? <SearchBox offsetY={searchY} defaultInput={applyDefault}/> 
                 : null 
             }
         </div>

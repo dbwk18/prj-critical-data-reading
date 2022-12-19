@@ -3,7 +3,7 @@ import { useState } from 'react';
 
 import SearchBox from '../SearchBox/SearchBox'
 
-function SearchTooltip({setSearchBox, setSearchY, offsetX, offsetY}) {
+function SearchTooltip({setSearchBox, offsetX, offsetY, setSearchY, searchDefault, setApplyDefault}) {
 
     return (
         <React.Fragment>
@@ -16,7 +16,7 @@ function SearchTooltip({setSearchBox, setSearchY, offsetX, offsetY}) {
                 lineHeight: "32px",
                 }}>
                     <button 
-                        onMouseDown={()=>{setSearchBox(true); setSearchY(offsetY);}} 
+                        onMouseDown={(e)=>{e.stopPropagation(); setSearchBox(true); setSearchY(offsetY); setApplyDefault(searchDefault);}} 
                         style={{
                             backgroundColor: "#6E7783", 
                             color: "white", 
