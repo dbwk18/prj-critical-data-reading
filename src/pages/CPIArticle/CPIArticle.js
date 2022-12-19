@@ -12,6 +12,8 @@ import './CPIArticle.css';
 
 function InteractiveChart ( {offsetY, mainData, dataRefs, listDrop, setListDrop} ) {
 
+    // var Fred = require('fred-api');
+    
     const graphRef = useRef();
     const [listSelected, setListSelected] = useState([]);
     
@@ -59,7 +61,10 @@ function InteractiveChart ( {offsetY, mainData, dataRefs, listDrop, setListDrop}
             .attr("transform", `translate(${margin.left}, ${margin.top})`);
             
 
-        const time_range = await axios.get(`/stlouisfed/${mainData.data}`).then( (response) => {
+        const time_range = await axios.get(`/${mainData.data}`, { headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+        }}).then( (response) => {
             const data =  response.data.observations.map((data) => {
                     return {
                         date: new Date(data.date),
@@ -121,7 +126,10 @@ function InteractiveChart ( {offsetY, mainData, dataRefs, listDrop, setListDrop}
             .attr("transform", `translate(${margin.left}, ${margin.top})`);
 
         
-        const time_range = await axios.get(`/stlouisfed/${mainData.data}`).then( (response) => {
+        const time_range = await axios.get(`/${mainData.data}`, {headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+        }}).then( (response) => {
             const data =  response.data.observations.map((data) => {
                     return {
                         date: new Date(data.date),
@@ -172,7 +180,10 @@ function InteractiveChart ( {offsetY, mainData, dataRefs, listDrop, setListDrop}
         }
         const timeConv = d3.timeFormat(timeUnit)
 
-        const newdata = await axios.get(`/stlouisfed/${dataRef.data}`).then( (response) => {
+        const newdata = await axios(`/${dataRef.data}`, {headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+        }}).then( (response) => {
             const data =  response.data.observations.map((data) => {
                 // if (new Date(data.date)>= xmin && new Date(data.date)<= xmax) {
                     // console.log(new Date(data.date)>= xmin)
@@ -376,9 +387,9 @@ function InteractiveChart ( {offsetY, mainData, dataRefs, listDrop, setListDrop}
     return (
         <React.Fragment>
             <div style={{backgroundColor: "#f4f4f4", 
-                        width: "28%", 
+                        width: "28vw", 
                         position: "absolute", 
-                        left: "70%", 
+                        left: "68vw", 
                         top: offsetY - 30
                         // transform: "translateX(-50%)"
                     }}>
@@ -406,6 +417,11 @@ function CPIArticle() {
     console.log(highlight, mainData)
     console.log(dataRefs)
 
+    document.addEventListener("dragstart", event => {
+        // 투명도 초기화
+        console.log("drag", event.target)
+        // event.target.classList.remove("dragging");
+      });
     // useEffect(() => {
     //     // dataFilter();
     //     // console.log(filterRef)
@@ -471,9 +487,34 @@ function CPIArticle() {
 
     // }
 
+    function highlightSelect() {
+        const xs = document.createRange();
+        const s_offset = window.getSelection().getRangeAt(0).startOffset;
+        const e_offset = window.getSelection().getRangeAt(0).endOffset;
+        const s_container = window.getSelection().getRangeAt(0).startContainer;
+        const e_container = window.getSelection().getRangeAt(0).endContainer;
+
+        xs.setStart(s_container, s_offset);
+        xs.setEnd(e_container, e_offset);
+        console.log(xs)
+
+        return xs;
+    }
+  
+    function highlightText(range) {
+        const newNode = document.createElement('div');
+        newNode.setAttribute('style', 'background-color: yellow; display: inline;');
+        newNode.setAttribute('class', 'one');
+        range.surroundContents(newNode);
+    }
+
 
     return (
-    <div>
+    <div onMouseUp={()=>{
+            console.log(window.getSelection().getRangeAt(0));
+            const range = highlightSelect();
+            highlightText(range);
+        }} >
         <img src={NYTHeader} width='100%' />
         <div className='g-name'>Consumer Prices Are Still Climbing Rapidly</div>
         <div className='g-details'>Inflation data showed a slowdown in annual price increases in April, but a closely watched monthly price measure continues to rise at an uncomfortably brisk rate. </div>
