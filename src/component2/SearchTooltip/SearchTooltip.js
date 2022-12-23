@@ -11,12 +11,16 @@ function SearchTooltip({setSearchBox, offsetX, offsetY, setSearchY, searchDefaul
                 position: "absolute", 
                 left: `${offsetX - 15}px`, 
                 top:`${offsetY + 10}px`, 
-                width: "58px", 
+                width: "90px", 
                 height: "32px",
                 lineHeight: "32px",
                 }}>
                     <button 
-                        onMouseDown={(e)=>{e.stopPropagation(); setSearchBox(true); setSearchY(offsetY); setApplyDefault(searchDefault);}} 
+                        onMouseDown={(e)=>{
+                            setSearchBox(true); 
+                            setSearchY(offsetY); 
+                            setApplyDefault(searchDefault); 
+                        }} 
                         style={{
                             backgroundColor: "#6E7783", 
                             color: "white", 
@@ -26,7 +30,7 @@ function SearchTooltip({setSearchBox, offsetX, offsetY, setSearchY, searchDefaul
                             fontSize: "14px",
                             opacity: "92%"
                         }}>
-                            Search
+                            Find Data
                     </button>
             </div>
         </React.Fragment>

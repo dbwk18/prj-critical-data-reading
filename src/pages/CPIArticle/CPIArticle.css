@@ -32,13 +32,18 @@
     margin: 1vh 34vw 0 32vw;
 }
 
-.g-body::selection {
+/* .g-body::selection {
     background-color: orange;
     color: red;
-}
+} */
 
-.highlight-class {
+mark {
     border-bottom: 3px solid #feee7d;
     background-color: transparent;
 }
+
+/* .highlight-class {
+    border-bottom: 3px solid #feee7d;
+    background-color: transparent;
+} */
 
