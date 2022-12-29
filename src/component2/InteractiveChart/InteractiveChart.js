@@ -2,7 +2,9 @@ import React, {useState, useEffect, useRef} from "react";
 import * as d3 from 'd3';
 import axios from 'axios';
 
-import LabelDropdown from '../../component2/LabelDropdown/LabelDropdown';
+import LabelDropdown from '../LabelDropdown/LabelDropdown';
+import SearchDropdown from "../SearchDropdown/SearchDropdown";
+import SearchBox from "../SearchBox/SearchBox";
 
 
 function InteractiveChart ( {offsetY, mainData, dataRefs, listDrop, setListDrop} ) {
@@ -11,6 +13,7 @@ function InteractiveChart ( {offsetY, mainData, dataRefs, listDrop, setListDrop}
     
     const graphRef = useRef();
     const [listSelected, setListSelected] = useState([]);
+    const [dataSelected, setDataSelected] = useState("122");
     // things to be revised
     // setlistdrop({...listdrop, datarefname: [dataname]})
 
@@ -78,6 +81,8 @@ function InteractiveChart ( {offsetY, mainData, dataRefs, listDrop, setListDrop}
       
         if (dataRefs.length == 1) {
             console.log(dataRefs[0])
+            // setListDrop([mainData.dataReference, dataRefs[0].dataReference]);
+            // setListSelected([mainData.dataReference, dataRefs[0].dataReference]);
             drawone(mainData, svg, zoomsvg, "#6AAFE6", 0 , xmin, xmax, dataRefs[0]);
             drawone(dataRefs[0], svg, zoomsvg, "#a5d296", 1, xmin, xmax, mainData);
         }
@@ -241,7 +246,7 @@ function InteractiveChart ( {offsetY, mainData, dataRefs, listDrop, setListDrop}
         const myBrush = d3.brushX()
                         .extent([[xScale.range()[0], 0], [xScale.range()[1], height2]])
                         .on("brush", (event)=>brushed(event, newdata))
-                        // .on("end", (event)=>brushed(event, newdata));
+
 
         //draw xaxis only once
         if (p_yaxis == 0) {
@@ -388,9 +393,10 @@ function InteractiveChart ( {offsetY, mainData, dataRefs, listDrop, setListDrop}
                         position: "absolute", 
                         left: "68vw", 
                         top: offsetY - 30
-                        // transform: "translateX(-50%)"
                     }}>
-                {dataRefs.length > 1 ? <LabelDropdown listDrop={listDrop} listSelected={listSelected} setListSelected={setListSelected}/> : null}
+                <LabelDropdown listDrop={listDrop} listSelected={listSelected} setListSelected={setListSelected}/>
+                <SearchDropdown dataDrop={["122", "222", "344"]} dataSelected={dataSelected} setDataSelected={setDataSelected} />
+                {/* {dataRefs.length > 1 ? <LabelDropdown listDrop={listDrop} listSelected={listSelected} setListSelected={setListSelected}/> : null} */}
                 <div ref={graphRef} 
                     id='graph-container'
                     className='GraphContainer' 

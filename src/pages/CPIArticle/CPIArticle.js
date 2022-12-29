@@ -45,10 +45,6 @@ function CPIArticle() {
         console.log("drag", event.target)
         // event.target.classList.remove("dragging");
       });
-    // useEffect(() => {
-    //     // dataFilter();
-    //     // console.log(filterRef)
-    // }, [dataRef])
 
     //function for clicking highlighted sentence
     const clickhighlight = (e, sentence) => {
@@ -60,55 +56,7 @@ function CPIArticle() {
             }
         })
     }
-
     
-
-    //function for preprocessing data in clicked sentence
-    // const dataFilter = (dataRef) => {
-    //     const newRef = []
-
-    //     if (dataRef.length > 0) {
-    //         dataRef.forEach(async (item) => {
-    //             const newdata = {}
-    //             // const fetch_data = axios.get(item.data).then(response => response.data)
-    //             // const filter_data = axios.get(item.data).then(response => {
-    //             //     const data = response.data.observations.map((data) => {
-    //             //         return {
-    //             //             date: data.date,
-    //             //             measurement: data.value
-    //             //             }
-    //             //         }) 
-    //             //     return data;
-    //             // })
-    //             // console.log(filter_data)
-
-    //             // const fetch_data = async () => {
-    //             //     const data = await filter_data;
-    //             //     return data;
-    //             // }
-
-    //             newdata.dataReference = item.dataReference
-    //             newdata.dataName = item.dataName
-    //             newdata.xUnit = item.xUnit
-    //             newdata.yUnit = item.yUnit
-    //             newdata.data = await axios.get(item.data).then( (response) => {
-    //                 const data =  response.data.observations.map((data) => {
-    //                     return {
-    //                         date: data.date,
-    //                         measurement: data.value
-    //                         }
-    //                     }) 
-    //                 return data;
-    //             })
-    //             newRef.push(newdata)  
-    //         })
-            
-    //     }
-    //     console.log(newRef)
-    //     return newRef;
-        
-
-    // }
 
     // select range of highlight
     function highlightSelect() {

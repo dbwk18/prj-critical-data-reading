@@ -1,7 +1,7 @@
 // import ButtonGroup from 'react-bootstrap/ButtonGroup';
 // import Dropdown from 'react-bootstrap/Dropdown';
 // import DropdownButton from 'react-bootstrap/DropdownButton';
-import {Form} from 'react-bootstrap'
+
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function LabelDropdown({listDrop, listSelected, setListSelected}) {
@@ -13,10 +13,6 @@ function LabelDropdown({listDrop, listSelected, setListSelected}) {
             { listDrop.length > 0
             ? [listDrop[0], listDrop[1]].map((item, formidx) => {
                 return (
-                //     <Form.Group controlId="formBasicSelect">
-                //     {/* <Form.Label>Select Norm Type</Form.Label> */}
-                    
-                //   </Form.Group>
                 <>
                     <select style={{float: "left", width: "35%"}}
                         class="form-select"
@@ -47,7 +43,7 @@ function LabelDropdown({listDrop, listSelected, setListSelected}) {
                             return (
                                 <option selected={listvar == item ? true : false} key={idx}>{listvar}</option>
                         )})}
-                </select>
+                    </select>
             </>
                   
                 
