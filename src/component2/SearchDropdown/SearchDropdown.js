@@ -33,9 +33,13 @@ function SearchDropdown({dataDrop, dataSelected, setDataSelected}) {
     }
 
     return (
-        <div className='search-dropdown'>
-            <div className='search-input'>
+        <div 
+            className='search-dropdown'
+            style={{float: "left", width: "65%", height: "38px"}}    
+        >
+            <div className='input-group mb-3'>
                 <input 
+                    class="form-control"
                     ref={inputRef}
                     value={displayOption()}
                     onClick={toggle}
@@ -43,12 +47,12 @@ function SearchDropdown({dataDrop, dataSelected, setDataSelected}) {
                 />
                 <div className={`arrow ${isOpen ? "open" : ""}`}></div>
             </div>
-            <div className={`options ${isOpen ? "open" : ""}`}>
+            <div className={`dropdown-menu ${isOpen ? "open" : ""}`}>
                 {filter(dataDrop).map((item, idx) => {
                     return (
                         <div
                             onClick={() => selectOption(item)}
-                            className={`option ${
+                            className={`dropdown-item ${
                                 item === dataSelected ? "selected" : ""
                                 }`}
                             key={`${idx}`}

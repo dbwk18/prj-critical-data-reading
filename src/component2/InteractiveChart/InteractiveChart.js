@@ -13,7 +13,7 @@ function InteractiveChart ( {offsetY, mainData, dataRefs, listDrop, setListDrop}
     
     const graphRef = useRef();
     const [listSelected, setListSelected] = useState([]);
-    const [dataSelected, setDataSelected] = useState("122");
+    const [dataSelected, setDataSelected] = useState("data1");
     // things to be revised
     // setlistdrop({...listdrop, datarefname: [dataname]})
 
@@ -81,8 +81,8 @@ function InteractiveChart ( {offsetY, mainData, dataRefs, listDrop, setListDrop}
       
         if (dataRefs.length == 1) {
             console.log(dataRefs[0])
-            // setListDrop([mainData.dataReference, dataRefs[0].dataReference]);
-            // setListSelected([mainData.dataReference, dataRefs[0].dataReference]);
+            setListDrop([dataRefs[0].dataReference])
+            setListSelected([dataRefs[0].dataReference])
             drawone(mainData, svg, zoomsvg, "#6AAFE6", 0 , xmin, xmax, dataRefs[0]);
             drawone(dataRefs[0], svg, zoomsvg, "#a5d296", 1, xmin, xmax, mainData);
         }
@@ -148,22 +148,30 @@ function InteractiveChart ( {offsetY, mainData, dataRefs, listDrop, setListDrop}
         var dropidx1 = 0;
         var dropidx2 = 0;
 
-        dataRefs.forEach((item, idx) => {
-                if (item.dataReference == listSelected[0]) {
-                    dropidx1 = idx
-                    // drawone(dataRefs[idx], svg, zoomsvg, "#6AAFE6", 0 , xmin, xmax);
-                    console.log("graph1", item.dataReference)
+        if (dataRefs.length == 1) {
+            console.log(dataRefs[0])
+            drawone(mainData, svg, zoomsvg, "#6AAFE6", 0 , xmin, xmax, dataRefs[0]);
+            drawone(dataRefs[0], svg, zoomsvg, "#a5d296", 1, xmin, xmax, mainData);
+        }
+
+        else {
+            dataRefs.forEach((item, idx) => {
+                    if (item.dataReference == listSelected[0]) {
+                        dropidx1 = idx
+                        // drawone(dataRefs[idx], svg, zoomsvg, "#6AAFE6", 0 , xmin, xmax);
+                        console.log("graph1", item.dataReference)
+                    }
+                })
+            dataRefs.forEach((item, idx) => {
+                if (item.dataReference == listSelected[1]) {
+                    dropidx2 = idx
+                    // drawone(dataRefs[idx], svg, zoomsvg, "#a5d296", width, xmin, xmax);
+                    console.log("graph2", item.dataReference)
                 }
             })
-        dataRefs.forEach((item, idx) => {
-            if (item.dataReference == listSelected[1]) {
-                dropidx2 = idx
-                // drawone(dataRefs[idx], svg, zoomsvg, "#a5d296", width, xmin, xmax);
-                console.log("graph2", item.dataReference)
-            }
-        })
-        drawone(dataRefs[dropidx1], svg, zoomsvg, "#6AAFE6", 0 , xmin, xmax, dataRefs[dropidx2]);
-        drawone(dataRefs[dropidx2], svg, zoomsvg, "#a5d296", 1, xmin, xmax, dataRefs[dropidx1]);
+            drawone(dataRefs[dropidx1], svg, zoomsvg, "#6AAFE6", 0 , xmin, xmax, dataRefs[dropidx2]);
+            drawone(dataRefs[dropidx2], svg, zoomsvg, "#a5d296", 1, xmin, xmax, dataRefs[dropidx1]);
+        }
     }
 
     //function for overlaying line graph 
@@ -394,9 +402,17 @@ function InteractiveChart ( {offsetY, mainData, dataRefs, listDrop, setListDrop}
                         left: "68vw", 
                         top: offsetY - 30
                     }}>
-                <LabelDropdown listDrop={listDrop} listSelected={listSelected} setListSelected={setListSelected}/>
-                <SearchDropdown dataDrop={["122", "222", "344"]} dataSelected={dataSelected} setDataSelected={setDataSelected} />
-                {/* {dataRefs.length > 1 ? <LabelDropdown listDrop={listDrop} listSelected={listSelected} setListSelected={setListSelected}/> : null} */}
+                {/* {dataRefs.length > 1 
+                ? (
+                    <>
+                    <LabelDropdown listDrop={listDrop} listSelected={listSelected} setListSelected={setListSelected} dataSelected={dataSelected} setDataSelected={setDataSelected} /> 
+                    </>
+                )
+                : null} */}
+                <>
+                    <LabelDropdown listDrop={listDrop} listSelected={listSelected} setListSelected={setListSelected} dataSelected={dataSelected} setDataSelected={setDataSelected} /> 
+                    {/* <SearchDropdown dataDrop={["122", "222", "344"]} dataSelected={dataSelected} setDataSelected={setDataSelected} /> */}
+                </>
                 <div ref={graphRef} 
                     id='graph-container'
                     className='GraphContainer' 
