@@ -87,7 +87,7 @@ function CPIArticle() {
     // add new highlight 
     function highlightText(range) {
         const newNode = document.createElement('div');
-        newNode.setAttribute('style', 'background-color: yellow; display: inline;');
+        newNode.setAttribute('style', 'background-color: #a3daff; display: inline;');
         newNode.setAttribute('class', 'one');
         range.surroundContents(newNode);
     }

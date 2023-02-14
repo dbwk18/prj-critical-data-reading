@@ -47,7 +47,7 @@ function SearchBox({offsetY, defaultInput, setSearchBox, highlight, setHighlight
             {/* {searchStatus
             ?  */}
                 <div class="list-group">
-                    {['First Item', 'Second Item', 'Third Item', 'Fourth Item', 'Fifth Item'].map((item, idx) => {
+                    {['First Data', 'Second Data', 'Third Data', 'Fourth Data', 'Fifth Data'].map((item, idx) => {
                         return (
                             <div 
                                 style={{display: "flex"}}
