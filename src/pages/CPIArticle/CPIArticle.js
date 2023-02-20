@@ -2,6 +2,7 @@ import React, {useState, useEffect, useRef} from 'react';
 
 
 import toydata from '../../data/toydata.json';
+import toydata2 from '../../data/toydata2.json'
 import Highlighter from 'react-highlight-words';
 import NYTHeader from '../../images/NYT-unemploy/NYTHeader.png';
 import NYTGraph1 from '../../images/NYT_cpi/NYTGraph1.png';
@@ -35,7 +36,8 @@ function CPIArticle() {
     //add list for reference sentences
     useEffect(()=> {
         const highlightref = []
-        toydata.references.forEach((item) => highlightref.push(item.sentence))
+        // toydata.references.forEach((item) => highlightref.push(item.sentence))
+        toydata2.sentences.forEach((item) => highlightref.push(item.sentence))
         console.log(highlightref, mainData)
         setHighlight(highlightref)
         console.log(dataRefs)
@@ -49,10 +51,19 @@ function CPIArticle() {
 
     //function for clicking highlighted sentence
     const clickhighlight = (e, sentence) => {
-        toydata.references.forEach( (item) => {
+        // toydata.references.forEach( (item) => {
+        //     if (item.sentence == sentence.trim()) {
+        //         setDataRefs(item.dataReferences);
+        //         // setMainData(toydata.mainData)
+        //         setMainData(toydata2.mainData);
+        //         setOffsetY(e.nativeEvent.pageY);
+        //     }
+        // })
+        toydata2.sentences.forEach( (item) => {
             if (item.sentence == sentence.trim()) {
-                setDataRefs(item.dataReferences);
-                setMainData(toydata.mainData)
+                setDataRefs(item.data_references);
+                // setMainData(toydata.mainData)
+                setMainData(toydata2.mainData);
                 setOffsetY(e.nativeEvent.pageY);
             }
         })
@@ -167,6 +178,7 @@ function CPIArticle() {
                     searchWords={highlight}
                     textToHighlight="The pressures that have kept inflation elevated for months remain strong, fresh data released Wednesday showed, a challenge for households that are trying to shoulder rising expenses and for the White House and Federal Reserve as they try to put the economy on a steadier path."
                 />
+                {/* {HighlightText("The pressures that have kept inflation elevated for months remain strong, fresh data released Wednesday showed, a challenge for households that are trying to shoulder rising expenses and for the White House and Federal Reserve as they try to put the economy on a steadier path. ", highlightDataRef, {"Annual inflation": "dataref"}, highlight, clickhighlight)} */}
             </div>
 
             <div className="g-body">
