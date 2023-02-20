@@ -9,6 +9,7 @@ import NYTGraph1 from '../../images/NYT_cpi/NYTGraph1.png';
 import InteractiveChart from '../../component2/InteractiveChart/InteractiveChart';
 import SearchTooltip from '../../component2/SearchTooltip/SearchTooltip';
 import SearchBox from '../../component2/SearchBox/SearchBox';
+import HighlightText from '../../component2/HighlightText/HighlightText';
 
 import './CPIArticle.css';
 
@@ -219,20 +220,22 @@ function CPIArticle() {
                 />
             </div>
             <div className="g-body">
-                <Highlighter
+                {/* <Highlighter
                     searchWords={highlight}
                     highlightClassName="highlight-class"
                     textToHighlight="Annual inflation may have now peaked, having climbed by an even-quicker 8.5 percent in March. "
-                    onClick={(e)=>clickhighlight(e, "Annual inflation may have now peaked, having climbed by an even-quicker 8.5 percent in March. ")}
-                />
-                <Highlighter
+                    onClick={(e)=>{clickhighlight(e, "Annual inflation may have now peaked, having climbed by an even-quicker 8.5 percent in March. "); }}
+                /> */}
+                {HighlightText("Annual inflation may have now peaked, having climbed by an even-quicker 8.5 percent in March. ", ["Annual inflation"], {"Annual inflation": "dataref"}, highlight, clickhighlight)}
+                {/* <Highlighter
                     searchWords={highlight}
                     highlightClassName="highlight-class"
                     textToHighlight="It slowed down in April partly because gas prices dropped lower, and partly because of a statistical quirk that will continue through the months ahead. "
                     onClick={(e)=>{
                         clickhighlight(e, "It slowed down in April partly because gas prices dropped lower, and partly because of a statistical quirk that will continue through the months ahead. ")
                     }}
-                />
+                /> */}
+                {HighlightText("It slowed down in April partly because gas prices dropped lower, and partly because of a statistical quirk that will continue through the months ahead. ", ["gas prices"], {"gas prices": "dataref"}, highlight, clickhighlight)}
                 <Highlighter
                     searchWords={highlight}
                     textToHighlight="Yearly price changes are now being measured against elevated price readings from last spring, when inflation started to take off. "
@@ -297,12 +300,13 @@ function CPIArticle() {
             <div></div>
             
             <div className="g-body">
-                <Highlighter
+                {/* <Highlighter
                     searchWords={highlight}
                     highlightClassName="highlight-class"
                     textToHighlight="And services prices are now increasing quickly, as rents climb and as worker shortfalls lead to higher wages and steeper prices for restaurant meals and other labor-intensive purchases. "
                     onClick={(e)=>clickhighlight(e, "And services prices are now increasing quickly, as rents climb and as worker shortfalls lead to higher wages and steeper prices for restaurant meals and other labor-intensive purchases. ")}
-                />
+                /> */}
+                {HighlightText("And services prices are now increasing quickly, as rents climb and as worker shortfalls lead to higher wages and steeper prices for restaurant meals and other labor-intensive purchases. ", ["services prices", "rents", "wages", "restaurant meals"], {"services prices": "dataref", "rents": "dataref", "wages": "dataref", "restaurant meals": "dataref"}, highlight, clickhighlight)}
                 <Highlighter
                     searchWords={highlight}
                     textToHighlight="If that continues, it could keep inflation elevated even as supply problems are resolved."

@@ -1,0 +1,145 @@
+{
+	"main_data": { 
+    	"dataName": {
+        	"GPT3-result": "Personal Consumption Expenditures",
+        	"title": "Personal Consumption Expenditures",
+        	"id": "NA000349Q",
+        	"frequency": "Quarterly",
+        	"units": "Millions of Dollars",
+        	"score": 1.0
+    	},
+    	"time_start": "1965-05-11 00:00:00",
+    	"time_end": "2023-02-20 00:00:00"
+	},
+	"sentences": [ 
+    	{
+        	"id": 33,
+        	"article_id": 5,
+        	"sentence": "The pressures that have kept inflation elevated for months remain strong, fresh data released Wednesday showed, a challenge for households that are trying to shoulder rising expenses and for the White House and Federal Reserve as they try to put the economy on a steadier path.",
+        	"data_references": [ 
+            	{
+                	"id": 35,
+                	"sentence_id": 33,
+                	"gpt_sentence_part": "inflation",
+                	"sentence_part": "inflation", 
+                	"gpt_data_name": "Personal Consumption Expenditures",
+                	"data_names": [ 
+                    	{
+                        	"GPT3-result": "Personal Consumption Expenditures",
+                        	"title": "Personal Consumption Expenditures",
+                        	"id": "NA000349Q",
+                        	"frequency": "Quarterly",
+                        	"units": "Millions of Dollars",
+                        	"score": 1.0
+                    	},
+                    	{
+                        	"GPT3-result": "Personal Consumption Expenditures",
+                        	"title": "Personal Consumption Expenditures",
+                        	"id": "NC000349Q",
+                        	"frequency": "Quarterly",
+                        	"units": "Index 2012=100",
+                        	"score": 1.0
+                    	},
+                    	{
+                        	"GPT3-result": "Personal Consumption Expenditures",
+                        	"title": "Personal Consumption Expenditures",
+                        	"id": "PCECA",
+                        	"frequency": "Annual",
+                        	"units": "Billions of Dollars",
+                        	"score": 1.0
+                    	},
+                    	{
+                        	"GPT3-result": "Consumer Price Index for All Urban Consumers: All Items in U.S. City Average",
+                        	"title": "Consumer Price Index for All Urban Consumers: All Items in U.S. City Average",
+                        	"id": "CPIAUCSL",
+                        	"frequency": "Monthly",
+                        	"units": "Index 1982-1984=100",
+                        	"score": 0.9999999403953552
+                    	},
+                    	{
+                        	"GPT3-result": "Consumer Price Index for All Urban Consumers: All Items in U.S. City Average",
+                        	"title": "Consumer Price Index for All Urban Consumers: All Items in U.S. City Average",
+                        	"id": "CUUS0000SA0",
+                        	"frequency": "Semiannual",
+                        	"units": "Index 1982-1984=100",
+                        	"score": 0.9999999403953552
+                    	},
+                    	{
+                        	"GPT3-result": "Consumer Price Index for All Urban Consumers: All Items in U.S. City Average",
+                        	"title": "Consumer Price Index for All Urban Consumers: Services in U.S. City Average",
+                        	"id": "CUSR0000SAS",
+                        	"frequency": "Monthly",
+                        	"units": "Index 1982-1984=100",
+                        	"score": 0.981377124786377
+                    	},
+                    	{
+                        	"GPT3-result": "Consumer Price Index for All Urban Consumers: All Items in U.S. City Average",
+                        	"title": "Consumer Price Index for All Urban Consumers: Services in U.S. City Average",
+                        	"id": "CUUS0000SAS",
+                        	"frequency": "Semiannual",
+                        	"units": "Index 1982-1984=100",
+                        	"score": 0.981377124786377
+                    	},
+                    	{
+                        	"GPT3-result": "Consumer Price Index for All Urban Consumers: All Items in U.S. City Average",
+                        	"title": "Chained Consumer Price Index for All Urban Consumers: All Items in U.S. City Average",
+                        	"id": "SUUR0000SA0",
+                        	"frequency": "Monthly",
+                        	"units": "Index Dec 1999=100",
+                        	"score": 0.9810422658920288
+                    	},
+                    	{
+                        	"GPT3-result": "Consumer Price Index for All Urban Consumers: All Items in U.S. City Average",
+                        	"title": "Consumer Price Index for All Urban Consumers: Miscellaneous Personal Services in U.S. City Average",
+                        	"id": "CUSR0000SEGD",
+                        	"frequency": "Monthly",
+                        	"units": "Index 1982-1984=100",
+                        	"score": 0.9790844917297363
+                    	},
+                    	{
+                        	"GPT3-result": "Consumer Price Index for All Urban Consumers: All Items in U.S. City Average",
+                        	"title": "Consumer Price Index for All Urban Consumers: Nondurables in U.S. City Average",
+                        	"id": "CUSR0000SAN",
+                        	"frequency": "Monthly",
+                        	"units": "Index 1982-1984=100",
+                        	"score": 0.9786262512207031
+                    	}
+                	],
+                	"created_at": "2023-02-20 12:20:22",
+                	"updated_at": "2023-02-20 12:20:22"
+            	},
+                {
+                	"id": 37,
+                	"sentence_id": 33,
+                	"gpt_sentence_part": "White House",
+                	"sentence_part": "the White House",
+                	"gpt_data_name": "White House Operating Expenses",
+                	"data_names": [ 
+                    	{
+                        	"GPT3-result": "White House Operating Expenses",
+                        	"title": "",
+                        	"id": "",
+                        	"frequency": "",
+                        	"units": "",
+                        	"score": 0
+                    	}
+                	],
+                	"created_at": "2023-02-20 12:20:22",
+                	"updated_at": "2023-02-20 12:20:22"
+            	}                	
+        	],
+        	"created_at": "2023-02-20 12:20:22",
+        	"updated_at": "2023-02-20 12:20:22",
+       	"time_frames": [ 
+            	{
+                	"id": 3,
+                	"sentence_id": 33,
+                	"time_start": "2022-05-11 00:00:00",
+                	"time_end": "2022-05-11 00:00:00",
+                	"created_at": "2023-02-20 12:20:22",
+                	"updated_at": "2023-02-20 12:20:22"
+            	}
+        	]
+    	}
+	]
+}
