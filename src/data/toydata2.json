@@ -1,5 +1,1725 @@
 {
-	"main_data": { 
+    "sentences": [
+        {
+            "id": 34,
+            "article_id": 6,
+            "sentence": "The pressures that have kept inflation elevated for months remain strong, fresh data released Wednesday showed, a challenge for households that are trying to shoulder rising expenses and for the White House and Federal Reserve as they try to put the economy on a steadier path.",
+            "data_references": [
+                {
+                    "id": 39,
+                    "sentence_id": 34,
+                    "gpt_sentence_part": "inflation",
+                    "sentence_part": "inflation",
+                    "gpt_data_name": "Personal Consumption Expenditures",
+                    "data_names": [
+                        {
+                            "GPT3-result": "Personal Consumption Expenditures",
+                            "title": "Personal Consumption Expenditures",
+                            "id": "NA000349Q",
+                            "frequency": "Quarterly",
+                            "units": "Millions of Dollars",
+                            "score": 1.0
+                        },
+                        {
+                            "GPT3-result": "Personal Consumption Expenditures",
+                            "title": "Personal Consumption Expenditures",
+                            "id": "NC000349Q",
+                            "frequency": "Quarterly",
+                            "units": "Index 2012=100",
+                            "score": 1.0
+                        },
+                        {
+                            "GPT3-result": "Personal Consumption Expenditures",
+                            "title": "Personal Consumption Expenditures",
+                            "id": "PCECA",
+                            "frequency": "Annual",
+                            "units": "Billions of Dollars",
+                            "score": 1.0
+                        },
+                        {
+                            "GPT3-result": "Consumer Price Index for All Urban Consumers: All Items in U.S. City Average",
+                            "title": "Consumer Price Index for All Urban Consumers: All Items in U.S. City Average",
+                            "id": "CPIAUCSL",
+                            "frequency": "Monthly",
+                            "units": "Index 1982-1984=100",
+                            "score": 0.9999999403953552
+                        },
+                        {
+                            "GPT3-result": "Consumer Price Index for All Urban Consumers: All Items in U.S. City Average",
+                            "title": "Consumer Price Index for All Urban Consumers: All Items in U.S. City Average",
+                            "id": "CUUS0000SA0",
+                            "frequency": "Semiannual",
+                            "units": "Index 1982-1984=100",
+                            "score": 0.9999999403953552
+                        },
+                        {
+                            "GPT3-result": "Consumer Price Index for All Urban Consumers: All Items in U.S. City Average",
+                            "title": "Consumer Price Index for All Urban Consumers: Services in U.S. City Average",
+                            "id": "CUSR0000SAS",
+                            "frequency": "Monthly",
+                            "units": "Index 1982-1984=100",
+                            "score": 0.981377124786377
+                        },
+                        {
+                            "GPT3-result": "Consumer Price Index for All Urban Consumers: All Items in U.S. City Average",
+                            "title": "Consumer Price Index for All Urban Consumers: Services in U.S. City Average",
+                            "id": "CUUS0000SAS",
+                            "frequency": "Semiannual",
+                            "units": "Index 1982-1984=100",
+                            "score": 0.981377124786377
+                        },
+                        {
+                            "GPT3-result": "Consumer Price Index for All Urban Consumers: All Items in U.S. City Average",
+                            "title": "Chained Consumer Price Index for All Urban Consumers: All Items in U.S. City Average",
+                            "id": "SUUR0000SA0",
+                            "frequency": "Monthly",
+                            "units": "Index Dec 1999=100",
+                            "score": 0.9810422658920288
+                        },
+                        {
+                            "GPT3-result": "Consumer Price Index for All Urban Consumers: All Items in U.S. City Average",
+                            "title": "Consumer Price Index for All Urban Consumers: Miscellaneous Personal Services in U.S. City Average",
+                            "id": "CUSR0000SEGD",
+                            "frequency": "Monthly",
+                            "units": "Index 1982-1984=100",
+                            "score": 0.9790844917297363
+                        },
+                        {
+                            "GPT3-result": "Consumer Price Index for All Urban Consumers: All Items in U.S. City Average",
+                            "title": "Consumer Price Index for All Urban Consumers: Nondurables in U.S. City Average",
+                            "id": "CUSR0000SAN",
+                            "frequency": "Monthly",
+                            "units": "Index 1982-1984=100",
+                            "score": 0.9786262512207031
+                        }
+                    ],
+                    "created_at": "2023-02-21 13:35:52",
+                    "updated_at": "2023-02-21 13:35:52"
+                },
+                {
+                    "id": 40,
+                    "sentence_id": 34,
+                    "gpt_sentence_part": "expenses",
+                    "sentence_part": "rising expenses",
+                    "gpt_data_name": "Average Monthly Expenditures of U.S. Households",
+                    "data_names": [
+                        {
+                            "GPT3-result": "Average Monthly Expenditures of U.S. Households",
+                            "title": "Per Capita Personal Consumption Expenditures: Total for United States",
+                            "id": "USPCEPC",
+                            "frequency": "Annual",
+                            "units": "Dollars",
+                            "score": 0.9120392203330994
+                        },
+                        {
+                            "GPT3-result": "Average Monthly Expenditures of U.S. Households",
+                            "title": "Personal Consumption Expenditures: Total for United States",
+                            "id": "USPCE",
+                            "frequency": "Annual",
+                            "units": "Millions of Dollars",
+                            "score": 0.8992641568183899
+                        },
+                        {
+                            "GPT3-result": "Average Monthly Expenditures of U.S. Households",
+                            "title": "Per Capita Personal Consumption Expenditures: Services for United States",
+                            "id": "USPCEPCSRV",
+                            "frequency": "Annual",
+                            "units": "Dollars",
+                            "score": 0.8949601054191589
+                        },
+                        {
+                            "GPT3-result": "Average Monthly Expenditures of U.S. Households",
+                            "title": "Per Capita Personal Consumption Expenditures: Services: Household Consumption Expenditures for Services for United States",
+                            "id": "USPCEPCHCE",
+                            "frequency": "Annual",
+                            "units": "Dollars",
+                            "score": 0.8896055817604065
+                        },
+                        {
+                            "GPT3-result": "Average Monthly Expenditures of U.S. Households",
+                            "title": "Per Capita Personal Consumption Expenditures: Goods for United States",
+                            "id": "USPCEPCG",
+                            "frequency": "Annual",
+                            "units": "Dollars",
+                            "score": 0.8872339129447937
+                        },
+                        {
+                            "GPT3-result": "Average Monthly Expenditures of U.S. Households",
+                            "title": "Per Capita Personal Consumption Expenditures: Services: Final Consumption Expenditures of Nonprofit Institutions Serving Households for United States",
+                            "id": "USPCEPCFCENPISH",
+                            "frequency": "Annual",
+                            "units": "Dollars",
+                            "score": 0.8817390203475952
+                        },
+                        {
+                            "GPT3-result": "Average Monthly Expenditures of U.S. Households",
+                            "title": "Per Capita Personal Consumption Expenditures: Services: Final Consumption Expenditures of Nonprofit Institutions Serving Households: Gross Output of Nonprofit Institutions for United States",
+                            "id": "USPCEPCGONPI",
+                            "frequency": "Annual",
+                            "units": "Dollars",
+                            "score": 0.8774153590202332
+                        },
+                        {
+                            "GPT3-result": "Average Monthly Expenditures of U.S. Households",
+                            "title": "Real personal consumption expenditures in the United States by nonresidents",
+                            "id": "DEXFRX1A020NBEA",
+                            "frequency": "Annual",
+                            "units": "Billions of Chained 2012 Dollars",
+                            "score": 0.8738455176353455
+                        },
+                        {
+                            "GPT3-result": "Average Monthly Expenditures of U.S. Households",
+                            "title": "Per Capita Personal Consumption Expenditures: Services: Housing and Utilities for United States",
+                            "id": "USPCEPCHOUSUTL",
+                            "frequency": "Annual",
+                            "units": "Dollars",
+                            "score": 0.8725367784500122
+                        },
+                        {
+                            "GPT3-result": "Average Monthly Expenditures of U.S. Households",
+                            "title": "Per Capita Personal Consumption Expenditures: Nondurable Goods for United States",
+                            "id": "USPCEPCNDURG",
+                            "frequency": "Annual",
+                            "units": "Dollars",
+                            "score": 0.8716492056846619
+                        }
+                    ],
+                    "created_at": "2023-02-21 13:35:52",
+                    "updated_at": "2023-02-21 13:35:52"
+                },
+                {
+                    "id": 41,
+                    "sentence_id": 34,
+                    "gpt_sentence_part": "Federal Reserve",
+                    "sentence_part": "the White House and Federal Reserve",
+                    "gpt_data_name": "Federal Funds Rate",
+                    "data_names": [
+                        {
+                            "GPT3-result": "Federal Funds Rate",
+                            "title": "Federal Funds Effective Rate",
+                            "id": "DFF",
+                            "frequency": "Daily, 7-Day",
+                            "units": "Percent",
+                            "score": 0.9577933549880981
+                        },
+                        {
+                            "GPT3-result": "Federal Funds Rate",
+                            "title": "Federal Funds Effective Rate",
+                            "id": "FEDFUNDS",
+                            "frequency": "Monthly",
+                            "units": "Percent",
+                            "score": 0.9577933549880981
+                        },
+                        {
+                            "GPT3-result": "Federal Funds Rate",
+                            "title": "Federal Funds Effective Rate",
+                            "id": "FF",
+                            "frequency": "Weekly, Ending Wednesday",
+                            "units": "Percent",
+                            "score": 0.9577933549880981
+                        },
+                        {
+                            "GPT3-result": "Federal Funds Rate",
+                            "title": "Federal Funds Effective Rate",
+                            "id": "RIFSPFFNA",
+                            "frequency": "Annual",
+                            "units": "Percent",
+                            "score": 0.9577933549880981
+                        },
+                        {
+                            "GPT3-result": "Federal Funds Rate",
+                            "title": "Federal Funds Effective Rate",
+                            "id": "RIFSPFFNB",
+                            "frequency": "Daily",
+                            "units": "Percent",
+                            "score": 0.9577933549880981
+                        },
+                        {
+                            "GPT3-result": "Federal Funds Rate",
+                            "title": "Federal Funds Effective Rate",
+                            "id": "RIFSPFFNBWAW",
+                            "frequency": "Biweekly",
+                            "units": "Percent",
+                            "score": 0.9577933549880981
+                        },
+                        {
+                            "GPT3-result": "Federal Funds Rate",
+                            "title": "Effective Federal Funds Rate",
+                            "id": "EFFR",
+                            "frequency": "Daily",
+                            "units": "Percent",
+                            "score": 0.9517617225646973
+                        },
+                        {
+                            "GPT3-result": "Federal Funds Rate",
+                            "title": "Federal government receipts: Budget receipts",
+                            "id": "M318011A027NBEA",
+                            "frequency": "Annual",
+                            "units": "Billions of Dollars",
+                            "score": 0.8998045921325684
+                        },
+                        {
+                            "GPT3-result": "Federal Funds Rate",
+                            "title": "Federal government receipts: Budget receipts",
+                            "id": "M318011Q027NBEA",
+                            "frequency": "Quarterly",
+                            "units": "Billions of Dollars",
+                            "score": 0.8998045921325684
+                        },
+                        {
+                            "GPT3-result": "Federal Funds Rate",
+                            "title": "Federal government current expenditures: Interest payments",
+                            "id": "NA000308Q",
+                            "frequency": "Quarterly",
+                            "units": "Millions of Dollars",
+                            "score": 0.8956344127655029
+                        }
+                    ],
+                    "created_at": "2023-02-21 13:35:52",
+                    "updated_at": "2023-02-21 13:35:52"
+                }
+            ],
+            "created_at": "2023-02-21 13:35:51",
+            "updated_at": "2023-02-21 13:35:51",
+            "time_frames": [
+                {
+                    "id": 4,
+                    "sentence_id": 34,
+                    "time_start": "2022-05-11 00:00:00",
+                    "time_end": "2022-05-11 00:00:00",
+                    "created_at": "2023-02-21 13:35:52",
+                    "updated_at": "2023-02-21 13:35:52"
+                }
+            ]
+        },
+        {
+            "id": 35,
+            "article_id": 6,
+            "sentence": "Annual inflation moderated for the first time in months in April, but the Consumer Price Index still increased 8.3 percent, an uncomfortably rapid pace.",
+            "data_references": [
+                {
+                    "id": 42,
+                    "sentence_id": 35,
+                    "gpt_sentence_part": "annual inflation",
+                    "sentence_part": "Annual inflation",
+                    "gpt_data_name": "Consumer Price Index for All Urban Consumers: All Items in U.S. City Average",
+                    "data_names": [
+                        {
+                            "GPT3-result": "Consumer Price Index for All Urban Consumers: All Items in U.S. City Average",
+                            "title": "Consumer Price Index for All Urban Consumers: All Items in U.S. City Average",
+                            "id": "CPIAUCSL",
+                            "frequency": "Monthly",
+                            "units": "Index 1982-1984=100",
+                            "score": 0.9999999403953552
+                        },
+                        {
+                            "GPT3-result": "Consumer Price Index for All Urban Consumers: All Items in U.S. City Average",
+                            "title": "Consumer Price Index for All Urban Consumers: All Items in U.S. City Average",
+                            "id": "CUUS0000SA0",
+                            "frequency": "Semiannual",
+                            "units": "Index 1982-1984=100",
+                            "score": 0.9999999403953552
+                        },
+                        {
+                            "GPT3-result": "Consumer Price Index for All Urban Consumers: All Items in U.S. City Average",
+                            "title": "Consumer Price Index for All Urban Consumers: Services in U.S. City Average",
+                            "id": "CUSR0000SAS",
+                            "frequency": "Monthly",
+                            "units": "Index 1982-1984=100",
+                            "score": 0.981377124786377
+                        },
+                        {
+                            "GPT3-result": "Consumer Price Index for All Urban Consumers: All Items in U.S. City Average",
+                            "title": "Consumer Price Index for All Urban Consumers: Services in U.S. City Average",
+                            "id": "CUUS0000SAS",
+                            "frequency": "Semiannual",
+                            "units": "Index 1982-1984=100",
+                            "score": 0.981377124786377
+                        },
+                        {
+                            "GPT3-result": "Consumer Price Index for All Urban Consumers: All Items in U.S. City Average",
+                            "title": "Chained Consumer Price Index for All Urban Consumers: All Items in U.S. City Average",
+                            "id": "SUUR0000SA0",
+                            "frequency": "Monthly",
+                            "units": "Index Dec 1999=100",
+                            "score": 0.9810422658920288
+                        },
+                        {
+                            "GPT3-result": "Consumer Price Index for All Urban Consumers: All Items in U.S. City Average",
+                            "title": "Consumer Price Index for All Urban Consumers: Miscellaneous Personal Services in U.S. City Average",
+                            "id": "CUSR0000SEGD",
+                            "frequency": "Monthly",
+                            "units": "Index 1982-1984=100",
+                            "score": 0.9790844917297363
+                        },
+                        {
+                            "GPT3-result": "Consumer Price Index for All Urban Consumers: All Items in U.S. City Average",
+                            "title": "Consumer Price Index for All Urban Consumers: Nondurables in U.S. City Average",
+                            "id": "CUSR0000SAN",
+                            "frequency": "Monthly",
+                            "units": "Index 1982-1984=100",
+                            "score": 0.9786262512207031
+                        },
+                        {
+                            "GPT3-result": "Consumer Price Index for All Urban Consumers: All Items in U.S. City Average",
+                            "title": "Consumer Price Index for All Urban Consumers: Nondurables in U.S. City Average",
+                            "id": "CUUS0000SAN",
+                            "frequency": "Semiannual",
+                            "units": "Index 1982-1984=100",
+                            "score": 0.9786262512207031
+                        },
+                        {
+                            "GPT3-result": "Consumer Price Index for All Urban Consumers: All Items in U.S. City Average",
+                            "title": "Consumer Price Index for All Urban Consumers: Other Goods and Services in U.S. City Average",
+                            "id": "CPIOGSSL",
+                            "frequency": "Monthly",
+                            "units": "Index 1982-1984=100",
+                            "score": 0.9783164858818054
+                        },
+                        {
+                            "GPT3-result": "Consumer Price Index for All Urban Consumers: All Items in U.S. City Average",
+                            "title": "Consumer Price Index for All Urban Consumers: Other Goods and Services in U.S. City Average",
+                            "id": "CUUS0000SAG",
+                            "frequency": "Semiannual",
+                            "units": "Index 1982-1984=100",
+                            "score": 0.9783164858818054
+                        }
+                    ],
+                    "created_at": "2023-02-21 13:35:57",
+                    "updated_at": "2023-02-21 13:35:57"
+                },
+                {
+                    "id": 43,
+                    "sentence_id": 35,
+                    "gpt_sentence_part": "Consumer Price Index",
+                    "sentence_part": "the Consumer Price Index",
+                    "gpt_data_name": "Personal Consumption Expenditures",
+                    "data_names": [
+                        {
+                            "GPT3-result": "Personal Consumption Expenditures",
+                            "title": "Personal Consumption Expenditures",
+                            "id": "NA000349Q",
+                            "frequency": "Quarterly",
+                            "units": "Millions of Dollars",
+                            "score": 1.0
+                        },
+                        {
+                            "GPT3-result": "Personal Consumption Expenditures",
+                            "title": "Personal Consumption Expenditures",
+                            "id": "NC000349Q",
+                            "frequency": "Quarterly",
+                            "units": "Index 2012=100",
+                            "score": 1.0
+                        },
+                        {
+                            "GPT3-result": "Personal Consumption Expenditures",
+                            "title": "Personal Consumption Expenditures",
+                            "id": "PCECA",
+                            "frequency": "Annual",
+                            "units": "Billions of Dollars",
+                            "score": 1.0
+                        },
+                        {
+                            "GPT3-result": "Consumer Price Index for All Urban Consumers: All Items in U.S. City Average",
+                            "title": "Consumer Price Index for All Urban Consumers: All Items in U.S. City Average",
+                            "id": "CPIAUCSL",
+                            "frequency": "Monthly",
+                            "units": "Index 1982-1984=100",
+                            "score": 0.9999999403953552
+                        },
+                        {
+                            "GPT3-result": "Consumer Price Index for All Urban Consumers: All Items in U.S. City Average",
+                            "title": "Consumer Price Index for All Urban Consumers: All Items in U.S. City Average",
+                            "id": "CUUS0000SA0",
+                            "frequency": "Semiannual",
+                            "units": "Index 1982-1984=100",
+                            "score": 0.9999999403953552
+                        },
+                        {
+                            "GPT3-result": "Consumer Price Index for All Urban Consumers: All Items in U.S. City Average",
+                            "title": "Consumer Price Index for All Urban Consumers: Services in U.S. City Average",
+                            "id": "CUSR0000SAS",
+                            "frequency": "Monthly",
+                            "units": "Index 1982-1984=100",
+                            "score": 0.981377124786377
+                        },
+                        {
+                            "GPT3-result": "Consumer Price Index for All Urban Consumers: All Items in U.S. City Average",
+                            "title": "Consumer Price Index for All Urban Consumers: Services in U.S. City Average",
+                            "id": "CUUS0000SAS",
+                            "frequency": "Semiannual",
+                            "units": "Index 1982-1984=100",
+                            "score": 0.981377124786377
+                        },
+                        {
+                            "GPT3-result": "Consumer Price Index for All Urban Consumers: All Items in U.S. City Average",
+                            "title": "Chained Consumer Price Index for All Urban Consumers: All Items in U.S. City Average",
+                            "id": "SUUR0000SA0",
+                            "frequency": "Monthly",
+                            "units": "Index Dec 1999=100",
+                            "score": 0.9810422658920288
+                        },
+                        {
+                            "GPT3-result": "Consumer Price Index for All Urban Consumers: All Items in U.S. City Average",
+                            "title": "Consumer Price Index for All Urban Consumers: Miscellaneous Personal Services in U.S. City Average",
+                            "id": "CUSR0000SEGD",
+                            "frequency": "Monthly",
+                            "units": "Index 1982-1984=100",
+                            "score": 0.9790844917297363
+                        },
+                        {
+                            "GPT3-result": "Consumer Price Index for All Urban Consumers: All Items in U.S. City Average",
+                            "title": "Consumer Price Index for All Urban Consumers: Nondurables in U.S. City Average",
+                            "id": "CUSR0000SAN",
+                            "frequency": "Monthly",
+                            "units": "Index 1982-1984=100",
+                            "score": 0.9786262512207031
+                        }
+                    ],
+                    "created_at": "2023-02-21 13:35:57",
+                    "updated_at": "2023-02-21 13:35:57"
+                }
+            ],
+            "created_at": "2023-02-21 13:35:57",
+            "updated_at": "2023-02-21 13:35:57",
+            "time_frames": [
+                {
+                    "id": 5,
+                    "sentence_id": 35,
+                    "time_start": "2022-04-11 00:00:00",
+                    "time_end": "2022-04-11 00:00:00",
+                    "created_at": "2023-02-21 13:35:57",
+                    "updated_at": "2023-02-21 13:35:57"
+                }
+            ]
+        },
+        {
+            "id": 36,
+            "article_id": 6,
+            "sentence": "At the same time, a closely watched measure that subtracts food and fuel costs actually accelerated.",
+            "data_references": [
+                {
+                    "id": 44,
+                    "sentence_id": 36,
+                    "gpt_sentence_part": "closely watched measure",
+                    "sentence_part": "a closely watched measure",
+                    "gpt_data_name": "Gross Domestic Product",
+                    "data_names": [
+                        {
+                            "GPT3-result": "Gross Domestic Product",
+                            "title": "Gross Domestic Product",
+                            "id": "A191RP1A027NBEA",
+                            "frequency": "Annual",
+                            "units": "Percent Change from Preceding Period",
+                            "score": 0.9999998807907104
+                        },
+                        {
+                            "GPT3-result": "Gross Domestic Product",
+                            "title": "Gross Domestic Product",
+                            "id": "GDPA",
+                            "frequency": "Annual",
+                            "units": "Billions of Dollars",
+                            "score": 0.9999998807907104
+                        },
+                        {
+                            "GPT3-result": "Gross Domestic Product",
+                            "title": "Gross Domestic Product",
+                            "id": "NA000334Q",
+                            "frequency": "Quarterly",
+                            "units": "Millions of Dollars",
+                            "score": 0.9999998807907104
+                        },
+                        {
+                            "GPT3-result": "Gross Domestic Product",
+                            "title": "Gross Domestic Product",
+                            "id": "NC000334Q",
+                            "frequency": "Quarterly",
+                            "units": "Index 2012=100",
+                            "score": 0.9999998807907104
+                        },
+                        {
+                            "GPT3-result": "Gross Domestic Product",
+                            "title": "Gross Domestic Product",
+                            "id": "FYGDP",
+                            "frequency": "Annual, Fiscal Year",
+                            "units": "Billions of Dollars",
+                            "score": 0.9999998807907104
+                        },
+                        {
+                            "GPT3-result": "Gross Domestic Product",
+                            "title": "Gross domestic product per capita",
+                            "id": "A939RC0A052NBEA",
+                            "frequency": "Annual",
+                            "units": "Dollars",
+                            "score": 0.9644719958305359
+                        },
+                        {
+                            "GPT3-result": "Gross Domestic Product",
+                            "title": "Gross domestic product: Goods",
+                            "id": "A353RC1A027NBEA",
+                            "frequency": "Annual",
+                            "units": "Billions of Dollars",
+                            "score": 0.9557954668998718
+                        },
+                        {
+                            "GPT3-result": "Gross Domestic Product",
+                            "title": "Gross domestic product: Services",
+                            "id": "A341RC1A027NBEA",
+                            "frequency": "Annual",
+                            "units": "Billions of Dollars",
+                            "score": 0.9466448426246643
+                        },
+                        {
+                            "GPT3-result": "Consumer Price Index: All Items: Total",
+                            "title": "Research Consumer Price Index: All Items",
+                            "id": "CPIEALL",
+                            "frequency": "Monthly",
+                            "units": "Index 1982=100",
+                            "score": 0.9464098811149597
+                        },
+                        {
+                            "GPT3-result": "Gross Domestic Product",
+                            "title": "Gross domestic product: Nondurable goods",
+                            "id": "A356RC1A027NBEA",
+                            "frequency": "Annual",
+                            "units": "Billions of Dollars",
+                            "score": 0.939558207988739
+                        }
+                    ],
+                    "created_at": "2023-02-21 13:36:02",
+                    "updated_at": "2023-02-21 13:36:02"
+                },
+                {
+                    "id": 45,
+                    "sentence_id": 36,
+                    "gpt_sentence_part": "food costs",
+                    "sentence_part": "food and fuel costs",
+                    "gpt_data_name": "Consumer Price Index for All Urban Consumers: Food in U.S. City Average",
+                    "data_names": [
+                        {
+                            "GPT3-result": "Consumer Price Index for All Urban Consumers: Food in U.S. City Average",
+                            "title": "Consumer Price Index for All Urban Consumers: Food in U.S. City Average",
+                            "id": "CPIUFDSL",
+                            "frequency": "Monthly",
+                            "units": "Index 1982-1984=100",
+                            "score": 1.0
+                        },
+                        {
+                            "GPT3-result": "Consumer Price Index for All Urban Consumers: Food in U.S. City Average",
+                            "title": "Consumer Price Index for All Urban Consumers: Food in U.S. City Average",
+                            "id": "CUUS0000SAF1",
+                            "frequency": "Semiannual",
+                            "units": "Index 1982-1984=100",
+                            "score": 1.0
+                        },
+                        {
+                            "GPT3-result": "Consumer Price Index for All Urban Consumers: Food in U.S. City Average",
+                            "title": "Consumer Price Index for All Urban Consumers: Food at Home in U.S. City Average",
+                            "id": "CUSR0000SAF11",
+                            "frequency": "Monthly",
+                            "units": "Index 1982-1984=100",
+                            "score": 0.995015561580658
+                        },
+                        {
+                            "GPT3-result": "Consumer Price Index for All Urban Consumers: Food in U.S. City Average",
+                            "title": "Consumer Price Index for All Urban Consumers: Food at Home in U.S. City Average",
+                            "id": "CUUS0000SAF11",
+                            "frequency": "Semiannual",
+                            "units": "Index 1982-1984=100",
+                            "score": 0.995015561580658
+                        },
+                        {
+                            "GPT3-result": "Consumer Price Index for All Urban Consumers: Food in U.S. City Average",
+                            "title": "Consumer Price Index for All Urban Consumers: Food and Beverages in U.S. City Average",
+                            "id": "CPIFABSL",
+                            "frequency": "Monthly",
+                            "units": "Index 1982-1984=100",
+                            "score": 0.9878193736076355
+                        },
+                        {
+                            "GPT3-result": "Consumer Price Index for All Urban Consumers: Food in U.S. City Average",
+                            "title": "Consumer Price Index for All Urban Consumers: Food and Beverages in U.S. City Average",
+                            "id": "CUUS0000SAF",
+                            "frequency": "Semiannual",
+                            "units": "Index 1982-1984=100",
+                            "score": 0.9878193736076355
+                        },
+                        {
+                            "GPT3-result": "Consumer Price Index for All Urban Consumers: Food in U.S. City Average",
+                            "title": "Consumer Price Index for All Urban Consumers: Other Food at Home in U.S. City Average",
+                            "id": "CUSR0000SAF115",
+                            "frequency": "Monthly",
+                            "units": "Index 1982-1984=100",
+                            "score": 0.9826153516769409
+                        },
+                        {
+                            "GPT3-result": "Consumer Price Index for All Urban Consumers: Food in U.S. City Average",
+                            "title": "Consumer Price Index for All Urban Consumers: Other Food at Home in U.S. City Average",
+                            "id": "CUUS0000SAF115",
+                            "frequency": "Semiannual",
+                            "units": "Index 1982-1984=100",
+                            "score": 0.9826153516769409
+                        },
+                        {
+                            "GPT3-result": "Consumer Price Index for All Urban Consumers: Food in U.S. City Average",
+                            "title": "Chained Consumer Price Index for All Urban Consumers: Food in U.S. City Average",
+                            "id": "SUUR0000SAF1",
+                            "frequency": "Monthly",
+                            "units": "Index Dec 1999=100",
+                            "score": 0.9819815158843994
+                        },
+                        {
+                            "GPT3-result": "Consumer Price Index for All Urban Consumers: Food in U.S. City Average",
+                            "title": "Consumer Price Index for All Urban Consumers: Other Foods in U.S. City Average",
+                            "id": "CUSR0000SEFT",
+                            "frequency": "Monthly",
+                            "units": "Index 1982-1984=100",
+                            "score": 0.9807937145233154
+                        }
+                    ],
+                    "created_at": "2023-02-21 13:36:02",
+                    "updated_at": "2023-02-21 13:36:02"
+                },
+                {
+                    "id": 46,
+                    "sentence_id": 36,
+                    "gpt_sentence_part": "fuel costs",
+                    "sentence_part": "food and fuel costs",
+                    "gpt_data_name": "Consumer Price Index for All Urban Consumers: Gasoline in U.S. City Average",
+                    "data_names": [
+                        {
+                            "GPT3-result": "Consumer Price Index for All Urban Consumers: Gasoline in U.S. City Average",
+                            "title": "Consumer Price Index for All Urban Consumers: Gasoline, Unleaded Premium in U.S. City Average",
+                            "id": "CUUS0000SS47016",
+                            "frequency": "Semiannual",
+                            "units": "Index 1982-1984=100",
+                            "score": 0.9864143133163452
+                        },
+                        {
+                            "GPT3-result": "Consumer Price Index for All Urban Consumers: Gasoline in U.S. City Average",
+                            "title": "Consumer Price Index for All Urban Consumers: Gasoline (All Types) in U.S. City Average",
+                            "id": "CUSR0000SETB01",
+                            "frequency": "Monthly",
+                            "units": "Index 1982-1984=100",
+                            "score": 0.9849907755851746
+                        },
+                        {
+                            "GPT3-result": "Consumer Price Index for All Urban Consumers: Gasoline in U.S. City Average",
+                            "title": "Consumer Price Index for All Urban Consumers: Gasoline (All Types) in U.S. City Average",
+                            "id": "CUUS0000SETB01",
+                            "frequency": "Semiannual",
+                            "units": "Index 1982-1984=100",
+                            "score": 0.9849907755851746
+                        },
+                        {
+                            "GPT3-result": "Consumer Price Index for All Urban Consumers: Gasoline in U.S. City Average",
+                            "title": "Consumer Price Index for All Urban Consumers: Motor Fuel in U.S. City Average",
+                            "id": "CUSR0000SETB",
+                            "frequency": "Monthly",
+                            "units": "Index 1982-1984=100",
+                            "score": 0.9794647693634033
+                        },
+                        {
+                            "GPT3-result": "Consumer Price Index for All Urban Consumers: Gasoline in U.S. City Average",
+                            "title": "Consumer Price Index for All Urban Consumers: Motor Fuel in U.S. City Average",
+                            "id": "CUUS0000SETB",
+                            "frequency": "Semiannual",
+                            "units": "Index 1982-1984=100",
+                            "score": 0.9794647693634033
+                        },
+                        {
+                            "GPT3-result": "Consumer Price Index for All Urban Consumers: Gasoline in U.S. City Average",
+                            "title": "Consumer Price Index for All Urban Consumers: Gasoline, Unleaded Midgrade in U.S. City Average",
+                            "id": "CUUS0000SS47015",
+                            "frequency": "Semiannual",
+                            "units": "Index Dec 1993=100",
+                            "score": 0.9792214035987854
+                        },
+                        {
+                            "GPT3-result": "Consumer Price Index for All Urban Consumers: Gasoline in U.S. City Average",
+                            "title": "Consumer Price Index for All Urban Consumers: Gasoline, Unleaded Regular in U.S. City Average",
+                            "id": "CUUS0000SS47014",
+                            "frequency": "Semiannual",
+                            "units": "Index 1982-1984=100",
+                            "score": 0.9752849340438843
+                        },
+                        {
+                            "GPT3-result": "Consumer Price Index for All Urban Consumers: Gasoline in U.S. City Average",
+                            "title": "Consumer Price Index for All Urban Consumers: Fuel Oil in U.S. City Average",
+                            "id": "CUUS0000SEHE01",
+                            "frequency": "Semiannual",
+                            "units": "Index 1982-1984=100",
+                            "score": 0.9747782349586487
+                        },
+                        {
+                            "GPT3-result": "Consumer Price Index for All Urban Consumers: Gasoline in U.S. City Average",
+                            "title": "Consumer Price Index for All Urban Consumers: Fuel Oil and Other Fuels in U.S. City Average",
+                            "id": "CUSR0000SEHE",
+                            "frequency": "Monthly",
+                            "units": "Index 1982-1984=100",
+                            "score": 0.9696163535118103
+                        },
+                        {
+                            "GPT3-result": "Consumer Price Index for All Urban Consumers: Gasoline in U.S. City Average",
+                            "title": "Consumer Price Index for All Urban Consumers: Fuel Oil and Other Fuels in U.S. City Average",
+                            "id": "CUUS0000SEHE",
+                            "frequency": "Semiannual",
+                            "units": "Index 1982-1984=100",
+                            "score": 0.9696162939071655
+                        }
+                    ],
+                    "created_at": "2023-02-21 13:36:02",
+                    "updated_at": "2023-02-21 13:36:02"
+                }
+            ],
+            "created_at": "2023-02-21 13:36:01",
+            "updated_at": "2023-02-21 13:36:01",
+            "time_frames": [
+                {
+                    "id": 6,
+                    "sentence_id": 36,
+                    "time_start": null,
+                    "time_end": null,
+                    "created_at": "2023-02-21 13:36:02",
+                    "updated_at": "2023-02-21 13:36:02"
+                }
+            ]
+        },
+        {
+            "id": 37,
+            "article_id": 6,
+            "sentence": "Core inflation — which excludes costs for groceries and gas — picked up 0.6 percent in April from the prior month, faster than its 0.3 percent increase in March.",
+            "data_references": [
+                {
+                    "id": 47,
+                    "sentence_id": 37,
+                    "gpt_sentence_part": "core inflation",
+                    "sentence_part": "Core inflation",
+                    "gpt_data_name": "Core Personal Consumption Expenditures Price Index",
+                    "data_names": [
+                        {
+                            "GPT3-result": "Core Personal Consumption Expenditures Price Index",
+                            "title": "Personal Consumption Expenditures (chain-type price index)",
+                            "id": "BPCERO1Q156NBEA",
+                            "frequency": "Quarterly",
+                            "units": "Percent Change from Quarter One Year Ago",
+                            "score": 0.9413866400718689
+                        },
+                        {
+                            "GPT3-result": "Core Personal Consumption Expenditures Price Index",
+                            "title": "Personal Consumption Expenditures (chain-type price index)",
+                            "id": "DPCERV1A225NBEA",
+                            "frequency": "Annual",
+                            "units": "Percent Change from Preceding Period",
+                            "score": 0.9413866400718689
+                        },
+                        {
+                            "GPT3-result": "Core Personal Consumption Expenditures Price Index",
+                            "title": "Personal Consumption Expenditures (chain-type price index)",
+                            "id": "DPCERV1Q225SBEA",
+                            "frequency": "Quarterly",
+                            "units": "Percent Change from Preceding Period",
+                            "score": 0.9413866400718689
+                        },
+                        {
+                            "GPT3-result": "Core Personal Consumption Expenditures Price Index",
+                            "title": "Personal Consumption Expenditures: Chain-type Price Index",
+                            "id": "PCECTPI",
+                            "frequency": "Quarterly",
+                            "units": "Index 2012=100",
+                            "score": 0.9400447010993958
+                        },
+                        {
+                            "GPT3-result": "Core Personal Consumption Expenditures Price Index",
+                            "title": "Personal Consumption Expenditures: Chain-type Price Index",
+                            "id": "PCEPI",
+                            "frequency": "Monthly",
+                            "units": "Index 2012=100",
+                            "score": 0.9400447010993958
+                        },
+                        {
+                            "GPT3-result": "Core Personal Consumption Expenditures Price Index",
+                            "title": "Personal Consumption Expenditures: Chain-type Price Index",
+                            "id": "DPCERG3A086NBEA",
+                            "frequency": "Annual",
+                            "units": "Index 2012=100",
+                            "score": 0.9400447010993958
+                        },
+                        {
+                            "GPT3-result": "Core Personal Consumption Expenditures Price Index",
+                            "title": "Prices for Personal Consumption Expenditures: Chained Price Index",
+                            "id": "DPCERGM1M225SBEA",
+                            "frequency": "Monthly",
+                            "units": "Percent Change from Preceding Period",
+                            "score": 0.9385951161384583
+                        },
+                        {
+                            "GPT3-result": "Core Personal Consumption Expenditures Price Index",
+                            "title": "Prices for Personal Consumption Expenditures: Chained Price Index: Services",
+                            "id": "DSERRGM1M225SBEA",
+                            "frequency": "Monthly",
+                            "units": "Percent Change from Preceding Period",
+                            "score": 0.9333525896072388
+                        },
+                        {
+                            "GPT3-result": "Core Consumer Price Index",
+                            "title": "Median Consumer Price Index",
+                            "id": "MEDCPIM094SFRBCLE",
+                            "frequency": "Monthly",
+                            "units": "Index Dec 1982=100",
+                            "score": 0.9311673641204834
+                        },
+                        {
+                            "GPT3-result": "Core Consumer Price Index",
+                            "title": "Median Consumer Price Index",
+                            "id": "MEDCPIM157SFRBCLE",
+                            "frequency": "Monthly",
+                            "units": "Percent Change",
+                            "score": 0.9311673641204834
+                        }
+                    ],
+                    "created_at": "2023-02-21 13:36:06",
+                    "updated_at": "2023-02-21 13:36:06"
+                },
+                {
+                    "id": 48,
+                    "sentence_id": 37,
+                    "gpt_sentence_part": "costs for groceries",
+                    "sentence_part": "costs for groceries and gas",
+                    "gpt_data_name": "Consumer Price Index for All Urban Consumers: Food in U.S. City Average",
+                    "data_names": [
+                        {
+                            "GPT3-result": "Consumer Price Index for All Urban Consumers: Food in U.S. City Average",
+                            "title": "Consumer Price Index for All Urban Consumers: Food in U.S. City Average",
+                            "id": "CPIUFDSL",
+                            "frequency": "Monthly",
+                            "units": "Index 1982-1984=100",
+                            "score": 1.0
+                        },
+                        {
+                            "GPT3-result": "Consumer Price Index for All Urban Consumers: Food in U.S. City Average",
+                            "title": "Consumer Price Index for All Urban Consumers: Food in U.S. City Average",
+                            "id": "CUUS0000SAF1",
+                            "frequency": "Semiannual",
+                            "units": "Index 1982-1984=100",
+                            "score": 1.0
+                        },
+                        {
+                            "GPT3-result": "Consumer Price Index for All Urban Consumers: Food in U.S. City Average",
+                            "title": "Consumer Price Index for All Urban Consumers: Food at Home in U.S. City Average",
+                            "id": "CUSR0000SAF11",
+                            "frequency": "Monthly",
+                            "units": "Index 1982-1984=100",
+                            "score": 0.995015561580658
+                        },
+                        {
+                            "GPT3-result": "Consumer Price Index for All Urban Consumers: Food in U.S. City Average",
+                            "title": "Consumer Price Index for All Urban Consumers: Food at Home in U.S. City Average",
+                            "id": "CUUS0000SAF11",
+                            "frequency": "Semiannual",
+                            "units": "Index 1982-1984=100",
+                            "score": 0.995015561580658
+                        },
+                        {
+                            "GPT3-result": "Consumer Price Index for All Urban Consumers: Food in U.S. City Average",
+                            "title": "Consumer Price Index for All Urban Consumers: Food and Beverages in U.S. City Average",
+                            "id": "CPIFABSL",
+                            "frequency": "Monthly",
+                            "units": "Index 1982-1984=100",
+                            "score": 0.9878193736076355
+                        },
+                        {
+                            "GPT3-result": "Consumer Price Index for All Urban Consumers: Food in U.S. City Average",
+                            "title": "Consumer Price Index for All Urban Consumers: Food and Beverages in U.S. City Average",
+                            "id": "CUUS0000SAF",
+                            "frequency": "Semiannual",
+                            "units": "Index 1982-1984=100",
+                            "score": 0.9878193736076355
+                        },
+                        {
+                            "GPT3-result": "Consumer Price Index for All Urban Consumers: Food in U.S. City Average",
+                            "title": "Consumer Price Index for All Urban Consumers: Other Food at Home in U.S. City Average",
+                            "id": "CUSR0000SAF115",
+                            "frequency": "Monthly",
+                            "units": "Index 1982-1984=100",
+                            "score": 0.9826153516769409
+                        },
+                        {
+                            "GPT3-result": "Consumer Price Index for All Urban Consumers: Food in U.S. City Average",
+                            "title": "Consumer Price Index for All Urban Consumers: Other Food at Home in U.S. City Average",
+                            "id": "CUUS0000SAF115",
+                            "frequency": "Semiannual",
+                            "units": "Index 1982-1984=100",
+                            "score": 0.9826153516769409
+                        },
+                        {
+                            "GPT3-result": "Consumer Price Index for All Urban Consumers: Food in U.S. City Average",
+                            "title": "Chained Consumer Price Index for All Urban Consumers: Food in U.S. City Average",
+                            "id": "SUUR0000SAF1",
+                            "frequency": "Monthly",
+                            "units": "Index Dec 1999=100",
+                            "score": 0.9819815158843994
+                        },
+                        {
+                            "GPT3-result": "Consumer Price Index for All Urban Consumers: Food in U.S. City Average",
+                            "title": "Consumer Price Index for All Urban Consumers: Other Foods in U.S. City Average",
+                            "id": "CUSR0000SEFT",
+                            "frequency": "Monthly",
+                            "units": "Index 1982-1984=100",
+                            "score": 0.9807937145233154
+                        }
+                    ],
+                    "created_at": "2023-02-21 13:36:06",
+                    "updated_at": "2023-02-21 13:36:06"
+                },
+                {
+                    "id": 49,
+                    "sentence_id": 37,
+                    "gpt_sentence_part": "costs for gas",
+                    "sentence_part": "costs for groceries and gas",
+                    "gpt_data_name": "Consumer Price Index for All Urban Consumers: Gasoline in U.S. City Average",
+                    "data_names": [
+                        {
+                            "GPT3-result": "Consumer Price Index for All Urban Consumers: Gasoline in U.S. City Average",
+                            "title": "Consumer Price Index for All Urban Consumers: Gasoline, Unleaded Premium in U.S. City Average",
+                            "id": "CUUS0000SS47016",
+                            "frequency": "Semiannual",
+                            "units": "Index 1982-1984=100",
+                            "score": 0.9864143133163452
+                        },
+                        {
+                            "GPT3-result": "Consumer Price Index for All Urban Consumers: Gasoline in U.S. City Average",
+                            "title": "Consumer Price Index for All Urban Consumers: Gasoline (All Types) in U.S. City Average",
+                            "id": "CUSR0000SETB01",
+                            "frequency": "Monthly",
+                            "units": "Index 1982-1984=100",
+                            "score": 0.9849907755851746
+                        },
+                        {
+                            "GPT3-result": "Consumer Price Index for All Urban Consumers: Gasoline in U.S. City Average",
+                            "title": "Consumer Price Index for All Urban Consumers: Gasoline (All Types) in U.S. City Average",
+                            "id": "CUUS0000SETB01",
+                            "frequency": "Semiannual",
+                            "units": "Index 1982-1984=100",
+                            "score": 0.9849907755851746
+                        },
+                        {
+                            "GPT3-result": "Consumer Price Index for All Urban Consumers: Gasoline in U.S. City Average",
+                            "title": "Consumer Price Index for All Urban Consumers: Motor Fuel in U.S. City Average",
+                            "id": "CUSR0000SETB",
+                            "frequency": "Monthly",
+                            "units": "Index 1982-1984=100",
+                            "score": 0.9794647693634033
+                        },
+                        {
+                            "GPT3-result": "Consumer Price Index for All Urban Consumers: Gasoline in U.S. City Average",
+                            "title": "Consumer Price Index for All Urban Consumers: Motor Fuel in U.S. City Average",
+                            "id": "CUUS0000SETB",
+                            "frequency": "Semiannual",
+                            "units": "Index 1982-1984=100",
+                            "score": 0.9794647693634033
+                        },
+                        {
+                            "GPT3-result": "Consumer Price Index for All Urban Consumers: Gasoline in U.S. City Average",
+                            "title": "Consumer Price Index for All Urban Consumers: Gasoline, Unleaded Midgrade in U.S. City Average",
+                            "id": "CUUS0000SS47015",
+                            "frequency": "Semiannual",
+                            "units": "Index Dec 1993=100",
+                            "score": 0.9792214035987854
+                        },
+                        {
+                            "GPT3-result": "Consumer Price Index for All Urban Consumers: Gasoline in U.S. City Average",
+                            "title": "Consumer Price Index for All Urban Consumers: Gasoline, Unleaded Regular in U.S. City Average",
+                            "id": "CUUS0000SS47014",
+                            "frequency": "Semiannual",
+                            "units": "Index 1982-1984=100",
+                            "score": 0.9752849340438843
+                        },
+                        {
+                            "GPT3-result": "Consumer Price Index for All Urban Consumers: Gasoline in U.S. City Average",
+                            "title": "Consumer Price Index for All Urban Consumers: Fuel Oil in U.S. City Average",
+                            "id": "CUUS0000SEHE01",
+                            "frequency": "Semiannual",
+                            "units": "Index 1982-1984=100",
+                            "score": 0.9747782349586487
+                        },
+                        {
+                            "GPT3-result": "Consumer Price Index for All Urban Consumers: Gasoline in U.S. City Average",
+                            "title": "Consumer Price Index for All Urban Consumers: Fuel Oil and Other Fuels in U.S. City Average",
+                            "id": "CUSR0000SEHE",
+                            "frequency": "Monthly",
+                            "units": "Index 1982-1984=100",
+                            "score": 0.9696163535118103
+                        },
+                        {
+                            "GPT3-result": "Consumer Price Index for All Urban Consumers: Gasoline in U.S. City Average",
+                            "title": "Consumer Price Index for All Urban Consumers: Fuel Oil and Other Fuels in U.S. City Average",
+                            "id": "CUUS0000SEHE",
+                            "frequency": "Semiannual",
+                            "units": "Index 1982-1984=100",
+                            "score": 0.9696162939071655
+                        }
+                    ],
+                    "created_at": "2023-02-21 13:36:06",
+                    "updated_at": "2023-02-21 13:36:06"
+                }
+            ],
+            "created_at": "2023-02-21 13:36:06",
+            "updated_at": "2023-02-21 13:36:06",
+            "time_frames": [
+                {
+                    "id": 7,
+                    "sentence_id": 37,
+                    "time_start": "2022-03-11 00:00:00",
+                    "time_end": "2022-04-11 00:00:00",
+                    "created_at": "2023-02-21 13:36:06",
+                    "updated_at": "2023-02-21 13:36:06"
+                }
+            ]
+        },
+        {
+            "id": 38,
+            "article_id": 6,
+            "sentence": "That measure is particularly important for policymakers, who use it as a gauge to help determine where inflation is headed.",
+            "data_references": [
+                {
+                    "id": 50,
+                    "sentence_id": 38,
+                    "gpt_sentence_part": "measure of inflation",
+                    "sentence_part": "inflation",
+                    "gpt_data_name": "Producer Price Index: All Commodities",
+                    "data_names": [
+                        {
+                            "GPT3-result": "Producer Price Index: All Commodities",
+                            "title": "Producer Price Index by Commodity: All Commodities",
+                            "id": "PPIACO",
+                            "frequency": "Monthly",
+                            "units": "Index 1982=100",
+                            "score": 0.9882609248161316
+                        },
+                        {
+                            "GPT3-result": "Producer Price Index: All Commodities",
+                            "title": "Producer Price Index by Commodity: Miscellaneous Products",
+                            "id": "WPU15",
+                            "frequency": "Monthly",
+                            "units": "Index 1982=100",
+                            "score": 0.9500241875648499
+                        },
+                        {
+                            "GPT3-result": "Consumer Price Index: All Items: Total",
+                            "title": "Research Consumer Price Index: All Items",
+                            "id": "CPIEALL",
+                            "frequency": "Monthly",
+                            "units": "Index 1982=100",
+                            "score": 0.9464098811149597
+                        },
+                        {
+                            "GPT3-result": "Producer Price Index: All Commodities",
+                            "title": "Producer Price Index by Commodity: Industrial Commodities",
+                            "id": "PPIIDC",
+                            "frequency": "Monthly",
+                            "units": "Index 1982=100",
+                            "score": 0.9407690763473511
+                        },
+                        {
+                            "GPT3-result": "Producer Price Index: All Commodities",
+                            "title": "Producer Price Index by Commodity: Special Indexes: All Commodities Except Farm Products",
+                            "id": "WPUSI006111",
+                            "frequency": "Monthly",
+                            "units": "Index 1982=100",
+                            "score": 0.940704345703125
+                        },
+                        {
+                            "GPT3-result": "Producer Price Index: All Commodities",
+                            "title": "Export Price Index (End Use): All Commodities",
+                            "id": "IQ",
+                            "frequency": "Monthly",
+                            "units": "Index 2000=100",
+                            "score": 0.9400658011436462
+                        },
+                        {
+                            "GPT3-result": "Producer Price Index: All Commodities",
+                            "title": "Producer Price Index by Commodity: Investment Services",
+                            "id": "WPU40",
+                            "frequency": "Monthly",
+                            "units": "Index Jun 2009=100",
+                            "score": 0.9395296573638916
+                        },
+                        {
+                            "GPT3-result": "Producer Price Index: All Commodities",
+                            "title": "Producer Price Index by Commodity: Special Indexes: All Foods",
+                            "id": "WPUSI013011",
+                            "frequency": "Monthly",
+                            "units": "Index 1982=100",
+                            "score": 0.9351710081100464
+                        },
+                        {
+                            "GPT3-result": "Producer Price Index: All Commodities",
+                            "title": "Producer Price Index by Commodity: Miscellaneous Products: Notions",
+                            "id": "WPU153",
+                            "frequency": "Monthly",
+                            "units": "Index 1982=100",
+                            "score": 0.934851884841919
+                        },
+                        {
+                            "GPT3-result": "Producer Price Index: All Commodities",
+                            "title": "Producer Price Index by Commodity: Wholesale Trade Services: Other Commodities Wholesaling",
+                            "id": "WPU57910101",
+                            "frequency": "Monthly",
+                            "units": "Index Mar 2009=100",
+                            "score": 0.9347059726715088
+                        }
+                    ],
+                    "created_at": "2023-02-21 13:36:09",
+                    "updated_at": "2023-02-21 13:36:09"
+                }
+            ],
+            "created_at": "2023-02-21 13:36:09",
+            "updated_at": "2023-02-21 13:36:09",
+            "time_frames": [
+                {
+                    "id": 8,
+                    "sentence_id": 38,
+                    "time_start": null,
+                    "time_end": null,
+                    "created_at": "2023-02-21 13:36:09",
+                    "updated_at": "2023-02-21 13:36:09"
+                }
+            ]
+        },
+        {
+            "id": 39,
+            "article_id": 6,
+            "sentence": "While the letup in annual inflation may have given President Biden and the Fed a dose of comfort, the overall picture remains worrying.",
+            "data_references": [
+                {
+                    "id": 51,
+                    "sentence_id": 39,
+                    "gpt_sentence_part": "annual inflation",
+                    "sentence_part": "annual inflation",
+                    "gpt_data_name": "Personal Consumption Expenditures",
+                    "data_names": [
+                        {
+                            "GPT3-result": "Personal Consumption Expenditures",
+                            "title": "Personal Consumption Expenditures",
+                            "id": "NA000349Q",
+                            "frequency": "Quarterly",
+                            "units": "Millions of Dollars",
+                            "score": 1.0
+                        },
+                        {
+                            "GPT3-result": "Personal Consumption Expenditures",
+                            "title": "Personal Consumption Expenditures",
+                            "id": "NC000349Q",
+                            "frequency": "Quarterly",
+                            "units": "Index 2012=100",
+                            "score": 1.0
+                        },
+                        {
+                            "GPT3-result": "Personal Consumption Expenditures",
+                            "title": "Personal Consumption Expenditures",
+                            "id": "PCECA",
+                            "frequency": "Annual",
+                            "units": "Billions of Dollars",
+                            "score": 1.0
+                        },
+                        {
+                            "GPT3-result": "Personal Consumption Expenditures",
+                            "title": "Personal consumption expenditures per capita",
+                            "id": "A794RC0A052NBEA",
+                            "frequency": "Annual",
+                            "units": "Dollars",
+                            "score": 0.9735483527183533
+                        },
+                        {
+                            "GPT3-result": "Personal Consumption Expenditures",
+                            "title": "Personal consumption expenditures: Household consumption expenditures",
+                            "id": "DPHCRC1A027NBEA",
+                            "frequency": "Annual",
+                            "units": "Billions of Dollars",
+                            "score": 0.9497637748718262
+                        },
+                        {
+                            "GPT3-result": "Personal Consumption Expenditures",
+                            "title": "Personal Consumption Expenditures: Services",
+                            "id": "NA000350Q",
+                            "frequency": "Quarterly",
+                            "units": "Millions of Dollars",
+                            "score": 0.9471071362495422
+                        },
+                        {
+                            "GPT3-result": "Personal Consumption Expenditures",
+                            "title": "Personal Consumption Expenditures: Services",
+                            "id": "NC000350Q",
+                            "frequency": "Quarterly",
+                            "units": "Index 2012=100",
+                            "score": 0.9471071362495422
+                        },
+                        {
+                            "GPT3-result": "Personal Consumption Expenditures",
+                            "title": "Personal Consumption Expenditures: Services",
+                            "id": "PCESVA",
+                            "frequency": "Annual",
+                            "units": "Billions of Dollars",
+                            "score": 0.9471071362495422
+                        },
+                        {
+                            "GPT3-result": "Personal Consumption Expenditures",
+                            "title": "Real Personal Consumption Expenditures",
+                            "id": "NB000349Q",
+                            "frequency": "Quarterly",
+                            "units": "Index 2012=100",
+                            "score": 0.9459301233291626
+                        },
+                        {
+                            "GPT3-result": "Personal Consumption Expenditures",
+                            "title": "Real Personal Consumption Expenditures",
+                            "id": "PCEC96",
+                            "frequency": "Monthly",
+                            "units": "Billions of Chained 2012 Dollars",
+                            "score": 0.9459301233291626
+                        }
+                    ],
+                    "created_at": "2023-02-21 13:36:12",
+                    "updated_at": "2023-02-21 13:36:12"
+                }
+            ],
+            "created_at": "2023-02-21 13:36:12",
+            "updated_at": "2023-02-21 13:36:12",
+            "time_frames": [
+                {
+                    "id": 9,
+                    "sentence_id": 39,
+                    "time_start": null,
+                    "time_end": null,
+                    "created_at": "2023-02-21 13:36:12",
+                    "updated_at": "2023-02-21 13:36:12"
+                }
+            ]
+        },
+        {
+            "id": 40,
+            "article_id": 6,
+            "sentence": "Policymakers have a long way to go to bring price increases down to more normal and stable levels, and the newest data is likely to keep them focused on trying to slow an inflation rate that remains near its fastest pace in 40 years.",
+            "data_references": [
+                {
+                    "id": 52,
+                    "sentence_id": 40,
+                    "gpt_sentence_part": "price increases",
+                    "sentence_part": "price increases",
+                    "gpt_data_name": "Producer Price Index: All Commodities",
+                    "data_names": [
+                        {
+                            "GPT3-result": "Producer Price Index: All Commodities",
+                            "title": "Producer Price Index by Commodity: All Commodities",
+                            "id": "PPIACO",
+                            "frequency": "Monthly",
+                            "units": "Index 1982=100",
+                            "score": 0.9882609248161316
+                        },
+                        {
+                            "GPT3-result": "Producer Price Index: All Commodities",
+                            "title": "Producer Price Index by Commodity: Miscellaneous Products",
+                            "id": "WPU15",
+                            "frequency": "Monthly",
+                            "units": "Index 1982=100",
+                            "score": 0.9500241875648499
+                        },
+                        {
+                            "GPT3-result": "Consumer Price Index: All Items: Total",
+                            "title": "Research Consumer Price Index: All Items",
+                            "id": "CPIEALL",
+                            "frequency": "Monthly",
+                            "units": "Index 1982=100",
+                            "score": 0.9464098811149597
+                        },
+                        {
+                            "GPT3-result": "Producer Price Index: All Commodities",
+                            "title": "Producer Price Index by Commodity: Industrial Commodities",
+                            "id": "PPIIDC",
+                            "frequency": "Monthly",
+                            "units": "Index 1982=100",
+                            "score": 0.9407690763473511
+                        },
+                        {
+                            "GPT3-result": "Producer Price Index: All Commodities",
+                            "title": "Producer Price Index by Commodity: Special Indexes: All Commodities Except Farm Products",
+                            "id": "WPUSI006111",
+                            "frequency": "Monthly",
+                            "units": "Index 1982=100",
+                            "score": 0.940704345703125
+                        },
+                        {
+                            "GPT3-result": "Producer Price Index: All Commodities",
+                            "title": "Export Price Index (End Use): All Commodities",
+                            "id": "IQ",
+                            "frequency": "Monthly",
+                            "units": "Index 2000=100",
+                            "score": 0.9400658011436462
+                        },
+                        {
+                            "GPT3-result": "Producer Price Index: All Commodities",
+                            "title": "Producer Price Index by Commodity: Investment Services",
+                            "id": "WPU40",
+                            "frequency": "Monthly",
+                            "units": "Index Jun 2009=100",
+                            "score": 0.9395296573638916
+                        },
+                        {
+                            "GPT3-result": "Producer Price Index: All Commodities",
+                            "title": "Producer Price Index by Commodity: Special Indexes: All Foods",
+                            "id": "WPUSI013011",
+                            "frequency": "Monthly",
+                            "units": "Index 1982=100",
+                            "score": 0.9351710081100464
+                        },
+                        {
+                            "GPT3-result": "Producer Price Index: All Commodities",
+                            "title": "Producer Price Index by Commodity: Miscellaneous Products: Notions",
+                            "id": "WPU153",
+                            "frequency": "Monthly",
+                            "units": "Index 1982=100",
+                            "score": 0.934851884841919
+                        },
+                        {
+                            "GPT3-result": "Producer Price Index: All Commodities",
+                            "title": "Producer Price Index by Commodity: Wholesale Trade Services: Other Commodities Wholesaling",
+                            "id": "WPU57910101",
+                            "frequency": "Monthly",
+                            "units": "Index Mar 2009=100",
+                            "score": 0.9347059726715088
+                        }
+                    ],
+                    "created_at": "2023-02-21 13:36:16",
+                    "updated_at": "2023-02-21 13:36:16"
+                },
+                {
+                    "id": 53,
+                    "sentence_id": 40,
+                    "gpt_sentence_part": "inflation rate",
+                    "sentence_part": "price increases",
+                    "gpt_data_name": "Personal Consumption Expenditures",
+                    "data_names": [
+                        {
+                            "GPT3-result": "Personal Consumption Expenditures",
+                            "title": "Personal Consumption Expenditures",
+                            "id": "NA000349Q",
+                            "frequency": "Quarterly",
+                            "units": "Millions of Dollars",
+                            "score": 1.0
+                        },
+                        {
+                            "GPT3-result": "Personal Consumption Expenditures",
+                            "title": "Personal Consumption Expenditures",
+                            "id": "NC000349Q",
+                            "frequency": "Quarterly",
+                            "units": "Index 2012=100",
+                            "score": 1.0
+                        },
+                        {
+                            "GPT3-result": "Personal Consumption Expenditures",
+                            "title": "Personal Consumption Expenditures",
+                            "id": "PCECA",
+                            "frequency": "Annual",
+                            "units": "Billions of Dollars",
+                            "score": 1.0
+                        },
+                        {
+                            "GPT3-result": "Consumer Price Index for All Urban Consumers: All Items in U.S. City Average",
+                            "title": "Consumer Price Index for All Urban Consumers: All Items in U.S. City Average",
+                            "id": "CPIAUCSL",
+                            "frequency": "Monthly",
+                            "units": "Index 1982-1984=100",
+                            "score": 0.9999999403953552
+                        },
+                        {
+                            "GPT3-result": "Consumer Price Index for All Urban Consumers: All Items in U.S. City Average",
+                            "title": "Consumer Price Index for All Urban Consumers: All Items in U.S. City Average",
+                            "id": "CUUS0000SA0",
+                            "frequency": "Semiannual",
+                            "units": "Index 1982-1984=100",
+                            "score": 0.9999999403953552
+                        },
+                        {
+                            "GPT3-result": "Consumer Price Index for All Urban Consumers: All Items in U.S. City Average",
+                            "title": "Consumer Price Index for All Urban Consumers: Services in U.S. City Average",
+                            "id": "CUSR0000SAS",
+                            "frequency": "Monthly",
+                            "units": "Index 1982-1984=100",
+                            "score": 0.981377124786377
+                        },
+                        {
+                            "GPT3-result": "Consumer Price Index for All Urban Consumers: All Items in U.S. City Average",
+                            "title": "Consumer Price Index for All Urban Consumers: Services in U.S. City Average",
+                            "id": "CUUS0000SAS",
+                            "frequency": "Semiannual",
+                            "units": "Index 1982-1984=100",
+                            "score": 0.981377124786377
+                        },
+                        {
+                            "GPT3-result": "Consumer Price Index for All Urban Consumers: All Items in U.S. City Average",
+                            "title": "Chained Consumer Price Index for All Urban Consumers: All Items in U.S. City Average",
+                            "id": "SUUR0000SA0",
+                            "frequency": "Monthly",
+                            "units": "Index Dec 1999=100",
+                            "score": 0.9810422658920288
+                        },
+                        {
+                            "GPT3-result": "Consumer Price Index for All Urban Consumers: All Items in U.S. City Average",
+                            "title": "Consumer Price Index for All Urban Consumers: Miscellaneous Personal Services in U.S. City Average",
+                            "id": "CUSR0000SEGD",
+                            "frequency": "Monthly",
+                            "units": "Index 1982-1984=100",
+                            "score": 0.9790844917297363
+                        },
+                        {
+                            "GPT3-result": "Consumer Price Index for All Urban Consumers: All Items in U.S. City Average",
+                            "title": "Consumer Price Index for All Urban Consumers: Nondurables in U.S. City Average",
+                            "id": "CUSR0000SAN",
+                            "frequency": "Monthly",
+                            "units": "Index 1982-1984=100",
+                            "score": 0.9786262512207031
+                        }
+                    ],
+                    "created_at": "2023-02-21 13:36:16",
+                    "updated_at": "2023-02-21 13:36:16"
+                }
+            ],
+            "created_at": "2023-02-21 13:36:16",
+            "updated_at": "2023-02-21 13:36:16",
+            "time_frames": [
+                {
+                    "id": 10,
+                    "sentence_id": 40,
+                    "time_start": "1982-05-11 00:00:00",
+                    "time_end": "1982-05-11 00:00:00",
+                    "created_at": "2023-02-21 13:36:16",
+                    "updated_at": "2023-02-21 13:36:16"
+                }
+            ]
+        },
+        {
+            "id": 41,
+            "article_id": 6,
+            "sentence": "“Inflation is too high — they need to bring it down,” said Laura Rosner-Warburton, senior economist at MacroPolicy Perspectives.",
+            "data_references": [
+                {
+                    "id": 54,
+                    "sentence_id": 41,
+                    "gpt_sentence_part": "inflation",
+                    "sentence_part": "Inflation",
+                    "gpt_data_name": "Personal Consumption Expenditures",
+                    "data_names": [
+                        {
+                            "GPT3-result": "Personal Consumption Expenditures",
+                            "title": "Personal Consumption Expenditures",
+                            "id": "NA000349Q",
+                            "frequency": "Quarterly",
+                            "units": "Millions of Dollars",
+                            "score": 1.0
+                        },
+                        {
+                            "GPT3-result": "Personal Consumption Expenditures",
+                            "title": "Personal Consumption Expenditures",
+                            "id": "NC000349Q",
+                            "frequency": "Quarterly",
+                            "units": "Index 2012=100",
+                            "score": 1.0
+                        },
+                        {
+                            "GPT3-result": "Personal Consumption Expenditures",
+                            "title": "Personal Consumption Expenditures",
+                            "id": "PCECA",
+                            "frequency": "Annual",
+                            "units": "Billions of Dollars",
+                            "score": 1.0
+                        },
+                        {
+                            "GPT3-result": "Consumer Price Index for All Urban Consumers: All Items in U.S. City Average",
+                            "title": "Consumer Price Index for All Urban Consumers: All Items in U.S. City Average",
+                            "id": "CPIAUCSL",
+                            "frequency": "Monthly",
+                            "units": "Index 1982-1984=100",
+                            "score": 0.9999999403953552
+                        },
+                        {
+                            "GPT3-result": "Consumer Price Index for All Urban Consumers: All Items in U.S. City Average",
+                            "title": "Consumer Price Index for All Urban Consumers: All Items in U.S. City Average",
+                            "id": "CUUS0000SA0",
+                            "frequency": "Semiannual",
+                            "units": "Index 1982-1984=100",
+                            "score": 0.9999999403953552
+                        },
+                        {
+                            "GPT3-result": "Consumer Price Index for All Urban Consumers: All Items in U.S. City Average",
+                            "title": "Consumer Price Index for All Urban Consumers: Services in U.S. City Average",
+                            "id": "CUSR0000SAS",
+                            "frequency": "Monthly",
+                            "units": "Index 1982-1984=100",
+                            "score": 0.981377124786377
+                        },
+                        {
+                            "GPT3-result": "Consumer Price Index for All Urban Consumers: All Items in U.S. City Average",
+                            "title": "Consumer Price Index for All Urban Consumers: Services in U.S. City Average",
+                            "id": "CUUS0000SAS",
+                            "frequency": "Semiannual",
+                            "units": "Index 1982-1984=100",
+                            "score": 0.981377124786377
+                        },
+                        {
+                            "GPT3-result": "Consumer Price Index for All Urban Consumers: All Items in U.S. City Average",
+                            "title": "Chained Consumer Price Index for All Urban Consumers: All Items in U.S. City Average",
+                            "id": "SUUR0000SA0",
+                            "frequency": "Monthly",
+                            "units": "Index Dec 1999=100",
+                            "score": 0.9810422658920288
+                        },
+                        {
+                            "GPT3-result": "Consumer Price Index for All Urban Consumers: All Items in U.S. City Average",
+                            "title": "Consumer Price Index for All Urban Consumers: Miscellaneous Personal Services in U.S. City Average",
+                            "id": "CUSR0000SEGD",
+                            "frequency": "Monthly",
+                            "units": "Index 1982-1984=100",
+                            "score": 0.9790844917297363
+                        },
+                        {
+                            "GPT3-result": "Consumer Price Index for All Urban Consumers: All Items in U.S. City Average",
+                            "title": "Consumer Price Index for All Urban Consumers: Nondurables in U.S. City Average",
+                            "id": "CUSR0000SAN",
+                            "frequency": "Monthly",
+                            "units": "Index 1982-1984=100",
+                            "score": 0.9786262512207031
+                        }
+                    ],
+                    "created_at": "2023-02-21 13:36:19",
+                    "updated_at": "2023-02-21 13:36:19"
+                }
+            ],
+            "created_at": "2023-02-21 13:36:19",
+            "updated_at": "2023-02-21 13:36:19",
+            "time_frames": [
+                {
+                    "id": 11,
+                    "sentence_id": 41,
+                    "time_start": null,
+                    "time_end": null,
+                    "created_at": "2023-02-21 13:36:19",
+                    "updated_at": "2023-02-21 13:36:19"
+                }
+            ]
+        },
+        {
+            "id": 42,
+            "article_id": 6,
+            "sentence": "“The re-acceleration in core inflation is unwelcome.”",
+            "data_references": [
+                {
+                    "id": 55,
+                    "sentence_id": 42,
+                    "gpt_sentence_part": "core inflation",
+                    "sentence_part": "core inflation",
+                    "gpt_data_name": "Consumer Price Index for All Urban Consumers: All Items Less Food & Energy in U.S. City Average",
+                    "data_names": [
+                        {
+                            "GPT3-result": "Consumer Price Index for All Urban Consumers: All Items Less Food & Energy in U.S. City Average",
+                            "title": "Consumer Price Index for All Urban Consumers: All Items Less Food and Energy in U.S. City Average",
+                            "id": "CPILFESL",
+                            "frequency": "Monthly",
+                            "units": "Index 1982-1984=100",
+                            "score": 0.9979925751686096
+                        },
+                        {
+                            "GPT3-result": "Consumer Price Index for All Urban Consumers: All Items Less Food & Energy in U.S. City Average",
+                            "title": "Consumer Price Index for All Urban Consumers: All Items Less Food and Energy in U.S. City Average",
+                            "id": "CUUS0000SA0L1E",
+                            "frequency": "Semiannual",
+                            "units": "Index 1982-1984=100",
+                            "score": 0.9979925751686096
+                        },
+                        {
+                            "GPT3-result": "Consumer Price Index for All Urban Consumers: All Items Less Food & Energy in U.S. City Average",
+                            "title": "Consumer Price Index for All Urban Consumers: All Items Less Food in U.S. City Average",
+                            "id": "CPIULFSL",
+                            "frequency": "Monthly",
+                            "units": "Index 1982-1984=100",
+                            "score": 0.9919072985649109
+                        },
+                        {
+                            "GPT3-result": "Consumer Price Index for All Urban Consumers: All Items Less Food & Energy in U.S. City Average",
+                            "title": "Consumer Price Index for All Urban Consumers: All Items Less Food in U.S. City Average",
+                            "id": "CUUS0000SA0L1",
+                            "frequency": "Semiannual",
+                            "units": "Index 1982-1984=100",
+                            "score": 0.9919072985649109
+                        },
+                        {
+                            "GPT3-result": "Consumer Price Index for All Urban Consumers: All Items Less Food & Energy in U.S. City Average",
+                            "title": "Consumer Price Index for All Urban Consumers: All Items Less Energy in U.S. City Average",
+                            "id": "CPILEGSL",
+                            "frequency": "Monthly",
+                            "units": "Index 1982-1984=100",
+                            "score": 0.9864681363105774
+                        },
+                        {
+                            "GPT3-result": "Consumer Price Index for All Urban Consumers: All Items Less Food & Energy in U.S. City Average",
+                            "title": "Consumer Price Index for All Urban Consumers: All Items Less Energy in U.S. City Average",
+                            "id": "CUUS0000SA0LE",
+                            "frequency": "Semiannual",
+                            "units": "Index 1982-1984=100",
+                            "score": 0.9864681363105774
+                        },
+                        {
+                            "GPT3-result": "Consumer Price Index for All Urban Consumers: All Items Less Food & Energy in U.S. City Average",
+                            "title": "Chained Consumer Price Index for All Urban Consumers: All Items Less Food and Energy in U.S. City Average",
+                            "id": "SUUR0000SA0L1E",
+                            "frequency": "Monthly",
+                            "units": "Index Dec 1999=100",
+                            "score": 0.984781801700592
+                        },
+                        {
+                            "GPT3-result": "Consumer Price Index for All Urban Consumers: All Items Less Food & Energy in U.S. City Average",
+                            "title": "Consumer Price Index for All Urban Consumers: Nondurables Less Food in U.S. City Average",
+                            "id": "CUSR0000SANL1",
+                            "frequency": "Monthly",
+                            "units": "Index 1982-1984=100",
+                            "score": 0.9842609763145447
+                        },
+                        {
+                            "GPT3-result": "Consumer Price Index for All Urban Consumers: All Items Less Food & Energy in U.S. City Average",
+                            "title": "Consumer Price Index for All Urban Consumers: Nondurables Less Food in U.S. City Average",
+                            "id": "CUUS0000SANL1",
+                            "frequency": "Semiannual",
+                            "units": "Index 1982-1984=100",
+                            "score": 0.9842609763145447
+                        },
+                        {
+                            "GPT3-result": "Consumer Price Index for All Urban Consumers: All Items Less Food & Energy in U.S. City Average",
+                            "title": "Consumer Price Index for All Urban Consumers: Commodities Less Food and Beverages in U.S. City Average",
+                            "id": "CUSR0000SACL11",
+                            "frequency": "Monthly",
+                            "units": "Index 1982-1984=100",
+                            "score": 0.9842463731765747
+                        }
+                    ],
+                    "created_at": "2023-02-21 13:36:21",
+                    "updated_at": "2023-02-21 13:36:21"
+                }
+            ],
+            "created_at": "2023-02-21 13:36:21",
+            "updated_at": "2023-02-21 13:36:21",
+            "time_frames": [
+                {
+                    "id": 12,
+                    "sentence_id": 42,
+                    "time_start": null,
+                    "time_end": null,
+                    "created_at": "2023-02-21 13:36:21",
+                    "updated_at": "2023-02-21 13:36:21"
+                }
+            ]
+        }
+    ],
+    "main_data": { 
     	"dataName": {
         	"GPT3-result": "Personal Consumption Expenditures",
         	"title": "Personal Consumption Expenditures",
@@ -10,136 +1730,5 @@
     	},
     	"time_start": "1965-05-11 00:00:00",
     	"time_end": "2023-02-20 00:00:00"
-	},
-	"sentences": [ 
-    	{
-        	"id": 33,
-        	"article_id": 5,
-        	"sentence": "The pressures that have kept inflation elevated for months remain strong, fresh data released Wednesday showed, a challenge for households that are trying to shoulder rising expenses and for the White House and Federal Reserve as they try to put the economy on a steadier path.",
-        	"data_references": [ 
-            	{
-                	"id": 35,
-                	"sentence_id": 33,
-                	"gpt_sentence_part": "inflation",
-                	"sentence_part": "inflation", 
-                	"gpt_data_name": "Personal Consumption Expenditures",
-                	"data_names": [ 
-                    	{
-                        	"GPT3-result": "Personal Consumption Expenditures",
-                        	"title": "Personal Consumption Expenditures",
-                        	"id": "NA000349Q",
-                        	"frequency": "Quarterly",
-                        	"units": "Millions of Dollars",
-                        	"score": 1.0
-                    	},
-                    	{
-                        	"GPT3-result": "Personal Consumption Expenditures",
-                        	"title": "Personal Consumption Expenditures",
-                        	"id": "NC000349Q",
-                        	"frequency": "Quarterly",
-                        	"units": "Index 2012=100",
-                        	"score": 1.0
-                    	},
-                    	{
-                        	"GPT3-result": "Personal Consumption Expenditures",
-                        	"title": "Personal Consumption Expenditures",
-                        	"id": "PCECA",
-                        	"frequency": "Annual",
-                        	"units": "Billions of Dollars",
-                        	"score": 1.0
-                    	},
-                    	{
-                        	"GPT3-result": "Consumer Price Index for All Urban Consumers: All Items in U.S. City Average",
-                        	"title": "Consumer Price Index for All Urban Consumers: All Items in U.S. City Average",
-                        	"id": "CPIAUCSL",
-                        	"frequency": "Monthly",
-                        	"units": "Index 1982-1984=100",
-                        	"score": 0.9999999403953552
-                    	},
-                    	{
-                        	"GPT3-result": "Consumer Price Index for All Urban Consumers: All Items in U.S. City Average",
-                        	"title": "Consumer Price Index for All Urban Consumers: All Items in U.S. City Average",
-                        	"id": "CUUS0000SA0",
-                        	"frequency": "Semiannual",
-                        	"units": "Index 1982-1984=100",
-                        	"score": 0.9999999403953552
-                    	},
-                    	{
-                        	"GPT3-result": "Consumer Price Index for All Urban Consumers: All Items in U.S. City Average",
-                        	"title": "Consumer Price Index for All Urban Consumers: Services in U.S. City Average",
-                        	"id": "CUSR0000SAS",
-                        	"frequency": "Monthly",
-                        	"units": "Index 1982-1984=100",
-                        	"score": 0.981377124786377
-                    	},
-                    	{
-                        	"GPT3-result": "Consumer Price Index for All Urban Consumers: All Items in U.S. City Average",
-                        	"title": "Consumer Price Index for All Urban Consumers: Services in U.S. City Average",
-                        	"id": "CUUS0000SAS",
-                        	"frequency": "Semiannual",
-                        	"units": "Index 1982-1984=100",
-                        	"score": 0.981377124786377
-                    	},
-                    	{
-                        	"GPT3-result": "Consumer Price Index for All Urban Consumers: All Items in U.S. City Average",
-                        	"title": "Chained Consumer Price Index for All Urban Consumers: All Items in U.S. City Average",
-                        	"id": "SUUR0000SA0",
-                        	"frequency": "Monthly",
-                        	"units": "Index Dec 1999=100",
-                        	"score": 0.9810422658920288
-                    	},
-                    	{
-                        	"GPT3-result": "Consumer Price Index for All Urban Consumers: All Items in U.S. City Average",
-                        	"title": "Consumer Price Index for All Urban Consumers: Miscellaneous Personal Services in U.S. City Average",
-                        	"id": "CUSR0000SEGD",
-                        	"frequency": "Monthly",
-                        	"units": "Index 1982-1984=100",
-                        	"score": 0.9790844917297363
-                    	},
-                    	{
-                        	"GPT3-result": "Consumer Price Index for All Urban Consumers: All Items in U.S. City Average",
-                        	"title": "Consumer Price Index for All Urban Consumers: Nondurables in U.S. City Average",
-                        	"id": "CUSR0000SAN",
-                        	"frequency": "Monthly",
-                        	"units": "Index 1982-1984=100",
-                        	"score": 0.9786262512207031
-                    	}
-                	],
-                	"created_at": "2023-02-20 12:20:22",
-                	"updated_at": "2023-02-20 12:20:22"
-            	},
-                {
-                	"id": 37,
-                	"sentence_id": 33,
-                	"gpt_sentence_part": "White House",
-                	"sentence_part": "the White House",
-                	"gpt_data_name": "White House Operating Expenses",
-                	"data_names": [ 
-                    	{
-                        	"GPT3-result": "White House Operating Expenses",
-                        	"title": "",
-                        	"id": "",
-                        	"frequency": "",
-                        	"units": "",
-                        	"score": 0
-                    	}
-                	],
-                	"created_at": "2023-02-20 12:20:22",
-                	"updated_at": "2023-02-20 12:20:22"
-            	}                	
-        	],
-        	"created_at": "2023-02-20 12:20:22",
-        	"updated_at": "2023-02-20 12:20:22",
-       	"time_frames": [ 
-            	{
-                	"id": 3,
-                	"sentence_id": 33,
-                	"time_start": "2022-05-11 00:00:00",
-                	"time_end": "2022-05-11 00:00:00",
-                	"created_at": "2023-02-20 12:20:22",
-                	"updated_at": "2023-02-20 12:20:22"
-            	}
-        	]
-    	}
-	]
+	}
 }

@@ -40,11 +40,11 @@
 mark{
     background-color: transparent;
 }
-
+/* 
 mark:hover {
     border-bottom: 3px solid #f6ea8c;
     background-color: transparent;
-}
+} */
 
 /* .highlight-class {
     border-bottom: 3px solid #feee7d;

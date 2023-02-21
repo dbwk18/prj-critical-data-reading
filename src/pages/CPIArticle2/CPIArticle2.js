@@ -1,6 +1,8 @@
 import React, {useState, useEffect, useRef} from 'react';
 
 import toydata2 from '../../data/toydata2.json'
+import cpiarticle from '../../data/cpi_article.json'
+
 import Highlighter from 'react-highlight-words';
 import NYTHeader from '../../images/NYT-unemploy/NYTHeader.png';
 import NYTGraph1 from '../../images/NYT_cpi/NYTGraph1.png';
@@ -102,8 +104,8 @@ function CPIArticle2() {
     return (
     <div>
         <img src={NYTHeader} width='100%' />
-        <div className='g-name'>Consumer Prices Are Still Climbing Rapidly</div>
-        <div className='g-details'>Inflation data showed a slowdown in annual price increases in April, but a closely watched monthly price measure continues to rise at an uncomfortably brisk rate. </div>
+        <div className='g-name'>{cpiarticle["title"]}</div>
+        <div className='g-details'>{cpiarticle["details"]}</div>
         
         <img src={NYTGraph1} width='100%' />
         
@@ -165,7 +167,30 @@ function CPIArticle2() {
                 
             }
         }}>
-            <div className="g-body">
+            {
+                cpiarticle.paragraphs.map((paragraph, idx) => {
+                    return (
+                        <div className="g-body">
+                            {paragraph.map((sentence, idx) => {
+                                console.log(idx, sentence, highlightRef[sentence], highlightColor[sentence])
+                                if (highlight.includes(sentence)) {
+                                    return (
+                                        HighlightText(sentence, highlightRef[sentence], highlightColor[sentence], highlight, clickhighlight)
+                                    )
+                                }
+                                else {
+                                    return (
+                                        sentence
+                                    )
+                                }
+                                
+                            })}
+                        </div>
+                    )
+                })
+            }
+
+            {/* <div className="g-body">
                 {HighlightText("The pressures that have kept inflation elevated for months remain strong, fresh data released Wednesday showed, a challenge for households that are trying to shoulder rising expenses and for the White House and Federal Reserve as they try to put the economy on a steadier path. ", highlightRef["The pressures that have kept inflation elevated for months remain strong, fresh data released Wednesday showed, a challenge for households that are trying to shoulder rising expenses and for the White House and Federal Reserve as they try to put the economy on a steadier path."], highlightColor["The pressures that have kept inflation elevated for months remain strong, fresh data released Wednesday showed, a challenge for households that are trying to shoulder rising expenses and for the White House and Federal Reserve as they try to put the economy on a steadier path."], highlight, clickhighlight)}
             </div>
 
@@ -189,6 +214,7 @@ function CPIArticle2() {
                     textToHighlight="That measure is particularly important for policymakers, who use it as a gauge to help determine where inflation is headed."
                 />
             </div>
+
             <div className="g-body">
                 <Highlighter
                     searchWords={highlight}
@@ -384,7 +410,7 @@ function CPIArticle2() {
                     searchWords={highlight}
                     textToHighlight="“Consumers appear willing to accept the higher menu prices, particularly as inflation is broad,” George Holm, chief executive officer at the food distributor and restaurant supplier Performance Food Group, said on an earnings call Wednesday. “Still, this is something to closely monitor across the next few months and quarters.”"
                 />
-            </div>
+            </div> */}
         </div>
         
     </div>
