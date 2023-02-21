@@ -1,7 +1,5 @@
 import React, {useState, useEffect, useRef} from 'react';
 
-
-import toydata from '../../data/toydata.json';
 import toydata2 from '../../data/toydata2.json'
 import Highlighter from 'react-highlight-words';
 import NYTHeader from '../../images/NYT-unemploy/NYTHeader.png';
@@ -12,13 +10,15 @@ import SearchTooltip from '../../component2/SearchTooltip/SearchTooltip';
 import SearchBox from '../../component2/SearchBox/SearchBox';
 import HighlightText from '../../component2/HighlightText/HighlightText';
 
-import './CPIArticle.css';
+import {highlight, highlightRef, highlightColor} from '../../data/DataPreprocess.js'
+
+import './CPIArticle2.css';
 
 
-function CPIArticle() {
+function CPIArticle2() {
+
+    // const [highlight, setHighlight] = useState([]);
     
-    const [highlight, setHighlight] = useState([])
-
     const [tooltipX, setTooltipX] = useState(null);
     const [tooltipY, setTooltipY] = useState(null);
     const [tooltip, setTooltip] = useState(false);
@@ -33,15 +33,17 @@ function CPIArticle() {
     const [dataRefs, setDataRefs] = useState([]);
     const [listDrop, setListDrop] = useState([]);
     
+    
     //add list for reference sentences
     useEffect(()=> {
-        const highlightref = []
-        toydata.references.forEach((item) => highlightref.push(item.sentence))
-        // toydata2.sentences.forEach((item) => highlightref.push(item.sentence))
-        console.log(highlightref, mainData)
-        setHighlight(highlightref)
-        console.log(dataRefs)
+        // const highlightsen = []
+        // toydata2.sentences.forEach((item) => highlightsen.push(item.sentence))
+        // // console.log(highlightsen, mainData)
+        // setHighlight(highlightsen)
+
+        console.log(highlight, highlightRef, highlightColor)
     }, [])
+
 
     document.addEventListener("dragstart", event => {
         // 투명도 초기화
@@ -51,22 +53,13 @@ function CPIArticle() {
 
     //function for clicking highlighted sentence
     const clickhighlight = (e, sentence) => {
-        toydata.references.forEach( (item) => {
+        toydata2.sentences.forEach( (item) => {
             if (item.sentence == sentence.trim()) {
-                setDataRefs(item.dataReferences);
-                setMainData(toydata.mainData)
-                // setMainData(toydata2.mainData);
+                setDataRefs(item.data_references);
+                setMainData(toydata2.mainData);
                 setOffsetY(e.nativeEvent.pageY);
             }
         })
-        // toydata2.sentences.forEach( (item) => {
-        //     if (item.sentence == sentence.trim()) {
-        //         setDataRefs(item.data_references);
-        //         // setMainData(toydata.mainData)
-        //         setMainData(toydata2.mainData);
-        //         setOffsetY(e.nativeEvent.pageY);
-        //     }
-        // })
     }
     
 
@@ -108,7 +101,6 @@ function CPIArticle() {
 
     return (
     <div>
-
         <img src={NYTHeader} width='100%' />
         <div className='g-name'>Consumer Prices Are Still Climbing Rapidly</div>
         <div className='g-details'>Inflation data showed a slowdown in annual price increases in April, but a closely watched monthly price measure continues to rise at an uncomfortably brisk rate. </div>
@@ -147,7 +139,7 @@ function CPIArticle() {
                         defaultInput={applyDefault} 
                         setSearchBox={setSearchBox} 
                         highlight={highlight} 
-                        setHighlight={setHighlight} 
+                        // setHighlight={setHighlight} 
                         setTooltip={setTooltip}
                     /> 
                 : null
@@ -174,11 +166,7 @@ function CPIArticle() {
             }
         }}>
             <div className="g-body">
-                <Highlighter
-                    searchWords={highlight}
-                    textToHighlight="The pressures that have kept inflation elevated for months remain strong, fresh data released Wednesday showed, a challenge for households that are trying to shoulder rising expenses and for the White House and Federal Reserve as they try to put the economy on a steadier path."
-                />
-                {/* {HighlightText("The pressures that have kept inflation elevated for months remain strong, fresh data released Wednesday showed, a challenge for households that are trying to shoulder rising expenses and for the White House and Federal Reserve as they try to put the economy on a steadier path. ", highlightDataRef, {"Annual inflation": "dataref"}, highlight, clickhighlight)} */}
+                {HighlightText("The pressures that have kept inflation elevated for months remain strong, fresh data released Wednesday showed, a challenge for households that are trying to shoulder rising expenses and for the White House and Federal Reserve as they try to put the economy on a steadier path. ", highlightRef["The pressures that have kept inflation elevated for months remain strong, fresh data released Wednesday showed, a challenge for households that are trying to shoulder rising expenses and for the White House and Federal Reserve as they try to put the economy on a steadier path."], highlightColor["The pressures that have kept inflation elevated for months remain strong, fresh data released Wednesday showed, a challenge for households that are trying to shoulder rising expenses and for the White House and Federal Reserve as they try to put the economy on a steadier path."], highlight, clickhighlight)}
             </div>
 
             <div className="g-body">
@@ -232,21 +220,7 @@ function CPIArticle() {
                 />
             </div>
             <div className="g-body">
-                {/* <Highlighter
-                    searchWords={highlight}
-                    highlightClassName="highlight-class"
-                    textToHighlight="Annual inflation may have now peaked, having climbed by an even-quicker 8.5 percent in March. "
-                    onClick={(e)=>{clickhighlight(e, "Annual inflation may have now peaked, having climbed by an even-quicker 8.5 percent in March. "); }}
-                /> */}
                 {HighlightText("Annual inflation may have now peaked, having climbed by an even-quicker 8.5 percent in March. ", ["Annual inflation"], {"Annual inflation": "dataref"}, highlight, clickhighlight)}
-                {/* <Highlighter
-                    searchWords={highlight}
-                    highlightClassName="highlight-class"
-                    textToHighlight="It slowed down in April partly because gas prices dropped lower, and partly because of a statistical quirk that will continue through the months ahead. "
-                    onClick={(e)=>{
-                        clickhighlight(e, "It slowed down in April partly because gas prices dropped lower, and partly because of a statistical quirk that will continue through the months ahead. ")
-                    }}
-                /> */}
                 {HighlightText("It slowed down in April partly because gas prices dropped lower, and partly because of a statistical quirk that will continue through the months ahead. ", ["gas prices"], {"gas prices": "dataref"}, highlight, clickhighlight)}
                 <Highlighter
                     searchWords={highlight}
@@ -312,12 +286,6 @@ function CPIArticle() {
             <div></div>
             
             <div className="g-body">
-                {/* <Highlighter
-                    searchWords={highlight}
-                    highlightClassName="highlight-class"
-                    textToHighlight="And services prices are now increasing quickly, as rents climb and as worker shortfalls lead to higher wages and steeper prices for restaurant meals and other labor-intensive purchases. "
-                    onClick={(e)=>clickhighlight(e, "And services prices are now increasing quickly, as rents climb and as worker shortfalls lead to higher wages and steeper prices for restaurant meals and other labor-intensive purchases. ")}
-                /> */}
                 {HighlightText("And services prices are now increasing quickly, as rents climb and as worker shortfalls lead to higher wages and steeper prices for restaurant meals and other labor-intensive purchases. ", ["services prices", "rents", "wages", "restaurant meals"], {"services prices": "dataref", "rents": "dataref", "wages": "dataref", "restaurant meals": "dataref"}, highlight, clickhighlight)}
                 <Highlighter
                     searchWords={highlight}
@@ -423,4 +391,4 @@ function CPIArticle() {
     )
 }
 
-export default CPIArticle;
+export default CPIArticle2;

@@ -1,0 +1,1 @@
+export {default} from './CPIArticle2.js'
