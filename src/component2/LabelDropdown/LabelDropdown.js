@@ -1,6 +1,3 @@
-// import ButtonGroup from 'react-bootstrap/ButtonGroup';
-// import Dropdown from 'react-bootstrap/Dropdown';
-// import DropdownButton from 'react-bootstrap/DropdownButton';
 import {highlightData} from '../../data/DataPreprocess.js'
 
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -10,10 +7,9 @@ function LabelDropdown({dataRefs, datasetDrop, listSelected, setListSelected, da
 
     console.log("dropdown", datasetDrop, dataRefs, listSelected)
 
-
     return (
         <div>
-            { dataRefs.length > 1 && listSelected !== undefined
+            { dataRefs.length > 1 
             ? [dataRefs[0], dataRefs[1]].map((item, formidx) => {
                 console.log("wht?", item, datasetDrop, datasetDrop[item], datasetDrop[listSelected[formidx]])
                 return (
@@ -37,7 +33,7 @@ function LabelDropdown({dataRefs, datasetDrop, listSelected, setListSelected, da
             </>
             )})
             : (
-                dataRefs.length > 0 && listSelected !== undefined
+                dataRefs.length > 0 
                 ? 
                 <>
                     <div class="form-control" style={{float: "left", width: "35%"}}>{dataRefs[0]}</div>

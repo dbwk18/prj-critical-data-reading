@@ -3,7 +3,6 @@ import React, {useState, useEffect, useRef} from 'react';
 import toydata2 from '../../data/toydata2.json'
 import cpiarticle from '../../data/cpi_article.json'
 
-import Highlighter from 'react-highlight-words';
 import NYTHeader from '../../images/NYT-unemploy/NYTHeader.png';
 import NYTGraph1 from '../../images/NYT_cpi/NYTGraph1.png';
 
@@ -18,8 +17,6 @@ import './CPIArticle2.css';
 
 
 function CPIArticle2() {
-
-    // const [highlight, setHighlight] = useState([]);
     
     const [tooltipX, setTooltipX] = useState(null);
     const [tooltipY, setTooltipY] = useState(null);
@@ -33,22 +30,16 @@ function CPIArticle2() {
     const [offsetY, setOffsetY] = useState(null);
     const [mainData, setMainData] = useState()
     const [dataRefs, setDataRefs] = useState([]);
-    // const [listDrop, setListDrop] = useState([]);
     const [datasetDrop, setDatasetDrop] = useState([]);
     const [listSelected, setListSelected] = useState([]);
 
     
-    
-    //add list for reference sentences
+    //testing
     useEffect(()=> {
-        // const highlightsen = []
-        // toydata2.sentences.forEach((item) => highlightsen.push(item.sentence))
-        // // console.log(highlightsen, mainData)
-        // setHighlight(highlightsen)
 
         console.log(highlight, highlightRef, highlightColor, highlightData)
-    }, [])
 
+    }, [])
 
     document.addEventListener("dragstart", event => {
         // 투명도 초기화
@@ -56,15 +47,13 @@ function CPIArticle2() {
         // event.target.classList.remove("dragging");
       });
 
+
     //function for clicking highlighted sentence
     const clickhighlight = (e, sentence) => {
         toydata2.sentences.forEach( (item) => {
             if (item.sentence == sentence.trim()) {
-                // setDataRefs(item.data_references);
-                // setDataRefs(highlightData[sentence.trim()]);
                 setDataRefs(highlightRef[sentence.trim()])
                 setDatasetDrop(highlightData[sentence.trim()])
-                // setListDrop(highlightRef[sentence.trim()])
                 highlightRef[sentence.trim()].length == 1 ? setListSelected([highlightRef[sentence.trim()][0]]) : setListSelected([highlightRef[sentence.trim()][0], highlightRef[sentence.trim()][1]])
                 setMainData(toydata2.mainData);
                 setOffsetY(e.nativeEvent.pageY);
@@ -90,6 +79,7 @@ function CPIArticle2() {
         return s_offset != e_offset ? xs : null;
     }
   
+
     // remove the previous highlight
     function removeHighlight() {
         if (document.getElementsByClassName('one').length > 0) {
@@ -98,6 +88,7 @@ function CPIArticle2() {
             rmhighlight.replaceWith(addelement)
         }
     }
+
 
     // add new highlight 
     function highlightText(range) {
@@ -117,7 +108,6 @@ function CPIArticle2() {
         
         <img src={NYTGraph1} width='100%' />
         
-        
         <div>
             {dataRefs.length !== 0
              ? <InteractiveChart 
@@ -125,8 +115,6 @@ function CPIArticle2() {
                     mainData={mainData} 
                     dataRefs={dataRefs} 
                     datasetDrop={datasetDrop}
-                    // listDrop={listDrop} 
-                    // setListDrop={setListDrop}
                     listSelected={listSelected}
                     setListSelected={setListSelected}
                 />
@@ -157,9 +145,7 @@ function CPIArticle2() {
                     /> 
                 : null
             } 
-            
         </div>
-
         
         <div onMouseUp={(e)=>{
             const range = highlightSelect();

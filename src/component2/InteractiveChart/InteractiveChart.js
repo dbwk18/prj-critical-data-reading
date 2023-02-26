@@ -7,15 +7,12 @@ import SearchDropdown from "../SearchDropdown/SearchDropdown";
 import SearchBox from "../SearchBox/SearchBox";
 
 
-function InteractiveChart ( {offsetY, mainData, dataRefs, datasetDrop, listDrop, setListDrop, listSelected, setListSelected} ) {
+function InteractiveChart ( {offsetY, mainData, dataRefs, datasetDrop, listSelected, setListSelected} ) {
 
     // var Fred = require('fred-api');
     
     const graphRef = useRef();
     const [dataSelected, setDataSelected] = useState(null);
-
-    // things to be revised
-    // setlistdrop({...listdrop, datarefname: [dataname]})
 
 
     useEffect(() => {
@@ -90,8 +87,6 @@ function InteractiveChart ( {offsetY, mainData, dataRefs, datasetDrop, listDrop,
             drawone(dataRefs[0], svg, zoomsvg, "#a5d296", 1, xmin, xmax, mainData);
         }
         else if (dataRefs.length > 1) {
-            // setListDrop(dataRefs);
-            // setListSelected([dataRefs[0], dataRefs[1]]);
             drawone(dataRefs[0], svg, zoomsvg, "#6AAFE6", 0 , xmin, xmax, dataRefs[1]);
             drawone(dataRefs[1], svg, zoomsvg, "#a5d296", 1, xmin, xmax, dataRefs[0]);
         }
@@ -406,7 +401,6 @@ function InteractiveChart ( {offsetY, mainData, dataRefs, datasetDrop, listDrop,
                 )
                 : null}
                 {/* <>
-                    <LabelDropdown listDrop={listDrop} datasetDrop={datasetDrop} listSelected={listSelected} setListSelected={setListSelected} dataSelected={dataSelected} setDataSelected={setDataSelected} /> 
                     <SearchDropdown dataDrop={["122", "222", "344"]} dataSelected={dataSelected} setDataSelected={setDataSelected} />
                 </> */}
                 <div ref={graphRef} 
