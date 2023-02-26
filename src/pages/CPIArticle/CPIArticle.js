@@ -108,7 +108,6 @@ function CPIArticle() {
 
     return (
     <div>
-
         <img src={NYTHeader} width='100%' />
         <div className='g-name'>Consumer Prices Are Still Climbing Rapidly</div>
         <div className='g-details'>Inflation data showed a slowdown in annual price increases in April, but a closely watched monthly price measure continues to rise at an uncomfortably brisk rate. </div>

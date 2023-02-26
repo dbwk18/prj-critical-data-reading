@@ -6,14 +6,15 @@ import {highlightData} from '../../data/DataPreprocess.js'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import SearchDropdown from '../SearchDropdown/SearchDropdown';
 
-function LabelDropdown({listDrop, datasetDrop, listSelected, setListSelected, dataSelected, setDataSelected}) {
+function LabelDropdown({dataRefs, datasetDrop, listSelected, setListSelected, dataSelected, setDataSelected}) {
 
-    console.log("dropdown", datasetDrop, listDrop, listSelected)
+    console.log("dropdown", datasetDrop, dataRefs, listSelected)
+
 
     return (
         <div>
-            { listDrop.length > 1
-            ? [listDrop[0], listDrop[1]].map((item, formidx) => {
+            { dataRefs.length > 1 && listSelected !== undefined
+            ? [dataRefs[0], dataRefs[1]].map((item, formidx) => {
                 console.log("wht?", item, datasetDrop, datasetDrop[item], datasetDrop[listSelected[formidx]])
                 return (
                 <>
@@ -27,7 +28,7 @@ function LabelDropdown({listDrop, datasetDrop, listSelected, setListSelected, da
                             else if (formidx == 1) setListSelected([listSelected[0], e.target.value]);
                         }}
                     >
-                        {listDrop.map((listvar, idx) => {
+                        {dataRefs.map((listvar, idx) => {
                             return (
                                 <option selected={listvar == item ? true : false} key={idx}>{listvar}</option>
                         )})}
@@ -36,11 +37,11 @@ function LabelDropdown({listDrop, datasetDrop, listSelected, setListSelected, da
             </>
             )})
             : (
-                listDrop.length > 0
+                dataRefs.length > 0 && listSelected !== undefined
                 ? 
                 <>
-                    <div class="form-control" style={{float: "left", width: "35%"}}>{listDrop[0]}</div>
-                    <SearchDropdown dataDrop={datasetDrop[listDrop[0]]}  dataSelected={datasetDrop[listDrop[0]][0]} setDataSelected={setDataSelected} />
+                    <div class="form-control" style={{float: "left", width: "35%"}}>{dataRefs[0]}</div>
+                    <SearchDropdown dataDrop={datasetDrop[dataRefs[0]]}  dataSelected={datasetDrop[dataRefs[0]][0]} setDataSelected={setDataSelected} />
                 </> 
                 : <></>
             )

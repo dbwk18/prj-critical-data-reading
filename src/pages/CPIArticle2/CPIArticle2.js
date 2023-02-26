@@ -33,8 +33,10 @@ function CPIArticle2() {
     const [offsetY, setOffsetY] = useState(null);
     const [mainData, setMainData] = useState()
     const [dataRefs, setDataRefs] = useState([]);
-    const [listDrop, setListDrop] = useState([]);
+    // const [listDrop, setListDrop] = useState([]);
     const [datasetDrop, setDatasetDrop] = useState([]);
+    const [listSelected, setListSelected] = useState([]);
+
     
     
     //add list for reference sentences
@@ -62,6 +64,8 @@ function CPIArticle2() {
                 // setDataRefs(highlightData[sentence.trim()]);
                 setDataRefs(highlightRef[sentence.trim()])
                 setDatasetDrop(highlightData[sentence.trim()])
+                // setListDrop(highlightRef[sentence.trim()])
+                highlightRef[sentence.trim()].length == 1 ? setListSelected([highlightRef[sentence.trim()][0]]) : setListSelected([highlightRef[sentence.trim()][0], highlightRef[sentence.trim()][1]])
                 setMainData(toydata2.mainData);
                 setOffsetY(e.nativeEvent.pageY);
             }
@@ -121,8 +125,10 @@ function CPIArticle2() {
                     mainData={mainData} 
                     dataRefs={dataRefs} 
                     datasetDrop={datasetDrop}
-                    listDrop={listDrop} 
-                    setListDrop={setListDrop}
+                    // listDrop={listDrop} 
+                    // setListDrop={setListDrop}
+                    listSelected={listSelected}
+                    setListSelected={setListSelected}
                 />
              : null 
             }

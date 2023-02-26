@@ -7,13 +7,13 @@ import SearchDropdown from "../SearchDropdown/SearchDropdown";
 import SearchBox from "../SearchBox/SearchBox";
 
 
-function InteractiveChart ( {offsetY, mainData, dataRefs, datasetDrop, listDrop, setListDrop} ) {
+function InteractiveChart ( {offsetY, mainData, dataRefs, datasetDrop, listDrop, setListDrop, listSelected, setListSelected} ) {
 
     // var Fred = require('fred-api');
     
     const graphRef = useRef();
-    const [listSelected, setListSelected] = useState([]);
     const [dataSelected, setDataSelected] = useState(null);
+
     // things to be revised
     // setlistdrop({...listdrop, datarefname: [dataname]})
 
@@ -77,29 +77,21 @@ function InteractiveChart ( {offsetY, mainData, dataRefs, datasetDrop, listDrop,
     
         // const xmin = time_range[0]
         // const xmax = time_range[1]
+
+        // temporal (data error)
         const xmin = '1999-03-11'
         const xmax = '2023-02-26'
         // console.log(time_range, xmin, xmax)
+
       
         if (dataRefs.length == 1) {
             console.log(dataRefs[0])
-            setListDrop([dataRefs[0]])
-            setListSelected([dataRefs[0]])
             drawone(mainData, svg, zoomsvg, "#6AAFE6", 0 , xmin, xmax, dataRefs[0]);
             drawone(dataRefs[0], svg, zoomsvg, "#a5d296", 1, xmin, xmax, mainData);
         }
         else if (dataRefs.length > 1) {
-            // const listRef = []
-            //item {refname:[]} dictionary로 수정 
-            // dataRefs.forEach((item) => {
-            //     console.log(item)
-            //     listRef.push(item.dataReference)
-            // })
-            // setListDrop(listRef);
-            // setListSelected([listRef[0], listRef[1]]);
-            console.log("workgingngingigngign")
-            setListDrop(dataRefs);
-            setListSelected([dataRefs[0], dataRefs[1]]);
+            // setListDrop(dataRefs);
+            // setListSelected([dataRefs[0], dataRefs[1]]);
             drawone(dataRefs[0], svg, zoomsvg, "#6AAFE6", 0 , xmin, xmax, dataRefs[1]);
             drawone(dataRefs[1], svg, zoomsvg, "#a5d296", 1, xmin, xmax, dataRefs[0]);
         }
@@ -409,7 +401,7 @@ function InteractiveChart ( {offsetY, mainData, dataRefs, datasetDrop, listDrop,
                 {dataRefs.length > 0 
                 ? (
                     <>
-                    <LabelDropdown listDrop={listDrop} datasetDrop={datasetDrop} listSelected={listSelected} setListSelected={setListSelected} dataSelected={dataSelected} setDataSelected={setDataSelected} /> 
+                    <LabelDropdown dataRefs={dataRefs} datasetDrop={datasetDrop} listSelected={listSelected} setListSelected={setListSelected} dataSelected={dataSelected} setDataSelected={setDataSelected} /> 
                     </>
                 )
                 : null}
