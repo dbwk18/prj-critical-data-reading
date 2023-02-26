@@ -8,13 +8,14 @@ function SearchDropdown({dataDrop, dataSelected, setDataSelected}) {
     const [query, setQuery] =useState("")
     const inputRef = useRef(null);
 
+    console.log("dmddmdmdd",dataDrop, dataSelected)
     function toggle(e) {
         return setIsOpen(e && (e.target === inputRef.current));
     }
 
     function displayOption() {
         if (query) return query;
-        if (dataSelected) return dataSelected;
+        if (dataSelected) return dataSelected.name;
 
         return ""
     }
@@ -28,7 +29,7 @@ function SearchDropdown({dataDrop, dataSelected, setDataSelected}) {
 
     function filter(dataDrop) {
         return dataDrop.filter((item) => 
-            item.toLowerCase().indexOf(query.toLowerCase()) > -1
+            item["name"].toLowerCase().indexOf(query.toLowerCase()) > -1
         )
     }
 
@@ -53,11 +54,11 @@ function SearchDropdown({dataDrop, dataSelected, setDataSelected}) {
                         <div
                             onClick={() => selectOption(item)}
                             className={`dropdown-item ${
-                                item === dataSelected ? "selected" : ""
+                                item.name === dataSelected.name ? "selected" : ""
                                 }`}
                             key={`${idx}`}
                         >
-                            {item}
+                            {item.name}
                       </div>
                     )
                 })}

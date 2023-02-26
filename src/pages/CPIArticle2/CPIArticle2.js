@@ -12,7 +12,7 @@ import SearchTooltip from '../../component2/SearchTooltip/SearchTooltip';
 import SearchBox from '../../component2/SearchBox/SearchBox';
 import HighlightText from '../../component2/HighlightText/HighlightText';
 
-import {highlight, highlightRef, highlightColor} from '../../data/DataPreprocess.js'
+import {highlight, highlightRef, highlightColor, highlightData} from '../../data/DataPreprocess.js'
 
 import './CPIArticle2.css';
 
@@ -34,6 +34,7 @@ function CPIArticle2() {
     const [mainData, setMainData] = useState()
     const [dataRefs, setDataRefs] = useState([]);
     const [listDrop, setListDrop] = useState([]);
+    const [datasetDrop, setDatasetDrop] = useState([]);
     
     
     //add list for reference sentences
@@ -43,7 +44,7 @@ function CPIArticle2() {
         // // console.log(highlightsen, mainData)
         // setHighlight(highlightsen)
 
-        console.log(highlight, highlightRef, highlightColor)
+        console.log(highlight, highlightRef, highlightColor, highlightData)
     }, [])
 
 
@@ -57,7 +58,10 @@ function CPIArticle2() {
     const clickhighlight = (e, sentence) => {
         toydata2.sentences.forEach( (item) => {
             if (item.sentence == sentence.trim()) {
-                setDataRefs(item.data_references);
+                // setDataRefs(item.data_references);
+                // setDataRefs(highlightData[sentence.trim()]);
+                setDataRefs(highlightRef[sentence.trim()])
+                setDatasetDrop(highlightData[sentence.trim()])
                 setMainData(toydata2.mainData);
                 setOffsetY(e.nativeEvent.pageY);
             }
@@ -116,6 +120,7 @@ function CPIArticle2() {
                     offsetY={offsetY} 
                     mainData={mainData} 
                     dataRefs={dataRefs} 
+                    datasetDrop={datasetDrop}
                     listDrop={listDrop} 
                     setListDrop={setListDrop}
                 />
@@ -172,7 +177,7 @@ function CPIArticle2() {
                     return (
                         <div className="g-body">
                             {paragraph.map((sentence, idx) => {
-                                console.log(idx, sentence, highlightRef[sentence], highlightColor[sentence])
+                                // console.log(idx, sentence, highlightRef[sentence], highlightColor[sentence])
                                 if (highlight.includes(sentence)) {
                                     return (
                                         HighlightText(sentence, highlightRef[sentence], highlightColor[sentence], highlight, clickhighlight)

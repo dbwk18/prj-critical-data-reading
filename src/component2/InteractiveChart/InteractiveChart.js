@@ -7,13 +7,13 @@ import SearchDropdown from "../SearchDropdown/SearchDropdown";
 import SearchBox from "../SearchBox/SearchBox";
 
 
-function InteractiveChart ( {offsetY, mainData, dataRefs, listDrop, setListDrop} ) {
+function InteractiveChart ( {offsetY, mainData, dataRefs, datasetDrop, listDrop, setListDrop} ) {
 
     // var Fred = require('fred-api');
     
     const graphRef = useRef();
     const [listSelected, setListSelected] = useState([]);
-    const [dataSelected, setDataSelected] = useState("data1");
+    const [dataSelected, setDataSelected] = useState(null);
     // things to be revised
     // setlistdrop({...listdrop, datarefname: [dataname]})
 
@@ -22,6 +22,7 @@ function InteractiveChart ( {offsetY, mainData, dataRefs, listDrop, setListDrop}
         document.getElementById('graph-container').innerHTML=""
         drawall();
     }, [dataRefs])
+
 
     useEffect(()=> {
         console.log("change dropdown", listSelected)
@@ -60,44 +61,47 @@ function InteractiveChart ( {offsetY, mainData, dataRefs, listDrop, setListDrop}
             .attr("transform", `translate(${margin.left}, ${margin.top})`);
             
 
-        const time_range = await axios.get(`/${mainData.data}`, { headers: {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json',
-        }}).then( (response) => {
-            const data =  response.data.observations.map((data) => {
-                    return {
-                        date: new Date(data.date),
-                        measurement: parseFloat(data.value) ? parseFloat(data.value) : 0
-                        } 
-                    }, {withCredentials: true}) 
-            console.log(data[0]['date'], data[data.length-1]['date'])
-            return [data[0]['date'], data[data.length-1]['date']];
-        })
+        // const time_range = await axios.get(`/${mainData.data}`, { headers: {
+        //     'Content-Type': 'application/json',
+        //     'Accept': 'application/json',
+        // }}).then( (response) => {
+        //     const data =  response.data.observations.map((data) => {
+        //             return {
+        //                 date: new Date(data.date),
+        //                 measurement: parseFloat(data.value) ? parseFloat(data.value) : 0
+        //                 } 
+        //             }, {withCredentials: true}) 
+        //     console.log(data[0]['date'], data[data.length-1]['date'])
+        //     return [data[0]['date'], data[data.length-1]['date']];
+        // })
     
-        const xmin = time_range[0]
-        const xmax = time_range[1]
+        // const xmin = time_range[0]
+        // const xmax = time_range[1]
+        const xmin = '1999-03-11'
+        const xmax = '2023-02-26'
         // console.log(time_range, xmin, xmax)
-        
       
         if (dataRefs.length == 1) {
             console.log(dataRefs[0])
-            setListDrop([dataRefs[0].dataReference])
-            setListSelected([dataRefs[0].dataReference])
+            setListDrop([dataRefs[0]])
+            setListSelected([dataRefs[0]])
             drawone(mainData, svg, zoomsvg, "#6AAFE6", 0 , xmin, xmax, dataRefs[0]);
             drawone(dataRefs[0], svg, zoomsvg, "#a5d296", 1, xmin, xmax, mainData);
         }
         else if (dataRefs.length > 1) {
-            const listRef = []
+            // const listRef = []
             //item {refname:[]} dictionary로 수정 
-            dataRefs.forEach((item) => {
-                console.log(item)
-                listRef.push(item.dataReference)
-            })
-            setListDrop(listRef);
-            setListSelected([listRef[0], listRef[1]]);
+            // dataRefs.forEach((item) => {
+            //     console.log(item)
+            //     listRef.push(item.dataReference)
+            // })
+            // setListDrop(listRef);
+            // setListSelected([listRef[0], listRef[1]]);
+            console.log("workgingngingigngign")
+            setListDrop(dataRefs);
+            setListSelected([dataRefs[0], dataRefs[1]]);
             drawone(dataRefs[0], svg, zoomsvg, "#6AAFE6", 0 , xmin, xmax, dataRefs[1]);
             drawone(dataRefs[1], svg, zoomsvg, "#a5d296", 1, xmin, xmax, dataRefs[0]);
-    
         }
 
     }
@@ -402,17 +406,17 @@ function InteractiveChart ( {offsetY, mainData, dataRefs, listDrop, setListDrop}
                         left: "68vw", 
                         top: offsetY - 30
                     }}>
-                {/* {dataRefs.length > 1 
+                {dataRefs.length > 0 
                 ? (
                     <>
-                    <LabelDropdown listDrop={listDrop} listSelected={listSelected} setListSelected={setListSelected} dataSelected={dataSelected} setDataSelected={setDataSelected} /> 
+                    <LabelDropdown listDrop={listDrop} datasetDrop={datasetDrop} listSelected={listSelected} setListSelected={setListSelected} dataSelected={dataSelected} setDataSelected={setDataSelected} /> 
                     </>
                 )
-                : null} */}
-                <>
-                    <LabelDropdown listDrop={listDrop} listSelected={listSelected} setListSelected={setListSelected} dataSelected={dataSelected} setDataSelected={setDataSelected} /> 
-                    {/* <SearchDropdown dataDrop={["122", "222", "344"]} dataSelected={dataSelected} setDataSelected={setDataSelected} /> */}
-                </>
+                : null}
+                {/* <>
+                    <LabelDropdown listDrop={listDrop} datasetDrop={datasetDrop} listSelected={listSelected} setListSelected={setListSelected} dataSelected={dataSelected} setDataSelected={setDataSelected} /> 
+                    <SearchDropdown dataDrop={["122", "222", "344"]} dataSelected={dataSelected} setDataSelected={setDataSelected} />
+                </> */}
                 <div ref={graphRef} 
                     id='graph-container'
                     className='GraphContainer' 

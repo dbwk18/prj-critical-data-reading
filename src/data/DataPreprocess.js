@@ -1,8 +1,14 @@
 import toydata2 from './toydata2.json'
 
+
 const highlight = []
 toydata2.sentences.forEach((item) => highlight.push(item.sentence))
 
+/*
+{
+    "sentence" : ["dataref1", "dataref2", "dataref3"]
+}
+*/
 const highlightRef = {}
 toydata2.sentences.forEach((item) => {
     const reflist = []
@@ -11,6 +17,17 @@ toydata2.sentences.forEach((item) => {
     highlightRef[item.sentence] = reflist
 })
 
+
+/*
+{ 
+    "sentence": {
+        "dataref1": dataref,
+        "dataref2": dataref,
+        ...
+        "timeref1": timeref
+    }
+}
+*/
 const highlightColor = {}
 toydata2.sentences.forEach((item) => {
     const coldict = {}
@@ -18,8 +35,34 @@ toydata2.sentences.forEach((item) => {
     highlightColor[item.sentence] = coldict
 })
 
-// console.log(highlightRef, highlightColor)
-// console.log(highlightRef["The pressures that have kept inflation elevated for months remain strong, fresh data released Wednesday showed, a challenge for households that are trying to shoulder rising expenses and for the White House and Federal Reserve as they try to put the economy on a steadier path."], highlightColor["The pressures that have kept inflation elevated for months remain strong, fresh data released Wednesday showed, a challenge for households that are trying to shoulder rising expenses and for the White House and Federal Reserve as they try to put the economy on a steadier path."])
 
-export { highlight, highlightRef, highlightColor };
+/*
+{ 
+    "sentence": {
+        "dataref1": [
+            {name: "datasetname1", id: "id1"}, 
+            {name: "datasetname2", id: "id2"}, 
+            {name: "datasetname3", id: "id3"}
+        ],
+        "dataref2": [
+            {name: "datasetname1", id: "id1"}, 
+            {name: "datasetname2", id: "id2"}, 
+            {name: "datasetname3", id: "id3"}
+        ],
+    }
+}
+*/
+const highlightData = {}
+toydata2.sentences.forEach((item) => {
+    const datadict = {}
+    item.data_references.forEach((ref) => {
+        const datasetlist= []
+        ref.data_names.forEach((data) => {datasetlist.push({"name": `${data.title} (${data.frequency}) (${data.units})`, "id": `${data.id}`})})
+        datadict[ref.sentence_part] = datasetlist
+    })
+    highlightData[item.sentence] = datadict
+})
+
+
+export { highlight, highlightRef, highlightColor, highlightData };
 
