@@ -8,8 +8,6 @@ import SearchBox from "../SearchBox/SearchBox";
 
 
 function InteractiveChart ( {offsetY, mainData, dataRefs, datasetDrop, listSelected, setListSelected} ) {
-
-    // var Fred = require('fred-api');
     
     const graphRef = useRef();
     const [dataSelected, setDataSelected] = useState(null);

@@ -1,4 +1,4 @@
-import toydata2 from './toydata2.json'
+import toydata2 from './article_extract_text_results.json'
 
 
 const highlight = []

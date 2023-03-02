@@ -1,6 +1,7 @@
 import React, {useState, useEffect, useRef} from 'react';
 
-import toydata2 from '../../data/toydata2.json'
+// import toydata2 from '../../data/toydata2.json'
+import toydata2 from '../../data/article_extract_text_results.json'
 import cpiarticle from '../../data/cpi_article.json'
 
 import NYTHeader from '../../images/NYT-unemploy/NYTHeader.png';
