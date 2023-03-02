@@ -8,7 +8,7 @@ function SearchDropdown({dataDrop, dataSelected, setDataSelected}) {
     const [query, setQuery] =useState("")
     const inputRef = useRef(null);
 
-    console.log("dmddmdmdd",dataDrop, dataSelected)
+    // console.log("dmddmdmdd",dataDrop, dataSelected)
     function toggle(e) {
         return setIsOpen(e && (e.target === inputRef.current));
     }

@@ -7,7 +7,7 @@ import SearchDropdown from "../SearchDropdown/SearchDropdown";
 import SearchBox from "../SearchBox/SearchBox";
 
 
-function InteractiveChart ( {offsetY, mainData, dataRefs, datasetDrop, listSelected, setListSelected} ) {
+function InteractiveChart ( {offsetY, mainData, dataRefs, gptRefs, datasetDrop, listSelected, setListSelected} ) {
     
     const graphRef = useRef();
     const [dataSelected, setDataSelected] = useState(null);
@@ -55,38 +55,38 @@ function InteractiveChart ( {offsetY, mainData, dataRefs, datasetDrop, listSelec
             .append("g")
             .attr("transform", `translate(${margin.left}, ${margin.top})`);
             
-
-        // const time_range = await axios.get(`/${mainData.data}`, { headers: {
-        //     'Content-Type': 'application/json',
-        //     'Accept': 'application/json',
-        // }}).then( (response) => {
-        //     const data =  response.data.observations.map((data) => {
-        //             return {
-        //                 date: new Date(data.date),
-        //                 measurement: parseFloat(data.value) ? parseFloat(data.value) : 0
-        //                 } 
-        //             }, {withCredentials: true}) 
-        //     console.log(data[0]['date'], data[data.length-1]['date'])
-        //     return [data[0]['date'], data[data.length-1]['date']];
-        // })
+            
+        const time_range = await axios.get(`http://internal.kixlab.org:7887/query_data?dataset_id=${mainData.id}`, { headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+        }}).then( (response) => {
+            const data =  response.data.observations.map((data) => {
+                    return {
+                        date: new Date(data.date),
+                        measurement: parseFloat(data.value) ? parseFloat(data.value) : 0
+                        } 
+                    }, {withCredentials: true}) 
+            console.log(data[0]['date'], data[data.length-1]['date'])
+            return [data[0]['date'], data[data.length-1]['date']];
+        })
     
-        // const xmin = time_range[0]
-        // const xmax = time_range[1]
+        const xmin = time_range[0]
+        const xmax = time_range[1]
 
         // temporal (data error)
-        const xmin = '1999-03-11'
-        const xmax = '2023-02-26'
+        // const xmin = '1999-03-11'
+        // const xmax = '2023-02-26'
         // console.log(time_range, xmin, xmax)
 
       
         if (dataRefs.length == 1) {
             console.log(dataRefs[0])
             drawone(mainData, svg, zoomsvg, "#6AAFE6", 0 , xmin, xmax, dataRefs[0]);
-            drawone(dataRefs[0], svg, zoomsvg, "#a5d296", 1, xmin, xmax, mainData);
+            drawone(datasetDrop[dataRefs[0]][0], svg, zoomsvg, "#a5d296", 1, xmin, xmax, mainData);
         }
         else if (dataRefs.length > 1) {
-            drawone(dataRefs[0], svg, zoomsvg, "#6AAFE6", 0 , xmin, xmax, dataRefs[1]);
-            drawone(dataRefs[1], svg, zoomsvg, "#a5d296", 1, xmin, xmax, dataRefs[0]);
+            drawone(datasetDrop[dataRefs[0]][0], svg, zoomsvg, "#6AAFE6", 0 , xmin, xmax, dataRefs[1]);
+            drawone(datasetDrop[dataRefs[1]][0], svg, zoomsvg, "#a5d296", 1, xmin, xmax, dataRefs[0]);
         }
 
     }
@@ -117,7 +117,7 @@ function InteractiveChart ( {offsetY, mainData, dataRefs, datasetDrop, listSelec
             .attr("transform", `translate(${margin.left}, ${margin.top})`);
 
         
-        const time_range = await axios.get(`/${mainData.data}`, {headers: {
+        const time_range = await axios.get(`http://internal.kixlab.org:7887/query_data?dataset_id=${mainData.id}`, {headers: {
             'Content-Type': 'application/json',
             'Accept': 'application/json',
         }}).then( (response) => {
@@ -138,48 +138,53 @@ function InteractiveChart ( {offsetY, mainData, dataRefs, datasetDrop, listSelec
         var dropidx2 = 0;
 
         if (dataRefs.length == 1) {
-            console.log(dataRefs[0])
+            console.log(dataRefs[Object.keys(dataRefs)[0]])
             drawone(mainData, svg, zoomsvg, "#6AAFE6", 0 , xmin, xmax, dataRefs[0]);
-            drawone(dataRefs[0], svg, zoomsvg, "#a5d296", 1, xmin, xmax, mainData);
+            drawone(datasetDrop[dataRefs[0]][0], svg, zoomsvg, "#a5d296", 1, xmin, xmax, mainData);
         }
-
         else {
             dataRefs.forEach((item, idx) => {
-                    if (item.dataReference == listSelected[0]) {
-                        dropidx1 = idx
+                    if (item == listSelected[0]) {
+                        dropidx1 = item
                         // drawone(dataRefs[idx], svg, zoomsvg, "#6AAFE6", 0 , xmin, xmax);
-                        console.log("graph1", item.dataReference)
+                        console.log("graph1", item)
                     }
                 })
             dataRefs.forEach((item, idx) => {
-                if (item.dataReference == listSelected[1]) {
-                    dropidx2 = idx
+                if (item == listSelected[1]) {
+                    dropidx2 = item
                     // drawone(dataRefs[idx], svg, zoomsvg, "#a5d296", width, xmin, xmax);
-                    console.log("graph2", item.dataReference)
+                    console.log("graph2", item)
                 }
             })
+            // drawone(dataRefs[dropidx1][0], svg, zoomsvg, "#6AAFE6", 0, xmin, xmax, dataRefs[dropidx2][0]);
+            // drawone(dataRefs[dropidx2][0], svg, zoomsvg, "#a5d296", 1, xmin, xmax, dataRefs[dropidx1][0]);
+
             drawone(dataRefs[dropidx1], svg, zoomsvg, "#6AAFE6", 0 , xmin, xmax, dataRefs[dropidx2]);
             drawone(dataRefs[dropidx2], svg, zoomsvg, "#a5d296", 1, xmin, xmax, dataRefs[dropidx1]);
         }
     }
 
     //function for overlaying line graph 
-    const drawone = async (dataRef, svg, zoomsvg, color, p_yaxis, xmin, xmax, brushRef) => {
-        console.log("one", dataRef, dataRef.xUnit.substring(0, 1), dataRef.data);
+    const drawone = async (dataset, svg, zoomsvg, color, p_yaxis, xmin, xmax, brushRef) => {
+        console.log("one", dataset, dataset.frequency.substring(0, 1), dataset.id);
        
         var timeUnit = null;
-        if (dataRef.xUnit == "Yearly") {
+        if (dataset.frequency == "Yearly") {
             timeUnit = "%Y";
         }
-        else if (dataRef.xUnit == "Monthly") {
+        else if (dataset.frequency == "Monthly") {
             timeUnit = "%Y %m";
         }
-        else if (dataRef.xUnit == "Weekly") {
+        else if (dataset.frequency == "Quarterly") {
+            timeUnit = "%Y %m";
+        }
+        else if (dataset.frequency == "Weekly") {
             timeUnit = "%Y %m %d";
         }
         const timeConv = d3.timeFormat(timeUnit)
-
-        const newdata = await axios(`/${dataRef.data}`, {headers: {
+        
+        const newdata = await axios(`http://internal.kixlab.org:7887/query_data?dataset_id=${dataset.id}`, {headers: {
             'Content-Type': 'application/json',
             'Accept': 'application/json',
         }}).then( (response) => {
@@ -394,7 +399,7 @@ function InteractiveChart ( {offsetY, mainData, dataRefs, datasetDrop, listSelec
                 {dataRefs.length > 0 
                 ? (
                     <>
-                    <LabelDropdown dataRefs={dataRefs} datasetDrop={datasetDrop} listSelected={listSelected} setListSelected={setListSelected} dataSelected={dataSelected} setDataSelected={setDataSelected} /> 
+                    <LabelDropdown gptRefs={gptRefs} datasetDrop={datasetDrop} listSelected={listSelected} setListSelected={setListSelected} dataSelected={dataSelected} setDataSelected={setDataSelected} /> 
                     </>
                 )
                 : null}

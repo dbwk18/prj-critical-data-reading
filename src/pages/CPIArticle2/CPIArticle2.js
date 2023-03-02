@@ -12,7 +12,7 @@ import SearchTooltip from '../../component2/SearchTooltip/SearchTooltip';
 import SearchBox from '../../component2/SearchBox/SearchBox';
 import HighlightText from '../../component2/HighlightText/HighlightText';
 
-import {highlight, highlightRef, highlightColor, highlightData} from '../../data/DataPreprocess.js'
+import {highlight, highlightRef, highlightGPTRef, highlightColor, highlightData} from '../../data/DataPreprocess.js'
 
 import './CPIArticle2.css';
 
@@ -31,6 +31,7 @@ function CPIArticle2() {
     const [offsetY, setOffsetY] = useState(null);
     const [mainData, setMainData] = useState()
     const [dataRefs, setDataRefs] = useState([]);
+    const [gptRefs, setGPTRefs] = useState([]);
     const [datasetDrop, setDatasetDrop] = useState([]);
     const [listSelected, setListSelected] = useState([]);
 
@@ -54,9 +55,10 @@ function CPIArticle2() {
         toydata2.sentences.forEach( (item) => {
             if (item.sentence == sentence.trim()) {
                 setDataRefs(highlightRef[sentence.trim()])
+                setGPTRefs(highlightGPTRef[sentence.trim()])
                 setDatasetDrop(highlightData[sentence.trim()])
-                highlightRef[sentence.trim()].length == 1 ? setListSelected([highlightRef[sentence.trim()][0]]) : setListSelected([highlightRef[sentence.trim()][0], highlightRef[sentence.trim()][1]])
-                setMainData(toydata2.mainData);
+                highlightRef[sentence.trim()].length == 1 ? setListSelected([highlightGPTRef[sentence.trim()][0]]) : setListSelected([highlightGPTRef[sentence.trim()][0], highlightGPTRef[sentence.trim()][1]])
+                setMainData(toydata2.main_data.dataName);
                 setOffsetY(e.nativeEvent.pageY);
             }
         })
@@ -115,6 +117,7 @@ function CPIArticle2() {
                     offsetY={offsetY} 
                     mainData={mainData} 
                     dataRefs={dataRefs} 
+                    gptRefs={gptRefs}
                     datasetDrop={datasetDrop}
                     listSelected={listSelected}
                     setListSelected={setListSelected}

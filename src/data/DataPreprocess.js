@@ -4,7 +4,7 @@ import toydata2 from './article_extract_text_results.json'
 const highlight = []
 toydata2.sentences.forEach((item) => highlight.push(item.sentence))
 
-/*
+/* for highlighting exact text in article
 {
     "sentence" : ["dataref1", "dataref2", "dataref3"]
 }
@@ -17,8 +17,20 @@ toydata2.sentences.forEach((item) => {
     highlightRef[item.sentence] = reflist
 })
 
+/* for listing dropdown in interactive chart
+{
+    "sentence" : ["gpt-dataref1", "gpt-dataref2", "gpt-dataref3"]
+}
+*/
+const highlightGPTRef = {}
+toydata2.sentences.forEach((item) => {
+    const reflist = []
+    // console.log("toy", item)
+    item.data_references.forEach((ref) => reflist.push(ref.gpt_sentence_part))
+    highlightGPTRef[item.sentence] = reflist
+})
 
-/*
+/* for highlighting exact text in article - distinguish color
 { 
     "sentence": {
         "dataref1": dataref,
@@ -36,15 +48,15 @@ toydata2.sentences.forEach((item) => {
 })
 
 
-/*
+/* for listing dropdown & draw chart
 { 
     "sentence": {
-        "dataref1": [
+        "gptdataref1": [
             {name: "datasetname1", id: "id1"}, 
             {name: "datasetname2", id: "id2"}, 
             {name: "datasetname3", id: "id3"}
         ],
-        "dataref2": [
+        "gptdataref2": [
             {name: "datasetname1", id: "id1"}, 
             {name: "datasetname2", id: "id2"}, 
             {name: "datasetname3", id: "id3"}
@@ -57,12 +69,12 @@ toydata2.sentences.forEach((item) => {
     const datadict = {}
     item.data_references.forEach((ref) => {
         const datasetlist= []
-        ref.data_names.forEach((data) => {datasetlist.push({"name": `${data.title} (${data.frequency}) (${data.units})`, "id": `${data.id}`})})
-        datadict[ref.sentence_part] = datasetlist
+        ref.data_names.forEach((data) => {datasetlist.push({"name": `${data.title} (${data.frequency}) (${data.units})`, "id": `${data.id}`, "frequency": `${data.frequency}`, "units": `${data.units}`})})
+        datadict[ref.gpt_sentence_part] = datasetlist
     })
     highlightData[item.sentence] = datadict
 })
 
 
-export { highlight, highlightRef, highlightColor, highlightData };
+export { highlight, highlightRef, highlightGPTRef, highlightColor, highlightData };
 
