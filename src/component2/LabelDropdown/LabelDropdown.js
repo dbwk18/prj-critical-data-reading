@@ -5,7 +5,7 @@ import SearchDropdown from '../SearchDropdown/SearchDropdown';
 
 function LabelDropdown({gptRefs, datasetDrop, listSelected, setListSelected, dataSelected, setDataSelected}) {
 
-    console.log("dropdown", datasetDrop, gptRefs, listSelected)
+    // console.log("dropdown", datasetDrop, gptRefs, listSelected)
 
     return (
         <div>

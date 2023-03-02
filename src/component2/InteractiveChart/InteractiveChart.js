@@ -81,12 +81,13 @@ function InteractiveChart ( {offsetY, mainData, dataRefs, gptRefs, datasetDrop, 
       
         if (dataRefs.length == 1) {
             console.log(dataRefs[0])
-            drawone(mainData, svg, zoomsvg, "#6AAFE6", 0 , xmin, xmax, dataRefs[0]);
-            drawone(datasetDrop[dataRefs[0]][0], svg, zoomsvg, "#a5d296", 1, xmin, xmax, mainData);
+            drawone(mainData, svg, zoomsvg, "#6AAFE6", 0 , xmin, xmax, gptRefs[0]);
+            drawone(datasetDrop[gptRefs[0]][0], svg, zoomsvg, "#a5d296", 1, xmin, xmax, mainData);
         }
         else if (dataRefs.length > 1) {
-            drawone(datasetDrop[dataRefs[0]][0], svg, zoomsvg, "#6AAFE6", 0 , xmin, xmax, dataRefs[1]);
-            drawone(datasetDrop[dataRefs[1]][0], svg, zoomsvg, "#a5d296", 1, xmin, xmax, dataRefs[0]);
+            console.log("WHY???", datasetDrop, dataRefs, gptRefs)
+            drawone(datasetDrop[gptRefs[0]][0], svg, zoomsvg, "#6AAFE6", 0 , xmin, xmax, gptRefs[1]);
+            drawone(datasetDrop[gptRefs[1]][0], svg, zoomsvg, "#a5d296", 1, xmin, xmax, gptRefs[0]);
         }
 
     }
@@ -138,48 +139,56 @@ function InteractiveChart ( {offsetY, mainData, dataRefs, gptRefs, datasetDrop, 
         var dropidx2 = 0;
 
         if (dataRefs.length == 1) {
-            console.log(dataRefs[Object.keys(dataRefs)[0]])
-            drawone(mainData, svg, zoomsvg, "#6AAFE6", 0 , xmin, xmax, dataRefs[0]);
-            drawone(datasetDrop[dataRefs[0]][0], svg, zoomsvg, "#a5d296", 1, xmin, xmax, mainData);
+            drawone(mainData, svg, zoomsvg, "#6AAFE6", 0 , xmin, xmax, gptRefs[0]);
+            drawone(datasetDrop[gptRefs[0]][0], svg, zoomsvg, "#a5d296", 1, xmin, xmax, mainData);
         }
         else {
-            dataRefs.forEach((item, idx) => {
-                    if (item == listSelected[0]) {
-                        dropidx1 = item
-                        // drawone(dataRefs[idx], svg, zoomsvg, "#6AAFE6", 0 , xmin, xmax);
-                        console.log("graph1", item)
-                    }
-                })
-            dataRefs.forEach((item, idx) => {
-                if (item == listSelected[1]) {
-                    dropidx2 = item
-                    // drawone(dataRefs[idx], svg, zoomsvg, "#a5d296", width, xmin, xmax);
-                    console.log("graph2", item)
-                }
-            })
-            // drawone(dataRefs[dropidx1][0], svg, zoomsvg, "#6AAFE6", 0, xmin, xmax, dataRefs[dropidx2][0]);
-            // drawone(dataRefs[dropidx2][0], svg, zoomsvg, "#a5d296", 1, xmin, xmax, dataRefs[dropidx1][0]);
+            // gptRefs.forEach((item, idx) => {
+            //         if (item == listSelected[0]) {
+            //             dropidx1 = item
+            //             // drawone(dataRefs[idx], svg, zoomsvg, "#6AAFE6", 0 , xmin, xmax);
+            //             drawone(datasetDrop[item], svg, zoomsvg, "#6AAFE6", 0 , xmin, xmax);
 
-            drawone(dataRefs[dropidx1], svg, zoomsvg, "#6AAFE6", 0 , xmin, xmax, dataRefs[dropidx2]);
-            drawone(dataRefs[dropidx2], svg, zoomsvg, "#a5d296", 1, xmin, xmax, dataRefs[dropidx1]);
+            //             console.log("graph1", item)
+            //         }
+            //     })
+            // gptRefs.forEach((item, idx) => {
+            //     if (item == listSelected[1]) {
+            //         dropidx2 = item
+            //         // drawone(dataRefs[idx], svg, zoomsvg, "#a5d296", width, xmin, xmax);
+            //         drawone(datasetDrop[item], svg, zoomsvg, "#a5d296", 0 , xmin, xmax);
+            //         console.log("graph2", item)
+            //     }
+            // })
+            drawone(datasetDrop[listSelected[0]][0], svg, zoomsvg, "#6AAFE6", 0 , xmin, xmax, gptRefs[1]);
+            drawone(datasetDrop[listSelected[1]][0], svg, zoomsvg, "#a5d296", 1, xmin, xmax, gptRefs[0]);
+            
+            // drawone(datasetDrop[dropidx1], svg, zoomsvg, "#6AAFE6", 0 , xmin, xmax, datasetDrop[dropidx2]);
+            // drawone(datasetDrop[dropidx2], svg, zoomsvg, "#a5d296", 1, xmin, xmax, datasetDrop[dropidx1]);
         }
     }
 
     //function for overlaying line graph 
     const drawone = async (dataset, svg, zoomsvg, color, p_yaxis, xmin, xmax, brushRef) => {
-        console.log("one", dataset, dataset.frequency.substring(0, 1), dataset.id);
+        console.log("drawone", dataset);
        
         var timeUnit = null;
-        if (dataset.frequency == "Yearly") {
+        if (dataset.frequency.includes("Annual")) {
             timeUnit = "%Y";
         }
-        else if (dataset.frequency == "Monthly") {
+        else if (dataset.frequency.includes("Semiannual")) {
             timeUnit = "%Y %m";
         }
-        else if (dataset.frequency == "Quarterly") {
+        else if (dataset.frequency.includes("Monthly")) {
             timeUnit = "%Y %m";
         }
-        else if (dataset.frequency == "Weekly") {
+        else if (dataset.frequency.includes("Quarterly")) {
+            timeUnit = "%Y %m";
+        }
+        else if (dataset.frequency.includes("Weekly")) {
+            timeUnit = "%Y %m %d";
+        }
+        else if (dataset.frequency.includes("Daily")) {
             timeUnit = "%Y %m %d";
         }
         const timeConv = d3.timeFormat(timeUnit)

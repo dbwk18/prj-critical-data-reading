@@ -11,20 +11,23 @@ function HighlightText (text, textToMatch, colorToMatch, highlight, clickhighlig
     return (
         textToMatch.length > 0 
         ? (
-            text.split(matchRegex).map((nonBoldText, index, arr) => (
-            <span 
-                key={index}
-                className={ hover && highlight.includes(text.trim()) ? 'underline-highlight' : ''}
-                onClick={(e)=>clickhighlight(e, text)}
-                onMouseEnter={()=>setHover(true)}
-                onMouseLeave={()=>setHover(false)}
-                >
-                    {nonBoldText}
-                    {index + 1 !== arr.length && (
-                        <mark class={hover ? colorToMatch[matches[index]] : null}>{matches[index]}</mark>
-                    )}
-            </span>
-            ))
+            <>
+                {text.split(matchRegex).map((nonBoldText, index, arr) => (
+                <span 
+                    key={index}
+                    className={ hover && highlight.includes(text.trim()) ? 'underline-highlight' : ''}
+                    onClick={(e)=>clickhighlight(e, text)}
+                    onMouseEnter={()=>setHover(true)}
+                    onMouseLeave={()=>setHover(false)}
+                    >
+                        {nonBoldText}
+                        {index + 1 !== arr.length && (
+                            <mark class={hover ? colorToMatch[matches[index]] : null}>{matches[index]}</mark>
+                        )}
+                </span>
+                ))}
+                &nbsp;
+            </>
             )
         : (
             <span
@@ -32,7 +35,7 @@ function HighlightText (text, textToMatch, colorToMatch, highlight, clickhighlig
                 onMouseEnter={()=>setHover(true)}
                 onMouseLeave={()=>setHover(false)}
             >
-                {text}
+                {text}&nbsp;
             </span>
         )
     )   

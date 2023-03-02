@@ -181,7 +181,7 @@ function CPIArticle2() {
                                 }
                                 else {
                                     return (
-                                        sentence
+                                        `${sentence}&nbsp;`
                                     )
                                 }
                                 
