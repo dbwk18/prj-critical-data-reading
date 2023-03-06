@@ -11,6 +11,7 @@ function InteractiveChart ( {offsetY, mainData, dataRefs, gptRefs, datasetDrop, 
     
     const graphRef = useRef();
     const [dataSelected, setDataSelected] = useState(null);
+    const [datasetIdx, setDatasetIdx] = useState([0, 0]);
 
 
     useEffect(() => {
@@ -23,7 +24,7 @@ function InteractiveChart ( {offsetY, mainData, dataRefs, gptRefs, datasetDrop, 
         console.log("change dropdown", listSelected)
         document.getElementById('graph-container').innerHTML=""
         updategraph();
-    }, [listSelected])
+    }, [listSelected, datasetIdx])
 
 
 
@@ -140,7 +141,7 @@ function InteractiveChart ( {offsetY, mainData, dataRefs, gptRefs, datasetDrop, 
 
         if (dataRefs.length == 1) {
             drawone(mainData, svg, zoomsvg, "#6AAFE6", 0 , xmin, xmax, gptRefs[0]);
-            drawone(datasetDrop[gptRefs[0]][0], svg, zoomsvg, "#a5d296", 1, xmin, xmax, mainData);
+            drawone(datasetDrop[gptRefs[0]][datasetIdx[1]], svg, zoomsvg, "#a5d296", 1, xmin, xmax, mainData);
         }
         else {
             // gptRefs.forEach((item, idx) => {
@@ -160,8 +161,9 @@ function InteractiveChart ( {offsetY, mainData, dataRefs, gptRefs, datasetDrop, 
             //         console.log("graph2", item)
             //     }
             // })
-            drawone(datasetDrop[listSelected[0]][0], svg, zoomsvg, "#6AAFE6", 0 , xmin, xmax, gptRefs[1]);
-            drawone(datasetDrop[listSelected[1]][0], svg, zoomsvg, "#a5d296", 1, xmin, xmax, gptRefs[0]);
+            console.log("update graph", datasetDrop[listSelected[0]], datasetIdx)
+            drawone(datasetDrop[listSelected[0]][datasetIdx[0]], svg, zoomsvg, "#6AAFE6", 0 , xmin, xmax, gptRefs[1]);
+            drawone(datasetDrop[listSelected[1]][datasetIdx[1]], svg, zoomsvg, "#a5d296", 1, xmin, xmax, gptRefs[0]);
             
             // drawone(datasetDrop[dropidx1], svg, zoomsvg, "#6AAFE6", 0 , xmin, xmax, datasetDrop[dropidx2]);
             // drawone(datasetDrop[dropidx2], svg, zoomsvg, "#a5d296", 1, xmin, xmax, datasetDrop[dropidx1]);
@@ -408,7 +410,7 @@ function InteractiveChart ( {offsetY, mainData, dataRefs, gptRefs, datasetDrop, 
                 {dataRefs.length > 0 
                 ? (
                     <>
-                    <LabelDropdown gptRefs={gptRefs} datasetDrop={datasetDrop} listSelected={listSelected} setListSelected={setListSelected} dataSelected={dataSelected} setDataSelected={setDataSelected} /> 
+                    <LabelDropdown gptRefs={gptRefs} datasetDrop={datasetDrop} listSelected={listSelected} setListSelected={setListSelected} dataSelected={dataSelected} setDataSelected={setDataSelected} datasetIdx={datasetIdx} setDatasetIdx={setDatasetIdx}/> 
                     </>
                 )
                 : null}

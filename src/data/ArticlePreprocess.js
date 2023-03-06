@@ -12,6 +12,7 @@ const cpi_article =
     })
 
 console.log("article list", cpi_article)
+
 const process_article = axios.post(`http://internal.kixlab.org:7887/process_article`, 
         {
             "image_base64": "", //Base64_encoded main visualization

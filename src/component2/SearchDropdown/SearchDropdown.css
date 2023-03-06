@@ -1,3 +1,9 @@
+.form-control {
+  display: flex;
+  font-size: 11px !important;
+  height: 60px;
+  align-items: center;
+}
 
 .search-dropdown .arrow {
     border-color: #999 transparent transparent;
@@ -24,6 +30,16 @@
 
   .search-dropdown .dropdown-menu.open {
     display: block;
-    width: 65%;
-    top: 40px;
+    width: 100%;
+    position: relative;
+    top: -17px;
+    font-size: 11px;
   }
+
+  .search-dropdown .dropdown-menu.open .dropdown-item {
+    display: inline-block;
+    white-space: pre-wrap; 
+    /* text-overflow:clip; */
+    width: 100% ;
+  }
+

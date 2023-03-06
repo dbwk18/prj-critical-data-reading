@@ -1,7 +1,7 @@
 import toydata2 from './article_extract_text_results.json'
 import { process_article } from './ArticlePreprocess'
 
-console.log("process article", process_article.then((data)=>{return data}))
+// console.log("process article", process_article.then((data)=>{return data}))
 
 const highlight = []
 toydata2.sentences.forEach((item) => highlight.push(item.sentence))
