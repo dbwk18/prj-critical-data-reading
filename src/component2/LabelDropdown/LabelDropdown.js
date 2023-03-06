@@ -1,7 +1,3 @@
-import { useEffect } from 'react';
-
-import {highlightData} from '../../data/DataPreprocess.js'
-
 import 'bootstrap/dist/css/bootstrap.min.css';
 import SearchDropdown from '../SearchDropdown/SearchDropdown';
 
@@ -17,7 +13,7 @@ function LabelDropdown({gptRefs, datasetDrop, listSelected, setListSelected, dat
                 // console.log("wht?", item, datasetDrop, datasetDrop[item], datasetDrop[listSelected[formidx]])
                 return (
                 <div style={{height: "60px"}}>
-                    <select style={{float: "left", width: "30%", height: "100%", fontSize: "12px", whiteSpace: "pre-wrap"}}
+                    <select style={{float: "left", width: "33%", height: "100%", fontSize: "12px", whiteSpace: "pre-wrap"}}
                         class="form-select"
                         as="select"
                         value={listSelected[formidx]}
@@ -39,7 +35,7 @@ function LabelDropdown({gptRefs, datasetDrop, listSelected, setListSelected, dat
                 gptRefs.length > 0 
                 ? 
                 <div style={{height: "60px",  fontSize: "11px"}}>
-                    <div class="form-control" style={{float: "left", width: "30%", height: "100%", fontSize: "12px", whiteSpace: "pre-wrap"}}>{gptRefs[0]}</div>
+                    <div class="form-control" style={{float: "left", width: "33%", height: "100%", fontSize: "12px", whiteSpace: "pre-wrap"}}>{gptRefs[0]}</div>
                     <SearchDropdown dataDrop={datasetDrop[gptRefs[0]]}  dataSelected={datasetDrop[gptRefs[0]][datasetIdx[1]]} setDataSelected={setDataSelected} datasetIdx={datasetIdx} setDatasetIdx={setDatasetIdx} dropIdx={1}/>
                 </div> 
                 : <></>

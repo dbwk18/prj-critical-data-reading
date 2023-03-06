@@ -1,5 +1,6 @@
 import React from "react"
 import { useState, useEffect } from "react";
+import axios from "axios";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import searchIcon from '../../images/icons/search.svg'
@@ -7,10 +8,12 @@ import closeIcon from '../../images/icons/buttonX.svg'
 import checkIcon from '../../images/icons/checkIcon.svg'
 
 
-function SearchBox({offsetX, offsetY, defaultInput, setSearchBox, highlight, setHighlight, setTooltip}) {
+function SearchBox({offsetX, offsetY, defaultInput, setSearchBox, setTooltip, newrefSentence}) {
 
     const [searchStatus, setSearchStatus] = useState(false); //search button click
     const [selectIdx, setSelectIdx] = useState(null);
+    
+    const [generatePart, setGeneratePart] = useState(defaultInput);
 
     useEffect(()=> {
         setSearchStatus(false);
@@ -19,7 +22,43 @@ function SearchBox({offsetX, offsetY, defaultInput, setSearchBox, highlight, set
     }, [defaultInput])
 
 
-    console.log("trace default", defaultInput)
+    console.log("trace default", defaultInput, newrefSentence)
+
+    function handleChange(e) {
+        console.log('handle change', e.target.value)
+        setGeneratePart(e.target.value)
+    }
+
+    async function createReference() {
+        setSearchStatus(true); 
+        setTooltip(false);
+
+        const req_input = {
+            "article_url": "http://test.test4", 
+            "sentence": `${newrefSentence}`, 
+            "sentence_part": `${defaultInput}`, 
+            "sentence_generation_part": `${generatePart}` 
+         }
+        console.log("reqinput", req_input)
+
+        const new_reference = await axios.post(`http://internal.kixlab.org:7887/create_reference`,
+        req_input,
+        {
+            headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            }
+        }
+        ).then( (res) => {
+            console.log(res.data)
+            return res.data
+        })  
+        
+        // 해당하는 sentnece의 dataref 리스트에 추가 
+
+        
+
+    }
 
     return (
         <React.Fragment>
@@ -38,13 +77,19 @@ function SearchBox({offsetX, offsetY, defaultInput, setSearchBox, highlight, set
                     <img style={{marginLeft: "auto"}} src={closeIcon}/>
                 </div>
                 <div class="input-group">
-                    <input type="text" class="form-control" defaultValue={defaultInput} key={defaultInput} style={{fontSize: "14px"}}></input>
+                    <input 
+                        type="text" 
+                        class="form-control" 
+                        defaultValue={defaultInput} 
+                        value={generatePart} 
+                        key={defaultInput} 
+                        onChange={handleChange}
+                        style={{fontSize: "14px"}}></input>
                     <span 
                         class="input-group-text" 
                         id="inputGroup-sizing-default" 
-                        onClick={()=>{setSearchStatus(true); setTooltip(false);}}
                     >
-                        <img src={searchIcon}/>
+                        <img src={searchIcon} onClick={()=>{createReference();}}/>
                     </span>
                 </div>
             

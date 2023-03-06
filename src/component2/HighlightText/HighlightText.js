@@ -1,12 +1,12 @@
 import React, {useState} from "react";
 import './HighlightText.css'
 
-function HighlightText (text, textToMatch, colorToMatch, highlight, clickhighlight) {
+function HighlightText (text, textToMatch, colorToMatch, highlight, clickhighlight, newrefSentence) {
     const matchRegex = RegExp(textToMatch.join("|"), "ig");
     const matches = [...text.matchAll(matchRegex)];
 
     const [hover, setHover] = useState(false);
-
+    // console.log("newref", newrefSentence)
 
     return (
         textToMatch.length > 0 
@@ -15,14 +15,22 @@ function HighlightText (text, textToMatch, colorToMatch, highlight, clickhighlig
                 {text.split(matchRegex).map((nonBoldText, index, arr) => (
                 <span 
                     key={index}
-                    className={ hover && highlight.includes(text.trim()) ? 'underline-highlight' : ''}
+                    className={ 
+                        hover && highlight.includes(text.trim()) 
+                        ? 'underline-highlight' 
+                        : (
+                            newrefSentence == text.trim() && highlight.includes(text.trim()) 
+                            ? 'bold-highlight'
+                            : ''
+                        )
+                    }
                     onClick={(e)=>clickhighlight(e, text)}
                     onMouseEnter={()=>setHover(true)}
                     onMouseLeave={()=>setHover(false)}
                     >
                         {nonBoldText}
                         {index + 1 !== arr.length && (
-                            <mark class={hover ? colorToMatch[matches[index]] : null}>{matches[index]}</mark>
+                            <mark class={hover || newrefSentence == text.trim() ? colorToMatch[matches[index]] : null}>{matches[index]}</mark>
                         )}
                 </span>
                 ))}
@@ -31,7 +39,15 @@ function HighlightText (text, textToMatch, colorToMatch, highlight, clickhighlig
             )
         : (
             <span
-                className={ hover && highlight.includes(text.trim()) ? 'underline-highlight' : ''}
+                className={ 
+                    hover && highlight.includes(text.trim()) 
+                    ? 'underline-highlight' 
+                    : (
+                        newrefSentence == text.trim()
+                        ? 'bold-highlight'
+                        : ''
+                    )
+                }
                 onMouseEnter={()=>setHover(true)}
                 onMouseLeave={()=>setHover(false)}
             >

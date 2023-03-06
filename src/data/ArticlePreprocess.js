@@ -38,4 +38,4 @@ const process_article = axios.post(`http://internal.kixlab.org:7887/process_arti
 
 console.log("article", process_article)
 
-export { process_article };
+export { cpi_article, process_article };

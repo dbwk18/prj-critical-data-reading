@@ -28,6 +28,7 @@ function CPIArticle2() {
 
     const [searchDefault, setSearchDefault] = useState(null);
     const [applyDefault, setApplyDefault] = useState(null);
+    const [newrefSentence, setNewrefSentence] = useState(null);
 
     const [offsetY, setOffsetY] = useState(null);
     const [mainData, setMainData] = useState()
@@ -37,9 +38,9 @@ function CPIArticle2() {
     const [listSelected, setListSelected] = useState([]);
 
     
-    //testing
+    //add new reference if user create
     useEffect(()=> {
-
+    
         console.log(highlight, highlightRef, highlightColor, highlightData)
 
     }, [])
@@ -61,6 +62,7 @@ function CPIArticle2() {
                 highlightRef[sentence.trim()].length == 1 ? setListSelected([highlightGPTRef[sentence.trim()][0]]) : setListSelected([highlightGPTRef[sentence.trim()][0], highlightGPTRef[sentence.trim()][1]])
                 setMainData(toydata2.main_data.dataName);
                 setOffsetY(e.nativeEvent.pageY);
+                setNewrefSentence(sentence);
             }
         })
     }
@@ -74,10 +76,16 @@ function CPIArticle2() {
         const s_container = window.getSelection().getRangeAt(0).startContainer;
         const e_container = window.getSelection().getRangeAt(0).endContainer;
 
+
         if (s_offset != e_offset) {
             setSearchDefault(window.getSelection().toString());
             xs.setStart(s_container, s_offset);
             xs.setEnd(e_container, e_offset);
+
+            // set new ref sentence in click highlight()
+            // cpiarticle.paragraphs.flat().map((item)=>{
+            //     if (item.includes(window.getSelection().toString())) setNewrefSentence(item);
+            // })
         }
  
         return s_offset != e_offset ? xs : null;
@@ -146,9 +154,8 @@ function CPIArticle2() {
                         offsetY={searchY} 
                         defaultInput={applyDefault} 
                         setSearchBox={setSearchBox} 
-                        highlight={highlight} 
-                        // setHighlight={setHighlight} 
                         setTooltip={setTooltip}
+                        newrefSentence={newrefSentence}
                     /> 
                 : null
             } 
@@ -179,7 +186,7 @@ function CPIArticle2() {
                                 // console.log(idx, sentence, highlightRef[sentence], highlightColor[sentence])
                                 if (highlight.includes(sentence)) {
                                     return (
-                                        HighlightText(sentence, highlightRef[sentence], highlightColor[sentence], highlight, clickhighlight)
+                                        HighlightText(sentence, highlightRef[sentence], highlightColor[sentence], highlight, clickhighlight, newrefSentence)
                                     )
                                 }
                                 else {

@@ -44,7 +44,7 @@ function SearchDropdown({dataDrop, dataSelected, setDataSelected, datasetIdx, se
     return (
         <div 
             className='search-dropdown'
-            style={{float: "left", width: "70%", height: "38px"}}    
+            style={{float: "left", width: "67%", height: "38px"}}    
         >
             <div className='input-group mb-3'>
                 {/* <input 

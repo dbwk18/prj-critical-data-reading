@@ -420,6 +420,7 @@ function InteractiveChart ( {offsetY, mainData, dataRefs, gptRefs, datasetDrop, 
                 <div ref={graphRef} 
                     id='graph-container'
                     className='GraphContainer' 
+                    style={{textAlign: "center"}}
                 />
                     
             </div>
