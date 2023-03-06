@@ -55,7 +55,7 @@ function SearchDropdown({dataDrop, dataSelected, setDataSelected, datasetIdx, se
                     onChange={(e)=>{setQuery(e.target.value); setDataSelected(null)}}
                 /> */}
                 <div
-                    class="form-control"
+                    class="form-control dropdown"
                     ref={inputRef}
                     onClick={()=>{setIsOpen(!isOpen)}}
                 >

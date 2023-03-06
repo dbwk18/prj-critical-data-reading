@@ -3,7 +3,7 @@ import { useState } from 'react';
 
 import SearchBox from '../SearchBox/SearchBox'
 
-function SearchTooltip({setSearchBox, offsetX, offsetY, setSearchY, searchDefault, setApplyDefault}) {
+function SearchTooltip({setSearchBox, offsetX, offsetY, setSearchX, setSearchY, searchDefault, setApplyDefault}) {
 
     return (
         <React.Fragment>
@@ -18,6 +18,7 @@ function SearchTooltip({setSearchBox, offsetX, offsetY, setSearchY, searchDefaul
                     <button 
                         onMouseDown={(e)=>{
                             setSearchBox(true); 
+                            setSearchX(offsetX)
                             setSearchY(offsetY); 
                             setApplyDefault(searchDefault); 
                         }} 

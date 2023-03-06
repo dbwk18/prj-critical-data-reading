@@ -7,7 +7,7 @@ import closeIcon from '../../images/icons/buttonX.svg'
 import checkIcon from '../../images/icons/checkIcon.svg'
 
 
-function SearchBox({offsetY, defaultInput, setSearchBox, highlight, setHighlight, setTooltip}) {
+function SearchBox({offsetX, offsetY, defaultInput, setSearchBox, highlight, setHighlight, setTooltip}) {
 
     const [searchStatus, setSearchStatus] = useState(false); //search button click
     const [selectIdx, setSelectIdx] = useState(null);
@@ -26,15 +26,19 @@ function SearchBox({offsetY, defaultInput, setSearchBox, highlight, setHighlight
             <div style={{backgroundColor: "#ededed", 
                     width: "22vw", 
                     position: "absolute", 
-                    left: "70vw", 
-                    top: `${offsetY-20}px`
+                    // left: "70vw", 
+                    left: `${offsetX-200}px`,
+                    top: `${offsetY+20}px`,
+                    borderRadius: "8px",
+                    border: "1px solid #000000"
                 }}>
                 
-                <div style={{display: "flex"}} onClick={()=>{setSearchBox(false);}}>
+                <div style={{display: "flex", padding: "7px 12px", fontSize: "14px", lineHeight: "16px"}} onClick={()=>{setSearchBox(false);}}>
+                    <div> What’s the name of the variable or event you want to see the data? </div>
                     <img style={{marginLeft: "auto"}} src={closeIcon}/>
                 </div>
                 <div class="input-group">
-                    <input type="text" class="form-control" defaultValue={defaultInput} key={defaultInput}></input>
+                    <input type="text" class="form-control" defaultValue={defaultInput} key={defaultInput} style={{fontSize: "14px"}}></input>
                     <span 
                         class="input-group-text" 
                         id="inputGroup-sizing-default" 
@@ -46,7 +50,8 @@ function SearchBox({offsetY, defaultInput, setSearchBox, highlight, setHighlight
             
             {/* {searchStatus
             ?  */}
-                <div class="list-group">
+                {/* for choosing specific dataset */}
+                {/* <div class="list-group">
                     {['First Data', 'Second Data', 'Third Data', 'Fourth Data', 'Fifth Data'].map((item, idx) => {
                         return (
                             <div 
@@ -65,7 +70,7 @@ function SearchBox({offsetY, defaultInput, setSearchBox, highlight, setHighlight
                             </div>
                         )
                     })}
-                </div>
+                </div> */}
             {/* : <></>
             } */}
             </div>

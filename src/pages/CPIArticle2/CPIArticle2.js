@@ -23,6 +23,7 @@ function CPIArticle2() {
     const [tooltipY, setTooltipY] = useState(null);
     const [tooltip, setTooltip] = useState(false);
     const [searchBox, setSearchBox] = useState(false);
+    const [searchX, setSearchX] = useState(null);
     const [searchY, setSearchY] = useState(null);
 
     const [searchDefault, setSearchDefault] = useState(null);
@@ -132,6 +133,7 @@ function CPIArticle2() {
                         setSearchBox={setSearchBox} 
                         offsetX={tooltipX} 
                         offsetY={tooltipY} 
+                        setSearchX={setSearchX}
                         setSearchY={setSearchY} 
                         searchDefault={searchDefault} 
                         setApplyDefault={setApplyDefault}
@@ -140,6 +142,7 @@ function CPIArticle2() {
             }
             {searchBox 
                 ? <SearchBox 
+                        offsetX={searchX}
                         offsetY={searchY} 
                         defaultInput={applyDefault} 
                         setSearchBox={setSearchBox} 
