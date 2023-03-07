@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from 'axios'
+import text_req from './../../data/article_extract_test_req.json'
+
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function UserLogin() {
@@ -15,10 +18,26 @@ function UserLogin() {
     const navigateToArticle = () => {
         const userObj = { name: userEmail };
         window.sessionStorage.setItem("user-email", JSON.stringify(userObj));
+        text_req['user_email'] = userEmail;
+
+        axios.post(`http://internal.kixlab.org:7887/process_article`, 
+        text_req,
+        {
+            headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            }
+        }
+        ).then( (res) => {
+            window.sessionStorage.setItem("user-article", JSON.stringify(res.data));
+        })  
 
         //temporal
         navigate("/nyt-cpi-article");
     };
+
+
+
 
 
     return(

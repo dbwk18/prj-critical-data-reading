@@ -42,6 +42,9 @@ function CPIArticle2() {
     //add new reference if user create
     useEffect(()=> {
         
+        console.log("user-email", window.sessionStorage.getItem("user-email"))
+        console.log("user-article", window.sessionStorage.getItem("user-article"))
+        
         console.log(highlight, highlightRef, highlightColor, highlightData)
 
     }, [])

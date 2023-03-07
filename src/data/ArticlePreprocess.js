@@ -12,7 +12,7 @@ const cpi_article =
         return paragraph
     })
 
-console.log("article list", cpi_article)
+// console.log("article list", cpi_article)
 
 const process_article = axios.post(`http://internal.kixlab.org:7887/process_article`, 
         // {
@@ -35,6 +35,6 @@ const process_article = axios.post(`http://internal.kixlab.org:7887/process_arti
 
 
 
-console.log("article", process_article)
+// console.log("article", process_article)
 
 export { cpi_article, process_article };

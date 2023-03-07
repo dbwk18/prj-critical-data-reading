@@ -1,11 +1,12 @@
 import React from "react"
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import searchIcon from '../../images/icons/search.svg'
 import closeIcon from '../../images/icons/buttonX.svg'
 import checkIcon from '../../images/icons/checkIcon.svg'
+
 
 
 function SearchBox({offsetX, offsetY, defaultInput, setSearchBox, setTooltip, newrefSentence}) {
@@ -15,11 +16,29 @@ function SearchBox({offsetX, offsetY, defaultInput, setSearchBox, setTooltip, ne
     
     const [generatePart, setGeneratePart] = useState(defaultInput);
 
+    const outsideRef = useRef(null);
+
+
     useEffect(()=> {
         setSearchStatus(false);
         setSelectIdx(null);
         setTooltip(false);
     }, [defaultInput])
+
+
+    useEffect(() => {
+        function handleClickOutside(event) {
+          if (outsideRef.current && !outsideRef.current.contains(event.target)) {
+            console.log(`div 외부 클릭을 감지!`);
+            setSearchBox(false);
+          }
+        }
+        document.addEventListener("click", handleClickOutside);
+        
+        return () => {
+          document.removeEventListener("click", handleClickOutside);
+        };
+      }, [outsideRef]);
 
 
     console.log("trace default", defaultInput, newrefSentence)
@@ -62,7 +81,10 @@ function SearchBox({offsetX, offsetY, defaultInput, setSearchBox, setTooltip, ne
 
     return (
         <React.Fragment>
-            <div style={{backgroundColor: "#ededed", 
+            <div 
+                ref={outsideRef}
+                style={{
+                    backgroundColor: "#ededed", 
                     width: "22vw", 
                     position: "absolute", 
                     // left: "70vw", 

@@ -3,7 +3,7 @@ import { process_article } from './ArticlePreprocess'
 
 // console.log("process article", process_article.then((data)=>{return data}))
 
-process_article.then((data)=>{console.log("pre", data)})
+// process_article.then((data)=>{console.log("pre", data)})
 
 const highlight = []
 toydata2.sentences.forEach((item) => highlight.push(item.sentence))
