@@ -15,6 +15,8 @@ import HighlightText from '../../component2/HighlightText/HighlightText';
 
 import {highlight, highlightRef, highlightGPTRef, highlightColor, highlightData} from '../../data/DataPreprocess.js'
 
+import axios from 'axios';
+
 import './CPIArticle2.css';
 
 
@@ -38,16 +40,20 @@ function CPIArticle2() {
     const [datasetDrop, setDatasetDrop] = useState([]);
     const [listSelected, setListSelected] = useState([]);
 
+    const [update, setUpdate] = useState(0);
+
     
     //add new reference if user create
     useEffect(()=> {
         
         console.log("user-email", window.sessionStorage.getItem("user-email"))
+
+        //process article & process data => update when user creates ref 
         console.log("user-article", window.sessionStorage.getItem("user-article"))
         
         console.log(highlight, highlightRef, highlightColor, highlightData)
 
-    }, [])
+    }, [update])
 
     document.addEventListener("dragstart", event => {
         // 투명도 초기화
@@ -160,6 +166,8 @@ function CPIArticle2() {
                         setSearchBox={setSearchBox} 
                         setTooltip={setTooltip}
                         newrefSentence={newrefSentence}
+                        update={update}
+                        setUpdate={setUpdate}
                     /> 
                 : null
             } 

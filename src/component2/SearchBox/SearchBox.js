@@ -7,9 +7,11 @@ import searchIcon from '../../images/icons/search.svg'
 import closeIcon from '../../images/icons/buttonX.svg'
 import checkIcon from '../../images/icons/checkIcon.svg'
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
-function SearchBox({offsetX, offsetY, defaultInput, setSearchBox, setTooltip, newrefSentence}) {
+function SearchBox({offsetX, offsetY, defaultInput, setSearchBox, setTooltip, newrefSentence, update, setUpdate}) {
 
     const [searchStatus, setSearchStatus] = useState(false); //search button click
     const [selectIdx, setSelectIdx] = useState(null);
@@ -17,6 +19,9 @@ function SearchBox({offsetX, offsetY, defaultInput, setSearchBox, setTooltip, ne
     const [generatePart, setGeneratePart] = useState(defaultInput);
 
     const outsideRef = useRef(null);
+
+    const errorNotify = () => toast("Failed to create a data reference");
+    const successNotify = (name) => toast(`Data reference ${name} is created`);
 
 
     useEffect(()=> {
@@ -29,7 +34,6 @@ function SearchBox({offsetX, offsetY, defaultInput, setSearchBox, setTooltip, ne
     useEffect(() => {
         function handleClickOutside(event) {
           if (outsideRef.current && !outsideRef.current.contains(event.target)) {
-            console.log(`div 외부 클릭을 감지!`);
             setSearchBox(false);
           }
         }
@@ -51,6 +55,7 @@ function SearchBox({offsetX, offsetY, defaultInput, setSearchBox, setTooltip, ne
     async function createReference() {
         setSearchStatus(true); 
         setTooltip(false);
+        setUpdate(update++);
 
         const req_input = {
             "article_url": "http://test.test4", 
@@ -70,10 +75,9 @@ function SearchBox({offsetX, offsetY, defaultInput, setSearchBox, setTooltip, ne
         }
         ).then( (res) => {
             console.log(res.data)
-            return res.data
+            if (res.data.gpt_data_name == '?') errorNotify();
+            else successNotify(res.data.gpt_data_name);
         })  
-        
-        // 해당하는 sentnece의 dataref 리스트에 추가 
 
         
 
