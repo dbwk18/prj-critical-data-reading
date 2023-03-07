@@ -3,6 +3,7 @@ import React, {useState, useEffect, useRef} from 'react';
 // import toydata2 from '../../data/toydata2.json'
 import toydata2 from '../../data/article_extract_text_results.json'
 import cpiarticle from '../../data/cpi_article.json'
+import { process_article } from '../../data/ArticlePreprocess'
 
 import NYTHeader from '../../images/NYT-unemploy/NYTHeader.png';
 import NYTGraph1 from '../../images/NYT_cpi/NYTGraph1.png';
@@ -40,7 +41,7 @@ function CPIArticle2() {
     
     //add new reference if user create
     useEffect(()=> {
-    
+        
         console.log(highlight, highlightRef, highlightColor, highlightData)
 
     }, [])

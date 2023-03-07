@@ -30,7 +30,6 @@ const process_article = axios.post(`http://internal.kixlab.org:7887/process_arti
             }
         }
         ).then( (res) => {
-            console.log(res.data)
             return res.data
         })  
 
