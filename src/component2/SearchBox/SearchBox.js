@@ -11,7 +11,7 @@ import text_req from '../../data/article_extract_test_req.json'
 import 'react-toastify/dist/ReactToastify.css';
 
 
-function SearchBox({offsetX, offsetY, defaultInput, setSearchBox, setTooltip, newrefSentence, update, setUpdate, setToastStatus}) {
+function SearchBox({offsetX, offsetY, defaultInput, setSearchBox, setTooltip, newrefSentence, update, setUpdate, setToastStatus, removeHighlight}) {
 
     const [searchStatus, setSearchStatus] = useState(false); //search button click
     const [selectIdx, setSelectIdx] = useState(null);
@@ -25,6 +25,7 @@ function SearchBox({offsetX, offsetY, defaultInput, setSearchBox, setTooltip, ne
         setSearchStatus(false);
         setSelectIdx(null);
         setTooltip(false);
+        removeHighlight();
     }, [defaultInput])
 
 
@@ -32,6 +33,7 @@ function SearchBox({offsetX, offsetY, defaultInput, setSearchBox, setTooltip, ne
         function handleClickOutside(event) {
           if (outsideRef.current && !outsideRef.current.contains(event.target)) {
             setSearchBox(false);
+            removeHighlight();
           }
         }
         document.addEventListener("click", handleClickOutside);
@@ -52,7 +54,7 @@ function SearchBox({offsetX, offsetY, defaultInput, setSearchBox, setTooltip, ne
     function createReference() {
         setSearchStatus(true); 
         setTooltip(false);
-        
+
         const req_input = {
             "article_url": `${text_req.url}`, 
             "sentence": `${newrefSentence}`, 
@@ -76,6 +78,7 @@ function SearchBox({offsetX, offsetY, defaultInput, setSearchBox, setTooltip, ne
 
             setUpdate(update+=1);
             setSearchBox(false);
+        
         })  
         
     }

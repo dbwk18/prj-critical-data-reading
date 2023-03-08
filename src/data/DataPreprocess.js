@@ -54,7 +54,8 @@ export const getHighlightGPTRef = (data) => {
 */
 export const getHighlightColor = (data) => {
     const highlightColor = {}
-    toydata2.sentences.forEach((item) => {
+    const highlightRef = getHighlightRef(data)
+    data.sentences.forEach((item) => {
         const coldict = {}
         highlightRef[item.sentence].forEach((ref) => coldict[ref] = "dataref")
         highlightColor[item.sentence] = coldict
@@ -94,45 +95,45 @@ export const getHighlightData = (data) => {
     return highlightData
 }
 
-const highlight = []
-toydata2.sentences.forEach((item) => highlight.push(item.sentence))
+// const highlight = []
+// toydata2.sentences.forEach((item) => highlight.push(item.sentence))
 
 
-const highlightRef = {}
-toydata2.sentences.forEach((item) => {
-    const reflist = []
-    // console.log("toy", item)
-    item.data_references.forEach((ref) => reflist.push(ref.sentence_part))
-    highlightRef[item.sentence] = reflist
-})
+// const highlightRef = {}
+// toydata2.sentences.forEach((item) => {
+//     const reflist = []
+//     // console.log("toy", item)
+//     item.data_references.forEach((ref) => reflist.push(ref.sentence_part))
+//     highlightRef[item.sentence] = reflist
+// })
 
 
-const highlightGPTRef = {}
-toydata2.sentences.forEach((item) => {
-    const reflist = []
-    // console.log("toy", item)
-    item.data_references.forEach((ref) => reflist.push(ref.gpt_sentence_part))
-    highlightGPTRef[item.sentence] = reflist
-})
+// const highlightGPTRef = {}
+// toydata2.sentences.forEach((item) => {
+//     const reflist = []
+//     // console.log("toy", item)
+//     item.data_references.forEach((ref) => reflist.push(ref.gpt_sentence_part))
+//     highlightGPTRef[item.sentence] = reflist
+// })
 
 
-const highlightColor = {}
-toydata2.sentences.forEach((item) => {
-    const coldict = {}
-    highlightRef[item.sentence].forEach((ref) => coldict[ref] = "dataref")
-    highlightColor[item.sentence] = coldict
-})
+// const highlightColor = {}
+// toydata2.sentences.forEach((item) => {
+//     const coldict = {}
+//     highlightRef[item.sentence].forEach((ref) => coldict[ref] = "dataref")
+//     highlightColor[item.sentence] = coldict
+// })
 
-const highlightData = {}
-toydata2.sentences.forEach((item) => {
-    const datadict = {}
-    item.data_references.forEach((ref) => {
-        const datasetlist= []
-        ref.data_names.forEach((data) => {datasetlist.push({"name": `${data.title} (${data.frequency}) (${data.units})`, "id": `${data.id}`, "frequency": `${data.frequency}`, "units": `${data.units}`})})
-        datadict[ref.gpt_sentence_part] = datasetlist
-    })
-    highlightData[item.sentence] = datadict
-})
+// const highlightData = {}
+// toydata2.sentences.forEach((item) => {
+//     const datadict = {}
+//     item.data_references.forEach((ref) => {
+//         const datasetlist= []
+//         ref.data_names.forEach((data) => {datasetlist.push({"name": `${data.title} (${data.frequency}) (${data.units})`, "id": `${data.id}`, "frequency": `${data.frequency}`, "units": `${data.units}`})})
+//         datadict[ref.gpt_sentence_part] = datasetlist
+//     })
+//     highlightData[item.sentence] = datadict
+// })
 
 
 // export { highlight, highlightRef, highlightGPTRef, highlightColor, highlightData };

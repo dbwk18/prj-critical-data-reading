@@ -46,7 +46,7 @@ function UserLogin() {
             }
         }
         ).then( (res) => {
-            console.log("ARTICLE", res);
+            console.log("ARTICLE", res, res.data);
             window.sessionStorage.setItem("user-article", JSON.stringify(res.data));
 
             window.sessionStorage.setItem("user-highlight", JSON.stringify(getHighlight(res.data)));

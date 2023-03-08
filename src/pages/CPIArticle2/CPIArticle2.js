@@ -7,6 +7,7 @@ import cpiarticle from '../../data/cpi_article.json'
 import NYTHeader from '../../images/NYT-unemploy/NYTHeader.png';
 import NYTGraph1 from '../../images/NYT_cpi/NYTGraph1.png';
 
+import ArticleParagraph from '../../component2/ArticleParagraph/ArticleParagraph';
 import InteractiveChart from '../../component2/InteractiveChart/InteractiveChart';
 import SearchTooltip from '../../component2/SearchTooltip/SearchTooltip';
 import SearchBox from '../../component2/SearchBox/SearchBox';
@@ -22,17 +23,18 @@ import { ToastContainer, toast } from 'react-toastify';
 
 
 import './CPIArticle2.css';
+import { tree } from 'd3';
 
 
 function CPIArticle2() {
 
+    const [mainData, setMainData] = useState(null);
     const [highlight, setHighlight] = useState(JSON.parse(window.sessionStorage.getItem("user-highlight")));
     const [highlightRef, setHighlightRef] = useState(JSON.parse(window.sessionStorage.getItem("user-highlight-ref")));
     const [highlightGPTRef, setHighlightGPTRef] = useState(JSON.parse(window.sessionStorage.getItem("user-highlight-gptref")));
     const [highlightColor, setHighlightColor] = useState(JSON.parse(window.sessionStorage.getItem("user-highlight-color")));
     const [highlightData, setHighlightData] = useState(JSON.parse(window.sessionStorage.getItem("user-highlight-data")));
 
-    
     const [tooltipX, setTooltipX] = useState(null);
     const [tooltipY, setTooltipY] = useState(null);
     const [tooltip, setTooltip] = useState(false);
@@ -45,7 +47,6 @@ function CPIArticle2() {
     const [newrefSentence, setNewrefSentence] = useState(null); //sentence when making new reference
 
     const [offsetY, setOffsetY] = useState(null);
-    const [mainData, setMainData] = useState();
     const [currSentence, setCurrSentence] = useState(null); //sentence currently highlighted
     const [dataRefs, setDataRefs] = useState([]);
     const [gptRefs, setGPTRefs] = useState([]);
@@ -58,8 +59,7 @@ function CPIArticle2() {
     const errorNotify = () => {toast("Failed to create a data reference");}
     const successNotify = (name) => toast(`Data reference ${name} is created`);
 
-
-    //add new reference if user create
+    //update new reference if user create
     useEffect(()=> {
 
         text_req['user_email'] =  JSON.parse(window.sessionStorage.getItem("user-email"))["name"]
@@ -76,6 +76,11 @@ function CPIArticle2() {
         ).then( (res) => {
             console.log("ARTICLE", res);
             window.sessionStorage.setItem("user-article", JSON.stringify(res.data));
+            window.sessionStorage.setItem("user-highlight", JSON.stringify(getHighlight(res.data)));
+            window.sessionStorage.setItem("user-highlight-ref", JSON.stringify(getHighlightRef(res.data)));
+            window.sessionStorage.setItem("user-highlight-gptref", JSON.stringify(getHighlightGPTRef(res.data)));
+            window.sessionStorage.setItem("user-highlight-color", JSON.stringify(getHighlightColor(res.data)));
+            window.sessionStorage.setItem("user-highlight-data", JSON.stringify(getHighlightData(res.data)));
 
             setHighlight(getHighlight(res.data));
             setHighlightRef(getHighlightRef(res.data));
@@ -85,7 +90,6 @@ function CPIArticle2() {
 
         })  
 
-    
         console.log("user-info", window.sessionStorage.getItem("user-email"), JSON.parse(window.sessionStorage.getItem("user-article")))
 
 
@@ -94,7 +98,7 @@ function CPIArticle2() {
     useEffect(() => {
 
         console.log("process", highlight, highlightRef, highlightColor, highlightData)
-
+        
         //update the dropdown
         if (currSentence !== null) {
             setDataRefs(highlightRef[currSentence])
@@ -134,12 +138,12 @@ function CPIArticle2() {
     const clickhighlight = (e, sentence) => {
         toydata2.sentences.forEach( (item) => {
             if (item.sentence == sentence.trim()) {
+                setMainData(JSON.parse(window.sessionStorage.getItem("user-article")).main_data.dataName);
                 setCurrSentence(sentence.trim())
                 setDataRefs(highlightRef[sentence.trim()])
                 setGPTRefs(highlightGPTRef[sentence.trim()])
                 setDatasetDrop(highlightData[sentence.trim()])
                 highlightRef[sentence.trim()].length == 1 ? setListSelected([highlightGPTRef[sentence.trim()][0]]) : setListSelected([highlightGPTRef[sentence.trim()][0], highlightGPTRef[sentence.trim()][1]])
-                setMainData(toydata2.main_data.dataName);
                 setOffsetY(e.nativeEvent.pageY);
                 setNewrefSentence(sentence);
             }
@@ -240,6 +244,7 @@ function CPIArticle2() {
                         update={update}
                         setUpdate={setUpdate}
                         setToastStatus={setToastStatus}
+                        removeHighlight={removeHighlight}
                     /> 
                 : null
             } 
@@ -249,7 +254,7 @@ function CPIArticle2() {
             const range = highlightSelect();
 
             if (range) {
-                removeHighlight();
+                // removeHighlight();
                 highlightText(range);
                 setTooltipX(e.nativeEvent.pageX);
                 setTooltipY(e.nativeEvent.pageY);
@@ -270,7 +275,7 @@ function CPIArticle2() {
                                 // console.log(idx, sentence, highlightRef[sentence], highlightColor[sentence])
                                 if (highlight.includes(sentence)) {
                                     return (
-                                        HighlightText(sentence, highlightRef[sentence], highlightColor[sentence], highlight, clickhighlight, newrefSentence)
+                                        HighlightText(sentence, highlight, clickhighlight, newrefSentence)
                                     )
                                 }
                                 else {
