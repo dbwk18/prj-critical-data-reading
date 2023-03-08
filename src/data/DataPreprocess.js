@@ -1,38 +1,46 @@
 import toydata2 from './article_extract_text_results.json'
-import { process_article } from './ArticlePreprocess'
 
-// console.log("process article", process_article.then((data)=>{return data}))
+export const getHighlight = (data) => {
+    const highlight = []
+    data.sentences.forEach((item) => highlight.push(item.sentence))
 
-// process_article.then((data)=>{console.log("pre", data)})
-
-const highlight = []
-toydata2.sentences.forEach((item) => highlight.push(item.sentence))
+    return highlight
+}
 
 /* for highlighting exact text ref in article
 {
     "sentence" : ["dataref1", "dataref2", "dataref3"]
 }
 */
-const highlightRef = {}
-toydata2.sentences.forEach((item) => {
-    const reflist = []
-    // console.log("toy", item)
-    item.data_references.forEach((ref) => reflist.push(ref.sentence_part))
-    highlightRef[item.sentence] = reflist
-})
+export const getHighlightRef = (data) => {
+    const highlightRef = {}
+    data.sentences.forEach((item) => {
+        const reflist = []
+        // console.log("toy", item)
+        item.data_references.forEach((ref) => reflist.push(ref.sentence_part))
+        highlightRef[item.sentence] = reflist
+    })
+
+    return highlightRef
+
+}
 
 /* for listing dropdown in interactive chart
 {
     "sentence" : ["gpt-dataref1", "gpt-dataref2", "gpt-dataref3"]
 }
 */
-const highlightGPTRef = {}
-toydata2.sentences.forEach((item) => {
-    const reflist = []
-    // console.log("toy", item)
-    item.data_references.forEach((ref) => reflist.push(ref.gpt_sentence_part))
-    highlightGPTRef[item.sentence] = reflist
-})
+export const getHighlightGPTRef = (data) => {
+    const highlightGPTRef = {}
+    data.sentences.forEach((item) => {
+        const reflist = []
+        // console.log("toy", item)
+        item.data_references.forEach((ref) => reflist.push(ref.gpt_sentence_part))
+        highlightGPTRef[item.sentence] = reflist
+    })
+
+    return highlightGPTRef
+}
 
 /* for highlighting exact text in article - distinguish color
 { 
@@ -44,13 +52,16 @@ toydata2.sentences.forEach((item) => {
     }
 }
 */
-const highlightColor = {}
-toydata2.sentences.forEach((item) => {
-    const coldict = {}
-    highlightRef[item.sentence].forEach((ref) => coldict[ref] = "dataref")
-    highlightColor[item.sentence] = coldict
-})
+export const getHighlightColor = (data) => {
+    const highlightColor = {}
+    toydata2.sentences.forEach((item) => {
+        const coldict = {}
+        highlightRef[item.sentence].forEach((ref) => coldict[ref] = "dataref")
+        highlightColor[item.sentence] = coldict
+    })
 
+    return highlightColor
+}
 
 /* for listing dropdown & draw chart
 { 
@@ -68,6 +79,50 @@ toydata2.sentences.forEach((item) => {
     }
 }
 */
+export const getHighlightData = (data) => {
+    const highlightData = {}
+    data.sentences.forEach((item) => {
+        const datadict = {}
+        item.data_references.forEach((ref) => {
+            const datasetlist= []
+            ref.data_names.forEach((data) => {datasetlist.push({"name": `${data.title} (${data.frequency}) (${data.units})`, "id": `${data.id}`, "frequency": `${data.frequency}`, "units": `${data.units}`})})
+            datadict[ref.gpt_sentence_part] = datasetlist
+        })
+        highlightData[item.sentence] = datadict
+    })
+
+    return highlightData
+}
+
+const highlight = []
+toydata2.sentences.forEach((item) => highlight.push(item.sentence))
+
+
+const highlightRef = {}
+toydata2.sentences.forEach((item) => {
+    const reflist = []
+    // console.log("toy", item)
+    item.data_references.forEach((ref) => reflist.push(ref.sentence_part))
+    highlightRef[item.sentence] = reflist
+})
+
+
+const highlightGPTRef = {}
+toydata2.sentences.forEach((item) => {
+    const reflist = []
+    // console.log("toy", item)
+    item.data_references.forEach((ref) => reflist.push(ref.gpt_sentence_part))
+    highlightGPTRef[item.sentence] = reflist
+})
+
+
+const highlightColor = {}
+toydata2.sentences.forEach((item) => {
+    const coldict = {}
+    highlightRef[item.sentence].forEach((ref) => coldict[ref] = "dataref")
+    highlightColor[item.sentence] = coldict
+})
+
 const highlightData = {}
 toydata2.sentences.forEach((item) => {
     const datadict = {}
@@ -80,5 +135,5 @@ toydata2.sentences.forEach((item) => {
 })
 
 
-export { highlight, highlightRef, highlightGPTRef, highlightColor, highlightData };
+// export { highlight, highlightRef, highlightGPTRef, highlightColor, highlightData };
 

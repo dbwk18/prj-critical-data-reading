@@ -3,7 +3,6 @@ import React, {useState, useEffect, useRef} from 'react';
 // import toydata2 from '../../data/toydata2.json'
 import toydata2 from '../../data/article_extract_text_results.json'
 import cpiarticle from '../../data/cpi_article.json'
-import { process_article } from '../../data/ArticlePreprocess'
 
 import NYTHeader from '../../images/NYT-unemploy/NYTHeader.png';
 import NYTGraph1 from '../../images/NYT_cpi/NYTGraph1.png';
@@ -13,16 +12,26 @@ import SearchTooltip from '../../component2/SearchTooltip/SearchTooltip';
 import SearchBox from '../../component2/SearchBox/SearchBox';
 import HighlightText from '../../component2/HighlightText/HighlightText';
 
-import {highlight, highlightRef, highlightGPTRef, highlightColor, highlightData} from '../../data/DataPreprocess.js'
+// import {highlight, highlightRef, highlightGPTRef, highlightColor, highlightData} from '../../data/DataPreprocess.js'
+import { getHighlight, getHighlightRef, getHighlightGPTRef, getHighlightColor, getHighlightData } from '../../data/DataPreprocess.js';
 
 import text_req from './../../data/article_extract_test_req.json'
 
 import axios from 'axios';
+import { ToastContainer, toast } from 'react-toastify';
+
 
 import './CPIArticle2.css';
 
 
 function CPIArticle2() {
+
+    const [highlight, setHighlight] = useState(JSON.parse(window.sessionStorage.getItem("user-highlight")));
+    const [highlightRef, setHighlightRef] = useState(JSON.parse(window.sessionStorage.getItem("user-highlight-ref")));
+    const [highlightGPTRef, setHighlightGPTRef] = useState(JSON.parse(window.sessionStorage.getItem("user-highlight-gptref")));
+    const [highlightColor, setHighlightColor] = useState(JSON.parse(window.sessionStorage.getItem("user-highlight-color")));
+    const [highlightData, setHighlightData] = useState(JSON.parse(window.sessionStorage.getItem("user-highlight-data")));
+
     
     const [tooltipX, setTooltipX] = useState(null);
     const [tooltipY, setTooltipY] = useState(null);
@@ -33,24 +42,27 @@ function CPIArticle2() {
 
     const [searchDefault, setSearchDefault] = useState(null);
     const [applyDefault, setApplyDefault] = useState(null);
-    const [newrefSentence, setNewrefSentence] = useState(null);
+    const [newrefSentence, setNewrefSentence] = useState(null); //sentence when making new reference
 
     const [offsetY, setOffsetY] = useState(null);
-    const [mainData, setMainData] = useState()
+    const [mainData, setMainData] = useState();
+    const [currSentence, setCurrSentence] = useState(null); //sentence currently highlighted
     const [dataRefs, setDataRefs] = useState([]);
     const [gptRefs, setGPTRefs] = useState([]);
     const [datasetDrop, setDatasetDrop] = useState([]);
     const [listSelected, setListSelected] = useState([]);
 
     const [update, setUpdate] = useState(0);
+    const [toastStatus, setToastStatus] = useState(null);
 
-    
+    const errorNotify = () => {toast("Failed to create a data reference");}
+    const successNotify = (name) => toast(`Data reference ${name} is created`);
+
+
     //add new reference if user create
     useEffect(()=> {
-        
-        console.log("user-email", window.sessionStorage.getItem("user-email"))
 
-        text_req['user_email'] = window.sessionStorage.getItem("user-email");
+        text_req['user_email'] =  JSON.parse(window.sessionStorage.getItem("user-email"))["name"]
 
         //process article & process data => update when user creates ref 
         axios.post(`http://internal.kixlab.org:7887/process_article`, 
@@ -64,12 +76,52 @@ function CPIArticle2() {
         ).then( (res) => {
             console.log("ARTICLE", res);
             window.sessionStorage.setItem("user-article", JSON.stringify(res.data));
+
+            setHighlight(getHighlight(res.data));
+            setHighlightRef(getHighlightRef(res.data));
+            setHighlightGPTRef(getHighlightGPTRef(res.data));
+            setHighlightColor(getHighlightColor(res.data));
+            setHighlightData(getHighlightData(res.data));
+
         })  
-        console.log("user-article", window.sessionStorage.getItem("user-article"))
-        
-        console.log(highlight, highlightRef, highlightColor, highlightData)
+
+    
+        console.log("user-info", window.sessionStorage.getItem("user-email"), JSON.parse(window.sessionStorage.getItem("user-article")))
+
 
     }, [update])
+
+    useEffect(() => {
+
+        console.log("process", highlight, highlightRef, highlightColor, highlightData)
+
+        //update the dropdown
+        if (currSentence !== null) {
+            setDataRefs(highlightRef[currSentence])
+            setGPTRefs(highlightGPTRef[currSentence])
+            setDatasetDrop(highlightData[currSentence])
+            highlightRef[currSentence].length == 1 
+            ? setListSelected([highlightGPTRef[currSentence][highlightRef[currSentence].length-1]]) 
+            : (highlightRef[currSentence].length == 2 
+                ? setListSelected([highlightGPTRef[currSentence][highlightRef[currSentence].length-1], highlightGPTRef[currSentence][0]])
+                : setListSelected([highlightGPTRef[currSentence][highlightRef[currSentence].length-1], highlightGPTRef[currSentence][1]])
+            )
+        }
+
+    }, [window.sessionStorage.getItem("user-article")])
+
+
+    useEffect(()=> {
+
+        if (toastStatus != null) {
+            if (toastStatus == 'fail') errorNotify();
+            else successNotify(toastStatus);
+        }
+
+        setToastStatus(null);
+
+    }, [toastStatus])
+
 
     document.addEventListener("dragstart", event => {
         // 투명도 초기화
@@ -82,6 +134,7 @@ function CPIArticle2() {
     const clickhighlight = (e, sentence) => {
         toydata2.sentences.forEach( (item) => {
             if (item.sentence == sentence.trim()) {
+                setCurrSentence(sentence.trim())
                 setDataRefs(highlightRef[sentence.trim()])
                 setGPTRefs(highlightGPTRef[sentence.trim()])
                 setDatasetDrop(highlightData[sentence.trim()])
@@ -140,6 +193,8 @@ function CPIArticle2() {
 
     return (
     <div>
+        <ToastContainer />
+
         <img src={NYTHeader} width='100%' />
         <div className='g-name'>{cpiarticle["title"]}</div>
         <div className='g-details'>{cpiarticle["details"]}</div>
@@ -184,6 +239,7 @@ function CPIArticle2() {
                         newrefSentence={newrefSentence}
                         update={update}
                         setUpdate={setUpdate}
+                        setToastStatus={setToastStatus}
                     /> 
                 : null
             } 
