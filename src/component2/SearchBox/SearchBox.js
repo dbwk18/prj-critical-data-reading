@@ -61,8 +61,10 @@ function SearchBox({offsetX, offsetY, defaultInput, setSearchBox, setTooltip, ne
             "article_url": "http://test.test4", 
             "sentence": `${newrefSentence}`, 
             "sentence_part": `${defaultInput}`, 
-            "sentence_generation_part": `${generatePart}` 
+            "sentence_generation_part": `${generatePart}`,
+            "user_email": `${JSON.parse(window.sessionStorage.getItem("user-email"))["name"]}`
          }
+
         console.log("reqinput", req_input)
 
         const new_reference = await axios.post(`http://internal.kixlab.org:7887/create_reference`,
@@ -78,13 +80,11 @@ function SearchBox({offsetX, offsetY, defaultInput, setSearchBox, setTooltip, ne
             if (res.data.gpt_data_name == '?') errorNotify();
             else successNotify(res.data.gpt_data_name);
         })  
-
-        
-
     }
 
     return (
         <React.Fragment>
+            <ToastContainer />
             <div 
                 ref={outsideRef}
                 style={{

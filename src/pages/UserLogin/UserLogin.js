@@ -20,8 +20,10 @@ function UserLogin() {
         window.sessionStorage.setItem("user-email", JSON.stringify(userObj));
         text_req['user_email'] = userEmail;
 
-        axios.post(`http://internal.kixlab.org:7887/process_article`, 
-        text_req,
+        axios.post(`http://internal.kixlab.org:7887/create_user`, 
+        {   
+            user_email: `${userEmail}`
+        },
         {
             headers: {
             'Content-Type': 'application/json',
@@ -29,7 +31,7 @@ function UserLogin() {
             }
         }
         ).then( (res) => {
-            window.sessionStorage.setItem("user-article", JSON.stringify(res.data));
+            console.log("ARTICLE", res);
         })  
 
         //temporal

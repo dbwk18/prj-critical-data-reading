@@ -15,6 +15,8 @@ import HighlightText from '../../component2/HighlightText/HighlightText';
 
 import {highlight, highlightRef, highlightGPTRef, highlightColor, highlightData} from '../../data/DataPreprocess.js'
 
+import text_req from './../../data/article_extract_test_req.json'
+
 import axios from 'axios';
 
 import './CPIArticle2.css';
@@ -48,7 +50,21 @@ function CPIArticle2() {
         
         console.log("user-email", window.sessionStorage.getItem("user-email"))
 
+        text_req['user_email'] = window.sessionStorage.getItem("user-email");
+
         //process article & process data => update when user creates ref 
+        axios.post(`http://internal.kixlab.org:7887/process_article`, 
+        text_req,
+        {
+            headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            }
+        }
+        ).then( (res) => {
+            console.log("ARTICLE", res);
+            window.sessionStorage.setItem("user-article", JSON.stringify(res.data));
+        })  
         console.log("user-article", window.sessionStorage.getItem("user-article"))
         
         console.log(highlight, highlightRef, highlightColor, highlightData)
