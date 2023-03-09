@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { getHighlight, getHighlightRef, getHighlightGPTRef, getHighlightColor, getHighlightData } from '../../data/DataPreprocess.js';
+import { getHighlight, getHighlightRef, getHighlightGPTRef, getHighlightColor, getHighlightData, getTimeFrameData } from '../../data/DataPreprocess.js';
 
 import axios from 'axios'
 import text_req from './../../data/article_extract_test_req.json'
@@ -54,6 +54,8 @@ function UserLogin() {
             window.sessionStorage.setItem("user-highlight-gptref", JSON.stringify(getHighlightGPTRef(res.data)));
             window.sessionStorage.setItem("user-highlight-color", JSON.stringify(getHighlightColor(res.data)));
             window.sessionStorage.setItem("user-highlight-data", JSON.stringify(getHighlightData(res.data)));
+            window.sessionStorage.setItem("user-timeframe-data", JSON.stringify(getTimeFrameData(res.data)));
+
         })  
 
         //temporal

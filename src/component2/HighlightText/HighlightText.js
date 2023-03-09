@@ -1,10 +1,10 @@
 import React, {useState} from "react";
 import './HighlightText.css'
 
-function HighlightText (text, highlight, clickhighlight, newrefSentence) {
+function HighlightText (text, highlight, textToMatch, colorToMatch, clickhighlight, newrefSentence) {
     
-    const textToMatch = JSON.parse(window.sessionStorage.getItem("user-highlight-ref"))[text]
-    const colorToMatch = JSON.parse(window.sessionStorage.getItem("user-highlight-color"))[text]
+    // const textToMatch = JSON.parse(window.sessionStorage.getItem("user-highlight-ref"))[text]
+    // const colorToMatch = JSON.parse(window.sessionStorage.getItem("user-highlight-color"))[text]
 
     const matchRegex = RegExp(textToMatch.join("|"), "ig");
     const matches = [...text.matchAll(matchRegex)];

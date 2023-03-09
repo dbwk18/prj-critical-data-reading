@@ -25,7 +25,6 @@ function SearchBox({offsetX, offsetY, defaultInput, setSearchBox, setTooltip, ne
         setSearchStatus(false);
         setSelectIdx(null);
         setTooltip(false);
-        removeHighlight();
     }, [defaultInput])
 
 
@@ -33,7 +32,6 @@ function SearchBox({offsetX, offsetY, defaultInput, setSearchBox, setTooltip, ne
         function handleClickOutside(event) {
           if (outsideRef.current && !outsideRef.current.contains(event.target)) {
             setSearchBox(false);
-            removeHighlight();
           }
         }
         document.addEventListener("click", handleClickOutside);
@@ -78,6 +76,7 @@ function SearchBox({offsetX, offsetY, defaultInput, setSearchBox, setTooltip, ne
 
             setUpdate(update+=1);
             setSearchBox(false);
+            removeHighlight();
         
         })  
         

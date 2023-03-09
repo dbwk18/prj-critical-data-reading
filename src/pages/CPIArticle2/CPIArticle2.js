@@ -14,7 +14,7 @@ import SearchBox from '../../component2/SearchBox/SearchBox';
 import HighlightText from '../../component2/HighlightText/HighlightText';
 
 // import {highlight, highlightRef, highlightGPTRef, highlightColor, highlightData} from '../../data/DataPreprocess.js'
-import { getHighlight, getHighlightRef, getHighlightGPTRef, getHighlightColor, getHighlightData } from '../../data/DataPreprocess.js';
+import { getHighlight, getHighlightRef, getHighlightGPTRef, getHighlightColor, getHighlightData, getTimeFrameData } from '../../data/DataPreprocess.js';
 
 import text_req from './../../data/article_extract_test_req.json'
 
@@ -34,6 +34,7 @@ function CPIArticle2() {
     const [highlightGPTRef, setHighlightGPTRef] = useState(JSON.parse(window.sessionStorage.getItem("user-highlight-gptref")));
     const [highlightColor, setHighlightColor] = useState(JSON.parse(window.sessionStorage.getItem("user-highlight-color")));
     const [highlightData, setHighlightData] = useState(JSON.parse(window.sessionStorage.getItem("user-highlight-data")));
+    const [timeFrameData, setTimeFrameData] = useState(JSON.parse(window.sessionStorage.getItem("user-timeframe-data")))
 
     const [tooltipX, setTooltipX] = useState(null);
     const [tooltipY, setTooltipY] = useState(null);
@@ -81,12 +82,15 @@ function CPIArticle2() {
             window.sessionStorage.setItem("user-highlight-gptref", JSON.stringify(getHighlightGPTRef(res.data)));
             window.sessionStorage.setItem("user-highlight-color", JSON.stringify(getHighlightColor(res.data)));
             window.sessionStorage.setItem("user-highlight-data", JSON.stringify(getHighlightData(res.data)));
+            window.sessionStorage.setItem("user-timeframe-data", JSON.stringify(getTimeFrameData(res.data)));
+
 
             setHighlight(getHighlight(res.data));
             setHighlightRef(getHighlightRef(res.data));
             setHighlightGPTRef(getHighlightGPTRef(res.data));
             setHighlightColor(getHighlightColor(res.data));
             setHighlightData(getHighlightData(res.data));
+            setTimeFrameData(getTimeFrameData(res.data));
 
         })  
 
@@ -97,7 +101,7 @@ function CPIArticle2() {
 
     useEffect(() => {
 
-        console.log("process", highlight, highlightRef, highlightColor, highlightData)
+        console.log("process", highlight, highlightRef, highlightColor, highlightData, timeFrameData)
         
         //update the dropdown
         if (currSentence !== null) {
@@ -139,6 +143,7 @@ function CPIArticle2() {
         toydata2.sentences.forEach( (item) => {
             if (item.sentence == sentence.trim()) {
                 setMainData(JSON.parse(window.sessionStorage.getItem("user-article")).main_data.dataName);
+                // setTimeFrame(JSON.parse(window.sessionStorage.getItem("user-article")).sentences)
                 setCurrSentence(sentence.trim())
                 setDataRefs(highlightRef[sentence.trim()])
                 setGPTRefs(highlightGPTRef[sentence.trim()])
@@ -215,6 +220,12 @@ function CPIArticle2() {
                     datasetDrop={datasetDrop}
                     listSelected={listSelected}
                     setListSelected={setListSelected}
+                    timeFrameData={timeFrameData[currSentence]}
+                    highlightRef={highlightRef}
+                    setHighlightRef={setHighlightRef}
+                    highlightColor={highlightColor}
+                    setHighlightColor={setHighlightColor}
+                    currSentence={currSentence}
                 />
              : null 
             }
@@ -254,7 +265,7 @@ function CPIArticle2() {
             const range = highlightSelect();
 
             if (range) {
-                // removeHighlight();
+                removeHighlight();
                 highlightText(range);
                 setTooltipX(e.nativeEvent.pageX);
                 setTooltipY(e.nativeEvent.pageY);
@@ -275,7 +286,7 @@ function CPIArticle2() {
                                 // console.log(idx, sentence, highlightRef[sentence], highlightColor[sentence])
                                 if (highlight.includes(sentence)) {
                                     return (
-                                        HighlightText(sentence, highlight, clickhighlight, newrefSentence)
+                                        HighlightText(sentence, highlight, highlightRef[sentence],highlightColor[sentence], clickhighlight, newrefSentence)
                                     )
                                 }
                                 else {

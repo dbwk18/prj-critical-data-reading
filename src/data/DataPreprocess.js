@@ -95,6 +95,25 @@ export const getHighlightData = (data) => {
     return highlightData
 }
 
+
+/* for highlighting exact text ref in article
+{
+    "sentence" : [
+        {
+            timeframes
+        }
+    ]
+}
+*/
+export const getTimeFrameData = (data) => {
+    const timeframeData = {}
+    data.sentences.forEach((item) => {
+        timeframeData[item.sentence] = item.time_frames
+    })
+
+    return timeframeData
+    
+}
 // const highlight = []
 // toydata2.sentences.forEach((item) => highlight.push(item.sentence))
 
