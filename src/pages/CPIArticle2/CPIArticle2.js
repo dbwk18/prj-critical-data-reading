@@ -1,8 +1,6 @@
 import React, {useState, useEffect, useRef} from 'react';
-import { useLocation } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
-// import toydata2 from '../../data/toydata2.json'
-import toydata2 from '../../data/article_extract_text_results.json'
 import cpiarticle from '../../data/cpi_article.json'
 
 import NYTHeader from '../../images/NYT-unemploy/NYTHeader.png';
@@ -14,25 +12,26 @@ import SearchTooltip from '../../component2/SearchTooltip/SearchTooltip';
 import SearchBox from '../../component2/SearchBox/SearchBox';
 import HighlightText from '../../component2/HighlightText/HighlightText';
 
-// import {highlight, highlightRef, highlightGPTRef, highlightColor, highlightData} from '../../data/DataPreprocess.js'
 import { getHighlight, getHighlightRef, getHighlightGPTRef, getHighlightColor, getHighlightData, getTimeFrameData } from '../../data/DataPreprocess.js';
 
 import text_req from './../../data/article_extract_test_req.json'
+import next_req from './../../data/article_extract_req_emission.json'
+
 
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 
-
 import './CPIArticle2.css';
-import { tree } from 'd3';
 
 
 function CPIArticle2() {
 
+    const navigate = useNavigate();
     const location = useLocation();
 
     const [mainData, setMainData] = useState(null);
-    
+    const [articleData, setArticleData] = useState(location.state.article)
+
     const [highlight, setHighlight] = useState(location.state.highlight);
     const [highlightRef, setHighlightRef] = useState(location.state.ref);
     const [highlightGPTRef, setHighlightGPTRef] = useState(location.state.gptref);
@@ -144,7 +143,7 @@ function CPIArticle2() {
 
     //function for clicking highlighted sentence
     const clickhighlight = (e, sentence) => {
-        toydata2.sentences.forEach( (item) => {
+        articleData.sentences.forEach( (item) => {
             if (item.sentence == sentence.trim()) {
                 setMainData(JSON.parse(window.sessionStorage.getItem("user-article")).main_data.dataName);
                 // setTimeFrame(JSON.parse(window.sessionStorage.getItem("user-article")).sentences)
@@ -202,6 +201,33 @@ function CPIArticle2() {
         range.surroundContents(newNode);
     }
 
+    function processNext(textreq) {
+        textreq['user_email'] = JSON.parse(window.sessionStorage.getItem("user-email"))["name"]
+        
+        axios.post(`http://internal.kixlab.org:7887/process_article`, 
+        textreq,
+        {
+            headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            }
+        }
+        ).then( (res) => {
+            console.log("ARTICLE", res, res.data);
+            window.sessionStorage.setItem("user-article", JSON.stringify(res.data));
+
+            window.sessionStorage.setItem("user-highlight", JSON.stringify(getHighlight(res.data)));
+            window.sessionStorage.setItem("user-highlight-ref", JSON.stringify(getHighlightRef(res.data)));
+            window.sessionStorage.setItem("user-highlight-gptref", JSON.stringify(getHighlightGPTRef(res.data)));
+            window.sessionStorage.setItem("user-highlight-color", JSON.stringify(getHighlightColor(res.data)));
+            window.sessionStorage.setItem("user-highlight-data", JSON.stringify(getHighlightData(res.data)));
+            window.sessionStorage.setItem("user-timeframe-data", JSON.stringify(getTimeFrameData(res.data)));
+
+             //temporal
+            navigate("/nyt-emission-article", {state: {article: res.data, highlight: getHighlight(res.data), ref: getHighlightRef(res.data), gptref: getHighlightGPTRef(res.data), color: getHighlightColor(res.data), data: getHighlightData(res.data), timeframe: getTimeFrameData(res.data)}});
+        })  
+
+    }
 
 
     return (
@@ -209,10 +235,13 @@ function CPIArticle2() {
         <ToastContainer />
 
         <img src={NYTHeader} width='100%' />
+        <button onClick={()=>{processNext(next_req)}}>NEXT</button>
         <div className='g-name'>{cpiarticle["title"]}</div>
         <div className='g-details'>{cpiarticle["details"]}</div>
         
         <img src={NYTGraph1} width='100%' />
+
+        
         
         <div>
             {dataRefs.length !== 0

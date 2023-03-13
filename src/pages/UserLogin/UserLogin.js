@@ -57,7 +57,7 @@ function UserLogin() {
             window.sessionStorage.setItem("user-timeframe-data", JSON.stringify(getTimeFrameData(res.data)));
 
              //temporal
-            navigate("/nyt-cpi-article", {state: {highlight: getHighlight(res.data), ref: getHighlightRef(res.data), gptref: getHighlightGPTRef(res.data), color: getHighlightColor(res.data), data: getHighlightData(res.data), timeframe: getTimeFrameData(res.data)}});
+            navigate("/nyt-cpi-article", {state: {article: res.data, highlight: getHighlight(res.data), ref: getHighlightRef(res.data), gptref: getHighlightGPTRef(res.data), color: getHighlightColor(res.data), data: getHighlightData(res.data), timeframe: getTimeFrameData(res.data)}});
         })  
 
      

@@ -1,5 +1,6 @@
 import toydata2 from './article_extract_text_results.json'
 
+
 export const getHighlight = (data) => {
     const highlight = []
     data.sentences.forEach((item) => highlight.push(item.sentence))
