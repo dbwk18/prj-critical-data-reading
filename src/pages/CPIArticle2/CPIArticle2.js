@@ -1,4 +1,5 @@
 import React, {useState, useEffect, useRef} from 'react';
+import { useLocation } from "react-router-dom";
 
 // import toydata2 from '../../data/toydata2.json'
 import toydata2 from '../../data/article_extract_text_results.json'
@@ -28,13 +29,16 @@ import { tree } from 'd3';
 
 function CPIArticle2() {
 
+    const location = useLocation();
+
     const [mainData, setMainData] = useState(null);
-    const [highlight, setHighlight] = useState(JSON.parse(window.sessionStorage.getItem("user-highlight")));
-    const [highlightRef, setHighlightRef] = useState(JSON.parse(window.sessionStorage.getItem("user-highlight-ref")));
-    const [highlightGPTRef, setHighlightGPTRef] = useState(JSON.parse(window.sessionStorage.getItem("user-highlight-gptref")));
-    const [highlightColor, setHighlightColor] = useState(JSON.parse(window.sessionStorage.getItem("user-highlight-color")));
-    const [highlightData, setHighlightData] = useState(JSON.parse(window.sessionStorage.getItem("user-highlight-data")));
-    const [timeFrameData, setTimeFrameData] = useState(JSON.parse(window.sessionStorage.getItem("user-timeframe-data")))
+    
+    const [highlight, setHighlight] = useState(location.state.highlight);
+    const [highlightRef, setHighlightRef] = useState(location.state.ref);
+    const [highlightGPTRef, setHighlightGPTRef] = useState(location.state.gptref);
+    const [highlightColor, setHighlightColor] = useState(location.state.color);
+    const [highlightData, setHighlightData] = useState(location.state.data);
+    const [timeFrameData, setTimeFrameData] = useState(location.state.timeframe)
 
     const [tooltipX, setTooltipX] = useState(null);
     const [tooltipY, setTooltipY] = useState(null);
