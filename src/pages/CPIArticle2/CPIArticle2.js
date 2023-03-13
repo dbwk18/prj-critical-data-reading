@@ -57,8 +57,8 @@ function CPIArticle2() {
     const [update, setUpdate] = useState(0);
     const [toastStatus, setToastStatus] = useState(null);
 
-    const errorNotify = () => {toast("Failed to create a data reference");}
-    const successNotify = (name) => toast(`Data reference ${name} is created`);
+    const errorNotify = () => {toast.error("Failed to create a data reference");}
+    const successNotify = (name) => toast.success(`Data reference "${name}" is created`);
 
     //update new reference if user create
     useEffect(()=> {
