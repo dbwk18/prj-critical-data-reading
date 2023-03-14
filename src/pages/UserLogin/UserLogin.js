@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { getHighlight, getHighlightRef, getHighlightGPTRef, getHighlightColor, getHighlightData, getTimeFrameData } from '../../data/DataPreprocess.js';
+
 import axios from 'axios'
 import text_req from './../../data/article_extract_test_req.json'
 
@@ -34,8 +36,31 @@ function UserLogin() {
             console.log("ARTICLE", res);
         })  
 
-        //temporal
-        navigate("/nyt-cpi-article");
+        //process article & process data => update when user creates ref 
+        axios.post(`http://internal.kixlab.org:7887/process_article`, 
+        text_req,
+        {
+            headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            }
+        }
+        ).then( (res) => {
+            console.log("ARTICLE", res, res.data);
+            window.sessionStorage.setItem("user-article", JSON.stringify(res.data));
+
+            window.sessionStorage.setItem("user-highlight", JSON.stringify(getHighlight(res.data)));
+            window.sessionStorage.setItem("user-highlight-ref", JSON.stringify(getHighlightRef(res.data)));
+            window.sessionStorage.setItem("user-highlight-gptref", JSON.stringify(getHighlightGPTRef(res.data)));
+            window.sessionStorage.setItem("user-highlight-color", JSON.stringify(getHighlightColor(res.data)));
+            window.sessionStorage.setItem("user-highlight-data", JSON.stringify(getHighlightData(res.data)));
+            window.sessionStorage.setItem("user-timeframe-data", JSON.stringify(getTimeFrameData(res.data)));
+
+             //temporal
+            navigate("/nyt-cpi-article", {state: {article: res.data, highlight: getHighlight(res.data), ref: getHighlightRef(res.data), gptref: getHighlightGPTRef(res.data), color: getHighlightColor(res.data), data: getHighlightData(res.data), timeframe: getTimeFrameData(res.data)}});
+        })  
+
+     
     };
 
 

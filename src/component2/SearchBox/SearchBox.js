@@ -6,12 +6,12 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import searchIcon from '../../images/icons/search.svg'
 import closeIcon from '../../images/icons/buttonX.svg'
 import checkIcon from '../../images/icons/checkIcon.svg'
+import text_req from '../../data/article_extract_test_req.json'
 
-import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 
-function SearchBox({offsetX, offsetY, defaultInput, setSearchBox, setTooltip, newrefSentence, update, setUpdate}) {
+function SearchBox({offsetX, offsetY, defaultInput, setSearchBox, setTooltip, newrefSentence, update, setUpdate, setToastStatus, removeHighlight}) {
 
     const [searchStatus, setSearchStatus] = useState(false); //search button click
     const [selectIdx, setSelectIdx] = useState(null);
@@ -19,9 +19,6 @@ function SearchBox({offsetX, offsetY, defaultInput, setSearchBox, setTooltip, ne
     const [generatePart, setGeneratePart] = useState(defaultInput);
 
     const outsideRef = useRef(null);
-
-    const errorNotify = () => toast("Failed to create a data reference");
-    const successNotify = (name) => toast(`Data reference ${name} is created`);
 
 
     useEffect(()=> {
@@ -52,22 +49,19 @@ function SearchBox({offsetX, offsetY, defaultInput, setSearchBox, setTooltip, ne
         setGeneratePart(e.target.value)
     }
 
-    async function createReference() {
+    function createReference() {
         setSearchStatus(true); 
         setTooltip(false);
-        setUpdate(update++);
 
         const req_input = {
-            "article_url": "http://test.test4", 
+            "article_url": `${text_req.url}`, 
             "sentence": `${newrefSentence}`, 
             "sentence_part": `${defaultInput}`, 
             "sentence_generation_part": `${generatePart}`,
             "user_email": `${JSON.parse(window.sessionStorage.getItem("user-email"))["name"]}`
          }
 
-        console.log("reqinput", req_input)
-
-        const new_reference = await axios.post(`http://internal.kixlab.org:7887/create_reference`,
+        const new_reference = axios.post(`http://internal.kixlab.org:7887/create_reference`,
         req_input,
         {
             headers: {
@@ -77,14 +71,19 @@ function SearchBox({offsetX, offsetY, defaultInput, setSearchBox, setTooltip, ne
         }
         ).then( (res) => {
             console.log(res.data)
-            if (res.data.gpt_data_name == '?') errorNotify();
-            else successNotify(res.data.gpt_data_name);
+            if (res.data.gpt_data_name == '?') {setToastStatus('fail');}
+            else {setToastStatus(res.data.gpt_data_name);}
+
+            setUpdate(update+=1);
+            setSearchBox(false);
+            removeHighlight();
+        
         })  
+        
     }
 
     return (
         <React.Fragment>
-            <ToastContainer />
             <div 
                 ref={outsideRef}
                 style={{

@@ -4,8 +4,7 @@ import CovidArticle from './pages/CovidArticle';
 import UnemployArticle from './pages/UnemployArticle';
 import CPIArticle from './pages/CPIArticle';
 import CPIArticle2 from './pages/CPIArticle2'
-import CarbonArticle from './pages/CarbonArticle'
-
+import EmissionArticle from './pages/EmissionArticle/EmissionArticle';
 import UserLogin from './pages/UserLogin/';
 
 function App() {
@@ -16,7 +15,8 @@ function App() {
         {/* <Route path="/" element={<CPIArticle />} /> */}
         <Route path="/prj-critical-data-reading" element={<UserLogin />} />
         <Route path="/nyt-cpi-article" element={<CPIArticle2 />} />
-        <Route path="/nyt-carbon-article" element={<CarbonArticle />} />
+        <Route path="/nyt-emission-article" element={<EmissionArticle />} />
+
       </Routes>
     </BrowserRouter>
   );

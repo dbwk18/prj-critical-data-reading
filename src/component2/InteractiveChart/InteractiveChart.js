@@ -7,7 +7,7 @@ import SearchDropdown from "../SearchDropdown/SearchDropdown";
 import SearchBox from "../SearchBox/SearchBox";
 
 
-function InteractiveChart ( {offsetY, mainData, dataRefs, gptRefs, datasetDrop, listSelected, setListSelected} ) {
+function InteractiveChart ( {offsetY, mainData, dataRefs, gptRefs, datasetDrop, listSelected, setListSelected, timeFrameData, highlightRef, setHighlightRef, highlightColor, setHighlightColor, currSentence} ) {
     
     const graphRef = useRef();
     const [dataSelected, setDataSelected] = useState(null);
@@ -21,7 +21,7 @@ function InteractiveChart ( {offsetY, mainData, dataRefs, gptRefs, datasetDrop, 
 
 
     useEffect(()=> {
-        console.log("change dropdown", listSelected)
+        console.log("change dropdown", listSelected, timeFrameData)
         document.getElementById('graph-container').innerHTML=""
         updategraph();
     }, [listSelected, datasetIdx])
@@ -55,8 +55,8 @@ function InteractiveChart ( {offsetY, mainData, dataRefs, gptRefs, datasetDrop, 
             .attr("height", height2 + margin2.top + margin2.bottom)
             .append("g")
             .attr("transform", `translate(${margin.left}, ${margin.top})`);
-            
-            
+        
+
         const time_range = await axios.get(`http://internal.kixlab.org:7887/query_data?dataset_id=${mainData.id}`, { headers: {
             'Content-Type': 'application/json',
             'Accept': 'application/json',
@@ -73,11 +73,6 @@ function InteractiveChart ( {offsetY, mainData, dataRefs, gptRefs, datasetDrop, 
     
         const xmin = time_range[0]
         const xmax = time_range[1]
-
-        // temporal (data error)
-        // const xmin = '1999-03-11'
-        // const xmax = '2023-02-26'
-        // console.log(time_range, xmin, xmax)
 
       
         if (dataRefs.length == 1) {
@@ -319,6 +314,68 @@ function InteractiveChart ( {offsetY, mainData, dataRefs, gptRefs, datasetDrop, 
             .attr("d", line2)
             
         zoomsvg.call(myBrush)
+
+        timeFrameData.forEach((timeframe)=> {
+            if (timeframe.time_start != null && timeframe.time_end != null) {
+                var left = xScale(new Date(timeframe.time_start));
+                var right = xScale(new Date(timeframe.time_end)); //one more day
+                var wid = right - left;
+
+                if (timeframe.time_start == timeframe.time_end) {
+                    svg.append("rect")
+                        .attr("x", left)
+                        .attr("width", "1")
+                        .attr("height", height)
+                        .style("stroke", "#eb9f9f")
+                        .style("fill", "#eb9f9f")
+                        .on("mouseover", function(d) {
+                            const newHighlightRef = highlightRef
+                            newHighlightRef[currSentence].push(timeframe.sentence_part)
+                            setHighlightRef(newHighlightRef)
+
+                            const newHighlightColor = highlightColor
+                            newHighlightColor[currSentence][timeframe.sentence_part] = 'timeref'
+                            setHighlightColor(newHighlightColor)
+                            console.log("HIGHLIGHTHOVER", newHighlightRef[currSentence], newHighlightColor[currSentence])
+                          })                  
+                          .on("mouseout", function(d) {
+                            setHighlightRef(JSON.parse(window.sessionStorage.getItem("user-highlight-ref")))
+                            setHighlightColor(JSON.parse(window.sessionStorage.getItem("user-highlight-color")))
+                          });
+
+                    zoomsvg.append("rect")
+                        .attr("x", left)
+                        .attr("width", "1")
+                        .attr("height", height2)
+                        .style("stroke", "#eb9f9f")
+                        .style("fill", "#eb9f9f")
+
+                    console.log("TIMEFRAMELINE", timeframe.time_start, new Date(timeframe.time_start))
+                }
+
+                else {
+                    svg.append("rect")
+                        .attr("x", left)
+                        .attr("width", wid)
+                        .attr("height", height)
+                        .style("fill", "#eb9f9f")
+
+
+                    zoomsvg.append("rect")
+                        .attr("x", left)
+                        .attr("width", wid)
+                        .attr("height", height2)
+                        .style("fill", "#eb9f9f")
+
+                    console.log("TIMEFRAMERANGE", timeframe.time_start, new Date(timeframe.time_start))
+                    
+                }
+                
+
+            }
+        })
+        
+        
         // ${dataRef.dataReference.replace(/\s/gi, "")}
         // zoomsvg.append("g")
         //     .attr("class", "x-brush")
@@ -359,6 +416,7 @@ function InteractiveChart ( {offsetY, mainData, dataRefs, gptRefs, datasetDrop, 
             
             console.log("brush line", svg.selectAll(`path.line`), zoomsvg.selectAll('path.line2'))
             const lines = svg.selectAll(`path.line`)
+            const timeline = svg.selectAll(`rect`)
 
         
             const brushyScale0 = d3.scaleLinear().rangeRound([height, 0]);
@@ -382,6 +440,10 @@ function InteractiveChart ( {offsetY, mainData, dataRefs, gptRefs, datasetDrop, 
                         brushyScale1.domain([d3.min(data, function(d){return d.measurement;}), d3.max(data, function(d){return d.measurement;})]).nice()
                     }
                 }
+            })
+
+            timeline.each((data, idx) => {
+                console.log("TIMETIMETIME", data, idx)
             })
 
             svg.select(`path.line.main`).attr("d", d3.line()
