@@ -6,12 +6,14 @@ import axios from 'axios'
 import text_req from './../../data/article_extract_test_req.json'
 
 import 'bootstrap/dist/css/bootstrap.min.css';
+import './UserLogin.css';
+
 
 function UserLogin() {
 
     const navigate = useNavigate();
 
-    const [userEmail, setUserEmail] = useState(null);
+    const [userEmail, setUserEmail] = useState('');
 
     const onChange = (e) => {
         setUserEmail(e.target.value);
@@ -68,42 +70,44 @@ function UserLogin() {
 
 
     return(
-        <div 
-            style={{
-                height: "100vh", 
-                display: "flex", 
-                flexDirection: "column", 
-                alignItems: "center", 
-                paddingTop: "20%"
-            }}
-        >
-            <div 
-                class="mb-3" 
-                style={{
-                    display: "flex",
-                    justifyContent: "center",
-                    width: "50%", 
-                    textAlign: "center"
-                }}
-            >
-                <label for="user-email" class="form-label">Email address</label>
-                <input 
-                    type="email" 
-                    class="form-control form-control-lg" 
-                    id="user-email" 
-                    placeholder="name@example.com" 
-                    value={userEmail}
-                    onChange={onChange}     
-                />
-            </div>
+        <div className="container">
+            <div className="login--container">
+                <div className="instruction">
+                    Please enter your email to start the task.
+                </div>
+                <div 
+                    className="mb-3" 
+                    style={{
+                        display: "flex",
+                        justifyContent: "center",
+                        width: "50%", 
+                        textAlign: "center"
+                    }}
+                >
+                    <label htmlFor="user-email" className="form-label">Email address</label>
+                    <input 
+                        type="email" 
+                        className="form-control form-control-lg" 
+                        id="user-email" 
+                        placeholder="name@example.com" 
+                        value={userEmail}
+                        onChange={onChange}
+                        onKeyUp={(e) => {
+                            if (e.key === 'Enter') {
+                                navigateToArticle();
+                            }
+                        }}
+                    />
+                </div>
 
-            <button 
-                type="button" 
-                class="btn btn-primary"
-                onClick={navigateToArticle}
-            >
-                    Login
-            </button>
+                <button 
+                    type="button" 
+                    className="btn btn-primary"
+                    onClick={navigateToArticle}
+                >
+                        Start Task
+                </button>
+            </div>
         </div>
     )
 }
