@@ -1,0 +1,13 @@
+.login--container {
+  height: 100vh;
+  display: flex; 
+  flex-direction: column;
+  align-items: center;
+  padding-top: 20%;
+}
+
+.instruction {
+  font-size: 1.5em;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
