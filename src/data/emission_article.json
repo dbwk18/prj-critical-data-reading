@@ -1,65 +1,65 @@
 {
-    "title": "U.S. Carbon Emissions Grew in 2022",
-    "details": "Emissions ticked up 1.3 percent last year, even as renewables surpassed coal.",
-    "paragraphs": [
-      [
-        "America’s greenhouse gas emissions from energy and industry rose last year, moving the nation in the opposite direction from its climate goals, according to preliminary estimates published Tuesday by the Rhodium Group, a nonpartisan research firm."
-      ],
-      [
-        "Emissions ticked up 1.3 percent even as renewable energy surpassed coal power nationwide for the first time in over six decades, with wind, solar and hydropower generating 22 percent of the country’s electricity compared with 20 percent from coal.", 
-        "Growth in natural gas power generation also compensated for coal’s decline."
-      ],
-      [
-        "The new estimate puts nationwide emissions back in line with their long-term trajectory after nearly two years of Covid-related disruptions, said Ben King, an associate director at the Rhodium Group and an author of the report."
-      ],
-      [
-        "“We are essentially on the same trajectory that we’ve been on since the mid 2000s,” he said, calling it a “long-term structural decline,” but one that’s “not happening fast enough.”"
-      ],
-      [
-        "Two years ago, President Biden promised to accelerate the pace, setting a goal of reducing the nation’s greenhouse gas emissions at least 50 percent below 2005 levels by 2030, an amount that is thought to be consistent with limiting global warming to 1.5 degrees Celsius (2.7 degrees Fahrenheit) above preindustrial levels.",
-        "Beyond that threshold, scientists say the risk of climate catastrophe, including life-threatening heat waves and food and water scarcity, increases significantly.",
-        "The planet has already warmed 1.1 degrees Celsius over the past century."
-      ],
-      [
-        "The recently passed Inflation Reduction Act, a landmark climate and tax law, is supposed to help bend the emissions curve closer to the 2030 goal, but even it is likely to fall short."
-      ],
-      [
-        "The emissions estimate reflects a continued rebound from 2020 pandemic lows.",
-        "The initial outbreak of the coronavirus triggered widespread lockdowns and slashed U.S. energy use to its lowest level in decades, with emissions plummeting more than 10 percent.",
-        "They rebounded 6.2 percent in 2021 as the economy began to bounce back, but ongoing supply chain disruptions and new coronavirus variants dampened the recovery.",
-        "The smaller rise in 2022 emissions came amid Russia’s war in Ukraine, the resulting global energy crisis, and high inflation."
-      ],
-      [
-        "Emissions from electric power generation fell as renewable energy and natural gas displaced coal, which saw a small and short-lived increase in 2021 because of high natural gas prices.",
-        "Natural gas is less carbon-intensive than coal, but its production and distribution releases methane, a particularly potent greenhouse gas."
-      ],
-      [
-        "A recent report from the International Energy Agency estimated that renewables are on track to overtake coal as the largest source of electricity generation worldwide by early 2025, as countries respond to fossil fuel supply disruptions linked to the war in Ukraine by enacting stronger policies to shift away from carbon-emitting oil, gas and coal."
-      ],
-      [
-        "Still, the United States made little progress last year in either of its highest-emitting sectors, transportation and industry, which together account for roughly two-thirds of the country’s total greenhouse gas emissions.",
-        "Industrial emissions rose by 1.5 percent and transportation emissions rose by 1.3 percent, the latter driven mainly by demand for jet fuel as air travel continued to recover from pandemic-era declines."
-      ],
-      [
-        "Some experts are hopeful that provisions in the Inflation Reduction Act can provide money to help speed decarbonization at industrial plants and reduce fossil fuel emissions from heavy industry, including cement and steel production.",
-        "The legislation also expanded consumer tax credits for electric vehicles, which typically create fewer emissions than gasoline-powered cars."
-      ],
-      [
-        "The most significant increase in emissions last year came from homes and buildings, which burn fossil fuels like natural gas in furnaces, hot water heaters and other appliances.",
-        "Those emissions rose 6 percent, and reached prepandemic levels.",
-        "Colder-than-average temperatures early in the year led many Americans to increase their home energy use by turning up the heat."
-      ],
-      [
-        "The estimates from the Rhodium Group’s sector by sector analysis do not include emissions from agriculture or from wildfires, which release carbon dioxide into the atmosphere as they burn forests and grasslands.",
-        "Agriculture is a major contributor to climate change, with farming activities accounting for 11.2 percent of total greenhouse gas emissions in the United States in 2020, according to estimates from the U.S. Department of Agriculture."
-      ],
-      [
-        "The report does contain some good news: Last year, the country’s economic growth, measured in G.D.P., outpaced emissions growth, indicating that the economy was less carbon intensive, Mr. King said.",
-        "This “decoupling” of economic growth from fossil fuel consumption is crucial in charting an economically sustainable path toward decarbonization."
-      ],
-      [
-        "“We’ve seen the challenges that happen when declines in emissions are tied to declines in G.D.P.,” he said.",
-        "“Look at 2020.”"
-      ]
+  "title": "U.S. Carbon Emissions Grew in 2022",
+  "details": "Emissions ticked up 1.3 percent last year, even as renewables surpassed coal.",
+  "paragraphs": [
+    [
+      "America’s greenhouse gas emissions from energy and industry rose last year, moving the nation in the opposite direction from its climate goals, according to preliminary estimates published Tuesday by the Rhodium Group, a nonpartisan research firm."
+    ],
+    [
+      "Emissions ticked up 1.3 percent even as renewable energy surpassed coal power nationwide for the first time in over six decades, with wind, solar and hydropower generating 22 percent of the country’s electricity compared with 20 percent from coal.",
+      "Growth in natural gas power generation also compensated for coal’s decline."
+    ],
+    [
+      "The new estimate puts nationwide emissions back in line with their long-term trajectory after nearly two years of Covid-related disruptions, said Ben King, an associate director at the Rhodium Group and an author of the report."
+    ],
+    [
+      "“We are essentially on the same trajectory that we’ve been on since the mid 2000s,” he said, calling it a “long-term structural decline,” but one that’s “not happening fast enough.”"
+    ],
+    [
+      "Two years ago, President Biden promised to accelerate the pace, setting a goal of reducing the nation’s greenhouse gas emissions at least 50 percent below 2005 levels by 2030, an amount that is thought to be consistent with limiting global warming to 1.5 degrees Celsius (2.7 degrees Fahrenheit) above preindustrial levels.",
+      "Beyond that threshold, scientists say the risk of climate catastrophe, including life-threatening heat waves and food and water scarcity, increases significantly.",
+      "The planet has already warmed 1.1 degrees Celsius over the past century."
+    ],
+    [
+      "The recently passed Inflation Reduction Act, a landmark climate and tax law, is supposed to help bend the emissions curve closer to the 2030 goal, but even it is likely to fall short."
+    ],
+    [
+      "The emissions estimate reflects a continued rebound from 2020 pandemic lows.",
+      "The initial outbreak of the coronavirus triggered widespread lockdowns and slashed U.S. energy use to its lowest level in decades, with emissions plummeting more than 10 percent.",
+      "They rebounded 6.2 percent in 2021 as the economy began to bounce back, but ongoing supply chain disruptions and new coronavirus variants dampened the recovery.",
+      "The smaller rise in 2022 emissions came amid Russia’s war in Ukraine, the resulting global energy crisis, and high inflation."
+    ],
+    [
+      "Emissions from electric power generation fell as renewable energy and natural gas displaced coal, which saw a small and short-lived increase in 2021 because of high natural gas prices.",
+      "Natural gas is less carbon-intensive than coal, but its production and distribution releases methane, a particularly potent greenhouse gas."
+    ],
+    [
+      "A recent report from the International Energy Agency estimated that renewables are on track to overtake coal as the largest source of electricity generation worldwide by early 2025, as countries respond to fossil fuel supply disruptions linked to the war in Ukraine by enacting stronger policies to shift away from carbon-emitting oil, gas and coal."
+    ],
+    [
+      "Still, the United States made little progress last year in either of its highest-emitting sectors, transportation and industry, which together account for roughly two-thirds of the country’s total greenhouse gas emissions.",
+      "Industrial emissions rose by 1.5 percent and transportation emissions rose by 1.3 percent, the latter driven mainly by demand for jet fuel as air travel continued to recover from pandemic-era declines."
+    ],
+    [
+      "Some experts are hopeful that provisions in the Inflation Reduction Act can provide money to help speed decarbonization at industrial plants and reduce fossil fuel emissions from heavy industry, including cement and steel production.",
+      "The legislation also expanded consumer tax credits for electric vehicles, which typically create fewer emissions than gasoline-powered cars."
+    ],
+    [
+      "The most significant increase in emissions last year came from homes and buildings, which burn fossil fuels like natural gas in furnaces, hot water heaters and other appliances.",
+      "Those emissions rose 6 percent, and reached prepandemic levels.",
+      "Colder-than-average temperatures early in the year led many Americans to increase their home energy use by turning up the heat."
+    ],
+    [
+      "The estimates from the Rhodium Group’s sector by sector analysis do not include emissions from agriculture or from wildfires, which release carbon dioxide into the atmosphere as they burn forests and grasslands.",
+      "Agriculture is a major contributor to climate change, with farming activities accounting for 11.2 percent of total greenhouse gas emissions in the United States in 2020, according to estimates from the U.S. Department of Agriculture."
+    ],
+    [
+      "The report does contain some good news: Last year, the country’s economic growth, measured in G.D.P., outpaced emissions growth, indicating that the economy was less carbon intensive, Mr. King said.",
+      "This “decoupling” of economic growth from fossil fuel consumption is crucial in charting an economically sustainable path toward decarbonization."
+    ],
+    [
+      "“We’ve seen the challenges that happen when declines in emissions are tied to declines in G.D.P.,” he said.",
+      "“Look at 2020.”"
     ]
-  }
+  ]
+}

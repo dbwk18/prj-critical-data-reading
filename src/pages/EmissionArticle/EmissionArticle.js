@@ -5,7 +5,7 @@ import { useLocation } from "react-router-dom";
 import emissionarticle from '../../data/emission_article.json'
 
 import NYTHeader from '../../images/NYT-unemploy/NYTHeader.png';
-import NYTGraph1 from '../../images/NYT_cpi/NYTGraph1.png';
+import NYTGraph1 from '../../images/NYT_carbon/NYTGraph1.png';
 
 import InteractiveChart from '../../component2/InteractiveChart/InteractiveChart';
 import SearchTooltip from '../../component2/SearchTooltip/SearchTooltip';
@@ -202,8 +202,10 @@ function EmissionArticle() {
         <div className='g-name'>{emissionarticle["title"]}</div>
         <div className='g-details'>{emissionarticle["details"]}</div>
         
-        <img src={NYTGraph1} width='100%' />
-        
+        <div className='g-body'>
+            <img src={NYTGraph1} width='100%' />
+        </div>
+
         <div>
             {dataRefs.length !== 0
              ? <InteractiveChart 
