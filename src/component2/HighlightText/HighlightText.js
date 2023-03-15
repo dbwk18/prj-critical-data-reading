@@ -13,7 +13,7 @@ function HighlightText (text, highlight, textToMatch, colorToMatch, clickhighlig
     const [hover, setHover] = useState(false);
     // console.log("newref", newrefSentence)
     console.log("hmm", text, textToMatch, colorToMatch)
-
+    const keySubstr = text.substring(0, 10)
     return (
         textToMatch.length > 0 
         ? (
@@ -21,12 +21,12 @@ function HighlightText (text, highlight, textToMatch, colorToMatch, clickhighlig
                 {text.split(matchRegex).map((nonBoldText, index, arr) => (
                 <>
                     <span 
-                        key={index}
+                        key={`${keySubstr}-${index}-nonbold`}
                         className={ 
                             hover && highlight.includes(text.trim()) 
                             ? 'underline-highlight' 
                             : (
-                                newrefSentence == text.trim() && highlight.includes(text.trim()) 
+                                newrefSentence === text.trim() && highlight.includes(text.trim()) 
                                 ? 'bold-highlight'
                                 : ''
                             )
@@ -38,12 +38,12 @@ function HighlightText (text, highlight, textToMatch, colorToMatch, clickhighlig
                         {nonBoldText}
                     </span>
                     <span
-                        key={index}
+                        key={`${keySubstr}-${index}-bold`}
                         className={ 
                             hover && highlight.includes(text.trim()) 
                             ? 'underline-highlight' 
                             : (
-                                newrefSentence == text.trim() && highlight.includes(text.trim()) 
+                                newrefSentence === text.trim() && highlight.includes(text.trim()) 
                                 ? 'bold-highlight'
                                 : ''
                             )
@@ -53,7 +53,7 @@ function HighlightText (text, highlight, textToMatch, colorToMatch, clickhighlig
                         onMouseLeave={()=>setHover(false)}
                     >
                         {index + 1 !== arr.length && (
-                            <mark class={hover || newrefSentence == text.trim() ? colorToMatch[matches[index]] : null}>{matches[index]}</mark>
+                            <mark class={hover || newrefSentence === text.trim() ? colorToMatch[matches[index]] : null}>{matches[index]}</mark>
                         )}
                     </span>
                 </>
