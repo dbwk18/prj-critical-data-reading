@@ -71,9 +71,13 @@ function InteractiveChart ( {offsetY, mainData, dataRefs, gptRefs, datasetDrop, 
             return [data[0]['date'], data[data.length-1]['date']];
         })
     
-        const xmin = time_range[0]
-        const xmax = time_range[1]
+        // const xmin = time_range[0]
+        // const xmax = time_range[1]
 
+        const xmin = new Date();
+        const xmax = new Date();
+        xmin.setFullYear(xmin.getFullYear()-10);
+        console.log("MINMAX", xmin, xmax)
       
         if (dataRefs.length == 1) {
             console.log(dataRefs[0])
@@ -128,8 +132,9 @@ function InteractiveChart ( {offsetY, mainData, dataRefs, gptRefs, datasetDrop, 
             return [data[0]['date'], data[data.length-1]['date']];
         })
         
-        const xmin = time_range[0]
-        const xmax = time_range[1]
+        const xmin = new Date();
+        const xmax = new Date();
+        xmin.setFullYear(xmin.getFullYear()-10);
 
         var dropidx1 = 0;
         var dropidx2 = 0;
@@ -194,19 +199,16 @@ function InteractiveChart ( {offsetY, mainData, dataRefs, gptRefs, datasetDrop, 
             'Content-Type': 'application/json',
             'Accept': 'application/json',
         }}).then( (response) => {
-            const data =  response.data.observations.map((data) => {
-                // if (new Date(data.date)>= xmin && new Date(data.date)<= xmax) {
-                    // console.log(new Date(data.date)>= xmin)
-                    return {
-                        date: new Date(data.date),
-                        measurement: parseFloat(data.value) 
-                        } 
-                    // }
-                    }, {withCredentials: true}) 
+            const data = response.data.observations
+                        .filter((data)=> (new Date(data.date)>= xmin && new Date(data.date)<= xmax))
+                        .map((data) => {return {
+                            date: new Date(data.date),
+                            measurement: parseFloat(data.value) 
+                            } }, {withCredentials: true})
                 return data;
         })
 
-        console.log(newdata)
+        console.log("NEWData", newdata)
         
 
         const margin = { top: 30, right: 40, bottom: 30, left:40 },
@@ -289,7 +291,7 @@ function InteractiveChart ( {offsetY, mainData, dataRefs, gptRefs, datasetDrop, 
             .attr("dx", "-0.1em")
             .style("font-size", "12px")
             .style("font-family", "Sans-serif")
-            .style("color", "#52616a")
+            .style("color", color)
 
         svg.select(".y-axis path")
             .style("stroke", "#52616a")
