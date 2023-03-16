@@ -87,7 +87,7 @@ export const getHighlightData = (data) => {
         const datadict = {}
         item.data_references.forEach((ref) => {
             const datasetlist= []
-            ref.data_names.forEach((data) => {datasetlist.push({"name": `${data.title} (${data.frequency}) (${data.units})`, "id": `${data.id}`, "frequency": `${data.frequency}`, "units": `${data.units}`})})
+            ref.data_names.forEach((data) => {datasetlist.push({"name": `${data.title} (${data.frequency})`, "id": `${data.id}`, "frequency": `${data.frequency}`, "units": `${data.units}`})})
             datadict[ref.gpt_sentence_part] = datasetlist
         })
         highlightData[item.sentence] = datadict

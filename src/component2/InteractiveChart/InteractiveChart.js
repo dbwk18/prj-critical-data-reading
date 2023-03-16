@@ -33,12 +33,12 @@ function InteractiveChart ( {offsetY, mainData, dataRefs, gptRefs, datasetDrop, 
 
         console.log("all", dataRefs, offsetY)
         console.log("listSelected", listSelected)
-        const margin = { top: 30, right: 40, bottom: 30, left:40 },
-            margin2 = { top: 30, right: 40, bottom: 30, left: 40},
+        const margin = { top: 30, right: 50, bottom: 30, left:50 },
+            margin2 = { top: 0, right: 50, bottom: 50, left: 50},
             width = d3.select(graphRef.current).node().getBoundingClientRect().width - margin.left - margin.right,
             width2 = d3.select(graphRef.current).node().getBoundingClientRect().width - margin2.left - margin2.right,
             height = 300,
-            height2 = 100;
+            height2 = 40;
 
         var svg = d3.select(graphRef.current)
             .append("svg")
@@ -54,7 +54,7 @@ function InteractiveChart ( {offsetY, mainData, dataRefs, gptRefs, datasetDrop, 
             .attr("width", width + margin.left + margin.right)
             .attr("height", height2 + margin2.top + margin2.bottom)
             .append("g")
-            .attr("transform", `translate(${margin.left}, ${margin.top})`);
+            .attr("transform", `translate(${margin2.left}, ${margin2.top})`);
         
 
         const time_range = await axios.get(`http://internal.kixlab.org:7887/query_data?dataset_id=${mainData.id}`, { headers: {
@@ -93,12 +93,12 @@ function InteractiveChart ( {offsetY, mainData, dataRefs, gptRefs, datasetDrop, 
     }
 
     const updategraph = async() => {
-        const margin = { top: 30, right: 40, bottom: 30, left:40 },
-        margin2 = { top: 30, right: 40, bottom: 30, left: 40},
+        const margin = { top: 30, right: 50, bottom: 30, left:50 },
+        margin2 = { top: 0, right: 50, bottom: 50, left: 50},
         width = d3.select(graphRef.current).node().getBoundingClientRect().width - margin.left - margin.right,
         width2 = d3.select(graphRef.current).node().getBoundingClientRect().width - margin2.left - margin2.right,
         height = 300,
-        height2 = 100;
+        height2 = 40;
 
 
         var svg = d3.select(graphRef.current)
@@ -115,7 +115,7 @@ function InteractiveChart ( {offsetY, mainData, dataRefs, gptRefs, datasetDrop, 
             .attr("width", width + margin.left + margin.right)
             .attr("height", height2 + margin2.top + margin2.bottom)
             .append("g")
-            .attr("transform", `translate(${margin.left}, ${margin.top})`);
+            .attr("transform", `translate(${margin2.left}, ${margin2.top})`);
 
         
         const time_range = await axios.get(`http://internal.kixlab.org:7887/query_data?dataset_id=${mainData.id}`, {headers: {
@@ -211,12 +211,12 @@ function InteractiveChart ( {offsetY, mainData, dataRefs, gptRefs, datasetDrop, 
         console.log("NEWData", newdata)
         
 
-        const margin = { top: 30, right: 40, bottom: 30, left:40 },
-            margin2 = { top: 30, right: 40, bottom: 30, left: 40},
+        const margin = { top: 30, right: 50, bottom: 30, left:50 },
+            margin2 = { top: 0, right: 50, bottom: 30, left: 50},
             width = d3.select(graphRef.current).node().getBoundingClientRect().width - margin.left - margin.right,
             // width2 = d3.select(graphRef.current).node().getBoundingClientRect().width - margin2.left - margin2.right,
             height = 300,
-            height2 = 100;
+            height2 = 40;
 
         const xScale = d3.scaleTime().range([0, width]);
         const yScale = d3.scaleLinear().rangeRound([height, 0]);
@@ -466,9 +466,9 @@ function InteractiveChart ( {offsetY, mainData, dataRefs, gptRefs, datasetDrop, 
     return (
         <React.Fragment>
             <div style={{backgroundColor: "#f4f4f4", 
-                        width: "28vw", 
+                        width: "29vw", 
                         position: "absolute", 
-                        left: "57vw", 
+                        left: "58vw", 
                         top: offsetY - 30
                     }}>
                 {dataRefs.length > 0 
