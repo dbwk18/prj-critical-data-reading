@@ -468,7 +468,7 @@ function InteractiveChart ( {offsetY, mainData, dataRefs, gptRefs, datasetDrop, 
             <div style={{backgroundColor: "#f4f4f4", 
                         width: "28vw", 
                         position: "absolute", 
-                        left: "68vw", 
+                        left: "57vw", 
                         top: offsetY - 30
                     }}>
                 {dataRefs.length > 0 

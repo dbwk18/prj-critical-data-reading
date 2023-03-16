@@ -198,7 +198,7 @@ function EmissionArticle() {
     <div>
         <ToastContainer />
 
-        <img src={NYTHeader} width='100%' />
+        {/* <img src={NYTHeader} width='100%' /> */}
         <div className='g-name'>{emissionarticle["title"]}</div>
         <div className='g-details'>{emissionarticle["details"]}</div>
         

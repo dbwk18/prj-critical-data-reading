@@ -234,13 +234,13 @@ function CPIArticle2() {
     <div>
         <ToastContainer />
 
-        <img src={NYTHeader} width='100%' />
+        {/* <img src={NYTHeader} width='100%' /> */}
         <button onClick={()=>{processNext(next_req)}}>NEXT</button>
         <div className='g-name'>{cpiarticle["title"]}</div>
         <div className='g-details'>{cpiarticle["details"]}</div>
-        
-        <img src={NYTGraph1} width='100%' />
-
+        <div className="g-body">
+            <img src={NYTGraph1} width='100%' />
+        </div>
         
         
         <div>
