@@ -11,7 +11,7 @@ import text_req from '../../data/article_extract_test_req.json'
 import 'react-toastify/dist/ReactToastify.css';
 
 
-function SearchBox({offsetX, offsetY, defaultInput, setSearchBox, setTooltip, newrefSentence, update, setUpdate, setToastStatus, removeHighlight}) {
+function SearchBox({offsetX, offsetY, defaultInput, setSearchBox, setTooltip, newrefSentence, update, setUpdate, setToastStatus, removeHighlight, articleURL}) {
 
     const [searchStatus, setSearchStatus] = useState(false); //search button click
     const [selectIdx, setSelectIdx] = useState(null);
@@ -54,7 +54,7 @@ function SearchBox({offsetX, offsetY, defaultInput, setSearchBox, setTooltip, ne
         setTooltip(false);
 
         const req_input = {
-            "article_url": `${text_req.url}`, 
+            "article_url": `${articleURL}`, 
             "sentence": `${newrefSentence}`, 
             "sentence_part": `${defaultInput}`, 
             "sentence_generation_part": `${generatePart}`,
