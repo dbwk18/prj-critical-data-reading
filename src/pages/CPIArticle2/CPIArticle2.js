@@ -111,9 +111,9 @@ function CPIArticle2() {
             setDataRefs(highlightRef[currSentence])
             setGPTRefs(highlightGPTRef[currSentence])
             setDatasetDrop(highlightData[currSentence])
-            highlightRef[currSentence].length == 1 
+            highlightRef[currSentence].length === 1 
             ? setListSelected([highlightGPTRef[currSentence][highlightRef[currSentence].length-1]]) 
-            : (highlightRef[currSentence].length == 2 
+            : (highlightRef[currSentence].length === 2 
                 ? setListSelected([highlightGPTRef[currSentence][highlightRef[currSentence].length-1], highlightGPTRef[currSentence][0]])
                 : setListSelected([highlightGPTRef[currSentence][highlightRef[currSentence].length-1], highlightGPTRef[currSentence][1]])
             )
@@ -289,6 +289,7 @@ function CPIArticle2() {
                         setUpdate={setUpdate}
                         setToastStatus={setToastStatus}
                         removeHighlight={removeHighlight}
+                        articleURL = {text_req.url}
                     /> 
                 : null
             } 

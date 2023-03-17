@@ -252,6 +252,7 @@ function EmissionArticle() {
                         setUpdate={setUpdate}
                         setToastStatus={setToastStatus}
                         removeHighlight={removeHighlight}
+                        articleURL = {text_req.url}
                     /> 
                 : null
             } 
