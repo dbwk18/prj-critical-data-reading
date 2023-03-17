@@ -195,12 +195,26 @@ function InteractiveChart ( {offsetY, mainData, dataRefs, gptRefs, datasetDrop, 
         }
         const timeConv = d3.timeFormat(timeUnit)
         
+        const time_range = await axios.get(`http://internal.kixlab.org:7887/query_data?dataset_id=${mainData.id}`, { headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+        }}).then( (response) => {
+            const data =  response.data.observations.map((data) => {
+                    return {
+                        date: new Date(data.date),
+                        measurement: parseFloat(data.value) ? parseFloat(data.value) : 0
+                        } 
+                    }, {withCredentials: true}) 
+            console.log(data[0]['date'], data[data.length-1]['date'])
+            return [data[0]['date'], data[data.length-1]['date']];
+        })
+
         const newdata = await axios(`http://internal.kixlab.org:7887/query_data?dataset_id=${dataset.id}`, {headers: {
             'Content-Type': 'application/json',
             'Accept': 'application/json',
         }}).then( (response) => {
             const data = response.data.observations
-                        .filter((data)=> (new Date(data.date)>= xmin && new Date(data.date)<= xmax))
+                        // .filter((data)=> (new Date(data.date)>= xmin && new Date(data.date)<= xmax))
                         .map((data) => {return {
                             date: new Date(data.date),
                             measurement: parseFloat(data.value) 
@@ -233,28 +247,34 @@ function InteractiveChart ( {offsetY, mainData, dataRefs, gptRefs, datasetDrop, 
             .tickFormat(d3.timeFormat(timeUnit))
             .scale(xScale);
 
+        const xaxis2 = d3.axisBottom()
+            .ticks(5)
+            .tickSize(0)
+            .tickFormat(d3.timeFormat(timeUnit))
+            .scale(xScale2);
+
 
         xScale.domain([xmin, xmax])
-        xScale2.domain([xmin, xmax])
+        xScale2.domain([time_range[0], xmax])
         yScale.domain([d3.min(newdata, function(d){return d.measurement;}), d3.max(newdata, function(d){return d.measurement;})]).nice()
         yScale2.domain([d3.min(newdata, function(d){return d.measurement;}), d3.max(newdata, function(d){return d.measurement;})]).nice()
 
 
         //original chart
         const line = d3.line()
-        .defined(function(d) { return !isNaN(d.measurement); })
+        .defined(function(d) { return !isNaN(d.measurement) && d.date >= xmin && d.date <= xmax })
         .x(function(d) { return xScale(d.date); })
         .y(function(d) { return yScale(d.measurement); })
 
         //sub chart
         const line2 = d3.line()
-        .defined(function(d) { return !isNaN(d.measurement); })
+        .defined(function(d) { return !isNaN(d.measurement) && d.date >= time_range[0] && d.date <= xmax })
         .x(function(d) { return xScale2(d.date); })
         .y(function(d) { return yScale2(d.measurement); })
 
         //brush function
         const myBrush = d3.brushX()
-                        .extent([[xScale.range()[0], 0], [xScale.range()[1], height2]])
+                        .extent([[xScale2.range()[0], 0], [xScale2.range()[1], height2]])
                         .on("brush", (event)=>brushed(event, newdata))
 
 
@@ -274,7 +294,7 @@ function InteractiveChart ( {offsetY, mainData, dataRefs, gptRefs, datasetDrop, 
             zoomsvg.append("g")
                 .attr("class", "x-axis2")
                 .attr("transform", "translate(0," + height2 + ")")
-                .call(xaxis)
+                .call(xaxis2)
                 .selectAll("text")
                 .style("text-anchor", "middle")
                 .style("font-size", "12px")
@@ -402,7 +422,7 @@ function InteractiveChart ( {offsetY, mainData, dataRefs, gptRefs, datasetDrop, 
             xScale.domain(event.selection === null ? xScale.domain() : [xScale2.invert(s[0]), xScale2.invert(s[1])]);
             // yScale.domain([d3.min(newdata, function(d){return d.measurement;}), d3.max(newdata, function(d){return d.measurement;})]).nice()
         
-            if (p_yaxis == 0) {
+            // if (p_yaxis == 0) {
                 svg.select(".x-axis").call(d3.axisBottom()
                     .ticks(5)
                     .tickSize(0)
@@ -414,7 +434,7 @@ function InteractiveChart ( {offsetY, mainData, dataRefs, gptRefs, datasetDrop, 
                     .style("font-family", "Sans-serif")
                     .style("color", "#52616a")
                     .attr("dy", "1em");
-            }
+            // }
             
             console.log("brush line", svg.selectAll(`path.line`), zoomsvg.selectAll('path.line2'))
             const lines = svg.selectAll(`path.line`)

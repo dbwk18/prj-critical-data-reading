@@ -92,11 +92,11 @@ function UserLogin() {
                         placeholder="name@example.com" 
                         value={userEmail}
                         onChange={onChange}
-                        onKeyUp={(e) => {
-                            if (e.key === 'Enter') {
-                                navigateToArticle();
-                            }
-                        }}
+                        // onKeyUp={(e) => {
+                        //     if (e.key === 'Enter') {
+                        //         navigateToArticle();
+                        //     }
+                        // }}
                     />
                 </div>
 
