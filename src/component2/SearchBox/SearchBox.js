@@ -27,6 +27,7 @@ function SearchBox({offsetX, offsetY, defaultInput, setSearchBox, setTooltip, ne
     }, [defaultInput])
 
 
+    //handle outside click
     useEffect(() => {
         function handleClickOutside(event) {
           if (outsideRef.current && !outsideRef.current.contains(event.target)) {

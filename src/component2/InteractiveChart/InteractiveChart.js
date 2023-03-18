@@ -8,7 +8,7 @@ import SearchDropdown from "../SearchDropdown/SearchDropdown";
 import SearchBox from "../SearchBox/SearchBox";
 
 
-function InteractiveChart ( {isOpen, setIsOpen, offsetY, mainData, dataRefs, gptRefs, datasetDrop, listSelected, setListSelected, timeFrameData, highlightRef, setHighlightRef, highlightColor, setHighlightColor, currSentence, setNewrefSentence} ) {
+function InteractiveChart ( {chartOpen, setChartOpen, offsetY, mainData, dataRefs, gptRefs, datasetDrop, listSelected, setListSelected, timeFrameData, highlightRef, setHighlightRef, highlightColor, setHighlightColor, currSentence, setNewrefSentence} ) {
     
     const graphRef = useRef();
     const [dataSelected, setDataSelected] = useState(null);
@@ -573,7 +573,7 @@ function InteractiveChart ( {isOpen, setIsOpen, offsetY, mainData, dataRefs, gpt
     return (
         <React.Fragment>
             {
-            isOpen
+            chartOpen
             ? (
                 <div 
                     style={{
@@ -593,7 +593,7 @@ function InteractiveChart ( {isOpen, setIsOpen, offsetY, mainData, dataRefs, gpt
                     </div>
                     <div style={{marginLeft: "auto", fontSize: "25px"}} 
                          onClick={()=>{
-                            setIsOpen(false); 
+                            setChartOpen(false); 
                             setNewrefSentence(null);
                         }}>
                             &times;

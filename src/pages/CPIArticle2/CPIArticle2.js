@@ -31,7 +31,7 @@ function CPIArticle2() {
     const navigate = useNavigate();
     const location = useLocation();
 
-    const [isOpen, setIsOpen] = useState(false);
+    const [chartOpen, setChartOpen] = useState(false);
 
     const [mainData, setMainData] = useState(null);
     const [articleData, setArticleData] = useState(location.state.article)
@@ -147,7 +147,7 @@ function CPIArticle2() {
 
     //function for clicking highlighted sentence
     const clickhighlight = (e, sentence) => {
-        setIsOpen(true);
+        setChartOpen(true);
         articleData.sentences.forEach( (item) => {
             if (item.sentence == sentence.trim()) {
                 setMainData(JSON.parse(window.sessionStorage.getItem("user-article")).main_data.dataName);
@@ -253,8 +253,8 @@ function CPIArticle2() {
         <div>
             {dataRefs.length !== 0
              ? <InteractiveChart 
-                    isOpen={isOpen}
-                    setIsOpen={setIsOpen}
+                    chartOpen={chartOpen}
+                    setChartOpen={setChartOpen}
                     offsetY={offsetY} 
                     mainData={mainData} 
                     dataRefs={dataRefs} 

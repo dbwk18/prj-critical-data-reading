@@ -1,6 +1,6 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './SearchDropdown.css'
-import { useState, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 import dropdownicon from '../../images/icons/chevron-down.svg'
 
@@ -9,6 +9,22 @@ function SearchDropdown({dataDrop, dataSelected, setDataSelected, datasetIdx, se
     const [isOpen, setIsOpen] = useState(false);
     const [query, setQuery] =useState("")
     const inputRef = useRef(null);
+
+
+    //handle outside click
+    useEffect(() => {
+        function handleClickOutside(event) {
+          if (inputRef.current && !inputRef.current.contains(event.target)) {
+            setIsOpen(false);
+          }
+        }
+        document.addEventListener("click", handleClickOutside);
+        
+        return () => {
+          document.removeEventListener("click", handleClickOutside);
+        };
+      }, [inputRef]);
+
 
     // console.log("datadrop",dataDrop, dataSelected)
 
