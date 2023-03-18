@@ -6,7 +6,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import searchIcon from '../../images/icons/search.svg'
 import closeIcon from '../../images/icons/buttonX.svg'
 import checkIcon from '../../images/icons/checkIcon.svg'
-import text_req from '../../data/article_extract_test_req.json'
 
 import 'react-toastify/dist/ReactToastify.css';
 

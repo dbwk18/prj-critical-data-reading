@@ -27,6 +27,10 @@ function InteractiveChart ( {offsetY, mainData, dataRefs, gptRefs, datasetDrop, 
         updategraph();
     }, [listSelected, datasetIdx])
 
+    useEffect(()=> {
+        setDatasetIdx([0, 0]);
+    }, [currSentence])
+
 
 
     //function for drawing graph when sentece clicked
