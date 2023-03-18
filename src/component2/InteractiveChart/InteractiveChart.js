@@ -1,5 +1,6 @@
 import React, {useState, useEffect, useRef} from "react";
 import * as d3 from 'd3';
+import { textwrap } from 'd3-textwrap';
 import axios from 'axios';
 
 import LabelDropdown from '../LabelDropdown/LabelDropdown';
@@ -94,11 +95,13 @@ function InteractiveChart ( {offsetY, mainData, dataRefs, gptRefs, datasetDrop, 
 
     const updategraph = async() => {
         const margin = { top: 30, right: 50, bottom: 30, left:50 },
-        margin2 = { top: 0, right: 50, bottom: 50, left: 50},
+        margin2 = { top: 0, right: 50, bottom: 20, left: 50},
+        margin3 = { top: 10, right: 50, bottom: 50, left: 50},
         width = d3.select(graphRef.current).node().getBoundingClientRect().width - margin.left - margin.right,
         width2 = d3.select(graphRef.current).node().getBoundingClientRect().width - margin2.left - margin2.right,
         height = 300,
-        height2 = 40;
+        height2 = 40,
+        height3 = 20;
 
 
         var svg = d3.select(graphRef.current)
@@ -116,6 +119,14 @@ function InteractiveChart ( {offsetY, mainData, dataRefs, gptRefs, datasetDrop, 
             .attr("height", height2 + margin2.top + margin2.bottom)
             .append("g")
             .attr("transform", `translate(${margin2.left}, ${margin2.top})`);
+
+        var labelsvg = d3.select(graphRef.current)
+            .append("svg")
+            .attr("id", "label-svg")
+            .attr("width", width + margin3.left + margin3.right)
+            .attr("height", height3 + margin3.top + margin3.bottom)
+            .append("g")
+            .attr("transform", `translate(${margin3.left}, ${margin3.top})`);
 
         
         const time_range = await axios.get(`http://internal.kixlab.org:7887/query_data?dataset_id=${mainData.id}`, {headers: {
@@ -140,8 +151,8 @@ function InteractiveChart ( {offsetY, mainData, dataRefs, gptRefs, datasetDrop, 
         var dropidx2 = 0;
 
         if (dataRefs.length == 1) {
-            drawone(mainData, svg, zoomsvg, "#6AAFE6", 0 , xmin, xmax, gptRefs[0]);
-            drawone(datasetDrop[gptRefs[0]][datasetIdx[1]], svg, zoomsvg, "#a5d296", 1, xmin, xmax, mainData);
+            drawone(mainData, svg, zoomsvg, labelsvg, "#6AAFE6", 0 , xmin, xmax, gptRefs[0]);
+            drawone(datasetDrop[gptRefs[0]][datasetIdx[1]], svg, zoomsvg, labelsvg, "#a5d296", 1, xmin, xmax, mainData);
         }
         else {
             // gptRefs.forEach((item, idx) => {
@@ -162,8 +173,8 @@ function InteractiveChart ( {offsetY, mainData, dataRefs, gptRefs, datasetDrop, 
             //     }
             // })
             console.log("update graph", datasetDrop[listSelected[0]], datasetIdx)
-            drawone(datasetDrop[listSelected[0]][datasetIdx[0]], svg, zoomsvg, "#6AAFE6", 0 , xmin, xmax, gptRefs[1]);
-            drawone(datasetDrop[listSelected[1]][datasetIdx[1]], svg, zoomsvg, "#a5d296", 1, xmin, xmax, gptRefs[0]);
+            drawone(datasetDrop[listSelected[0]][datasetIdx[0]], svg, zoomsvg, labelsvg, "#6AAFE6", 0 , xmin, xmax, gptRefs[1]);
+            drawone(datasetDrop[listSelected[1]][datasetIdx[1]], svg, zoomsvg, labelsvg, "#a5d296", 1, xmin, xmax, gptRefs[0]);
             
             // drawone(datasetDrop[dropidx1], svg, zoomsvg, "#6AAFE6", 0 , xmin, xmax, datasetDrop[dropidx2]);
             // drawone(datasetDrop[dropidx2], svg, zoomsvg, "#a5d296", 1, xmin, xmax, datasetDrop[dropidx1]);
@@ -171,7 +182,7 @@ function InteractiveChart ( {offsetY, mainData, dataRefs, gptRefs, datasetDrop, 
     }
 
     //function for overlaying line graph 
-    const drawone = async (dataset, svg, zoomsvg, color, p_yaxis, xmin, xmax, brushRef) => {
+    const drawone = async (dataset, svg, zoomsvg, labelsvg, color, p_yaxis, xmin, xmax, brushRef) => {
         console.log("drawone", dataset);
        
         var timeUnit = null;
@@ -301,6 +312,50 @@ function InteractiveChart ( {offsetY, mainData, dataRefs, gptRefs, datasetDrop, 
                 .style("font-family", "Sans-serif")
                 .style("color", "#52616a")
                 .attr("dy", "1em")
+        }
+          
+        const wrap = textwrap()
+                // wrap to 480 x 960 pixels
+                .bounds({height: 15, width: 320})
+                .method('tspans');
+      
+
+        var size = 10
+        if (p_yaxis == 0) {
+            labelsvg.append("rect")
+                .attr("x", 0)
+                .attr("y", 0)
+                .attr("width", size)
+                .attr("height", size)
+                .style("fill", color)
+            labelsvg.append("text")
+                .attr("x", 0 + size*1.2)
+                .attr("y", 0 + size/1.3)
+                .style("fill", color)
+                .style("font-size", "10px")
+                .attr("text-anchor", "left")
+                .style("alignment-baseline", "middle")
+                .style("vertical-align", "middle")
+                .text(dataset.name ? dataset.name : dataset.title)
+                .call(wrap);
+        }
+        else {
+            labelsvg.append("rect")
+                .attr("x", 0)
+                .attr("y", size*2)
+                .attr("width", size)
+                .attr("height", size)
+                .style("fill", color)
+            labelsvg.append("text")
+                .attr("x", 0 + size*1.2)
+                .attr("y", size*2 + size/1.3)
+                .style("fill", color)
+                .style("font-size", "10px")
+                .attr("text-anchor", "left")
+                .style("alignment-baseline", "middle")
+                .style("vertical-align", "middle")
+                .text(dataset.name ? dataset.name : dataset.title)
+                .call(wrap);
         }
 
         svg.append("g")
