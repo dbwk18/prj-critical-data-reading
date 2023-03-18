@@ -253,15 +253,15 @@ function InteractiveChart ( {offsetY, mainData, dataRefs, gptRefs, datasetDrop, 
         const yScale2 = d3.scaleLinear().rangeRound([height2, 0]);
 
         const yaxis = p_yaxis == 0  
-                    ? d3.axisLeft().ticks(6).scale(yScale).tickSize(0) 
-                    : d3.axisRight().ticks(6).scale(yScale).tickSize(0)
+                    ? d3.axisLeft().ticks(6).scale(yScale).tickSize(0).tickFormat(d3.format("~s"))
+                    : d3.axisRight().ticks(6).scale(yScale).tickSize(0).tickFormat(d3.format("~s"));
 
         const xaxis = d3.axisBottom()
             .ticks(5)
             .tickSize(0)
             .tickFormat(d3.timeFormat(timeUnit))
             .scale(xScale);
-
+            
         const xaxis2 = d3.axisBottom()
             .ticks(5)
             .tickSize(0)
