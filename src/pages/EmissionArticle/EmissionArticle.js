@@ -199,6 +199,9 @@ function EmissionArticle() {
         <ToastContainer />
 
         {/* <img src={NYTHeader} width='100%' /> */}
+        <div className='g-header'>
+            <button className="btn btn-outline-primary btn-sm disabled">Go To Next Article</button>
+        </div>
         <div className='g-name'>{emissionarticle["title"]}</div>
         <div className='g-details'>{emissionarticle["details"]}</div>
         

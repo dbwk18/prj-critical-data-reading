@@ -22,6 +22,8 @@ import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 
 import './CPIArticle2.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 
 function CPIArticle2() {
@@ -235,7 +237,9 @@ function CPIArticle2() {
         <ToastContainer />
 
         {/* <img src={NYTHeader} width='100%' /> */}
-        <button onClick={()=>{processNext(next_req)}}>NEXT</button>
+        <div className='g-header'>
+            <button className="btn btn-outline-primary btn-sm" onClick={()=>{processNext(next_req)}}>Go To Next Article</button>
+        </div>
         <div className='g-name'>{cpiarticle["title"]}</div>
         <div className='g-details'>{cpiarticle["details"]}</div>
         <div className="g-body">
