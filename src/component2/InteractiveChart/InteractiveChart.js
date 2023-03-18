@@ -8,7 +8,7 @@ import SearchDropdown from "../SearchDropdown/SearchDropdown";
 import SearchBox from "../SearchBox/SearchBox";
 
 
-function InteractiveChart ( {offsetY, mainData, dataRefs, gptRefs, datasetDrop, listSelected, setListSelected, timeFrameData, highlightRef, setHighlightRef, highlightColor, setHighlightColor, currSentence} ) {
+function InteractiveChart ( {isOpen, setIsOpen, offsetY, mainData, dataRefs, gptRefs, datasetDrop, listSelected, setListSelected, timeFrameData, highlightRef, setHighlightRef, highlightColor, setHighlightColor, currSentence, setNewrefSentence} ) {
     
     const graphRef = useRef();
     const [dataSelected, setDataSelected] = useState(null);
@@ -572,31 +572,65 @@ function InteractiveChart ( {offsetY, mainData, dataRefs, gptRefs, datasetDrop, 
 
     return (
         <React.Fragment>
-            <div style={{backgroundColor: "#f9f9f9", 
+            {
+            isOpen
+            ? (
+                <div 
+                    style={{
+                        backgroundColor: "#f9f9f9", 
                         width: "29vw", 
                         position: "absolute", 
                         left: "58vw", 
                         top: offsetY - 30,
                         borderRadius: "8px",
-                        padding: "10px 0"
-                    }}>
-                {dataRefs.length > 0 
-                ? (
-                    <>
-                    <LabelDropdown mainData={mainData} gptRefs={gptRefs} datasetDrop={datasetDrop} listSelected={listSelected} setListSelected={setListSelected} dataSelected={dataSelected} setDataSelected={setDataSelected} datasetIdx={datasetIdx} setDatasetIdx={setDatasetIdx}/> 
-                    </>
+                        padding: "10px 0",
+                        boxShadow: "rgba(149, 157, 165, 0.2) 0px 8px 24px"
+                    }}
+                >   
+                <div style={{display: "flex", alignItems: "center", margin: "0 15px", color: "#3E3E3E"}}>
+                    <div style={{fontSize: "14px"}}> 
+                        Selected <b>dataset</b> will be drawn on the chart 
+                    </div>
+                    <div style={{marginLeft: "auto", fontSize: "25px"}} 
+                         onClick={()=>{
+                            setIsOpen(false); 
+                            setNewrefSentence(null);
+                        }}>
+                            &times;
+                    </div>
+                </div>
+                    {dataRefs.length > 0 
+                    ? (
+                        <>
+                            <LabelDropdown 
+                                mainData={mainData} 
+                                gptRefs={gptRefs} 
+                                datasetDrop={datasetDrop} 
+                                listSelected={listSelected} 
+                                setListSelected={setListSelected} 
+                                dataSelected={dataSelected} 
+                                setDataSelected={setDataSelected} 
+                                datasetIdx={datasetIdx} 
+                                setDatasetIdx={setDatasetIdx}
+                            /> 
+                        </>
+                    )
+                    : null}
+                    {/* <>
+                        <SearchDropdown dataDrop={["122", "222", "344"]} dataSelected={dataSelected} setDataSelected={setDataSelected} />
+                    </> */}
+                    <div 
+                        ref={graphRef} 
+                        id='graph-container'
+                        className='GraphContainer' 
+                        style={{textAlign: "center"}}
+                    />
+                        
+                </div>
+
                 )
-                : null}
-                {/* <>
-                    <SearchDropdown dataDrop={["122", "222", "344"]} dataSelected={dataSelected} setDataSelected={setDataSelected} />
-                </> */}
-                <div ref={graphRef} 
-                    id='graph-container'
-                    className='GraphContainer' 
-                    style={{textAlign: "center"}}
-                />
-                    
-            </div>
+            : <></>
+        }
         </React.Fragment>
     )
 }

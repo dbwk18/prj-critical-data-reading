@@ -31,6 +31,8 @@ function CPIArticle2() {
     const navigate = useNavigate();
     const location = useLocation();
 
+    const [isOpen, setIsOpen] = useState(false);
+
     const [mainData, setMainData] = useState(null);
     const [articleData, setArticleData] = useState(location.state.article)
 
@@ -145,6 +147,7 @@ function CPIArticle2() {
 
     //function for clicking highlighted sentence
     const clickhighlight = (e, sentence) => {
+        setIsOpen(true);
         articleData.sentences.forEach( (item) => {
             if (item.sentence == sentence.trim()) {
                 setMainData(JSON.parse(window.sessionStorage.getItem("user-article")).main_data.dataName);
@@ -250,6 +253,8 @@ function CPIArticle2() {
         <div>
             {dataRefs.length !== 0
              ? <InteractiveChart 
+                    isOpen={isOpen}
+                    setIsOpen={setIsOpen}
                     offsetY={offsetY} 
                     mainData={mainData} 
                     dataRefs={dataRefs} 
@@ -263,6 +268,7 @@ function CPIArticle2() {
                     highlightColor={highlightColor}
                     setHighlightColor={setHighlightColor}
                     currSentence={currSentence}
+                    setNewrefSentence={setNewrefSentence}
                 />
              : null 
             }
@@ -324,7 +330,7 @@ function CPIArticle2() {
                                 // console.log(idx, sentence, highlightRef[sentence], highlightColor[sentence])
                                 if (highlight.includes(sentence)) {
                                     return (
-                                        HighlightText(sentence, highlight, highlightRef[sentence],highlightColor[sentence], clickhighlight, newrefSentence)
+                                        HighlightText(sentence, highlight, highlightRef[sentence], highlightColor[sentence], clickhighlight, newrefSentence)
                                     )
                                 }
                                 else {
