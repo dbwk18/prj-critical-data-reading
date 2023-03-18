@@ -105,11 +105,17 @@ function SearchBox({offsetX, offsetY, defaultInput, setSearchBox, setTooltip, ne
                     <input 
                         type="text" 
                         class="form-control" 
+                        style={{fontSize: "14px"}}
                         defaultValue={defaultInput} 
                         value={generatePart} 
                         key={defaultInput} 
                         onChange={handleChange}
-                        style={{fontSize: "14px"}}></input>
+                        onKeyUp={(e) => {
+                            if (e.key === 'Enter') {
+                                createReference();
+                            }
+                        }}
+                    />
                     <span 
                         class="input-group-text" 
                         id="inputGroup-sizing-default" 
