@@ -441,6 +441,7 @@ function InteractiveChart ( {offsetY, mainData, dataRefs, gptRefs, datasetDrop, 
             .attr("d", line2)
             
         zoomsvg.call(myBrush)
+               .call(myBrush.move, [xmin, xmax].map(xScale2)) //default range svg(xmin, xmax)
 
                 
         // ${dataRef.dataReference.replace(/\s/gi, "")}
