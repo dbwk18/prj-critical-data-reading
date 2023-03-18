@@ -299,7 +299,7 @@ function InteractiveChart ( {offsetY, mainData, dataRefs, gptRefs, datasetDrop, 
                 .style("text-anchor", "middle")
                 .style("font-size", "12px")
                 .style("font-family", "Sans-serif")
-                .style("color", "#52616a")
+                .style("color", "#8b8687")
                 .attr("dy", "1em")
             
             zoomsvg.append("g")
@@ -308,15 +308,62 @@ function InteractiveChart ( {offsetY, mainData, dataRefs, gptRefs, datasetDrop, 
                 .call(xaxis2)
                 .selectAll("text")
                 .style("text-anchor", "middle")
-                .style("font-size", "12px")
+                .style("font-size", "10px")
                 .style("font-family", "Sans-serif")
-                .style("color", "#52616a")
+                .style("color", "#8b8687")
                 .attr("dy", "1em")
+            
+            timeFrameData.forEach((timeframe, idx)=> {
+                if (timeframe.time_start != null && timeframe.time_end != null) {
+                    var startdate = new Date(timeframe.time_start);
+                    var enddate = new Date(timeframe.time_end); //one more day (in case: time_start == time_end)
+                    enddate.setDate(enddate.getDate() + 3);
+                    var left = xScale(startdate);
+                    var right = xScale(enddate); 
+                    var brushleft = xScale2(startdate);
+                    var brushright = xScale2(enddate);
+                    var wid = right - left;
+                    var brushwid = brushright - brushleft;
+    
+                    svg.append("rect")
+                        .attr("x", left)
+                        .attr("width", wid)
+                        .attr("height", height)
+                        .attr("class", `timeframe-${idx}`)
+                        .style("stroke", "#eb9f9f")
+                        .style("fill", "#eb9f9f")
+                        .on("mouseover", function(d) {
+                            const newHighlightRef = highlightRef
+                            newHighlightRef[currSentence].push(timeframe.sentence_part)
+                            setHighlightRef(newHighlightRef)
+    
+                            const newHighlightColor = highlightColor
+                            newHighlightColor[currSentence][timeframe.sentence_part] = 'timeref'
+                            setHighlightColor(newHighlightColor)
+                            console.log("HIGHLIGHTHOVER", newHighlightRef[currSentence], newHighlightColor[currSentence])
+                            })                  
+                            .on("mouseout", function(d) {
+                            setHighlightRef(JSON.parse(window.sessionStorage.getItem("user-highlight-ref")))
+                            setHighlightColor(JSON.parse(window.sessionStorage.getItem("user-highlight-color")))
+                            });
+    
+                    zoomsvg.append("rect")
+                        .attr("x", brushleft)
+                        .attr("width", brushwid)
+                        .attr("height", height2)
+                        .style("stroke", "#eb9f9f")
+                        .style("fill", "#eb9f9f")
+    
+                    console.log("TIMEFRAMERANGE", timeframe.time_start, new Date(timeframe.time_start))
+                        
+    
+                }
+            })
+        
         }
           
         const wrap = textwrap()
-                // wrap to 480 x 960 pixels
-                .bounds({height: 15, width: 320})
+                .bounds({height: 15, width: 320}) //pixels
                 .method('tspans');
       
 
@@ -368,11 +415,14 @@ function InteractiveChart ( {offsetY, mainData, dataRefs, gptRefs, datasetDrop, 
             .style("font-family", "Sans-serif")
             .style("color", color)
 
-        svg.select(".y-axis path")
-            .style("stroke", "#52616a")
+        svg.selectAll(".y-axis path")
+            .attr("stroke", "#8b8687")
     
-        svg.select(".x-axis path")
-            .style("stroke", "#52616a")
+        svg.selectAll(".x-axis path")
+            .attr("stroke", "#8b8687")
+
+        zoomsvg.selectAll(".x-axis2 path")
+            .attr("stroke", "#8b8687")
 
         svg.append("path")
             .style("fill", "none")
@@ -392,67 +442,7 @@ function InteractiveChart ( {offsetY, mainData, dataRefs, gptRefs, datasetDrop, 
             
         zoomsvg.call(myBrush)
 
-        timeFrameData.forEach((timeframe)=> {
-            if (timeframe.time_start != null && timeframe.time_end != null) {
-                var left = xScale(new Date(timeframe.time_start));
-                var right = xScale(new Date(timeframe.time_end)); //one more day
-                var wid = right - left;
-
-                if (timeframe.time_start == timeframe.time_end) {
-                    svg.append("rect")
-                        .attr("x", left)
-                        .attr("width", "1")
-                        .attr("height", height)
-                        .style("stroke", "#eb9f9f")
-                        .style("fill", "#eb9f9f")
-                        .on("mouseover", function(d) {
-                            const newHighlightRef = highlightRef
-                            newHighlightRef[currSentence].push(timeframe.sentence_part)
-                            setHighlightRef(newHighlightRef)
-
-                            const newHighlightColor = highlightColor
-                            newHighlightColor[currSentence][timeframe.sentence_part] = 'timeref'
-                            setHighlightColor(newHighlightColor)
-                            console.log("HIGHLIGHTHOVER", newHighlightRef[currSentence], newHighlightColor[currSentence])
-                          })                  
-                          .on("mouseout", function(d) {
-                            setHighlightRef(JSON.parse(window.sessionStorage.getItem("user-highlight-ref")))
-                            setHighlightColor(JSON.parse(window.sessionStorage.getItem("user-highlight-color")))
-                          });
-
-                    zoomsvg.append("rect")
-                        .attr("x", left)
-                        .attr("width", "1")
-                        .attr("height", height2)
-                        .style("stroke", "#eb9f9f")
-                        .style("fill", "#eb9f9f")
-
-                    console.log("TIMEFRAMELINE", timeframe.time_start, new Date(timeframe.time_start))
-                }
-
-                else {
-                    svg.append("rect")
-                        .attr("x", left)
-                        .attr("width", wid)
-                        .attr("height", height)
-                        .style("fill", "#eb9f9f")
-
-
-                    zoomsvg.append("rect")
-                        .attr("x", left)
-                        .attr("width", wid)
-                        .attr("height", height2)
-                        .style("fill", "#eb9f9f")
-
-                    console.log("TIMEFRAMERANGE", timeframe.time_start, new Date(timeframe.time_start))
-                    
-                }
                 
-
-            }
-        })
-        
-        
         // ${dataRef.dataReference.replace(/\s/gi, "")}
         // zoomsvg.append("g")
         //     .attr("class", "x-brush")
@@ -478,23 +468,22 @@ function InteractiveChart ( {offsetY, mainData, dataRefs, gptRefs, datasetDrop, 
             // yScale.domain([d3.min(newdata, function(d){return d.measurement;}), d3.max(newdata, function(d){return d.measurement;})]).nice()
         
             // if (p_yaxis == 0) {
-                svg.select(".x-axis").call(d3.axisBottom()
-                    .ticks(5)
-                    .tickSize(0)
-                    .tickFormat(d3.timeFormat(timeUnit))
-                    .scale(xScale))
-                    .selectAll("text")
-                    .style("text-anchor", "middle")
-                    .style("font-size", "12px")
-                    .style("font-family", "Sans-serif")
-                    .style("color", "#52616a")
-                    .attr("dy", "1em");
+            svg.select(".x-axis").call(d3.axisBottom()
+                .ticks(5)
+                .tickSize(0)
+                .tickFormat(d3.timeFormat(timeUnit))
+                .scale(xScale))
+                .selectAll("text")
+                .style("text-anchor", "middle")
+                .style("font-size", "12px")
+                .style("font-family", "Sans-serif")
+                .style("color", "#8b8687")
+                .attr("dy", "1em");
             // }
             
             console.log("brush line", svg.selectAll(`path.line`), zoomsvg.selectAll('path.line2'))
             const lines = svg.selectAll(`path.line`)
             const timeline = svg.selectAll(`rect`)
-
         
             const brushyScale0 = d3.scaleLinear().rangeRound([height, 0]);
             const brushyScale1 = d3.scaleLinear().rangeRound([height, 0]);
@@ -522,7 +511,45 @@ function InteractiveChart ( {offsetY, mainData, dataRefs, gptRefs, datasetDrop, 
             timeline.each((data, idx) => {
                 console.log("TIMETIMETIME", data, idx)
             })
+            
+            timeFrameData.forEach((timeframe, idx)=> {
+                if (timeframe.time_start != null && timeframe.time_end != null) {
+                    var startdate = new Date(timeframe.time_start);
+                    var enddate = new Date(timeframe.time_end); //one more day (in case: time_start == time_end)
+                    enddate.setDate(enddate.getDate() + 5);
+                    var left = xScale(startdate);
+                    var right = xScale(enddate); 
+                    var wid = right - left;
 
+                    if (startdate > xScale2.invert(s[0]) && enddate < xScale2.invert(s[1])) {
+                        svg.select(`.timeframe-${idx}`)
+                            .attr("visibility", "visible")
+                            .attr("x", left)
+                            .attr("width", wid)
+                            .attr("height", height)
+                            .style("stroke", "#eb9f9f")
+                            .style("fill", "#eb9f9f")
+                            .on("mouseover", function(d) {
+                                const newHighlightRef = highlightRef
+                                newHighlightRef[currSentence].push(timeframe.sentence_part)
+                                setHighlightRef(newHighlightRef)
+        
+                                const newHighlightColor = highlightColor
+                                newHighlightColor[currSentence][timeframe.sentence_part] = 'timeref'
+                                setHighlightColor(newHighlightColor)
+                                console.log("HIGHLIGHTHOVER", newHighlightRef[currSentence], newHighlightColor[currSentence])
+                                })                  
+                                .on("mouseout", function(d) {
+                                setHighlightRef(JSON.parse(window.sessionStorage.getItem("user-highlight-ref")))
+                                setHighlightColor(JSON.parse(window.sessionStorage.getItem("user-highlight-color")))
+                                });
+                    }
+                    else {
+                        svg.select(`.timeframe-${idx}`)
+                            .attr("visibility", "hidden")
+                    }
+                }
+            })
             svg.select(`path.line.main`).attr("d", d3.line()
                 .defined(function(d) { return !isNaN(d.measurement) && d.date >= xScale2.invert(s[0]) && d.date <= xScale2.invert(s[1]) })
                 .x(function(d) { return xScale(d.date); })
