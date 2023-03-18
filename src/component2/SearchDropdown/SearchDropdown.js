@@ -62,14 +62,16 @@ function SearchDropdown({dataDrop, dataSelected, setDataSelected, datasetIdx, se
                     onClick={()=>{setIsOpen(!isOpen)}}
                 >
                     {dataSelected.name}
-                <img 
-                    width="14px" 
-                    src={(isOpen ? null : "data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e")}/>
-                {/* <div className={`arrow ${isOpen ? "open" : ""}`}><img src={dropdownicon} width='100%'/></div> */}
+                    <img 
+                        style={{marginLeft: "auto"}}
+                        width="12px" 
+                        src={(isOpen ? null : "data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e")}/>
+                    {/* <div className={`arrow ${isOpen ? "open" : ""}`}><img src={dropdownicon} width='100%'/></div> */}
                 </div>
             </div>
             <div className={`dropdown-menu ${isOpen ? "open" : ""}`}>
-                {filter(dataDrop).map((item, idx) => {
+                {dataDrop.map((item, idx) => {
+                    console.log("SEARCH", item, dataSelected)
                     return (
                         <div
                             onClick={() => selectOption(item, idx)}
