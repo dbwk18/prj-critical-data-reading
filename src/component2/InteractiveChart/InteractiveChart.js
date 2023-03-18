@@ -568,11 +568,13 @@ function InteractiveChart ( {offsetY, mainData, dataRefs, gptRefs, datasetDrop, 
 
     return (
         <React.Fragment>
-            <div style={{backgroundColor: "#f4f4f4", 
+            <div style={{backgroundColor: "#f9f9f9", 
                         width: "29vw", 
                         position: "absolute", 
                         left: "58vw", 
-                        top: offsetY - 30
+                        top: offsetY - 30,
+                        borderRadius: "8px",
+                        padding: "10px 0"
                     }}>
                 {dataRefs.length > 0 
                 ? (

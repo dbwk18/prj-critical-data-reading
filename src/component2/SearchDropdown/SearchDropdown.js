@@ -2,6 +2,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './SearchDropdown.css'
 import { useState, useRef } from 'react';
 
+import dropdownicon from '../../images/icons/chevron-down.svg'
+
 function SearchDropdown({dataDrop, dataSelected, setDataSelected, datasetIdx, setDatasetIdx, dropIdx}) {
 
     const [isOpen, setIsOpen] = useState(false);
@@ -44,7 +46,7 @@ function SearchDropdown({dataDrop, dataSelected, setDataSelected, datasetIdx, se
     return (
         <div 
             className='search-dropdown'
-            style={{float: "left", width: "67%", height: "38px"}}    
+            // style={{ height: "20px"}}    
         >
             <div className='input-group mb-3'>
                 {/* <input 
@@ -60,8 +62,11 @@ function SearchDropdown({dataDrop, dataSelected, setDataSelected, datasetIdx, se
                     onClick={()=>{setIsOpen(!isOpen)}}
                 >
                     {dataSelected.name}
+                <img 
+                    width="14px" 
+                    src={(isOpen ? null : "data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e")}/>
+                {/* <div className={`arrow ${isOpen ? "open" : ""}`}><img src={dropdownicon} width='100%'/></div> */}
                 </div>
-                <div className={`arrow ${isOpen ? "open" : ""}`}></div>
             </div>
             <div className={`dropdown-menu ${isOpen ? "open" : ""}`}>
                 {filter(dataDrop).map((item, idx) => {

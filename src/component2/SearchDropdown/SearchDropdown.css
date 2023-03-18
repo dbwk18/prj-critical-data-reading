@@ -3,6 +3,7 @@
   font-size: 11px !important;
   height: 60px;
   align-items: center;
+  border-radius: 8px!important;
 }
 
 .search-dropdown .arrow {
