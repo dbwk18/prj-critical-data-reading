@@ -1,10 +1,22 @@
+import { useEffect, useState } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import SearchDropdown from '../SearchDropdown/SearchDropdown';
+
+import './LabelDropdown.css'
 
 
 function LabelDropdown({mainData, gptRefs, datasetDrop, listSelected, setListSelected, dataSelected, setDataSelected, datasetIdx, setDatasetIdx}) {
 
     console.log("dropdown", mainData, datasetDrop, gptRefs, listSelected)
+
+    const [viewExplain1, setViewExplain1] = useState(false);
+    const [viewExplain2, setViewExplain2] = useState(false);
+
+    useEffect(()=> {
+        setViewExplain1(false);
+        setViewExplain2(false);
+    }, [gptRefs, listSelected, datasetIdx])
+    
 
     return (
         <div>
@@ -13,7 +25,7 @@ function LabelDropdown({mainData, gptRefs, datasetDrop, listSelected, setListSel
                 // console.log("wht?", item, datasetDrop, datasetDrop[item], datasetDrop[listSelected[formidx]])
                 return (
                 <div style={{
-                    height: "140px", 
+                    // height: "140px", 
                     padding: "10px 5px", 
                     margin: "5px 10px",
                     borderLeft: `7px solid ${formidx == 0 ? "#6AAFE6" : "#a5d296"}`, 
@@ -46,7 +58,55 @@ function LabelDropdown({mainData, gptRefs, datasetDrop, listSelected, setListSel
                             setDatasetIdx={setDatasetIdx} 
                             dropIdx={formidx}
                         />
-                        <button className='btn btn-link btn-sm py-0' style={{fontSize: "10px", position: "relative", top: "-20px"}}>View more about dataset explanation</button>
+                        <button 
+                            className='btn btn-link btn-sm py-0 view-btn' 
+                            onClick={()=>{formidx == 0 ? setViewExplain1(!viewExplain1) : setViewExplain2(!viewExplain2)}}
+                        >
+                            {
+                                formidx == 0
+                                ? (
+                                    viewExplain1
+                                    ? "Close the dataset explanation"
+                                    : "View more about dataset explanation"
+                                )
+                                : null
+                            }
+                            {
+                                formidx == 1
+                                ? (
+                                    viewExplain2
+                                    ? "Close the dataset explanation"
+                                    : "View more about dataset explanation"
+                                )
+                                : null
+                            }
+                        </button>
+                        {
+                            formidx == 0
+                            ? (
+                                viewExplain1
+                                ? (
+                                    <div className="view-div">
+                                        {"explanation"}
+                                    </div>
+                                )
+                                : null
+                            )
+                            : null
+                        }
+                        {
+                            formidx == 1
+                            ? (
+                                viewExplain2
+                                ?  (
+                                    <div className="view-div"> 
+                                        {"explanation"}
+                                    </div>
+                                )
+                                : null
+                            )
+                            : null
+                        }
                     </div>
                 </div>
             )})
@@ -60,7 +120,7 @@ function LabelDropdown({mainData, gptRefs, datasetDrop, listSelected, setListSel
                 
                 <>
                     <div style={{
-                        height: "140px", 
+                        // height: "140px", 
                         padding: "10px 5px", 
                         margin: "5px 10px",
                         borderLeft: `7px solid #6AAFE6`, 
@@ -70,7 +130,8 @@ function LabelDropdown({mainData, gptRefs, datasetDrop, listSelected, setListSel
                         borderRadius: "4px"
                     }}>
                         <div>
-                            <select style={{height: "40px", fontSize: "12px", whiteSpace: "pre-wrap"}}
+                            <select 
+                                style={{height: "40px", fontSize: "12px", whiteSpace: "pre-wrap"}}
                                 class="form-select"
                                 as="select"
                                 value={mainData["GPT3-result"]}
@@ -86,11 +147,29 @@ function LabelDropdown({mainData, gptRefs, datasetDrop, listSelected, setListSel
                                 setDatasetIdx={setDatasetIdx} 
                                 dropIdx={0}
                             />
-                            <button className='btn btn-link btn-sm py-0' style={{fontSize: "10px", position: "relative", top: "-20px"}}>View more about dataset explanation</button>
+                            <button 
+                                className='btn btn-link btn-sm py-0 view-btn' 
+                                onClick={()=>{setViewExplain1(!viewExplain1);}}
+                            >
+                                {
+                                    viewExplain1
+                                    ? "Close the dataset explanation"
+                                    : "View more about dataset explanation"
+                                }
+                            </button>
+                                {
+                                    viewExplain1
+                                    ?  (
+                                        <div className="view-div">
+                                            {"explanation"}
+                                        </div>
+                                    )
+                                    : null
+                                }
                         </div>
                     </div>
                     <div style={{
-                        height: "140px", 
+                        // height: "140px", 
                         padding: "10px 5px", 
                         margin: "5px 10px",
                         borderLeft: `7px solid #a5d296`, 
@@ -118,7 +197,25 @@ function LabelDropdown({mainData, gptRefs, datasetDrop, listSelected, setListSel
                                 datasetIdx={datasetIdx} 
                                 setDatasetIdx={setDatasetIdx} 
                                 dropIdx={1}/>
-                            <button className='btn btn-link btn-sm py-0' style={{fontSize: "10px", position: "relative", top: "-20px"}}>View more about dataset explanation</button>
+                            <button 
+                                className='btn btn-link btn-sm py-0 view-btn' 
+                                onClick={()=>{setViewExplain2(!viewExplain2);}}
+                            >
+                                {
+                                    viewExplain2
+                                    ? "Close the dataset explanation"
+                                    : "View more about dataset explanation"
+                                }
+                            </button>
+                                {
+                                    viewExplain2
+                                    ?  (
+                                        <div className="view-div">
+                                            {"explanation"}
+                                        </div>
+                                    )
+                                    : null
+                                }
                         </div>
                     </div>
                 </>
