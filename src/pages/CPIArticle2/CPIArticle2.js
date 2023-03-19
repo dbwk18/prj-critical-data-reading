@@ -67,10 +67,12 @@ function CPIArticle2() {
     const errorNotify = () => {toast.error("Failed to create a data reference");}
     const successNotify = (name) => toast.success(`Data reference "${name}" is created`);
 
+
     //update new reference if user create
     useEffect(()=> {
 
         text_req['user_email'] =  JSON.parse(window.sessionStorage.getItem("user-email"))["name"]
+
 
         //process article & process data => update when user creates ref 
         axios.post(`http://internal.kixlab.org:7887/process_article`, 
@@ -100,6 +102,8 @@ function CPIArticle2() {
             setTimeFrameData(getTimeFrameData(res.data));
 
         })  
+
+        
 
         console.log("user-info", window.sessionStorage.getItem("user-email"), JSON.parse(window.sessionStorage.getItem("user-article")))
 

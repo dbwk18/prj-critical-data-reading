@@ -62,19 +62,19 @@ function InteractiveChart ( {chartOpen, setChartOpen, offsetY, mainData, dataRef
             .attr("transform", `translate(${margin2.left}, ${margin2.top})`);
         
 
-        const time_range = await axios.get(`http://internal.kixlab.org:7887/query_data?dataset_id=${mainData.id}`, { headers: {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json',
-        }}).then( (response) => {
-            const data =  response.data.observations.map((data) => {
-                    return {
-                        date: new Date(data.date),
-                        measurement: parseFloat(data.value) ? parseFloat(data.value) : 0
-                        } 
-                    }, {withCredentials: true}) 
-            console.log(data[0]['date'], data[data.length-1]['date'])
-            return [data[0]['date'], data[data.length-1]['date']];
-        })
+        // const time_range = await axios.get(`http://internal.kixlab.org:7887/query_data?dataset_id=${mainData.id}`, { headers: {
+        //     'Content-Type': 'application/json',
+        //     'Accept': 'application/json',
+        // }}).then( (response) => {
+        //     const data =  response.data.observations.map((data) => {
+        //             return {
+        //                 date: new Date(data.date),
+        //                 measurement: parseFloat(data.value) ? parseFloat(data.value) : 0
+        //                 } 
+        //             }, {withCredentials: true}) 
+        //     console.log(data[0]['date'], data[data.length-1]['date'])
+        //     return [data[0]['date'], data[data.length-1]['date']];
+        // })
     
         // const xmin = time_range[0]
         // const xmax = time_range[1]
@@ -133,19 +133,19 @@ function InteractiveChart ( {chartOpen, setChartOpen, offsetY, mainData, dataRef
             .attr("transform", `translate(${margin3.left}, ${margin3.top})`);
 
         
-        const time_range = await axios.get(`http://internal.kixlab.org:7887/query_data?dataset_id=${mainData.id}`, {headers: {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json',
-        }}).then( (response) => {
-            const data =  response.data.observations.map((data) => {
-                    return {
-                        date: new Date(data.date),
-                        measurement: parseFloat(data.value) ? parseFloat(data.value) : 0
-                        } 
-                    }, {withCredentials: true}) 
-            console.log(data[0]['date'], data[data.length-1]['date'])
-            return [data[0]['date'], data[data.length-1]['date']];
-        })
+        // const time_range = await axios.get(`http://internal.kixlab.org:7887/query_data?dataset_id=${mainData.id}`, {headers: {
+        //     'Content-Type': 'application/json',
+        //     'Accept': 'application/json',
+        // }}).then( (response) => {
+        //     const data =  response.data.observations.map((data) => {
+        //             return {
+        //                 date: new Date(data.date),
+        //                 measurement: parseFloat(data.value) ? parseFloat(data.value) : 0
+        //                 } 
+        //             }, {withCredentials: true}) 
+        //     console.log(data[0]['date'], data[data.length-1]['date'])
+        //     return [data[0]['date'], data[data.length-1]['date']];
+        // })
         
         const xmin = new Date();
         const xmax = new Date();
