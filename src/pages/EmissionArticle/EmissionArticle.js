@@ -25,6 +25,8 @@ function EmissionArticle() {
 
     const location = useLocation();
 
+    const [chartOpen, setChartOpen] = useState(false);
+
     const [mainData, setMainData] = useState(null);
     const [articleData, setArticleData] = useState(location.state.article)
     const [timeRange, setTimeRange] = useState(null);
@@ -163,6 +165,7 @@ function EmissionArticle() {
 
     //function for clicking highlighted sentence
     const clickhighlight = (e, sentence) => {
+        setChartOpen(true);
         articleData.sentences.forEach( (item) => {
             if (item.sentence == sentence.trim()) {
                 // setMainData(JSON.parse(window.sessionStorage.getItem("user-article")).main_data.dataName);
@@ -236,6 +239,8 @@ function EmissionArticle() {
         <div>
             {dataRefs.length !== 0
              ? <InteractiveChart 
+                    chartOpen={chartOpen}
+                    setChartOpen={setChartOpen}
                     offsetY={offsetY} 
                     mainData={mainData} 
                     dataRefs={dataRefs} 

@@ -25,8 +25,10 @@ function InteractiveChart ( {chartOpen, setChartOpen, offsetY, mainData, dataRef
 
     useEffect(()=> {
         console.log("change dropdown", listSelected, timeFrameData)
-        document.getElementById('graph-container').innerHTML=""
-        updategraph();
+        if (document.getElementById('graph-container')) {
+            document.getElementById('graph-container').innerHTML=""
+            updategraph();
+        }
     }, [listSelected, datasetIdx])
 
     useEffect(()=> {
