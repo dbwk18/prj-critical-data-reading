@@ -8,7 +8,7 @@ import SearchDropdown from "../SearchDropdown/SearchDropdown";
 import SearchBox from "../SearchBox/SearchBox";
 
 
-function InteractiveChart ( {chartOpen, setChartOpen, offsetY, mainData, dataRefs, gptRefs, datasetDrop, listSelected, setListSelected, timeFrameData, highlightRef, setHighlightRef, highlightColor, setHighlightColor, currSentence, setNewrefSentence} ) {
+function InteractiveChart ( {chartOpen, setChartOpen, offsetY, mainData, dataRefs, gptRefs, datasetDrop, listSelected, setListSelected, timeFrameData, highlightRef, setHighlightRef, highlightColor, setHighlightColor, currSentence, setNewrefSentence, timeRange } ) {
     
     const graphRef = useRef();
     const [dataSelected, setDataSelected] = useState(null);
@@ -16,8 +16,10 @@ function InteractiveChart ( {chartOpen, setChartOpen, offsetY, mainData, dataRef
 
 
     useEffect(() => {
-        document.getElementById('graph-container').innerHTML=""
-        drawall();
+        if (document.getElementById('graph-container')) {
+            document.getElementById('graph-container').innerHTML=""
+            drawall();
+        }
     }, [dataRefs])
 
 
@@ -61,7 +63,6 @@ function InteractiveChart ( {chartOpen, setChartOpen, offsetY, mainData, dataRef
             .append("g")
             .attr("transform", `translate(${margin2.left}, ${margin2.top})`);
         
-
         // const time_range = await axios.get(`http://internal.kixlab.org:7887/query_data?dataset_id=${mainData.id}`, { headers: {
         //     'Content-Type': 'application/json',
         //     'Accept': 'application/json',
@@ -131,7 +132,6 @@ function InteractiveChart ( {chartOpen, setChartOpen, offsetY, mainData, dataRef
             .attr("height", height3 + margin3.top + margin3.bottom)
             .append("g")
             .attr("transform", `translate(${margin3.left}, ${margin3.top})`);
-
         
         // const time_range = await axios.get(`http://internal.kixlab.org:7887/query_data?dataset_id=${mainData.id}`, {headers: {
         //     'Content-Type': 'application/json',
@@ -209,20 +209,6 @@ function InteractiveChart ( {chartOpen, setChartOpen, offsetY, mainData, dataRef
             timeUnit = "%Y %m %d";
         }
         const timeConv = d3.timeFormat(timeUnit)
-        
-        const time_range = await axios.get(`http://internal.kixlab.org:7887/query_data?dataset_id=${mainData.id}`, { headers: {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json',
-        }}).then( (response) => {
-            const data =  response.data.observations.map((data) => {
-                    return {
-                        date: new Date(data.date),
-                        measurement: parseFloat(data.value) ? parseFloat(data.value) : 0
-                        } 
-                    }, {withCredentials: true}) 
-            console.log(data[0]['date'], data[data.length-1]['date'])
-            return [data[0]['date'], data[data.length-1]['date']];
-        })
 
         const newdata = await axios(`http://internal.kixlab.org:7887/query_data?dataset_id=${dataset.id}`, {headers: {
             'Content-Type': 'application/json',
@@ -270,7 +256,7 @@ function InteractiveChart ( {chartOpen, setChartOpen, offsetY, mainData, dataRef
 
 
         xScale.domain([xmin, xmax])
-        xScale2.domain([time_range[0], xmax])
+        xScale2.domain([timeRange[0], xmax])
         yScale.domain([d3.min(newdata, function(d){return d.measurement;}), d3.max(newdata, function(d){return d.measurement;})]).nice()
         yScale2.domain([d3.min(newdata, function(d){return d.measurement;}), d3.max(newdata, function(d){return d.measurement;})]).nice()
 
@@ -283,7 +269,7 @@ function InteractiveChart ( {chartOpen, setChartOpen, offsetY, mainData, dataRef
 
         //sub chart
         const line2 = d3.line()
-        .defined(function(d) { return !isNaN(d.measurement) && d.date >= time_range[0] && d.date <= xmax })
+        .defined(function(d) { return !isNaN(d.measurement) && d.date >= timeRange[0] && d.date <= xmax })
         .x(function(d) { return xScale2(d.date); })
         .y(function(d) { return yScale2(d.measurement); })
 

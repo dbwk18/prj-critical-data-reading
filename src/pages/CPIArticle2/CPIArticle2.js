@@ -34,7 +34,8 @@ function CPIArticle2() {
     const [chartOpen, setChartOpen] = useState(false);
 
     const [mainData, setMainData] = useState(null);
-    const [articleData, setArticleData] = useState(location.state.article)
+    const [articleData, setArticleData] = useState(location.state.article);
+    const [timeRange, setTimeRange] = useState(null);
 
     const [highlight, setHighlight] = useState(location.state.highlight);
     const [highlightRef, setHighlightRef] = useState(location.state.ref);
@@ -67,6 +68,28 @@ function CPIArticle2() {
     const errorNotify = () => {toast.error("Failed to create a data reference");}
     const successNotify = (name) => toast.success(`Data reference "${name}" is created`);
 
+
+    //process maindata & default time range
+    useEffect(() => {
+        const main_data = JSON.parse(window.sessionStorage.getItem("user-article")).main_data.dataName;
+        setMainData(main_data);
+
+        axios.get(`http://internal.kixlab.org:7887/query_data?dataset_id=${main_data.id}`, { headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+        }}).then( (response) => {
+            const data =  response.data.observations.map((data) => {
+                    return {
+                        date: new Date(data.date),
+                        measurement: parseFloat(data.value) ? parseFloat(data.value) : 0
+                        } 
+                    }, {withCredentials: true}) 
+
+            // console.log(data[0]['date'], data[data.length-1]['date'])
+            setTimeRange( [data[0]['date'], data[data.length-1]['date']] );
+        })
+
+    }, [])
 
     //update new reference if user create
     useEffect(()=> {
@@ -102,8 +125,6 @@ function CPIArticle2() {
             setTimeFrameData(getTimeFrameData(res.data));
 
         })  
-
-        
 
         console.log("user-info", window.sessionStorage.getItem("user-email"), JSON.parse(window.sessionStorage.getItem("user-article")))
 
@@ -154,7 +175,7 @@ function CPIArticle2() {
         setChartOpen(true);
         articleData.sentences.forEach( (item) => {
             if (item.sentence == sentence.trim()) {
-                setMainData(JSON.parse(window.sessionStorage.getItem("user-article")).main_data.dataName);
+                // setMainData(JSON.parse(window.sessionStorage.getItem("user-article")).main_data.dataName);
                 // setTimeFrame(JSON.parse(window.sessionStorage.getItem("user-article")).sentences)
                 setCurrSentence(sentence.trim())
                 setDataRefs(highlightRef[sentence.trim()])
@@ -273,6 +294,7 @@ function CPIArticle2() {
                     setHighlightColor={setHighlightColor}
                     currSentence={currSentence}
                     setNewrefSentence={setNewrefSentence}
+                    timeRange={timeRange}
                 />
              : null 
             }
