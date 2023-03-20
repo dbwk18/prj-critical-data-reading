@@ -195,6 +195,9 @@ function InteractiveChart ( {chartOpen, setChartOpen, offsetY, mainData, dataRef
         if (dataset.frequency.includes("Annual")) {
             timeUnit = "%Y";
         }
+        else if (dataset.frequency.includes("yearly")) {
+            timeUnit = "%Y";
+        }
         else if (dataset.frequency.includes("Semiannual")) {
             timeUnit = "%Y %m";
         }
