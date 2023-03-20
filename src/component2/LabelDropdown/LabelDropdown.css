@@ -8,8 +8,8 @@
 .view-div {
     padding: 5px 10px;
     border-radius: 12px;
+    border: 1px solid #dedede;
     background-color: #f0f5f9;
-    margin: 0 0 0 10px;
     font-size: 11px;
     max-height: 100px;
     overflow: auto;
