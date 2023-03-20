@@ -89,7 +89,7 @@ function LabelDropdown({mainData, gptRefs, datasetDrop, listSelected, setListSel
                                 viewExplain1
                                 ? (
                                     <div className="view-div">
-                                        {"explanation"}
+                                        {datasetDrop[listSelected[formidx]][datasetIdx[formidx]]["notes"]}
                                     </div>
                                 )
                                 : null
@@ -102,7 +102,7 @@ function LabelDropdown({mainData, gptRefs, datasetDrop, listSelected, setListSel
                                 viewExplain2
                                 ?  (
                                     <div className="view-div"> 
-                                        {"explanation"}
+                                        {datasetDrop[listSelected[formidx]][datasetIdx[formidx]]["notes"]}
                                     </div>
                                 )
                                 : null
@@ -165,7 +165,7 @@ function LabelDropdown({mainData, gptRefs, datasetDrop, listSelected, setListSel
                                     viewExplain1
                                     ?  (
                                         <div className="view-div">
-                                            {"explanation"}
+                                            {mainData.notes}
                                         </div>
                                     )
                                     : null
@@ -217,7 +217,7 @@ function LabelDropdown({mainData, gptRefs, datasetDrop, listSelected, setListSel
                                     viewExplain2
                                     ?  (
                                         <div className="view-div">
-                                            {"explanation"}
+                                            {datasetDrop[gptRefs[0]][datasetIdx[1]]["notes"]}
                                         </div>
                                     )
                                     : null

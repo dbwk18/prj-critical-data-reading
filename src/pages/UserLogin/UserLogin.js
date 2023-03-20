@@ -35,7 +35,7 @@ function UserLogin() {
             }
         }
         ).then( (res) => {
-            console.log("ARTICLE", res);
+            console.log("ARTICLE", res.data);
         })  
 
         //process article & process data => update when user creates ref 
