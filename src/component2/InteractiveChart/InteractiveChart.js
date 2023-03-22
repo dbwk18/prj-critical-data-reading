@@ -283,6 +283,54 @@ function InteractiveChart ( {chartOpen, setChartOpen, offsetY, mainData, dataRef
                         .extent([[xScale2.range()[0], 0], [xScale2.range()[1], height2]])
                         .on("brush", (event)=>brushed(event, newdata))
 
+        //tooltip
+        var tooltip = d3.select(graphRef.current)
+                        .append("div")
+                        .style("position", "absolute")
+                        .style("opacity", 0)
+                        .attr("class", "tooltip")
+                        .style("background-color", "#f4f5f9")
+                        .style("border", "1px solid #a7a7a2")
+                        .style("border-radius", "8px")
+                        .style("text-align", "center")
+                        .style("font-size", "12px")
+                        .style("color", "#8b8687")
+                        .style("width", "80px")
+                        .style("padding", "5px")
+
+        var mouseover = function(e, d) {
+            tooltip.style("opacity", 1)
+        }
+
+        var mousemove = function(e, d) {
+            console.log("mousemove", d)
+            tooltip.html(`<span style='font-size: 10px'>${d.date.toISOString().slice(0, 10)}</span> <br/> <span style='color: ${color}'><b>${Math.round(d.measurement * 100)/100}</b></span>`)
+                    .style("left", (d3.pointer(e)[0]+50) + "px")
+                    .style("top", (d3.pointer(e)[1]+450) + "px")
+        }
+
+        var mouseleave = function(e, d) {
+            tooltip.style("opacity", 0)
+        }
+
+        // Add the points
+        svg.append("g")
+            .selectAll("dot")
+            .data(newdata.filter((d) => !isNaN(d.measurement) && d.date >= xmin && d.date <= xmax ))
+            .enter()
+            .append("circle")
+            .attr("class", "myCircle")
+            .attr("cx", function(d) { return xScale(d.date) } )
+            .attr("cy", function(d) { return yScale(d.measurement) } )
+            .attr("r", 10)
+            .attr("stroke", "none")
+            .attr("stroke-width", 1)
+            .attr("fill", "white")
+            .attr("fill-opacity", 0)
+            .on("mouseover", mouseover)
+            .on("mousemove", mousemove)
+            .on("mouseleave", mouseleave)
+        
 
         //draw xaxis only once
         if (p_yaxis == 0) {
