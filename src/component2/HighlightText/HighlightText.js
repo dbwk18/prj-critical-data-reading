@@ -47,7 +47,7 @@ function HighlightText (text, highlight, textToMatch, colorToMatch, clickhighlig
                                 : ''
                             )
                         }
-                        // onClick={(e)=>clickhighlight(e, text)}
+                        onClick={(e)=>clickhighlight(e, text)}
                         onMouseEnter={()=>setHover(true)}
                         onMouseLeave={()=>setHover(false)}
                     >
