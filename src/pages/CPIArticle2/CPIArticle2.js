@@ -14,7 +14,7 @@ import HighlightText from '../../component2/HighlightText/HighlightText';
 
 import { getHighlight, getHighlightRef, getHighlightGPTRef, getHighlightColor, getHighlightData, getTimeFrameData } from '../../data/DataPreprocess.js';
 
-import text_req from './../../data/article_extract_test_req.json'
+import text_req from './../../data/article_extract_req_cpi.json'
 import next_req from './../../data/article_extract_req_emission.json'
 
 import NotePad from '../../component2/Notepad/Notepad';

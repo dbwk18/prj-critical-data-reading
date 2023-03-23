@@ -8,11 +8,10 @@ import SearchDropdown from "../SearchDropdown/SearchDropdown";
 import SearchBox from "../SearchBox/SearchBox";
 
 
-function InteractiveChart ( {chartOpen, setChartOpen, offsetY, mainData, dataRefs, gptRefs, datasetDrop, listSelected, setListSelected, timeFrameData, highlightRef, setHighlightRef, highlightColor, setHighlightColor, currSentence, setNewrefSentence, timeRange } ) {
+function InteractiveChart ( {chartOpen, setChartOpen, offsetY, mainData, dataRefs, gptRefs, datasetDrop, listSelected, setListSelected, datasetIdx, setDatasetIdx, timeFrameData, highlightRef, setHighlightRef, highlightColor, setHighlightColor, currSentence, setNewrefSentence, timeRange } ) {
     
     const graphRef = useRef();
     const [dataSelected, setDataSelected] = useState(null);
-    const [datasetIdx, setDatasetIdx] = useState([0, 0]);
 
 
     useEffect(() => {
@@ -30,11 +29,6 @@ function InteractiveChart ( {chartOpen, setChartOpen, offsetY, mainData, dataRef
             updategraph();
         }
     }, [listSelected, datasetIdx])
-
-    useEffect(()=> {
-        console.log("1되라", datasetIdx)
-        setDatasetIdx([0, 0]);
-    }, [currSentence])
 
 
 

@@ -51,7 +51,7 @@ function ArticleView( {userid, pagenum, articledata, articlevis, text_req} ) {
     const [gptRefs, setGPTRefs] = useState([]);
     const [datasetDrop, setDatasetDrop] = useState([]);
     const [listSelected, setListSelected] = useState([]);
-    // const [datasetIdx, setDatasetIdx] = useState([0, 0]);
+    const [datasetIdx, setDatasetIdx] = useState([0, 0]);
 
 
     const [update, setUpdate] = useState(0);
@@ -157,10 +157,9 @@ function ArticleView( {userid, pagenum, articledata, articlevis, text_req} ) {
 
     
     document.addEventListener("dragstart", event => {
-        // 투명도 초기화
         console.log("drag", event.target);
-
         // event.target.classList.remove("dragging");
+
       });
 
 
@@ -177,7 +176,7 @@ function ArticleView( {userid, pagenum, articledata, articlevis, text_req} ) {
                 setDatasetDrop(highlightData[sentence.trim()])
                 highlightRef[sentence.trim()].length == 1 ? setListSelected([highlightGPTRef[sentence.trim()][0]]) : setListSelected([highlightGPTRef[sentence.trim()][0], highlightGPTRef[sentence.trim()][1]])
                 setOffsetY(e.nativeEvent.pageY);
-                
+                setDatasetIdx([0, 0]);
             }
         })
     }
@@ -229,38 +228,9 @@ function ArticleView( {userid, pagenum, articledata, articlevis, text_req} ) {
         text_req['user_email'] = JSON.parse(window.sessionStorage.getItem("user-email"))["name"]
 
         pagenum == 1
+        ? navigate(`/article-mid-${userid}`)
+        : navigate("/article-end")
         
-        ? (
-        // axios.post(`http://internal.kixlab.org:7887/process_article`, 
-        // textreq,
-        // {
-        //     headers: {
-        //     'Content-Type': 'application/json',
-        //     'Accept': 'application/json',
-        //     }
-        // }
-        // ).then( (res) => {
-        //     console.log("ARTICLE", res, res.data);
-        //     window.sessionStorage.setItem("user-article", JSON.stringify(res.data));
-
-        //     window.sessionStorage.setItem("user-highlight", JSON.stringify(getHighlight(res.data)));
-        //     window.sessionStorage.setItem("user-highlight-ref", JSON.stringify(getHighlightRef(res.data)));
-        //     window.sessionStorage.setItem("user-highlight-gptref", JSON.stringify(getHighlightGPTRef(res.data)));
-        //     window.sessionStorage.setItem("user-highlight-color", JSON.stringify(getHighlightColor(res.data)));
-        //     window.sessionStorage.setItem("user-highlight-data", JSON.stringify(getHighlightData(res.data)));
-        //     window.sessionStorage.setItem("user-timeframe-data", JSON.stringify(getTimeFrameData(res.data)));
-
-        //      //temporal
-        //     navigate(`/${next_title}-${userid}`, {state: {article: res.data, highlight: getHighlight(res.data), ref: getHighlightRef(res.data), gptref: getHighlightGPTRef(res.data), color: getHighlightColor(res.data), data: getHighlightData(res.data), timeframe: getTimeFrameData(res.data)}});
-        // })  
-            navigate(`/article-mid-${userid}`)
-            
-        )
-
-        : (
-            navigate("/article-end")
-        )
-
     }
 
 
@@ -293,6 +263,8 @@ function ArticleView( {userid, pagenum, articledata, articlevis, text_req} ) {
                     datasetDrop={datasetDrop}
                     listSelected={listSelected}
                     setListSelected={setListSelected}
+                    datasetIdx={datasetIdx}
+                    setDatasetIdx={setDatasetIdx}
                     timeFrameData={timeFrameData[currSentence]}
                     highlightRef={highlightRef}
                     setHighlightRef={setHighlightRef}

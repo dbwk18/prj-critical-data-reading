@@ -16,13 +16,7 @@ function LabelDropdown({mainData, gptRefs, datasetDrop, listSelected, setListSel
         setViewExplain1(false);
         setViewExplain2(false);
     }, [gptRefs, listSelected, datasetIdx])
-    
-
-    useEffect(() => {
-        console.log("2되라", datasetIdx)
-        setDatasetIdx([0, 0]);
-    }, [currSentence])
-
+  
 
     return (
         <div>

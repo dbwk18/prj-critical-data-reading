@@ -11,11 +11,6 @@ function SearchDropdown({dataDrop, dataSelected, setDataSelected, datasetIdx, se
     const inputRef = useRef(null);
 
 
-    // useEffect(() => {
-    //     console.log("3되라", datasetIdx, dataSelected, dataDrop)
-    //     setDatasetIdx([0, 0]);
-    // }, [currSentence])
-
     //handle outside click
     useEffect(() => {
         function handleClickOutside(event) {
@@ -30,8 +25,6 @@ function SearchDropdown({dataDrop, dataSelected, setDataSelected, datasetIdx, se
         };
       }, [inputRef]);
 
-
-    // console.log("datadrop",dataDrop, dataSelected)
 
     function toggle(e) {
         return setIsOpen(e && (e.target === inputRef.current));

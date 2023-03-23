@@ -17,7 +17,7 @@ import cpi_article from './data/cpi_article.json'
 import emission_article from './data/emission_article.json'
 
 // api request for each article 
-import cpi_req from './data/article_extract_test_req.json'
+import cpi_req from './data/article_extract_req_cpi.json'
 import emission_req from './data/article_extract_req_emission.json'
 
 // img for each article
