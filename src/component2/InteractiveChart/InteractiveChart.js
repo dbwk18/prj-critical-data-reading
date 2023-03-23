@@ -6,7 +6,6 @@ import axios from 'axios';
 import LabelDropdown from '../LabelDropdown/LabelDropdown';
 import SearchDropdown from "../SearchDropdown/SearchDropdown";
 import SearchBox from "../SearchBox/SearchBox";
-import { timer } from "d3";
 
 
 function InteractiveChart ( {chartOpen, setChartOpen, offsetY, mainData, dataRefs, gptRefs, datasetDrop, listSelected, setListSelected, datasetIdx, setDatasetIdx, timeFrameData, highlightRef, setHighlightRef, highlightColor, setHighlightColor, currSentence, setNewrefSentence, timeRange } ) {
@@ -465,6 +464,16 @@ function InteractiveChart ( {chartOpen, setChartOpen, offsetY, mainData, dataRef
     
         svg.selectAll(".x-axis path")
             .attr("stroke", "#8b8687")
+        
+        svg.append("text")
+            .attr("transform", (p_yaxis==0 ? "rotate(-90)" : "rotate(90)"))
+            .attr("y", (p_yaxis==0 ? 0 - margin.left/1.2 : - width - margin.right/1.2 ))
+            .attr("x", (p_yaxis==0 ? 0 - (height / 2) : 0 + (height / 2)))
+            .attr("dy", "1em")
+            .style("text-anchor", "middle")
+            .style("font-size", "10px")
+            .style("fill", color)
+            .text(dataset.units);
 
         zoomsvg.selectAll(".x-axis2 path")
             .attr("stroke", "#8b8687")
