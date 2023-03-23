@@ -23,6 +23,7 @@ function HighlightText (text, highlight, textToMatch, colorToMatch, clickhighlig
                     <span 
                         key={`${keySubstr}-${index}-nonbold`}
                         className={ 
+                            // hover && highlight.includes(text.trim()) 
                             hover && highlight.includes(text.trim()) 
                             ? 'underline-highlight' 
                             : (
@@ -31,16 +32,14 @@ function HighlightText (text, highlight, textToMatch, colorToMatch, clickhighlig
                                 : ''
                             )
                         }
-                        onClick={(e)=>clickhighlight(e, text)}
-                        onMouseEnter={()=>setHover(true)}
-                        onMouseLeave={()=>setHover(false)}
+                        // onClick={(e)=>clickhighlight(e, text)}
                     >
                         {nonBoldText}
                     </span>
                     <span
                         key={`${keySubstr}-${index}-bold`}
                         className={ 
-                            hover && highlight.includes(text.trim()) 
+                            highlight.includes(text.trim()) 
                             ? 'underline-highlight' 
                             : (
                                 newrefSentence === text.trim() && highlight.includes(text.trim()) 
@@ -48,7 +47,7 @@ function HighlightText (text, highlight, textToMatch, colorToMatch, clickhighlig
                                 : ''
                             )
                         }
-                        onClick={(e)=>clickhighlight(e, text)}
+                        // onClick={(e)=>clickhighlight(e, text)}
                         onMouseEnter={()=>setHover(true)}
                         onMouseLeave={()=>setHover(false)}
                     >

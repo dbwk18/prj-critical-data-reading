@@ -300,6 +300,8 @@ function InteractiveChart ( {chartOpen, setChartOpen, offsetY, mainData, dataRef
 
         var mouseover = function(e, d) {
             tooltip.style("opacity", 1)
+            // svg.select(`dot${d.date}${d.measurement}`)
+            //     .attr("fill-opacity", 1)
         }
 
         var mousemove = function(e, d) {
@@ -319,7 +321,7 @@ function InteractiveChart ( {chartOpen, setChartOpen, offsetY, mainData, dataRef
             .data(newdata.filter((d) => !isNaN(d.measurement) && d.date >= xmin && d.date <= xmax ))
             .enter()
             .append("circle")
-            .attr("class", "myCircle")
+            .attr("class", function(d) {return `dot${d.date}${d.measurement}`})
             .attr("cx", function(d) { return xScale(d.date) } )
             .attr("cy", function(d) { return yScale(d.measurement) } )
             .attr("r", 10)
@@ -620,7 +622,7 @@ function InteractiveChart ( {chartOpen, setChartOpen, offsetY, mainData, dataRef
                         width: "29vw", 
                         position: "absolute", 
                         left: "58vw", 
-                        top: offsetY - 30,
+                        top: offsetY - 220,
                         borderRadius: "8px",
                         padding: "10px 0",
                         boxShadow: "rgba(149, 157, 165, 0.2) 0px 8px 24px"
