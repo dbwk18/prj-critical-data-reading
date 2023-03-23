@@ -3,13 +3,13 @@ import { useNavigate } from "react-router-dom";
 import { getHighlight, getHighlightRef, getHighlightGPTRef, getHighlightColor, getHighlightData, getTimeFrameData } from '../../data/DataPreprocess.js';
 
 import axios from 'axios'
-import text_req from './../../data/article_extract_test_req.json'
+// import text_req from './../../data/article_extract_test_req.json'
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './UserLogin.css';
 
 
-function UserLogin() {
+function UserLogin( {userid, next_title, text_req} ) {
 
     const navigate = useNavigate();
 
@@ -59,7 +59,7 @@ function UserLogin() {
             window.sessionStorage.setItem("user-timeframe-data", JSON.stringify(getTimeFrameData(res.data)));
 
              //temporal
-            navigate("/nyt-cpi-article", {state: {article: res.data, highlight: getHighlight(res.data), ref: getHighlightRef(res.data), gptref: getHighlightGPTRef(res.data), color: getHighlightColor(res.data), data: getHighlightData(res.data), timeframe: getTimeFrameData(res.data)}});
+            navigate(`/${next_title}-${userid}`, {state: {article: res.data, highlight: getHighlight(res.data), ref: getHighlightRef(res.data), gptref: getHighlightGPTRef(res.data), color: getHighlightColor(res.data), data: getHighlightData(res.data), timeframe: getTimeFrameData(res.data)}});
         })  
 
      

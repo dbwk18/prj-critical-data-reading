@@ -1,36 +1,32 @@
 import React, {useState, useEffect, useRef} from 'react';
-import { useLocation } from "react-router-dom";
-
-// import toydata2 from '../../data/article_extract_text_results.json'
-import emissionarticle from '../../data/emission_article.json'
-
-import NYTHeader from '../../images/NYT-unemploy/NYTHeader.png';
-import NYTGraph1 from '../../images/vis/emission_article.png';
+import { useNavigate, useLocation } from "react-router-dom";
 
 import InteractiveChart from '../../component2/InteractiveChart/InteractiveChart';
 import SearchTooltip from '../../component2/SearchTooltip/SearchTooltip';
 import SearchBox from '../../component2/SearchBox/SearchBox';
 import HighlightText from '../../component2/HighlightText/HighlightText';
-
-import { getHighlight, getHighlightRef, getHighlightGPTRef, getHighlightColor, getHighlightData, getTimeFrameData } from '../../data/DataPreprocess.js';
-
-import text_req from './../../data/article_extract_req_emission.json'
-
-import axios from 'axios';
-import { ToastContainer, toast } from 'react-toastify';
-
 import NotePad from '../../component2/Notepad/Notepad';
 
-function EmissionArticle() {
+import { getHighlight, getHighlightRef, getHighlightGPTRef, getHighlightColor, getHighlightData, getTimeFrameData } from '../../data/DataPreprocess.js';
+import { ToastContainer, toast } from 'react-toastify';
 
+import axios from 'axios';
+
+import './ArticleView.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+
+function ArticleView( {userid, pagenum, articledata, articlevis, text_req} ) {
+
+    const navigate = useNavigate();
     const location = useLocation();
 
     const [chartOpen, setChartOpen] = useState(false);
 
     const [mainData, setMainData] = useState(null);
-    const [articleData, setArticleData] = useState(location.state.article)
+    const [articleData, setArticleData] = useState(location.state.article);
     const [timeRange, setTimeRange] = useState(null);
-    
+
     const [highlight, setHighlight] = useState(location.state.highlight);
     const [highlightRef, setHighlightRef] = useState(location.state.ref);
     const [highlightGPTRef, setHighlightGPTRef] = useState(location.state.gptref);
@@ -90,6 +86,7 @@ function EmissionArticle() {
 
         text_req['user_email'] =  JSON.parse(window.sessionStorage.getItem("user-email"))["name"]
 
+
         //process article & process data => update when user creates ref 
         axios.post(`http://internal.kixlab.org:7887/process_article`, 
         text_req,
@@ -133,9 +130,9 @@ function EmissionArticle() {
             setDataRefs(highlightRef[currSentence])
             setGPTRefs(highlightGPTRef[currSentence])
             setDatasetDrop(highlightData[currSentence])
-            highlightRef[currSentence].length == 1 
+            highlightRef[currSentence].length === 1 
             ? setListSelected([highlightGPTRef[currSentence][highlightRef[currSentence].length-1]]) 
-            : (highlightRef[currSentence].length == 2 
+            : (highlightRef[currSentence].length === 2 
                 ? setListSelected([highlightGPTRef[currSentence][highlightRef[currSentence].length-1], highlightGPTRef[currSentence][0]])
                 : setListSelected([highlightGPTRef[currSentence][highlightRef[currSentence].length-1], highlightGPTRef[currSentence][1]])
             )
@@ -195,6 +192,11 @@ function EmissionArticle() {
             setSearchDefault(window.getSelection().toString());
             xs.setStart(s_container, s_offset);
             xs.setEnd(e_container, e_offset);
+
+            // set new ref sentence in click highlight()
+            // cpiarticle.paragraphs.flat().map((item)=>{
+            //     if (item.includes(window.getSelection().toString())) setNewrefSentence(item);
+            // })
         }
  
         return s_offset != e_offset ? xs : null;
@@ -219,6 +221,43 @@ function EmissionArticle() {
         range.surroundContents(newNode);
     }
 
+    function processNext() {
+        text_req['user_email'] = JSON.parse(window.sessionStorage.getItem("user-email"))["name"]
+
+        pagenum == 1
+        
+        ? (
+        // axios.post(`http://internal.kixlab.org:7887/process_article`, 
+        // textreq,
+        // {
+        //     headers: {
+        //     'Content-Type': 'application/json',
+        //     'Accept': 'application/json',
+        //     }
+        // }
+        // ).then( (res) => {
+        //     console.log("ARTICLE", res, res.data);
+        //     window.sessionStorage.setItem("user-article", JSON.stringify(res.data));
+
+        //     window.sessionStorage.setItem("user-highlight", JSON.stringify(getHighlight(res.data)));
+        //     window.sessionStorage.setItem("user-highlight-ref", JSON.stringify(getHighlightRef(res.data)));
+        //     window.sessionStorage.setItem("user-highlight-gptref", JSON.stringify(getHighlightGPTRef(res.data)));
+        //     window.sessionStorage.setItem("user-highlight-color", JSON.stringify(getHighlightColor(res.data)));
+        //     window.sessionStorage.setItem("user-highlight-data", JSON.stringify(getHighlightData(res.data)));
+        //     window.sessionStorage.setItem("user-timeframe-data", JSON.stringify(getTimeFrameData(res.data)));
+
+        //      //temporal
+        //     navigate(`/${next_title}-${userid}`, {state: {article: res.data, highlight: getHighlight(res.data), ref: getHighlightRef(res.data), gptref: getHighlightGPTRef(res.data), color: getHighlightColor(res.data), data: getHighlightData(res.data), timeframe: getTimeFrameData(res.data)}});
+        // })  
+            navigate(`/article-mid-${userid}`)
+            
+        )
+
+        : (
+            navigate("/article-end")
+        )
+
+    }
 
 
     return (
@@ -227,17 +266,17 @@ function EmissionArticle() {
 
         {/* <img src={NYTHeader} width='100%' /> */}
         <div className='g-header'>
-            <button className="btn btn-outline-primary btn-sm disabled">Go To Next Article</button>
+            <button className="btn btn-outline-primary btn-sm" onClick={()=>{processNext()}}>Go Next</button>
         </div>
-        <div className='g-name'>{emissionarticle["title"]}</div>
-        <div className='g-details'>{emissionarticle["details"]}</div>
+        <div className='g-name'>{articledata["title"]}</div>
+        <div className='g-details'>{articledata["details"]}</div>
         
-        <div className='g-body'>
-            <img src={NYTGraph1} width='100%' />
+        <div className="g-body">
+            <img src={articlevis} width='100%' />
         </div>
-
+        
         <NotePad />
-
+        
         <div>
             {dataRefs.length !== 0
              ? <InteractiveChart 
@@ -312,14 +351,14 @@ function EmissionArticle() {
             }
         }}>
             {
-                emissionarticle.paragraphs.map((paragraph, idx) => {
+                articledata.paragraphs.map((paragraph, idx) => {
                     return (
                         <div className="g-body">
                             {paragraph.map((sentence, idx) => {
                                 // console.log(idx, sentence, highlightRef[sentence], highlightColor[sentence])
                                 if (highlight.includes(sentence)) {
                                     return (
-                                        HighlightText(sentence, highlight, highlightRef[sentence],highlightColor[sentence], clickhighlight, newrefSentence)
+                                        HighlightText(sentence, highlight, highlightRef[sentence], highlightColor[sentence], clickhighlight, newrefSentence)
                                     )
                                 }
                                 else {
@@ -340,4 +379,4 @@ function EmissionArticle() {
     )
 }
 
-export default EmissionArticle;
+export default ArticleView;

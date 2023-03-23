@@ -40,7 +40,7 @@ class NotePad extends React.Component {
         <div className="some-test">
           <div>
             <textarea
-              rows="16"
+              rows="12"
               cols="32"
               placeholder="Write notes here"
               id="notes-value"
@@ -52,24 +52,6 @@ class NotePad extends React.Component {
             </button> */}
           </div>
         </div>
-        {/* <div className="display-notes">
-          {this.state.noteList.length > 0
-            ? this.state.noteList.map((item, index) => (
-                <div key={index} className={`notes-item ${index}`}>
-                  <div className="note-head">
-                    <h3>Note {index}</h3>
-                    <button
-                      className="delete-note"
-                    //   onClick={() => this.onDeleteNote(index)}
-                    >
-                      X
-                    </button>
-                  </div>
-                  {item.notes}
-                </div>
-              ))
-            : ""}
-        </div> */}
       </div>
     );
   }
