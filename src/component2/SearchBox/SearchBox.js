@@ -61,6 +61,7 @@ function SearchBox({offsetX, offsetY, defaultInput, setSearchBox, setTooltip, ne
             "user_email": `${JSON.parse(window.sessionStorage.getItem("user-email"))["name"]}`
          }
 
+        console.log("???", req_input)
         const new_reference = axios.post(`http://internal.kixlab.org:7887/create_reference`,
         req_input,
         {
@@ -106,8 +107,9 @@ function SearchBox({offsetX, offsetY, defaultInput, setSearchBox, setTooltip, ne
                         type="text" 
                         class="form-control" 
                         style={{fontSize: "14px"}}
-                        defaultValue={defaultInput} 
-                        value={generatePart} 
+                        // defaultValue={defaultInput} 
+                        // value={generatePart} 
+                        defaultValue={generatePart}
                         key={defaultInput} 
                         onChange={handleChange}
                         onKeyUp={(e) => {

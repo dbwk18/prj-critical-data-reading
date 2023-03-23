@@ -51,6 +51,8 @@ function ArticleView( {userid, pagenum, articledata, articlevis, text_req} ) {
     const [gptRefs, setGPTRefs] = useState([]);
     const [datasetDrop, setDatasetDrop] = useState([]);
     const [listSelected, setListSelected] = useState([]);
+    // const [datasetIdx, setDatasetIdx] = useState([0, 0]);
+
 
     const [update, setUpdate] = useState(0);
     const [toastStatus, setToastStatus] = useState(null);
@@ -153,9 +155,11 @@ function ArticleView( {userid, pagenum, articledata, articlevis, text_req} ) {
     }, [toastStatus])
 
 
+    
     document.addEventListener("dragstart", event => {
         // 투명도 초기화
-        console.log("drag", event.target)
+        console.log("drag", event.target);
+
         // event.target.classList.remove("dragging");
       });
 
@@ -173,7 +177,7 @@ function ArticleView( {userid, pagenum, articledata, articlevis, text_req} ) {
                 setDatasetDrop(highlightData[sentence.trim()])
                 highlightRef[sentence.trim()].length == 1 ? setListSelected([highlightGPTRef[sentence.trim()][0]]) : setListSelected([highlightGPTRef[sentence.trim()][0], highlightGPTRef[sentence.trim()][1]])
                 setOffsetY(e.nativeEvent.pageY);
-                setNewrefSentence(sentence);
+                
             }
         })
     }
@@ -358,7 +362,7 @@ function ArticleView( {userid, pagenum, articledata, articlevis, text_req} ) {
                                 // console.log(idx, sentence, highlightRef[sentence], highlightColor[sentence])
                                 if (highlight.includes(sentence)) {
                                     return (
-                                        HighlightText(sentence, highlight, highlightRef[sentence], highlightColor[sentence], clickhighlight, newrefSentence)
+                                        HighlightText(sentence, highlight, highlightRef[sentence], highlightColor[sentence], clickhighlight, newrefSentence, setNewrefSentence, currSentence)
                                     )
                                 }
                                 else {

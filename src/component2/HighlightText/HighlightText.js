@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import './HighlightText.css'
 
-function HighlightText (text, highlight, textToMatch, colorToMatch, clickhighlight, newrefSentence) {
+function HighlightText (text, highlight, textToMatch, colorToMatch, clickhighlight, newrefSentence, setNewrefSentence, currSentence) {
     
     // const textToMatch = JSON.parse(window.sessionStorage.getItem("user-highlight-ref"))[text]
     // const colorToMatch = JSON.parse(window.sessionStorage.getItem("user-highlight-color"))[text]
@@ -12,7 +12,7 @@ function HighlightText (text, highlight, textToMatch, colorToMatch, clickhighlig
 
     const [hover, setHover] = useState(false);
     // console.log("newref", newrefSentence)
-    console.log("hmm", text, textToMatch, colorToMatch)
+    // console.log("hmm", text, textToMatch, colorToMatch)
     const keySubstr = text.substring(0, 10)
     return (
         textToMatch.length > 0 
@@ -27,12 +27,13 @@ function HighlightText (text, highlight, textToMatch, colorToMatch, clickhighlig
                             hover && highlight.includes(text.trim()) 
                             ? 'underline-highlight' 
                             : (
-                                newrefSentence === text.trim() && highlight.includes(text.trim()) 
+                                currSentence === text.trim() && highlight.includes(text.trim()) 
                                 ? 'bold-highlight'
                                 : ''
                             )
                         }
                         // onClick={(e)=>clickhighlight(e, text)}
+                        onClick={(e)=>{setNewrefSentence(text);}}
                     >
                         {nonBoldText}
                     </span>
@@ -42,17 +43,17 @@ function HighlightText (text, highlight, textToMatch, colorToMatch, clickhighlig
                             highlight.includes(text.trim()) 
                             ? 'underline-highlight' 
                             : (
-                                newrefSentence === text.trim() && highlight.includes(text.trim()) 
+                                currSentence === text.trim() && highlight.includes(text.trim()) 
                                 ? 'bold-highlight'
                                 : ''
                             )
                         }
-                        onClick={(e)=>clickhighlight(e, text)}
+                        onClick={(e)=>{clickhighlight(e, text); setNewrefSentence(text);}}
                         onMouseEnter={()=>setHover(true)}
                         onMouseLeave={()=>setHover(false)}
                     >
                         {index + 1 !== arr.length && (
-                            <mark class={hover || newrefSentence === text.trim() ? colorToMatch[matches[index]] : null}>{matches[index]}</mark>
+                            <mark class={hover || currSentence === text.trim() ? colorToMatch[matches[index]] : null}>{matches[index]}</mark>
                         )}
                     </span>
                 </>
@@ -67,13 +68,14 @@ function HighlightText (text, highlight, textToMatch, colorToMatch, clickhighlig
                     hover && highlight.includes(text.trim()) 
                     ? 'underline-highlight' 
                     : (
-                        newrefSentence == text.trim()
+                        currSentence == text.trim()
                         ? 'bold-highlight'
                         : ''
                     )
                 }
                 onMouseEnter={()=>setHover(true)}
                 onMouseLeave={()=>setHover(false)}
+                onClick={(e)=>{setNewrefSentence(text);}}
             >
                 {text}&nbsp;
             </span>

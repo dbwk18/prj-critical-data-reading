@@ -76,7 +76,7 @@ function LabelDropdown({mainData, gptRefs, datasetDrop, listSelected, setListSel
                                 ? (
                                     viewExplain1
                                     ? "Close the dataset explanation"
-                                    : "View more about dataset explanation"
+                                    : "What does this data mean?"
                                 )
                                 : null
                             }
@@ -85,7 +85,7 @@ function LabelDropdown({mainData, gptRefs, datasetDrop, listSelected, setListSel
                                 ? (
                                     viewExplain2
                                     ? "Close the dataset explanation"
-                                    : "View more about dataset explanation"
+                                    : "What does this data mean?"
                                 )
                                 : null
                             }

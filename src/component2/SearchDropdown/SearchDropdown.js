@@ -11,10 +11,10 @@ function SearchDropdown({dataDrop, dataSelected, setDataSelected, datasetIdx, se
     const inputRef = useRef(null);
 
 
-    useEffect(() => {
-        console.log("3되라", datasetIdx)
-        setDatasetIdx([0, 0]);
-    }, [currSentence])
+    // useEffect(() => {
+    //     console.log("3되라", datasetIdx, dataSelected, dataDrop)
+    //     setDatasetIdx([0, 0]);
+    // }, [currSentence])
 
     //handle outside click
     useEffect(() => {
