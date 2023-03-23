@@ -17,6 +17,7 @@ import { getHighlight, getHighlightRef, getHighlightGPTRef, getHighlightColor, g
 import text_req from './../../data/article_extract_test_req.json'
 import next_req from './../../data/article_extract_req_emission.json'
 
+import NotePad from '../../component2/Notepad/Notepad';
 
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
@@ -274,6 +275,7 @@ function CPIArticle2() {
             <img src={NYTGraph1} width='100%' />
         </div>
         
+        <NotePad />
         
         <div>
             {dataRefs.length !== 0

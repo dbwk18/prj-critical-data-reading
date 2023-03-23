@@ -4,12 +4,17 @@ import { useState, useEffect, useRef } from 'react';
 
 import dropdownicon from '../../images/icons/chevron-down.svg'
 
-function SearchDropdown({dataDrop, dataSelected, setDataSelected, datasetIdx, setDatasetIdx, dropIdx}) {
+function SearchDropdown({dataDrop, dataSelected, setDataSelected, datasetIdx, setDatasetIdx, dropIdx, currSentence}) {
 
     const [isOpen, setIsOpen] = useState(false);
     const [query, setQuery] =useState("")
     const inputRef = useRef(null);
 
+
+    useEffect(() => {
+        console.log("3되라", datasetIdx)
+        setDatasetIdx([0, 0]);
+    }, [currSentence])
 
     //handle outside click
     useEffect(() => {

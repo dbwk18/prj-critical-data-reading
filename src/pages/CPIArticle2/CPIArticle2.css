@@ -13,7 +13,7 @@
     /* margin-top: 50px; */
     padding-bottom: 15px;
     /* margin: 50px 550px 0 550px; */
-    margin: 2vh 46vw 0 20vw;
+    margin: 2vh 40vw 0 26vw;
 }
 
 .g-details {
@@ -24,7 +24,7 @@
     /* margin-top: 7px; */
     padding-bottom: 22px;
     /* margin: 0px 550px 0 550px; */
-    margin: 0 46vw 0 20vw;
+    margin: 0 40vw 0 26vw;
 }
 
 .g-body{
@@ -35,7 +35,7 @@
     /* margin-top: 8px;   */
     padding-bottom: 28px; 
     /* margin: 8px 550px 0 550px; */
-    margin: 1vh 46vw 0 20vw;
+    margin: 1vh 40vw 0 26vw;
 }
 
 /* .g-body::selection {

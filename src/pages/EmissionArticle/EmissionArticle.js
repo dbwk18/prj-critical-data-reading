@@ -19,7 +19,7 @@ import text_req from './../../data/article_extract_req_emission.json'
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 
-
+import NotePad from '../../component2/Notepad/Notepad';
 
 function EmissionArticle() {
 
@@ -235,6 +235,8 @@ function EmissionArticle() {
         <div className='g-body'>
             <img src={NYTGraph1} width='100%' />
         </div>
+
+        <NotePad />
 
         <div>
             {dataRefs.length !== 0

@@ -5,7 +5,7 @@ import SearchDropdown from '../SearchDropdown/SearchDropdown';
 import './LabelDropdown.css'
 
 
-function LabelDropdown({mainData, gptRefs, datasetDrop, listSelected, setListSelected, dataSelected, setDataSelected, datasetIdx, setDatasetIdx}) {
+function LabelDropdown({mainData, gptRefs, datasetDrop, listSelected, setListSelected, dataSelected, setDataSelected, datasetIdx, setDatasetIdx, currSentence}) {
 
     console.log("dropdown", mainData, datasetDrop, gptRefs, listSelected)
 
@@ -17,6 +17,12 @@ function LabelDropdown({mainData, gptRefs, datasetDrop, listSelected, setListSel
         setViewExplain2(false);
     }, [gptRefs, listSelected, datasetIdx])
     
+
+    useEffect(() => {
+        console.log("2되라", datasetIdx)
+        setDatasetIdx([0, 0]);
+    }, [currSentence])
+
 
     return (
         <div>
@@ -59,6 +65,7 @@ function LabelDropdown({mainData, gptRefs, datasetDrop, listSelected, setListSel
                             datasetIdx={datasetIdx} 
                             setDatasetIdx={setDatasetIdx} 
                             dropIdx={formidx}
+                            currSentence={currSentence}
                         />
                         <button 
                             className='btn btn-link btn-sm py-0 view-btn' 
@@ -150,6 +157,7 @@ function LabelDropdown({mainData, gptRefs, datasetDrop, listSelected, setListSel
                                 datasetIdx={datasetIdx} 
                                 setDatasetIdx={setDatasetIdx} 
                                 dropIdx={0}
+                                currSentence={currSentence}
                             />
                             <button 
                                 className='btn btn-link btn-sm py-0 view-btn' 
@@ -202,7 +210,9 @@ function LabelDropdown({mainData, gptRefs, datasetDrop, listSelected, setListSel
                                 setDataSelected={setDataSelected} 
                                 datasetIdx={datasetIdx} 
                                 setDatasetIdx={setDatasetIdx} 
-                                dropIdx={1}/>
+                                dropIdx={1}
+                                currSentence={currSentence}
+                            />
                             <button 
                                 className='btn btn-link btn-sm py-0 view-btn' 
                                 onClick={()=>{setViewExplain2(!viewExplain2);}}

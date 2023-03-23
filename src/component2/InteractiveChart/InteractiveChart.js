@@ -32,6 +32,7 @@ function InteractiveChart ( {chartOpen, setChartOpen, offsetY, mainData, dataRef
     }, [listSelected, datasetIdx])
 
     useEffect(()=> {
+        console.log("1되라", datasetIdx)
         setDatasetIdx([0, 0]);
     }, [currSentence])
 
@@ -621,8 +622,8 @@ function InteractiveChart ( {chartOpen, setChartOpen, offsetY, mainData, dataRef
                         backgroundColor: "#f9f9f9", 
                         width: "29vw", 
                         position: "absolute", 
-                        left: "58vw", 
-                        top: offsetY - 220,
+                        left: "62vw", 
+                        top: offsetY - 270,
                         borderRadius: "8px",
                         padding: "10px 0",
                         boxShadow: "rgba(149, 157, 165, 0.2) 0px 8px 24px"
@@ -653,6 +654,7 @@ function InteractiveChart ( {chartOpen, setChartOpen, offsetY, mainData, dataRef
                                 setDataSelected={setDataSelected} 
                                 datasetIdx={datasetIdx} 
                                 setDatasetIdx={setDatasetIdx}
+                                currSentence={currSentence}
                             /> 
                         </>
                     )
