@@ -6,6 +6,7 @@ import axios from 'axios';
 import LabelDropdown from '../LabelDropdown/LabelDropdown';
 import SearchDropdown from "../SearchDropdown/SearchDropdown";
 import SearchBox from "../SearchBox/SearchBox";
+import { timer } from "d3";
 
 
 function InteractiveChart ( {chartOpen, setChartOpen, offsetY, mainData, dataRefs, gptRefs, datasetDrop, listSelected, setListSelected, datasetIdx, setDatasetIdx, timeFrameData, highlightRef, setHighlightRef, highlightColor, setHighlightColor, currSentence, setNewrefSentence, timeRange } ) {
@@ -78,17 +79,17 @@ function InteractiveChart ( {chartOpen, setChartOpen, offsetY, mainData, dataRef
         // const xmax = time_range[1]
 
         const xmin = new Date();
-        const xmax = new Date();
-        xmin.setFullYear(xmin.getFullYear()-10);
-        console.log("MINMAX", xmin, xmax)
+        const xmax = timeRange[1];
+        xmin.setFullYear(xmax.getFullYear()-10);
+        // console.log("MINMAX", xmin, xmax)
       
         if (dataRefs.length == 1) {
-            console.log(dataRefs[0])
+            // console.log(dataRefs[0])
             drawone(mainData, svg, zoomsvg, "#6AAFE6", 0 , xmin, xmax, gptRefs[0]);
             drawone(datasetDrop[gptRefs[0]][0], svg, zoomsvg, "#a5d296", 1, xmin, xmax, mainData);
         }
         else if (dataRefs.length > 1) {
-            console.log("WHY???", datasetDrop, dataRefs, gptRefs)
+            // console.log("WHY???", datasetDrop, dataRefs, gptRefs)
             drawone(datasetDrop[gptRefs[0]][0], svg, zoomsvg, "#6AAFE6", 0 , xmin, xmax, gptRefs[1]);
             drawone(datasetDrop[gptRefs[1]][0], svg, zoomsvg, "#a5d296", 1, xmin, xmax, gptRefs[0]);
         }
@@ -144,9 +145,13 @@ function InteractiveChart ( {chartOpen, setChartOpen, offsetY, mainData, dataRef
         //     return [data[0]['date'], data[data.length-1]['date']];
         // })
         
+        // const xmin = new Date();
+        // const xmax = new Date();
+        // xmin.setFullYear(xmin.getFullYear()-10);
+        
         const xmin = new Date();
-        const xmax = new Date();
-        xmin.setFullYear(xmin.getFullYear()-10);
+        const xmax = timeRange[1];
+        xmin.setFullYear(xmax.getFullYear()-10);
 
         var dropidx1 = 0;
         var dropidx2 = 0;
@@ -354,7 +359,7 @@ function InteractiveChart ( {chartOpen, setChartOpen, offsetY, mainData, dataRef
                 .attr("dy", "1em")
             
             timeFrameData.forEach((timeframe, idx)=> {
-                if (timeframe.time_start != null && timeframe.time_end != null) {
+                if (timeframe.time_start != null && timeframe.time_end != null && new Date(timeframe.time_end) <= xmax) {
                     var startdate = new Date(timeframe.time_start);
                     var enddate = new Date(timeframe.time_end); //one more day (in case: time_start == time_end)
                     enddate.setDate(enddate.getDate() + 3);
