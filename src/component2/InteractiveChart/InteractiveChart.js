@@ -639,7 +639,7 @@ function InteractiveChart ( {chartOpen, setChartOpen, offsetY, mainData, dataRef
                 >   
                 <div style={{display: "flex", alignItems: "center", margin: "0 15px", color: "#3E3E3E"}}>
                     <div style={{fontSize: "14px"}}> 
-                        Selected <b>dataset</b> will be drawn on the chart 
+                        Choose the <b>data-related phrase</b> to visualize:
                     </div>
                     <div style={{marginLeft: "auto", fontSize: "25px"}} 
                          onClick={()=>{

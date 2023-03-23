@@ -35,7 +35,7 @@ function LabelDropdown({mainData, gptRefs, datasetDrop, listSelected, setListSel
                     borderRadius: "4px"
                 }}>
                     <div>
-                        <div style={{fontSize: "12px", paddingLeft: "5px", paddingTop: "3px"}}> GPT-3 generated data references </div>
+                        <div style={{fontSize: "12px", paddingLeft: "5px", paddingTop: "3px"}}> <b>Data-related phrase</b> from text </div>
                         <select style={{height: "40px", fontSize: "12px", whiteSpace: "pre-wrap"}}
                             class="form-select"
                             as="select"
@@ -51,7 +51,7 @@ function LabelDropdown({mainData, gptRefs, datasetDrop, listSelected, setListSel
                                     <option selected={listvar == item ? true : false} key={idx}>{listvar}</option>
                             )})}
                         </select>
-                        <div style={{fontSize: "12px", paddingLeft: "5px", paddingTop: "3px"}}> Corresponding datasets </div>
+                        <div style={{fontSize: "12px", paddingLeft: "5px", paddingTop: "3px"}}> ... is presented with the <b>data</b> </div>
                         <SearchDropdown 
                             dataDrop={datasetDrop[listSelected[formidx]]} 
                             dataSelected={datasetDrop[listSelected[formidx]][datasetIdx[formidx]]} 
@@ -133,7 +133,7 @@ function LabelDropdown({mainData, gptRefs, datasetDrop, listSelected, setListSel
                         borderRadius: "4px"
                     }}>
                         <div>
-                            <div style={{fontSize: "12px", paddingLeft: "5px", paddingTop: "3px"}}> GPT-3 generated data references </div>
+                            <div style={{fontSize: "12px", paddingLeft: "5px", paddingTop: "3px"}}> <b>Data-related phrase</b> from text </div>
                             <select 
                                 style={{height: "40px", fontSize: "12px", whiteSpace: "pre-wrap"}}
                                 class="form-select"
@@ -143,7 +143,7 @@ function LabelDropdown({mainData, gptRefs, datasetDrop, listSelected, setListSel
                             >
                                 <option>{mainData["GPT3-result"]}</option>
                             </select>
-                            <div style={{fontSize: "12px", paddingLeft: "5px", paddingTop: "3px"}}> Corresponding datasets </div>
+                            <div style={{fontSize: "12px", paddingLeft: "5px", paddingTop: "3px"}}> ... is presented with the <b>data</b> </div>
                             <SearchDropdown 
                                 dataDrop={ [JSON.parse(`{"name": "${mainData.title} ${mainData.frequency}", "id": "${mainData.id}", "frequency": "${mainData.frequency}", "units": "${mainData.units}" }`) ] }  
                                 dataSelected={ JSON.parse(`{"name": "${mainData.title} ${mainData.frequency}", "id": "${mainData.id}", "frequency": "${mainData.frequency}", "units": "${mainData.units}" }`)  }  
@@ -160,7 +160,7 @@ function LabelDropdown({mainData, gptRefs, datasetDrop, listSelected, setListSel
                                 {
                                     viewExplain1
                                     ? "Close the dataset explanation"
-                                    : "View more about dataset explanation"
+                                    : "What does this data mean?"
                                 }
                             </button>
                                 {
@@ -185,7 +185,7 @@ function LabelDropdown({mainData, gptRefs, datasetDrop, listSelected, setListSel
                         borderRadius: "4px"
                     }}>
                         <div>
-                            <div style={{fontSize: "12px", paddingLeft: "5px", paddingTop: "3px"}}> GPT-3 generated data references </div>
+                            <div style={{fontSize: "12px", paddingLeft: "5px", paddingTop: "3px"}}> <b>Data-related phrase</b> from text </div>
                             <select style={{height: "40px", fontSize: "12px", whiteSpace: "pre-wrap"}}
                                 class="form-select"
                                 as="select"
@@ -197,7 +197,7 @@ function LabelDropdown({mainData, gptRefs, datasetDrop, listSelected, setListSel
                             >
                                 <option>{gptRefs[0]}</option>
                             </select>
-                            <div style={{fontSize: "12px", paddingLeft: "5px", paddingTop: "3px"}}> Corresponding datasets </div>
+                            <div style={{fontSize: "12px", paddingLeft: "5px", paddingTop: "3px"}}> ... is presented with the <b>data</b> </div>
                             <SearchDropdown 
                                 dataDrop={datasetDrop[gptRefs[0]]}  
                                 dataSelected={datasetDrop[gptRefs[0]][datasetIdx[1]]} 
@@ -214,7 +214,7 @@ function LabelDropdown({mainData, gptRefs, datasetDrop, listSelected, setListSel
                                 {
                                     viewExplain2
                                     ? "Close the dataset explanation"
-                                    : "View more about dataset explanation"
+                                    : "What does this data mean?"
                                 }
                             </button>
                                 {
