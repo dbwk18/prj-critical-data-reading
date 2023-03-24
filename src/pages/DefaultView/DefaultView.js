@@ -13,19 +13,13 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 function DefaultView( {userid, condition, nextcondition, articledata, articlevis, text_req} ) {
 
     const navigate = useNavigate();
-    const location = useLocation();
 
     
     function processNext() {
         const userEmail = JSON.parse(window.sessionStorage.getItem("user-email"))["name"]
-        // text_req['user_email'] = userEmail
 
         const payload = {"articleTitle": articledata.url, "flowNum": userid, "condition": condition}
         createLog(userEmail, "endSession", payload)
-
-        // pagenum == 1
-        // ? navigate(`/article-mid-${userid}`)
-        // : navigate(`/article-end`)
 
         if (nextcondition == "demo") navigate(`/info-demo-${userid}`) 
         else if (nextcondition == "system") navigate(`/info-task-${userid}`)

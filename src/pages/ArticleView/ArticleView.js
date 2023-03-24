@@ -89,7 +89,6 @@ function ArticleView( {userid, condition, nextcondition, articledata, articlevis
 
         text_req['user_email'] =  JSON.parse(window.sessionStorage.getItem("user-email"))["name"]
 
-
         //process article & process data => update when user creates ref 
         axios.post(`http://cda.hyunwoo.me/api/process_article`, 
         text_req,
@@ -232,14 +231,9 @@ function ArticleView( {userid, condition, nextcondition, articledata, articlevis
 
     function processNext() {
         const userEmail = JSON.parse(window.sessionStorage.getItem("user-email"))["name"]
-        // text_req['user_email'] = userEmail
 
         const payload = {"articleTitle": articledata.url, "flowNum": userid, "condition": condition}
         createLog(userEmail, "endSession", payload)
-
-        // pagenum == 1
-        // ? navigate(`/article-mid-${userid}`)
-        // : navigate(`/article-end`)
 
         if (nextcondition == "demo") navigate(`/info-demo-${userid}`) 
         else if (nextcondition == "system") navigate(`/info-task-${userid}`)
@@ -253,16 +247,11 @@ function ArticleView( {userid, condition, nextcondition, articledata, articlevis
     <div>
         <ToastContainer />
 
-        {/* <img src={NYTHeader} width='100%' /> */}
         <div className='g-header'>
             <button className="btn btn-outline-primary btn-sm" onClick={()=>{processNext()}}>Go Next</button>
         </div>
         <div className='g-name'>{articledata["title"]}</div>
         <div className='g-details'>{articledata["details"]}</div>
-        
-        {/* <div className="g-body">
-            <img src={articlevis} width='100%' />
-        </div> */}
         
         <NotePad 
             requrl={text_req.url}

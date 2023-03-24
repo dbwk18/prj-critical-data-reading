@@ -68,7 +68,7 @@ function NotePad ( {requrl} ) {
         <div className="some-test">
           <div>
             <textarea
-              rows="12"
+              rows="14"
               cols="25"
               placeholder="Write notes here"
               id="notes-value" 
