@@ -17,7 +17,7 @@ export const createLog = ( email, event, payload ) => {
             console.log("log", {
                 "user_email": email, // user email
                 "event_name": event, // Name of the event
-                "payload": JSON.stringify(payload) // JSON-serialized payload
+                "payload": payload // JSON-serialized payload
             }, res, res.data);
         })  
 }

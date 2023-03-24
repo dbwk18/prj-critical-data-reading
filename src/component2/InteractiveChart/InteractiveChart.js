@@ -4,11 +4,13 @@ import { textwrap } from 'd3-textwrap';
 import axios from 'axios';
 
 import LabelDropdown from '../LabelDropdown/LabelDropdown';
+import { createLog } from '../../data/CreateLog.js';
+
 import SearchDropdown from "../SearchDropdown/SearchDropdown";
 import SearchBox from "../SearchBox/SearchBox";
 
 
-function InteractiveChart ( {chartOpen, setChartOpen, offsetY, mainData, dataRefs, gptRefs, datasetDrop, listSelected, setListSelected, datasetIdx, setDatasetIdx, timeFrameData, highlightRef, setHighlightRef, highlightColor, setHighlightColor, currSentence, setNewrefSentence, timeRange } ) {
+function InteractiveChart ( {chartOpen, setChartOpen, offsetY, mainData, dataRefs, gptRefs, datasetDrop, listSelected, setListSelected, datasetIdx, setDatasetIdx, timeFrameData, highlightRef, setHighlightRef, highlightColor, setHighlightColor, currSentence, setNewrefSentence, timeRange, articleurl } ) {
     
     const graphRef = useRef();
     const [dataSelected, setDataSelected] = useState(null);
@@ -645,6 +647,11 @@ function InteractiveChart ( {chartOpen, setChartOpen, offsetY, mainData, dataRef
                          onClick={()=>{
                             setChartOpen(false); 
                             setNewrefSentence(null);
+
+                            const userEmail = JSON.parse(window.sessionStorage.getItem("user-email"))["name"]
+                            const payload = {"articleTitle": articleurl, "deselectedSentence": currSentence}
+                            createLog(userEmail, "sentenceDeselect", payload)
+
                         }}>
                             &times;
                     </div>
@@ -663,6 +670,7 @@ function InteractiveChart ( {chartOpen, setChartOpen, offsetY, mainData, dataRef
                                 datasetIdx={datasetIdx} 
                                 setDatasetIdx={setDatasetIdx}
                                 currSentence={currSentence}
+                                articleurl={articleurl}
                             /> 
                         </>
                     )

@@ -8,7 +8,7 @@ import './ArticleMid.css'
 
 import { getHighlight, getHighlightRef, getHighlightGPTRef, getHighlightColor, getHighlightData, getTimeFrameData } from '../../data/DataPreprocess.js';
 
-function ArticleMid( {userid, text_req } ) {
+function ArticleMid( {userid, text_req, articletitle } ) {
 
     const navigate = useNavigate();
 
@@ -34,12 +34,12 @@ function ArticleMid( {userid, text_req } ) {
             window.sessionStorage.setItem("user-timeframe-data", JSON.stringify(getTimeFrameData(res.data)));
 
              //temporal
-            navigate(`/${text_req.url}-${userid}`, {state: {article: res.data, highlight: getHighlight(res.data), ref: getHighlightRef(res.data), gptref: getHighlightGPTRef(res.data), color: getHighlightColor(res.data), data: getHighlightData(res.data), timeframe: getTimeFrameData(res.data)}});
+            navigate(`/${articletitle}-${userid}`, {state: {article: res.data, highlight: getHighlight(res.data), ref: getHighlightRef(res.data), gptref: getHighlightGPTRef(res.data), color: getHighlightColor(res.data), data: getHighlightData(res.data), timeframe: getTimeFrameData(res.data)}});
         })  
 
         //create log 
         const userEmail = JSON.parse(window.sessionStorage.getItem("user-email"))["name"]
-        const payload = {"articleTitle": text_req.url, "flowNum": userid}
+        const payload = {"articleTitle": articletitle, "flowNum": userid}
 
         createLog(userEmail, "nextSession", payload)
 

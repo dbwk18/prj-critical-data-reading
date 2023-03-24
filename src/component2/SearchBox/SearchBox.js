@@ -1,6 +1,8 @@
 import React from "react"
 import { useState, useEffect, useRef } from "react";
 import axios from "axios";
+import { createLog } from '../../data/CreateLog.js';
+
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import searchIcon from '../../images/icons/search.svg'
@@ -10,7 +12,7 @@ import checkIcon from '../../images/icons/checkIcon.svg'
 import 'react-toastify/dist/ReactToastify.css';
 
 
-function SearchBox({offsetX, offsetY, defaultInput, setSearchBox, setTooltip, newrefSentence, update, setUpdate, setToastStatus, removeHighlight, articleURL}) {
+function SearchBox({offsetX, offsetY, defaultInput, setSearchBox, setTooltip, newrefSentence, update, setUpdate, setToastStatus, removeHighlight, requrl, articleurl}) {
 
     const [searchStatus, setSearchStatus] = useState(false); //search button click
     const [selectIdx, setSelectIdx] = useState(null);
@@ -54,7 +56,7 @@ function SearchBox({offsetX, offsetY, defaultInput, setSearchBox, setTooltip, ne
         setTooltip(false);
 
         const req_input = {
-            "article_url": `${articleURL}`, 
+            "article_url": `${requrl}`, 
             "sentence": `${newrefSentence}`, 
             "sentence_part": `${defaultInput}`, 
             "sentence_generation_part": `${generatePart}`,
@@ -80,9 +82,14 @@ function SearchBox({offsetX, offsetY, defaultInput, setSearchBox, setTooltip, ne
             removeHighlight();
         
         })  
+
+        const userEmail = JSON.parse(window.sessionStorage.getItem("user-email"))["name"]
+        const payload = {"articleTitle": articleurl, "sentence": newrefSentence, "selectedSentencePart": defaultInput, "searchedSentencePart": generatePart}
+        createLog(userEmail, "findData", payload)
         
     }
 
+  
     return (
         <React.Fragment>
             <div 

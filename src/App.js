@@ -34,16 +34,16 @@ function App() {
         {/* <Route path="/nyt-emission-article" element={<EmissionArticle />} /> */}
         
         {/* user1 */}
-        <Route path="/1" element={<UserLogin userid={1} text_req={cpi_req} />} />
-        <Route path={`/${cpi_req.url}-1`} element={<ArticleView userid={1} pagenum={1} articledata={cpi_article} articlevis={[cpi_img]} text_req={cpi_req} />} />
-        <Route path="/article-mid-1" element={<ArticleMid userid={1} text_req={emission_req} />} />
-        <Route path={`/${emission_req.url}-1`} element={<ArticleView userid={1} pagenum={2} articledata={emission_article} articlevis={[emission_img]} text_req={emission_req}  />} />
+        <Route path="/1" element={<UserLogin userid={1} text_req={cpi_req} articletitle={cpi_article.url}/>} />
+        <Route path={`/${cpi_article.url}-1`} element={<ArticleView userid={1} pagenum={1} articledata={cpi_article} articlevis={[cpi_img]} text_req={cpi_req} />} />
+        <Route path="/article-mid-1" element={<ArticleMid userid={1} text_req={emission_req} articletitle={emission_article.url}/>} />
+        <Route path={`/${emission_article.url}-1`} element={<ArticleView userid={1} pagenum={2} articledata={emission_article} articlevis={[emission_img]} text_req={emission_req}  />} />
 
         {/* user2 */}
-        <Route path="/2" element={<UserLogin userid={2} text_req={emission_req} />} />
-        <Route path={`/${emission_req.url}-2`} element={<ArticleView userid={2} pagenum={1} articledata={emission_article} articlevis={[emission_img]} text_req={emission_req}  />} />
-        <Route path="/article-mid-2" element={<ArticleMid userid={2} text_req={cpi_req} />} />
-        <Route path={`/${cpi_req.url}-2`} element={<ArticleView userid={2} pagenum={2} articledata={cpi_article} articlevis={[cpi_img]} text_req={cpi_req} />} />
+        <Route path="/2" element={<UserLogin userid={2} text_req={emission_req} articletitle={emission_article.url}/>} />
+        <Route path={`/${emission_article.url}-2`} element={<ArticleView userid={2} pagenum={1} articledata={emission_article} articlevis={[emission_img]} text_req={emission_req}  />} />
+        <Route path="/article-mid-2" element={<ArticleMid userid={2} text_req={cpi_req} articletitle={cpi_article.url}/>} />
+        <Route path={`/${cpi_article.url}-2`} element={<ArticleView userid={2} pagenum={2} articledata={cpi_article} articlevis={[cpi_img]} text_req={cpi_req} />} />
 
 
         {/* common */}

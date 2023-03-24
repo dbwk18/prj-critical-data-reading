@@ -1,10 +1,11 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './SearchDropdown.css'
 import { useState, useEffect, useRef } from 'react';
+import { createLog } from '../../data/CreateLog.js';
 
 import dropdownicon from '../../images/icons/chevron-down.svg'
 
-function SearchDropdown({dataDrop, dataSelected, setDataSelected, datasetIdx, setDatasetIdx, dropIdx, currSentence}) {
+function SearchDropdown({dataRef, dataDrop, dataSelected, setDataSelected, datasetIdx, setDatasetIdx, dropIdx, currSentence, articleurl}) {
 
     const [isOpen, setIsOpen] = useState(false);
     const [query, setQuery] =useState("")
@@ -45,8 +46,8 @@ function SearchDropdown({dataDrop, dataSelected, setDataSelected, datasetIdx, se
         
         // console.log("selected option", option, idx)
 
-        if (dropIdx == 0) setDatasetIdx([idx, datasetIdx[1]])
-        else if (dropIdx == 1) setDatasetIdx([datasetIdx[0], idx])
+        if (dropIdx == 0) {setDatasetIdx([idx, datasetIdx[1]]); datasetChangeLog(dataSelected.name, option.name)}
+        else if (dropIdx == 1) {setDatasetIdx([datasetIdx[0], idx]); datasetChangeLog(dataSelected.name, option.name)}
       
     }
     
@@ -54,6 +55,12 @@ function SearchDropdown({dataDrop, dataSelected, setDataSelected, datasetIdx, se
         return dataDrop.filter((item) => 
             item["name"].toLowerCase().indexOf(query.toLowerCase()) > -1
         )
+    }
+
+    function datasetChangeLog(prev, sel) {
+        const userEmail = JSON.parse(window.sessionStorage.getItem("user-email"))["name"]
+        const payload = {"articleTitle": articleurl, "selectedSentence": currSentence, "currReference": dataRef, "previousDataName": prev, "selectedDataName": sel}
+        createLog(userEmail, "dataSetChange", payload)
     }
 
 

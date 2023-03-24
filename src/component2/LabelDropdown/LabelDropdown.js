@@ -1,11 +1,13 @@
 import { useEffect, useState } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import SearchDropdown from '../SearchDropdown/SearchDropdown';
+import { createLog } from '../../data/CreateLog.js';
+
 
 import './LabelDropdown.css'
 
 
-function LabelDropdown({mainData, gptRefs, datasetDrop, listSelected, setListSelected, dataSelected, setDataSelected, datasetIdx, setDatasetIdx, currSentence}) {
+function LabelDropdown({mainData, gptRefs, datasetDrop, listSelected, setListSelected, dataSelected, setDataSelected, datasetIdx, setDatasetIdx, currSentence, articleurl}) {
 
     console.log("dropdown", mainData, datasetDrop, gptRefs, listSelected)
 
@@ -17,6 +19,17 @@ function LabelDropdown({mainData, gptRefs, datasetDrop, listSelected, setListSel
         setViewExplain2(false);
     }, [gptRefs, listSelected, datasetIdx])
   
+    function refChangeLog(prev, sel) {
+        const userEmail = JSON.parse(window.sessionStorage.getItem("user-email"))["name"]
+        const payload = {"articleTitle": articleurl, "selectedSentence": currSentence, "previousReference": prev, "selectedReference": sel}
+        createLog(userEmail, "dataReferenceChange", payload)
+    }
+
+    function openExpLog(ref, data, exp) {
+        const userEmail = JSON.parse(window.sessionStorage.getItem("user-email"))["name"]
+        const payload = {"articleTitle": articleurl, "selectedSentence": currSentence, "selectedReference": ref, "selectedDataset": data.name, "explanationContent": exp}
+        createLog(userEmail, "openDatasetExplanation", payload)
+    }
 
     return (
         <div>
@@ -42,8 +55,8 @@ function LabelDropdown({mainData, gptRefs, datasetDrop, listSelected, setListSel
                             value={listSelected[formidx]}
                             onChange={e => {
                                 console.log("e.target.value", e.target.value);
-                                if (formidx == 0) setListSelected([e.target.value, listSelected[1]]);
-                                else if (formidx == 1) setListSelected([listSelected[0], e.target.value]);
+                                if (formidx == 0) {setListSelected([e.target.value, listSelected[1]]); refChangeLog(listSelected[0], e.target.value);}
+                                else if (formidx == 1) {setListSelected([listSelected[0], e.target.value]); refChangeLog(listSelected[1], e.target.value);}
                             }}
                         >
                             {gptRefs.map((listvar, idx) => {
@@ -53,6 +66,7 @@ function LabelDropdown({mainData, gptRefs, datasetDrop, listSelected, setListSel
                         </select>
                         <div style={{fontSize: "12px", paddingLeft: "5px", paddingTop: "3px"}}> ... is presented with the <b>data</b> </div>
                         <SearchDropdown 
+                            dataRef={listSelected[formidx]}
                             dataDrop={datasetDrop[listSelected[formidx]]} 
                             dataSelected={datasetDrop[listSelected[formidx]][datasetIdx[formidx]]} 
                             setDataSelected={setDataSelected} 
@@ -60,10 +74,14 @@ function LabelDropdown({mainData, gptRefs, datasetDrop, listSelected, setListSel
                             setDatasetIdx={setDatasetIdx} 
                             dropIdx={formidx}
                             currSentence={currSentence}
+                            articleurl={articleurl}
                         />
                         <button 
                             className='btn btn-link btn-sm py-0 view-btn' 
-                            onClick={()=>{formidx == 0 ? setViewExplain1(!viewExplain1) : setViewExplain2(!viewExplain2)}}
+                            onClick={()=>{
+                                openExpLog(listSelected[formidx], datasetDrop[listSelected[formidx]][datasetIdx[formidx]], datasetDrop[listSelected[formidx]][datasetIdx[formidx]]["notes"]);
+                                formidx == 0 ? setViewExplain1(!viewExplain1) : setViewExplain2(!viewExplain2)
+                            }}
                         >
                             {
                                 formidx == 0
@@ -145,6 +163,7 @@ function LabelDropdown({mainData, gptRefs, datasetDrop, listSelected, setListSel
                             </select>
                             <div style={{fontSize: "12px", paddingLeft: "5px", paddingTop: "3px"}}> ... is presented with the <b>data</b> </div>
                             <SearchDropdown 
+                                dataRef={mainData["GPT3-result"]}
                                 dataDrop={ [JSON.parse(`{"name": "${mainData.title} ${mainData.frequency}", "id": "${mainData.id}", "frequency": "${mainData.frequency}", "units": "${mainData.units}" }`) ] }  
                                 dataSelected={ JSON.parse(`{"name": "${mainData.title} ${mainData.frequency}", "id": "${mainData.id}", "frequency": "${mainData.frequency}", "units": "${mainData.units}" }`)  }  
                                 setDataSelected={setDataSelected} 
@@ -152,10 +171,14 @@ function LabelDropdown({mainData, gptRefs, datasetDrop, listSelected, setListSel
                                 setDatasetIdx={setDatasetIdx} 
                                 dropIdx={0}
                                 currSentence={currSentence}
+                                articleurl={articleurl}
                             />
                             <button 
                                 className='btn btn-link btn-sm py-0 view-btn' 
-                                onClick={()=>{setViewExplain1(!viewExplain1);}}
+                                onClick={()=>{
+                                    openExpLog(mainData["GPT3-result"], JSON.parse(`{"name": "${mainData.title} ${mainData.frequency}", "id": "${mainData.id}", "frequency": "${mainData.frequency}", "units": "${mainData.units}" }`), mainData.notes)
+                                    setViewExplain1(!viewExplain1);
+                                }}
                             >
                                 {
                                     viewExplain1
@@ -199,6 +222,7 @@ function LabelDropdown({mainData, gptRefs, datasetDrop, listSelected, setListSel
                             </select>
                             <div style={{fontSize: "12px", paddingLeft: "5px", paddingTop: "3px"}}> ... is presented with the <b>data</b> </div>
                             <SearchDropdown 
+                                dataRef={listSelected[0]}
                                 dataDrop={datasetDrop[gptRefs[0]]}  
                                 dataSelected={datasetDrop[gptRefs[0]][datasetIdx[1]]} 
                                 setDataSelected={setDataSelected} 
@@ -206,10 +230,14 @@ function LabelDropdown({mainData, gptRefs, datasetDrop, listSelected, setListSel
                                 setDatasetIdx={setDatasetIdx} 
                                 dropIdx={1}
                                 currSentence={currSentence}
+                                articleurl={articleurl}
                             />
                             <button 
                                 className='btn btn-link btn-sm py-0 view-btn' 
-                                onClick={()=>{setViewExplain2(!viewExplain2);}}
+                                onClick={()=>{
+                                    openExpLog(listSelected[0], datasetDrop[gptRefs[0]][datasetIdx[1]], datasetDrop[gptRefs[0]][datasetIdx[1]]["notes"])
+                                    setViewExplain2(!viewExplain2);
+                                }}
                             >
                                 {
                                     viewExplain2

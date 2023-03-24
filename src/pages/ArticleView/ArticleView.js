@@ -178,6 +178,11 @@ function ArticleView( {userid, pagenum, articledata, articlevis, text_req} ) {
                 highlightRef[sentence.trim()].length == 1 ? setListSelected([highlightGPTRef[sentence.trim()][0]]) : setListSelected([highlightGPTRef[sentence.trim()][0], highlightGPTRef[sentence.trim()][1]])
                 setOffsetY(e.nativeEvent.pageY);
                 setDatasetIdx([0, 0]);
+                
+                const userEmail = JSON.parse(window.sessionStorage.getItem("user-email"))["name"]
+                const payload = {"articleTitle": articledata.url, "selectedSentence": sentence}
+                createLog(userEmail, "sentenceSelect", payload)
+
             }
         })
     }
@@ -229,7 +234,7 @@ function ArticleView( {userid, pagenum, articledata, articlevis, text_req} ) {
         const userEmail = JSON.parse(window.sessionStorage.getItem("user-email"))["name"]
         // text_req['user_email'] = userEmail
 
-        const payload = {"articleTitle": text_req.url, "flowNum": userid, "sessionNum": pagenum}
+        const payload = {"articleTitle": articledata.url, "flowNum": userid, "sessionNum": pagenum}
         createLog(userEmail, "endSession", payload)
 
         pagenum == 1
@@ -279,6 +284,7 @@ function ArticleView( {userid, pagenum, articledata, articlevis, text_req} ) {
                     currSentence={currSentence}
                     setNewrefSentence={setNewrefSentence}
                     timeRange={timeRange}
+                    articleurl={articledata.url}
                 />
              : null 
             }
@@ -309,7 +315,8 @@ function ArticleView( {userid, pagenum, articledata, articlevis, text_req} ) {
                         setUpdate={setUpdate}
                         setToastStatus={setToastStatus}
                         removeHighlight={removeHighlight}
-                        articleURL = {text_req.url}
+                        requrl={text_req.url}
+                        articleurl={articledata.url}
                     /> 
                 : null
             } 
