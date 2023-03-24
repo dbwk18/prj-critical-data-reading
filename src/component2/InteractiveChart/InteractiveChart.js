@@ -1,7 +1,8 @@
-import React, {useState, useEffect, useRef} from "react";
+import React, {useState, useEffect, useRef, useCallback} from "react";
 import * as d3 from 'd3';
 import { textwrap } from 'd3-textwrap';
 import axios from 'axios';
+import { debounce } from "lodash";
 
 import LabelDropdown from '../LabelDropdown/LabelDropdown';
 import { createLog } from '../../data/CreateLog.js';
@@ -279,10 +280,20 @@ function InteractiveChart ( {chartOpen, setChartOpen, offsetY, mainData, dataRef
         .x(function(d) { return xScale2(d.date); })
         .y(function(d) { return yScale2(d.measurement); })
 
+
+        //brush log 
+        const brushLog = debounce((e)=>{
+            const userEmail = JSON.parse(window.sessionStorage.getItem("user-email"))["name"]
+            const selectedDataset = [datasetDrop[listSelected[0]][datasetIdx[0]].name, datasetDrop[listSelected[1]][datasetIdx[1]].name]
+            const payload = {"articleTitle": articleurl, "selectedSentence": currSentence, "selectedReference": listSelected, "selectedDataName": selectedDataset, "startRange": xScale2.invert(e.selection[0]), "endRange": xScale2.invert(e.selection[1]), "flowNum": userid, "condition": condition}
+            createLog(userEmail, "timeSliderChange", payload)
+          }
+        , 1500);
+
         //brush function
         const myBrush = d3.brushX()
                         .extent([[xScale2.range()[0], 0], [xScale2.range()[1], height2]])
-                        .on("brush", (event)=>brushed(event, newdata))
+                        .on("brush", (event)=>{brushed(event, newdata); brushLog(event)})
 
         //tooltip
         var tooltip = d3.select(graphRef.current)
@@ -316,6 +327,18 @@ function InteractiveChart ( {chartOpen, setChartOpen, offsetY, mainData, dataRef
             tooltip.style("opacity", 0)
         }
 
+
+        //tooltip log 
+        const tooltipLog = debounce((e, d)=>{
+            const userEmail = JSON.parse(window.sessionStorage.getItem("user-email"))["name"]
+            const selectedDataset = [datasetDrop[listSelected[0]][datasetIdx[0]].name, datasetDrop[listSelected[1]][datasetIdx[1]].name]
+            const hoveredDataRef = p_yaxis == 0 ? listSelected[0] : listSelected[1]
+            const hoveredDataSet = p_yaxis == 0 ? selectedDataset[0] : selectedDataset[1]
+            const payload = {"articleTitle": articleurl, "selectedSentence": currSentence, "selectedReference": listSelected, "selectedDataName": selectedDataset, "hoveredDataReference": hoveredDataRef, "hoveredDataName": hoveredDataSet, "hoveredXValue": d.date, "hoveredYValue": d.value, "flowNum": userid, "condition": condition}
+            createLog(userEmail, "chartHover", payload)
+          }
+        , 1000);
+
         // Add the points
         svg.append("g")
             .selectAll("dot")
@@ -331,7 +354,7 @@ function InteractiveChart ( {chartOpen, setChartOpen, offsetY, mainData, dataRef
             .attr("fill", "white")
             .attr("fill-opacity", 0)
             .on("mouseover", mouseover)
-            .on("mousemove", mousemove)
+            .on("mousemove", (e, d)=>{mousemove(e, d); tooltipLog(e, d)})
             .on("mouseleave", mouseleave)
         
 
@@ -515,7 +538,6 @@ function InteractiveChart ( {chartOpen, setChartOpen, offsetY, mainData, dataRef
             //   .attr("y", -7)
             //   .attr("height", height2 + 7);
         
-
 
         function brushed(event) {
             var s = event.selection;
