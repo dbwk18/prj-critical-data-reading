@@ -43,7 +43,9 @@ function DefaultView( {userid, condition, nextcondition, articledata, articlevis
         <div className='g-name'>{articledata["title"]}</div>
         <div className='g-details'>{articledata["details"]}</div>
         
-        <NotePad />
+        <NotePad 
+            requrl={text_req.url}
+        />
       
             {
                 articledata.paragraphs.map((paragraph, idx) => {

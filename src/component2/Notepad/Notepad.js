@@ -1,51 +1,80 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
+
+import axios from 'axios';
+import { debounce } from "lodash";
+
 import './Notepad.css'
 
-class NotePad extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      notesText: "",
-      noteList: []
-    };
-  }
+function NotePad ( {requrl} ) {
 
-  onSaveNotes = () => {
+  const [notesText, setNotesText] = useState("")
+
+  useEffect(() => {
+    console.log("notes",requrl)
+
+    const useremail = JSON.parse(window.sessionStorage.getItem("user-email"))["name"]
+
+    axios.get(`http://cda.hyunwoo.me/api/note?article_url=${requrl}&user_email=${useremail}`, 
+        { 
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                }
+        }
+        ).then( (response) => {
+            console.log("getnotes", response.data)
+            setNotesText(response.data.note)
+    })
+
+  }, [])
+  
+
+
+  const onSaveNotes = () => {
     const notes = document.getElementById("notes-value").value;
     const obj = { notes };
-    this.setState({
-      notesText: "",
-      noteList: this.state.noteList.concat(obj)
-    });
-    console.log("noteList", this.state.noteList);
+    setNotesText("")
   };
 
-  onChangeValue = () => {
+  const onChangeSave = debounce (() => {
+
+    axios.put(`http://cda.hyunwoo.me/api/note`, 
+        {
+            "article_url": requrl, 
+            "new_note": `${notesText}`, 
+            "user_email": JSON.parse(window.sessionStorage.getItem("user-email"))["name"]
+        },
+        {
+            headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            }
+        }
+        ).then( (res) => {
+            console.log("notesave", res, res.data);
+    })  
+    
+  }, 500);
+
+
+  const onChangeValue = () => {
     const notes = document.getElementById("notes-value").value;
-    this.setState({
-      notesText: notes
-    });
-  };
+    setNotesText(notes);
+  }
 
-//   onDeleteNote = index => {
-//     const deleteNotes = this.state.noteList.filter(el, index);
-//     this.setState({
-//       noteList: deleteNotes
-//     });
-//   };
 
-  render() {
     return (
       <div className="note-pad">
         <div className="some-test">
           <div>
             <textarea
               rows="12"
-              cols="32"
+              cols="25"
               placeholder="Write notes here"
-              id="notes-value"
-              value={this.state.notesText}
-              onChange={this.onChangeValue}
+              id="notes-value" 
+              value={notesText}
+              onChange={(e) => {onChangeValue(); onChangeSave();}}
+              style={{resize: "both"}}
             />
             {/* <button className="save-button" onClick={this.onSaveNotes}>
               Save
@@ -54,7 +83,7 @@ class NotePad extends React.Component {
         </div>
       </div>
     );
-  }
+  
 }
 
 export default NotePad;

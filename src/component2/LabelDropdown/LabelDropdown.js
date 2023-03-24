@@ -108,7 +108,11 @@ function LabelDropdown({mainData, gptRefs, datasetDrop, listSelected, setListSel
                                 viewExplain1
                                 ? (
                                     <div className="view-div">
-                                        {datasetDrop[listSelected[formidx]][datasetIdx[formidx]]["notes"]}
+                                        {
+                                            datasetDrop[listSelected[formidx]][datasetIdx[formidx]]["notes"]
+                                            ? datasetDrop[listSelected[formidx]][datasetIdx[formidx]]["notes"]
+                                            : "There's no corresponding data explanation"
+                                        }
                                     </div>
                                 )
                                 : null
@@ -121,7 +125,11 @@ function LabelDropdown({mainData, gptRefs, datasetDrop, listSelected, setListSel
                                 viewExplain2
                                 ?  (
                                     <div className="view-div"> 
-                                        {datasetDrop[listSelected[formidx]][datasetIdx[formidx]]["notes"]}
+                                        {
+                                            datasetDrop[listSelected[formidx]][datasetIdx[formidx]]["notes"]
+                                            ? datasetDrop[listSelected[formidx]][datasetIdx[formidx]]["notes"]
+                                            : "There's no corresponding data explanation"
+                                        }
                                     </div>
                                 )
                                 : null
@@ -192,7 +200,11 @@ function LabelDropdown({mainData, gptRefs, datasetDrop, listSelected, setListSel
                                     viewExplain1
                                     ?  (
                                         <div className="view-div">
-                                            {mainData.notes}
+                                            {
+                                                mainData.notes
+                                                ? mainData.notes
+                                                : "There's no corresponding data explanation"
+                                            }
                                         </div>
                                     )
                                     : null
@@ -251,7 +263,11 @@ function LabelDropdown({mainData, gptRefs, datasetDrop, listSelected, setListSel
                                     viewExplain2
                                     ?  (
                                         <div className="view-div">
-                                            {datasetDrop[gptRefs[0]][datasetIdx[1]]["notes"]}
+                                            {
+                                                datasetDrop[gptRefs[0]][datasetIdx[1]]["notes"]
+                                                ? datasetDrop[gptRefs[0]][datasetIdx[1]]["notes"]
+                                                : "There's no corresponding data explanation"
+                                            }
                                         </div>
                                     )
                                     : null

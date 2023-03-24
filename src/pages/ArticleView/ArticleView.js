@@ -264,7 +264,9 @@ function ArticleView( {userid, condition, nextcondition, articledata, articlevis
             <img src={articlevis} width='100%' />
         </div> */}
         
-        <NotePad />
+        <NotePad 
+            requrl={text_req.url}
+        />
         
         <div>
             {dataRefs.length !== 0
@@ -365,7 +367,7 @@ function ArticleView( {userid, condition, nextcondition, articledata, articlevis
                                 }
                                 else {
                                     return (
-                                        `${sentence}&nbsp;`
+                                        `${sentence} `
                                     )
                                 }
                                 

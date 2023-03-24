@@ -35,6 +35,7 @@ function ArticleMid( {userid, condition, next_req, articletitle } ) {
             window.sessionStorage.setItem("user-timeframe-data", JSON.stringify(getTimeFrameData(res.data)));
 
             navigate(`/${articletitle}-${userid}`, {state: {article: res.data, highlight: getHighlight(res.data), ref: getHighlightRef(res.data), gptref: getHighlightGPTRef(res.data), color: getHighlightColor(res.data), data: getHighlightData(res.data), timeframe: getTimeFrameData(res.data)}});
+        
         })  )
         : (
             navigate(`/${articletitle}-${userid}`)
@@ -45,6 +46,25 @@ function ArticleMid( {userid, condition, next_req, articletitle } ) {
         const payload = {"articleTitle": articletitle, "flowNum": userid, "condition": condition}
 
         createLog(userEmail, "nextSession", payload)
+
+
+        // create notes
+        axios.post(`http://cda.hyunwoo.me/api/note`, 
+            {
+                "article_url": next_req.url, 
+                "note": "", 
+                "user_email": userEmail
+            },
+            {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json',
+                }
+            }
+            ).then( (res) => {
+                console.log("notecreate", res, res.data);
+        })  
+        
 
     }
     return(

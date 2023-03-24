@@ -655,7 +655,7 @@ function InteractiveChart ( {chartOpen, setChartOpen, offsetY, mainData, dataRef
                         width: "29vw", 
                         position: "absolute", 
                         left: "62vw", 
-                        top: offsetY - 300,
+                        top: offsetY > 550 ? offsetY - 550 : 10,
                         borderRadius: "8px",
                         padding: "10px 0",
                         boxShadow: "rgba(149, 157, 165, 0.2) 0px 8px 24px"

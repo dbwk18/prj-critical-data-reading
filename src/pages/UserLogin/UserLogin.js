@@ -9,7 +9,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './UserLogin.css';
 
 
-function UserLogin( {userid, condition, articletitle} ) {
+function UserLogin( {userid, condition, articletitle, next_req} ) {
 
     const navigate = useNavigate();
 
@@ -18,6 +18,27 @@ function UserLogin( {userid, condition, articletitle} ) {
     const onChange = (e) => {
         setUserEmail(e.target.value);
     };
+
+    const createNotes = () => {
+        // create notes
+        if (condition !== "system") {
+            axios.post(`http://cda.hyunwoo.me/api/note`, 
+                {
+                    "article_url": next_req.url, 
+                    "note": "", 
+                    "user_email": userEmail
+                },
+                {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json',
+                    }
+                }
+                ).then( (res) => {
+                    console.log("notecreate", res, res.data);
+            })  
+        }
+    }
 
     const navigateToArticle = () => {
         const userObj = { name: userEmail };
@@ -70,6 +91,7 @@ function UserLogin( {userid, condition, articletitle} ) {
         //create log 
         const payload = {"articleTitle": articletitle, "flowNum": userid, "condition": condition}
         createLog(userEmail, "startSession", payload)
+        createNotes();
 
     };
 
