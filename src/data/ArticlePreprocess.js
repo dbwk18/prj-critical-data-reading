@@ -14,7 +14,7 @@ const cpi_article =
 
 // console.log("article list", cpi_article)
 
-const process_article = axios.post(`http://internal.kixlab.org:7887/process_article`, 
+const process_article = axios.post(`http://cda.hyunwoo.me/api/process_article`, 
         // {
         //     "image_base64": "", //Base64_encoded main visualization
         //     "paragraphs": cpi_article, // List of paragraphs in text

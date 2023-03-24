@@ -15,7 +15,8 @@ import HighlightText from '../../component2/HighlightText/HighlightText';
 
 import {highlight, highlightRef, highlightGPTRef, highlightColor, highlightData} from '../../data/DataPreprocess.js'
 
-import text_req from '../../data/article2-text.json'
+// import text_req from '../../data/article2-text.json'
+import text_req from './../../data/article_extract_req_emission.json'
 
 import axios from 'axios';
 
@@ -54,7 +55,7 @@ function CarbonArticle() {
         console.log(text_req)
 
         //process article & process data => update when user creates ref 
-        axios.post(`http://internal.kixlab.org:7887/process_article`, 
+        axios.post(`http://cda.hyunwoo.me/api/process_article`, 
         text_req,
         {
             headers: {

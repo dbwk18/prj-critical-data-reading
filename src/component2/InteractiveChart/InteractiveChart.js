@@ -10,7 +10,7 @@ import SearchDropdown from "../SearchDropdown/SearchDropdown";
 import SearchBox from "../SearchBox/SearchBox";
 
 
-function InteractiveChart ( {chartOpen, setChartOpen, offsetY, mainData, dataRefs, gptRefs, datasetDrop, listSelected, setListSelected, datasetIdx, setDatasetIdx, timeFrameData, highlightRef, setHighlightRef, highlightColor, setHighlightColor, currSentence, setNewrefSentence, timeRange, articleurl } ) {
+function InteractiveChart ( {chartOpen, setChartOpen, offsetY, mainData, dataRefs, gptRefs, datasetDrop, listSelected, setListSelected, datasetIdx, setDatasetIdx, timeFrameData, highlightRef, setHighlightRef, highlightColor, setHighlightColor, currSentence, setNewrefSentence, timeRange, articleurl, userid, condition } ) {
     
     const graphRef = useRef();
     const [dataSelected, setDataSelected] = useState(null);
@@ -62,7 +62,7 @@ function InteractiveChart ( {chartOpen, setChartOpen, offsetY, mainData, dataRef
             .append("g")
             .attr("transform", `translate(${margin2.left}, ${margin2.top})`);
         
-        // const time_range = await axios.get(`http://internal.kixlab.org:7887/query_data?dataset_id=${mainData.id}`, { headers: {
+        // const time_range = await axios.get(`http://cda.hyunwoo.me/api/query_data?dataset_id=${mainData.id}`, { headers: {
         //     'Content-Type': 'application/json',
         //     'Accept': 'application/json',
         // }}).then( (response) => {
@@ -132,7 +132,7 @@ function InteractiveChart ( {chartOpen, setChartOpen, offsetY, mainData, dataRef
             .append("g")
             .attr("transform", `translate(${margin3.left}, ${margin3.top})`);
         
-        // const time_range = await axios.get(`http://internal.kixlab.org:7887/query_data?dataset_id=${mainData.id}`, {headers: {
+        // const time_range = await axios.get(`http://cda.hyunwoo.me/api/query_data?dataset_id=${mainData.id}`, {headers: {
         //     'Content-Type': 'application/json',
         //     'Accept': 'application/json',
         // }}).then( (response) => {
@@ -209,14 +209,14 @@ function InteractiveChart ( {chartOpen, setChartOpen, offsetY, mainData, dataRef
             timeUnit = "%Y %m";
         }
         else if (dataset.frequency.includes("Weekly")) {
-            timeUnit = "%Y %m %d";
+            timeUnit = "%Y %m";
         }
         else if (dataset.frequency.includes("Daily")) {
-            timeUnit = "%Y %m %d";
+            timeUnit = "%Y %m";
         }
         const timeConv = d3.timeFormat(timeUnit)
-
-        const newdata = await axios(`http://internal.kixlab.org:7887/query_data?dataset_id=${dataset.id}`, {headers: {
+        
+        const newdata = await axios(`http://cda.hyunwoo.me/api/query_data?dataset_id=${dataset.id}`, {headers: {
             'Content-Type': 'application/json',
             'Accept': 'application/json',
         }}).then( (response) => {
@@ -633,7 +633,7 @@ function InteractiveChart ( {chartOpen, setChartOpen, offsetY, mainData, dataRef
                         width: "29vw", 
                         position: "absolute", 
                         left: "62vw", 
-                        top: offsetY - 270,
+                        top: offsetY - 300,
                         borderRadius: "8px",
                         padding: "10px 0",
                         boxShadow: "rgba(149, 157, 165, 0.2) 0px 8px 24px"
@@ -649,7 +649,7 @@ function InteractiveChart ( {chartOpen, setChartOpen, offsetY, mainData, dataRef
                             setNewrefSentence(null);
 
                             const userEmail = JSON.parse(window.sessionStorage.getItem("user-email"))["name"]
-                            const payload = {"articleTitle": articleurl, "deselectedSentence": currSentence}
+                            const payload = {"articleTitle": articleurl, "deselectedSentence": currSentence, "flowNum": userid, "condition": condition}
                             createLog(userEmail, "sentenceDeselect", payload)
 
                         }}>
@@ -671,6 +671,8 @@ function InteractiveChart ( {chartOpen, setChartOpen, offsetY, mainData, dataRef
                                 setDatasetIdx={setDatasetIdx}
                                 currSentence={currSentence}
                                 articleurl={articleurl}
+                                userid={userid}
+                                condition={condition}
                             /> 
                         </>
                     )

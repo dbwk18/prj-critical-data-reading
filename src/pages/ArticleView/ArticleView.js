@@ -17,7 +17,7 @@ import './ArticleView.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
-function ArticleView( {userid, pagenum, articledata, articlevis, text_req} ) {
+function ArticleView( {userid, condition, nextcondition, articledata, articlevis, text_req} ) {
 
     const navigate = useNavigate();
     const location = useLocation();
@@ -67,7 +67,7 @@ function ArticleView( {userid, pagenum, articledata, articlevis, text_req} ) {
         const main_data = JSON.parse(window.sessionStorage.getItem("user-article")).main_data.dataName;
         setMainData(main_data);
 
-        axios.get(`http://internal.kixlab.org:7887/query_data?dataset_id=${main_data.id}`, { headers: {
+        axios.get(`http://cda.hyunwoo.me/api/query_data?dataset_id=${main_data.id}`, { headers: {
             'Content-Type': 'application/json',
             'Accept': 'application/json',
         }}).then( (response) => {
@@ -91,7 +91,7 @@ function ArticleView( {userid, pagenum, articledata, articlevis, text_req} ) {
 
 
         //process article & process data => update when user creates ref 
-        axios.post(`http://internal.kixlab.org:7887/process_article`, 
+        axios.post(`http://cda.hyunwoo.me/api/process_article`, 
         text_req,
         {
             headers: {
@@ -180,7 +180,7 @@ function ArticleView( {userid, pagenum, articledata, articlevis, text_req} ) {
                 setDatasetIdx([0, 0]);
                 
                 const userEmail = JSON.parse(window.sessionStorage.getItem("user-email"))["name"]
-                const payload = {"articleTitle": articledata.url, "selectedSentence": sentence}
+                const payload = {"articleTitle": articledata.url, "selectedSentence": sentence, "flowNum": userid, "condition": condition}
                 createLog(userEmail, "sentenceSelect", payload)
 
             }
@@ -234,13 +234,17 @@ function ArticleView( {userid, pagenum, articledata, articlevis, text_req} ) {
         const userEmail = JSON.parse(window.sessionStorage.getItem("user-email"))["name"]
         // text_req['user_email'] = userEmail
 
-        const payload = {"articleTitle": articledata.url, "flowNum": userid, "sessionNum": pagenum}
+        const payload = {"articleTitle": articledata.url, "flowNum": userid, "condition": condition}
         createLog(userEmail, "endSession", payload)
 
-        pagenum == 1
-        ? navigate(`/article-mid-${userid}`)
-        : navigate(`/article-end`)
-        
+        // pagenum == 1
+        // ? navigate(`/article-mid-${userid}`)
+        // : navigate(`/article-end`)
+
+        if (nextcondition == "demo") navigate(`/info-demo-${userid}`) 
+        else if (nextcondition == "system") navigate(`/info-task-${userid}`)
+        else if (nextcondition == "baseline") navigate(`/info-base-${userid}`)
+        else if (nextcondition == "end") navigate(`/article-end`)
         
     }
 
@@ -285,6 +289,8 @@ function ArticleView( {userid, pagenum, articledata, articlevis, text_req} ) {
                     setNewrefSentence={setNewrefSentence}
                     timeRange={timeRange}
                     articleurl={articledata.url}
+                    userid={userid}
+                    condition={condition}
                 />
              : null 
             }
@@ -317,6 +323,8 @@ function ArticleView( {userid, pagenum, articledata, articlevis, text_req} ) {
                         removeHighlight={removeHighlight}
                         requrl={text_req.url}
                         articleurl={articledata.url}
+                        userid={userid}
+                        condition={condition}
                     /> 
                 : null
             } 

@@ -1,0 +1,87 @@
+{
+  "title": "Wonking Out: Inflation and the Imputation Game",
+  "details": "",
+  "url": "article1",
+  "paragraphs": [
+    [
+      "When it comes to economic assessment, feelings are no substitute for hard data.",
+      "A plurality of Americans say that we’re in a recession; the actual numbers on jobs and gross domestic product show an economy that remains quite strong."
+    ],
+    [
+      "Indeed, gut-based analysis may be even worse these days than it was in the past, given how much economic views are affected by partisanship: Republicans rate the economy worse now than they did in June 1980, when unemployment was 7.6 percent and inflation was 14 percent."
+    ],
+    [
+      "On the other hand, hard data isn’t necessarily as hard as you think.",
+      "This isn’t a criticism of the statistical agencies, which are doing the best they can and should be given more resources.",
+      "(It would be really helpful right now if the Employment Cost Index were released monthly rather than only once a quarter, for example.)"
+    ],
+    [
+      "But many of the numbers you see aren’t based on direct observation of economic transactions.",
+      "They are instead “imputed” numbers that are, in effect, educated guesses about what the numbers would be if we could observe them directly."
+    ],
+    [
+      "Normally, this isn’t too much of a concern.",
+      "But right now, with everyone trying to figure out how much progress we’re making against inflation in particular, imputed prices are playing a big role in some of the most widely used measures — and the questionable aspects of some of these imputations are arguably distorting policy."
+    ],
+    [
+      "To take one example: For the past few months I and many other economists have been greatly concerned about how the Bureau of Labor Statistics measures housing inflation — which is really important because it makes up about a third of the overall Consumer Price Index and 40 percent of “core” inflation, a widely used measure that excludes food and energy prices."
+    ],
+    [
+      "How does the bureau measure housing inflation?",
+      "Not by looking at the prices at which houses are sold, which fluctuate a lot with things like interest rates.",
+      "Instead, it looks at how much renters pay — and for the large number of Americans who own their own homes, it imputes what it calls Owners’ Equivalent Rent, an estimate based on rental markets of what homeowners would be paying if they were renters (or, if you like, the rent they are implicitly paying to themselves)."
+    ],
+    [
+      "The trouble is that this measure relies on average rents, which to a large extent reflect leases signed many months ago.",
+      "A new Fed study shows that official rent measures lag market rents by about a year.",
+      "And here’s the thing: Market rental rates exploded in 2021, probably as a result of the rise in working from home, but have since leveled off and may in fact be falling."
+    ],
+    [
+      "So official inflation measures are being driven in large part by very high shelter inflation:"
+    ],
+    [
+      "ARTICLEIMG-0"
+    ],
+    [
+      "But these measures are telling us about what was happening a year ago; they overstate current inflation and, perhaps more important, grossly understate the extent to which the inflation picture has improved.",
+      "If you try to measure inflation excluding those dubious housing numbers, plus other volatile elements, you get a picture of dramatic improvement, almost enough to declare the inflation surge over:"
+    ],
+    [
+      "ARTICLEIMG-1"
+    ],
+    [
+      "But wait, there are other measures.",
+      "The Federal Reserve has traditionally focused not on the Consumer Price Index but on the Personal Consumption Expenditure Deflator.",
+      "There are many differences in detail, although historically, the measures have told similar stories:"
+    ],
+    [
+      "ARTICLEIMG-2"
+    ],
+    [
+      "Lately, however, Fed officials have been saying that they’re focused on a particular piece of this measure, core services excluding housing, which hasn’t been showing much progress against inflation, although the latest number shows some improvement."
+    ],
+    [
+      "When you dig into the details of this preferred measure, however, it looks less and less convincing.",
+      "There are many troubling aspects in the data, but among them is a reliance on imputed prices for things like financial services that seem even more dubious than usual."
+    ],
+    [
+      "So why rely on this measure?",
+      "One caustic commentator compared the Fed to an “amateur audio engineer” who keeps cutting out frequencies until things “sound right.”",
+      "That may be too harsh — I think better of the Fed than that — but it is striking that the Fed seems focused on pretty much the only measure of underlying inflation that hasn’t shown rapid improvement since the middle of last year."
+    ],
+    [
+      "So where does that leave us?",
+      "We should analyze the economy using data, not feelings.",
+      "But we should also be aware that hard data is often softer than it seems, and one should be prepared to question what the data says if it, um, feels wrong.",
+      "Yes, that’s pretty unsatisfying."
+    ],
+    [
+      "In terms of where inflation is right now, I’d say that the preponderance of the data points to rapid disinflation.",
+      "I’m eagerly awaiting the Employment Cost Index, due on Jan. 31, although I worry that analysts may place too much faith in what is, after all, just another estimate."
+    ],
+    [
+      "And I have to say that even though I’m pleased to see some belated vindication for those of us who viewed inflation as a transitory problem (even though we never imagined it going so high for so long), I’m a bit disturbed by just how optimistic many of the financial newsletters I receive have gotten on this subject.",
+      "Are business economists letting their feelings get ahead of the solid evidence?"
+    ]
+  ]
+}

@@ -12,7 +12,7 @@ import checkIcon from '../../images/icons/checkIcon.svg'
 import 'react-toastify/dist/ReactToastify.css';
 
 
-function SearchBox({offsetX, offsetY, defaultInput, setSearchBox, setTooltip, newrefSentence, update, setUpdate, setToastStatus, removeHighlight, requrl, articleurl}) {
+function SearchBox({offsetX, offsetY, defaultInput, setSearchBox, setTooltip, newrefSentence, update, setUpdate, setToastStatus, removeHighlight, requrl, articleurl, userid, condition }) {
 
     const [searchStatus, setSearchStatus] = useState(false); //search button click
     const [selectIdx, setSelectIdx] = useState(null);
@@ -64,7 +64,7 @@ function SearchBox({offsetX, offsetY, defaultInput, setSearchBox, setTooltip, ne
          }
 
         console.log("???", req_input)
-        const new_reference = axios.post(`http://internal.kixlab.org:7887/create_reference`,
+        const new_reference = axios.post(`http://cda.hyunwoo.me/api/create_reference`,
         req_input,
         {
             headers: {
@@ -84,7 +84,7 @@ function SearchBox({offsetX, offsetY, defaultInput, setSearchBox, setTooltip, ne
         })  
 
         const userEmail = JSON.parse(window.sessionStorage.getItem("user-email"))["name"]
-        const payload = {"articleTitle": articleurl, "sentence": newrefSentence, "selectedSentencePart": defaultInput, "searchedSentencePart": generatePart}
+        const payload = {"articleTitle": articleurl, "sentence": newrefSentence, "selectedSentencePart": defaultInput, "searchedSentencePart": generatePart, "flowNum": userid, "condition": condition}
         createLog(userEmail, "findData", payload)
         
     }

@@ -8,14 +8,15 @@ import './ArticleMid.css'
 
 import { getHighlight, getHighlightRef, getHighlightGPTRef, getHighlightColor, getHighlightData, getTimeFrameData } from '../../data/DataPreprocess.js';
 
-function ArticleMid( {userid, text_req, articletitle } ) {
+function ArticleMid( {userid, condition, next_req, articletitle } ) {
 
     const navigate = useNavigate();
 
     function processNext() {
 
-        axios.post(`http://internal.kixlab.org:7887/process_article`, 
-        text_req,
+        condition === "system" || condition === "demo"
+        ? ( axios.post(`http://cda.hyunwoo.me/api/process_article`, 
+        next_req,
         {
             headers: {
             'Content-Type': 'application/json',
@@ -33,22 +34,30 @@ function ArticleMid( {userid, text_req, articletitle } ) {
             window.sessionStorage.setItem("user-highlight-data", JSON.stringify(getHighlightData(res.data)));
             window.sessionStorage.setItem("user-timeframe-data", JSON.stringify(getTimeFrameData(res.data)));
 
-             //temporal
             navigate(`/${articletitle}-${userid}`, {state: {article: res.data, highlight: getHighlight(res.data), ref: getHighlightRef(res.data), gptref: getHighlightGPTRef(res.data), color: getHighlightColor(res.data), data: getHighlightData(res.data), timeframe: getTimeFrameData(res.data)}});
-        })  
+        })  )
+        : (
+            navigate(`/${articletitle}-${userid}`)
+        )
 
         //create log 
         const userEmail = JSON.parse(window.sessionStorage.getItem("user-email"))["name"]
-        const payload = {"articleTitle": articletitle, "flowNum": userid}
+        const payload = {"articleTitle": articletitle, "flowNum": userid, "condition": condition}
 
         createLog(userEmail, "nextSession", payload)
 
     }
     return(
         <div className="text-container">
-            <h3>
-                    Task 2
-            </h3>
+            {
+                condition === "demo"
+                ? <h3> Demo </h3> //demo
+                : (
+                    condition === "system"
+                    ? <h3> Task 2 </h3> //system
+                    : <h3> Task 2 </h3> //baseline
+                )
+            }
             <br />
             <button 
                     type="button" 

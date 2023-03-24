@@ -75,7 +75,7 @@ function CPIArticle2() {
         const main_data = JSON.parse(window.sessionStorage.getItem("user-article")).main_data.dataName;
         setMainData(main_data);
 
-        axios.get(`http://internal.kixlab.org:7887/query_data?dataset_id=${main_data.id}`, { headers: {
+        axios.get(`http://cda.hyunwoo.me/api/query_data?dataset_id=${main_data.id}`, { headers: {
             'Content-Type': 'application/json',
             'Accept': 'application/json',
         }}).then( (response) => {
@@ -99,7 +99,7 @@ function CPIArticle2() {
 
 
         //process article & process data => update when user creates ref 
-        axios.post(`http://internal.kixlab.org:7887/process_article`, 
+        axios.post(`http://cda.hyunwoo.me/api/process_article`, 
         text_req,
         {
             headers: {
@@ -235,7 +235,7 @@ function CPIArticle2() {
     function processNext(textreq) {
         textreq['user_email'] = JSON.parse(window.sessionStorage.getItem("user-email"))["name"]
         
-        axios.post(`http://internal.kixlab.org:7887/process_article`, 
+        axios.post(`http://cda.hyunwoo.me/api/process_article`, 
         textreq,
         {
             headers: {

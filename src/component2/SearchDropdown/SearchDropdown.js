@@ -5,7 +5,7 @@ import { createLog } from '../../data/CreateLog.js';
 
 import dropdownicon from '../../images/icons/chevron-down.svg'
 
-function SearchDropdown({dataRef, dataDrop, dataSelected, setDataSelected, datasetIdx, setDatasetIdx, dropIdx, currSentence, articleurl}) {
+function SearchDropdown({dataRef, dataDrop, dataSelected, setDataSelected, datasetIdx, setDatasetIdx, dropIdx, currSentence, articleurl, userid, condition }) {
 
     const [isOpen, setIsOpen] = useState(false);
     const [query, setQuery] =useState("")
@@ -59,7 +59,7 @@ function SearchDropdown({dataRef, dataDrop, dataSelected, setDataSelected, datas
 
     function datasetChangeLog(prev, sel) {
         const userEmail = JSON.parse(window.sessionStorage.getItem("user-email"))["name"]
-        const payload = {"articleTitle": articleurl, "selectedSentence": currSentence, "currReference": dataRef, "previousDataName": prev, "selectedDataName": sel}
+        const payload = {"articleTitle": articleurl, "selectedSentence": currSentence, "currReference": dataRef, "previousDataName": prev, "selectedDataName": sel, "flowNum": userid, "condition": condition}
         createLog(userEmail, "dataSetChange", payload)
     }
 

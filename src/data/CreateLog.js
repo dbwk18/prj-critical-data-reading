@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export const createLog = ( email, event, payload ) => {
-    axios.post(`http://internal.kixlab.org:7887/create_log`, 
+    axios.post(`http://cda.hyunwoo.me/api/create_log`, 
         {
             "user_email": email, // user email
             "event_name": event, // Name of the event

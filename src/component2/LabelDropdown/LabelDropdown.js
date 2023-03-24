@@ -7,7 +7,7 @@ import { createLog } from '../../data/CreateLog.js';
 import './LabelDropdown.css'
 
 
-function LabelDropdown({mainData, gptRefs, datasetDrop, listSelected, setListSelected, dataSelected, setDataSelected, datasetIdx, setDatasetIdx, currSentence, articleurl}) {
+function LabelDropdown({mainData, gptRefs, datasetDrop, listSelected, setListSelected, dataSelected, setDataSelected, datasetIdx, setDatasetIdx, currSentence, articleurl, userid, condition }) {
 
     console.log("dropdown", mainData, datasetDrop, gptRefs, listSelected)
 
@@ -21,13 +21,13 @@ function LabelDropdown({mainData, gptRefs, datasetDrop, listSelected, setListSel
   
     function refChangeLog(prev, sel) {
         const userEmail = JSON.parse(window.sessionStorage.getItem("user-email"))["name"]
-        const payload = {"articleTitle": articleurl, "selectedSentence": currSentence, "previousReference": prev, "selectedReference": sel}
+        const payload = {"articleTitle": articleurl, "selectedSentence": currSentence, "previousReference": prev, "selectedReference": sel, "flowNum": userid, "condition": condition}
         createLog(userEmail, "dataReferenceChange", payload)
     }
 
     function openExpLog(ref, data, exp) {
         const userEmail = JSON.parse(window.sessionStorage.getItem("user-email"))["name"]
-        const payload = {"articleTitle": articleurl, "selectedSentence": currSentence, "selectedReference": ref, "selectedDataset": data.name, "explanationContent": exp}
+        const payload = {"articleTitle": articleurl, "selectedSentence": currSentence, "selectedReference": ref, "selectedDataset": data.name, "explanationContent": exp, "flowNum": userid, "condition": condition}
         createLog(userEmail, "openDatasetExplanation", payload)
     }
 
@@ -172,6 +172,8 @@ function LabelDropdown({mainData, gptRefs, datasetDrop, listSelected, setListSel
                                 dropIdx={0}
                                 currSentence={currSentence}
                                 articleurl={articleurl}
+                                userid={userid}
+                                condition={condition}
                             />
                             <button 
                                 className='btn btn-link btn-sm py-0 view-btn' 

@@ -1,16 +1,15 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { createLog } from '../../data/CreateLog.js';
-import { getHighlight, getHighlightRef, getHighlightGPTRef, getHighlightColor, getHighlightData, getTimeFrameData } from '../../data/DataPreprocess.js';
+// import { getHighlight, getHighlightRef, getHighlightGPTRef, getHighlightColor, getHighlightData, getTimeFrameData } from '../../data/DataPreprocess.js';
 
 import axios from 'axios'
-// import text_req from './../../data/article_extract_test_req.json'
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './UserLogin.css';
 
 
-function UserLogin( {userid, text_req, articletitle} ) {
+function UserLogin( {userid, condition, articletitle} ) {
 
     const navigate = useNavigate();
 
@@ -23,9 +22,8 @@ function UserLogin( {userid, text_req, articletitle} ) {
     const navigateToArticle = () => {
         const userObj = { name: userEmail };
         window.sessionStorage.setItem("user-email", JSON.stringify(userObj));
-        text_req['user_email'] = userEmail;
 
-        axios.post(`http://internal.kixlab.org:7887/create_user`, 
+        axios.post(`http://cda.hyunwoo.me/api/create_user`, 
         {   
             user_email: `${userEmail}`
         },
@@ -39,31 +37,38 @@ function UserLogin( {userid, text_req, articletitle} ) {
             console.log("ARTICLE", res.data);
         })  
 
+        condition === "system"
         //process article & process data => update when user creates ref 
-        axios.post(`http://internal.kixlab.org:7887/process_article`, 
-        text_req,
-        {
-            headers: {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json',
-            }
-        }
-        ).then( (res) => {
-            console.log("ARTICLE", res, res.data);
-            window.sessionStorage.setItem("user-article", JSON.stringify(res.data));
+        ? (
+        // axios.post(`http://cda.hyunwoo.me/api/process_article`, 
+        // next_req,
+        // {
+        //     headers: {
+        //     'Content-Type': 'application/json',
+        //     'Accept': 'application/json',
+        //     }
+        // }
+        // ).then( (res) => {
+        //     console.log("ARTICLE", res, res.data);
+        //     window.sessionStorage.setItem("user-article", JSON.stringify(res.data));
 
-            window.sessionStorage.setItem("user-highlight", JSON.stringify(getHighlight(res.data)));
-            window.sessionStorage.setItem("user-highlight-ref", JSON.stringify(getHighlightRef(res.data)));
-            window.sessionStorage.setItem("user-highlight-gptref", JSON.stringify(getHighlightGPTRef(res.data)));
-            window.sessionStorage.setItem("user-highlight-color", JSON.stringify(getHighlightColor(res.data)));
-            window.sessionStorage.setItem("user-highlight-data", JSON.stringify(getHighlightData(res.data)));
-            window.sessionStorage.setItem("user-timeframe-data", JSON.stringify(getTimeFrameData(res.data)));
+        //     window.sessionStorage.setItem("user-highlight", JSON.stringify(getHighlight(res.data)));
+        //     window.sessionStorage.setItem("user-highlight-ref", JSON.stringify(getHighlightRef(res.data)));
+        //     window.sessionStorage.setItem("user-highlight-gptref", JSON.stringify(getHighlightGPTRef(res.data)));
+        //     window.sessionStorage.setItem("user-highlight-color", JSON.stringify(getHighlightColor(res.data)));
+        //     window.sessionStorage.setItem("user-highlight-data", JSON.stringify(getHighlightData(res.data)));
+        //     window.sessionStorage.setItem("user-timeframe-data", JSON.stringify(getTimeFrameData(res.data)));
 
-            navigate(`/${articletitle}-${userid}`, {state: {article: res.data, highlight: getHighlight(res.data), ref: getHighlightRef(res.data), gptref: getHighlightGPTRef(res.data), color: getHighlightColor(res.data), data: getHighlightData(res.data), timeframe: getTimeFrameData(res.data)}});
-        })  
+        //     navigate(`/${articletitle}-${userid}`, {state: {article: res.data, highlight: getHighlight(res.data), ref: getHighlightRef(res.data), gptref: getHighlightGPTRef(res.data), color: getHighlightColor(res.data), data: getHighlightData(res.data), timeframe: getTimeFrameData(res.data)}});
+        // }) 
+            navigate(`/info-demo-${userid}`)
+        )
+        : (
+            navigate(`/${articletitle}-${userid}`)
+        )
 
         //create log 
-        const payload = {"articleTitle": articletitle, "flowNum": userid}
+        const payload = {"articleTitle": articletitle, "flowNum": userid, "condition": condition}
         createLog(userEmail, "startSession", payload)
 
     };

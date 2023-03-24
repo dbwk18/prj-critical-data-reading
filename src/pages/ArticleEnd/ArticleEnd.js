@@ -1,5 +1,4 @@
 import React, {useEffect} from 'react'
-import { createLog } from '../../data/CreateLog.js';
 
 import './ArticleEnd.css'
 
