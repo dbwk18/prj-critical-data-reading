@@ -66,9 +66,6 @@ function UserLogin( {userid, next_title, text_req} ) {
     };
 
 
-
-
-
     return(
         <div className="container">
             <div className="login--container">

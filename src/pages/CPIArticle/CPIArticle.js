@@ -5,7 +5,7 @@ import toydata from '../../data/toydata.json';
 import toydata2 from '../../data/toydata2.json'
 import Highlighter from 'react-highlight-words';
 import NYTHeader from '../../images/NYT-unemploy/NYTHeader.png';
-import NYTGraph1 from '../../images/vis/cpi_article.png';
+import NYTGraph1 from '../../images/vis/cpi-img1.png';
 
 import InteractiveChart from '../../component2/InteractiveChart/InteractiveChart';
 import SearchTooltip from '../../component2/SearchTooltip/SearchTooltip';

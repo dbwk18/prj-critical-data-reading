@@ -5,7 +5,7 @@ import { useLocation } from "react-router-dom";
 import emissionarticle from '../../data/emission_article.json'
 
 import NYTHeader from '../../images/NYT-unemploy/NYTHeader.png';
-import NYTGraph1 from '../../images/vis/emission_article.png';
+import NYTGraph1 from '../../images/vis/emission-img1.png';
 
 import InteractiveChart from '../../component2/InteractiveChart/InteractiveChart';
 import SearchTooltip from '../../component2/SearchTooltip/SearchTooltip';

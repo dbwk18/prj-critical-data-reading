@@ -4,7 +4,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import cpiarticle from '../../data/cpi_article.json'
 
 import NYTHeader from '../../images/NYT-unemploy/NYTHeader.png';
-import NYTGraph1 from '../../images/vis/cpi_article.png';
+import NYTGraph1 from '../../images/vis/cpi-img1.png';
 
 import ArticleParagraph from '../../component2/ArticleParagraph/ArticleParagraph';
 import InteractiveChart from '../../component2/InteractiveChart/InteractiveChart';

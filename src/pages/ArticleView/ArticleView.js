@@ -245,9 +245,9 @@ function ArticleView( {userid, pagenum, articledata, articlevis, text_req} ) {
         <div className='g-name'>{articledata["title"]}</div>
         <div className='g-details'>{articledata["details"]}</div>
         
-        <div className="g-body">
+        {/* <div className="g-body">
             <img src={articlevis} width='100%' />
-        </div>
+        </div> */}
         
         <NotePad />
         
@@ -332,7 +332,12 @@ function ArticleView( {userid, pagenum, articledata, articlevis, text_req} ) {
                         <div className="g-body">
                             {paragraph.map((sentence, idx) => {
                                 // console.log(idx, sentence, highlightRef[sentence], highlightColor[sentence])
-                                if (highlight.includes(sentence)) {
+                                if (sentence.includes('ARTICLEIMG-')) {
+                                     return (
+                                        <img src={articlevis[parseInt(sentence.replace('ARTICLEIMG-', ''))]} width='100%' />
+                                     )
+                                 }
+                                else if (highlight.includes(sentence)) {
                                     return (
                                         HighlightText(sentence, highlight, highlightRef[sentence], highlightColor[sentence], clickhighlight, newrefSentence, setNewrefSentence, currSentence)
                                     )
