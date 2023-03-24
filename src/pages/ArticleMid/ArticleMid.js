@@ -1,12 +1,14 @@
 import React from 'react'
 import axios from 'axios';
+import { createLog } from '../../data/CreateLog.js';
+
 import { useNavigate } from "react-router-dom";
 import './ArticleMid.css'
 
 
 import { getHighlight, getHighlightRef, getHighlightGPTRef, getHighlightColor, getHighlightData, getTimeFrameData } from '../../data/DataPreprocess.js';
 
-function ArticleMid( {userid, next_title, text_req } ) {
+function ArticleMid( {userid, text_req } ) {
 
     const navigate = useNavigate();
 
@@ -32,8 +34,15 @@ function ArticleMid( {userid, next_title, text_req } ) {
             window.sessionStorage.setItem("user-timeframe-data", JSON.stringify(getTimeFrameData(res.data)));
 
              //temporal
-            navigate(`/${next_title}-${userid}`, {state: {article: res.data, highlight: getHighlight(res.data), ref: getHighlightRef(res.data), gptref: getHighlightGPTRef(res.data), color: getHighlightColor(res.data), data: getHighlightData(res.data), timeframe: getTimeFrameData(res.data)}});
+            navigate(`/${text_req.url}-${userid}`, {state: {article: res.data, highlight: getHighlight(res.data), ref: getHighlightRef(res.data), gptref: getHighlightGPTRef(res.data), color: getHighlightColor(res.data), data: getHighlightData(res.data), timeframe: getTimeFrameData(res.data)}});
         })  
+
+        //create log 
+        const userEmail = JSON.parse(window.sessionStorage.getItem("user-email"))["name"]
+        const payload = {"articleTitle": text_req.url, "flowNum": userid}
+
+        createLog(userEmail, "nextSession", payload)
+
     }
     return(
         <div className="text-container">

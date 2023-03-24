@@ -9,6 +9,7 @@ import NotePad from '../../component2/Notepad/Notepad';
 
 import { getHighlight, getHighlightRef, getHighlightGPTRef, getHighlightColor, getHighlightData, getTimeFrameData } from '../../data/DataPreprocess.js';
 import { ToastContainer, toast } from 'react-toastify';
+import { createLog } from '../../data/CreateLog.js';
 
 import axios from 'axios';
 
@@ -225,11 +226,16 @@ function ArticleView( {userid, pagenum, articledata, articlevis, text_req} ) {
     }
 
     function processNext() {
-        text_req['user_email'] = JSON.parse(window.sessionStorage.getItem("user-email"))["name"]
+        const userEmail = JSON.parse(window.sessionStorage.getItem("user-email"))["name"]
+        // text_req['user_email'] = userEmail
+
+        const payload = {"articleTitle": text_req.url, "flowNum": userid, "sessionNum": pagenum}
+        createLog(userEmail, "endSession", payload)
 
         pagenum == 1
         ? navigate(`/article-mid-${userid}`)
-        : navigate("/article-end")
+        : navigate(`/article-end`)
+        
         
     }
 

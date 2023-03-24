@@ -1,7 +1,9 @@
-import React from 'react'
+import React, {useEffect} from 'react'
+import { createLog } from '../../data/CreateLog.js';
+
 import './ArticleEnd.css'
 
-function ArticleEnd() {
+function ArticleEnd( ) {
 
     return(
         <div className="text-container">
