@@ -67,11 +67,15 @@ function NotePad ( {requrl} ) {
       <div className="note-pad">
         <div className="some-test">
             <div className="description">
-                bullet point 형식으로, <br/> 1-2문장으로 작성해주세요!
+                bullet point 형식으로, 
+                <br/>
+                각 point마다 1-2문장씩 작성해주세요!
+                <br/>
+                (기사 내 인용 부분 및 출처도 함께 적어주세요)
             </div>
           <div>
             <textarea
-              rows="15"
+              rows="21"
               cols="25"
               placeholder="Write notes here"
               id="notes-value" 
