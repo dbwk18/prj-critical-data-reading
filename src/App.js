@@ -39,7 +39,7 @@ import demo_img from './images/vis/demo-img.png'
 function App() {
 
   const article1_vis = [article1_img3, article1_img2, article1_img1]
-  const article2_vis = [article2_img1, article2_img2]
+  const article2_vis = [article2_img2, article2_img1]
   const demo_vis = [demo_img]
   
   return (
