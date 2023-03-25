@@ -74,8 +74,8 @@ function ArticleMid( {userid, condition, next_req, articletitle } ) {
                 ? <h3> Demo </h3> //demo
                 : (
                     condition === "system"
-                    ? <h3> Task 2 </h3> //system
-                    : <h3> Task 2 </h3> //baseline
+                    ? <h3> Task </h3> //system
+                    : <h3> Task </h3> //baseline
                 )
             }
             <br />
